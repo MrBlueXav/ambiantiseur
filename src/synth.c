@@ -147,7 +147,7 @@ sawtooth_runproc (uint16_t offset, uint16_t len)
 
 	//a = 0.2 + 0.8 * _port [FILT][0];
 	// adjust lowpass filter :
-	a = 0.7f;
+	a = 0.9f;
 
 	do
 	{

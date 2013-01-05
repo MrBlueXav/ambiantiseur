@@ -1,0 +1,3477 @@
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 3	@ Tag_ABI_HardFP_use
+   4              		.eabi_attribute 28, 1	@ Tag_ABI_VFP_args
+   5              		.fpu fpv4-sp-d16
+   6              		.eabi_attribute 20, 1	@ Tag_ABI_FP_denormal
+   7              		.eabi_attribute 21, 1	@ Tag_ABI_FP_exceptions
+   8              		.eabi_attribute 23, 3	@ Tag_ABI_FP_number_model
+   9              		.eabi_attribute 24, 1	@ Tag_ABI_align8_needed
+  10              		.eabi_attribute 25, 1	@ Tag_ABI_align8_preserved
+  11              		.eabi_attribute 26, 1	@ Tag_ABI_enum_size
+  12              		.eabi_attribute 30, 2	@ Tag_ABI_optimization_goals
+  13              		.eabi_attribute 34, 1	@ Tag_CPU_unaligned_access
+  14              		.eabi_attribute 18, 4	@ Tag_ABI_PCS_wchar_t
+  15              		.file	"synth.c"
+  16              	@ GNU C (GNU Tools for ARM Embedded Processors) version 4.7.3 20121207 (release) [ARM/embedded-4_7-
+  17              	@	compiled by GNU C version 4.2.1-sjlj (mingw32-2), GMP version 4.3.2, MPFR version 2.4.2, MPC vers
+  18              	@ GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+  19              	@ options passed:  -I . -I ./inc -I ./cmsis/core -I ./cmsis/device
+  20              	@ -imultilib armv7e-m/fpu
+  21              	@ -iprefix c:\gnutoolsarmembedded\4.7-2012q4\bin\../lib/gcc/arm-none-eabi/4.7.3/
+  22              	@ -isysroot c:\gnutoolsarmembedded\4.7-2012q4\bin\../arm-none-eabi
+  23              	@ -MD src/synth.d -MF .dep/synth.o.d -MP -MQ src/synth.o
+  24              	@ -D__USES_INITFINI__ -D __FPU_USED=1 -D __arm__ -D __ASSEMBLY__
+  25              	@ -D USE_STDPERIPH_DRIVER -D STM32F4XX -D HSE_VALUE=8000000
+  26              	@ -D __FPU_PRESENT=1 -D STM32F407VG -D RUN_FROM_FLASH=1 src/synth.c -mthumb
+  27              	@ -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16
+  28              	@ -auxbase-strip src/synth.o -gdwarf-2 -O2 -Wall -Wstrict-prototypes
+  29              	@ -fverbose-asm -ffunction-sections -fdata-sections
+  30              	@ options enabled:  -fauto-inc-dec -fbranch-count-reg -fcaller-saves
+  31              	@ -fcombine-stack-adjustments -fcommon -fcompare-elim -fcprop-registers
+  32              	@ -fcrossjumping -fcse-follow-jumps -fdata-sections -fdebug-types-section
+  33              	@ -fdefer-pop -fdelete-null-pointer-checks -fdevirtualize -fdwarf2-cfi-asm
+  34              	@ -fearly-inlining -feliminate-unused-debug-types -fexpensive-optimizations
+  35              	@ -fforward-propagate -ffunction-cse -ffunction-sections -fgcse -fgcse-lm
+  36              	@ -fgnu-runtime -fguess-branch-probability -fident -fif-conversion
+  37              	@ -fif-conversion2 -findirect-inlining -finline -finline-atomics
+  38              	@ -finline-functions-called-once -finline-small-functions -fipa-cp
+  39              	@ -fipa-profile -fipa-pure-const -fipa-reference -fipa-sra
+  40              	@ -fira-share-save-slots -fira-share-spill-slots -fivopts
+  41              	@ -fkeep-static-consts -fleading-underscore -fmath-errno -fmerge-constants
+  42              	@ -fmerge-debug-strings -fmove-loop-invariants -fomit-frame-pointer
+  43              	@ -foptimize-register-move -foptimize-sibling-calls -foptimize-strlen
+  44              	@ -fpartial-inlining -fpeephole -fpeephole2 -fprefetch-loop-arrays
+  45              	@ -freg-struct-return -fregmove -frename-registers -freorder-blocks
+  46              	@ -freorder-functions -frerun-cse-after-loop
+  47              	@ -fsched-critical-path-heuristic -fsched-dep-count-heuristic
+  48              	@ -fsched-group-heuristic -fsched-interblock -fsched-last-insn-heuristic
+  49              	@ -fsched-rank-heuristic -fsched-spec -fsched-spec-insn-heuristic
+  50              	@ -fsched-stalled-insns-dep -fschedule-insns -fschedule-insns2
+  51              	@ -fsection-anchors -fshow-column -fshrink-wrap -fsigned-zeros
+  52              	@ -fsplit-ivs-in-unroller -fsplit-wide-types -fstrict-aliasing
+  53              	@ -fstrict-overflow -fstrict-volatile-bitfields -fthread-jumps
+  54              	@ -ftoplevel-reorder -ftrapping-math -ftree-bit-ccp -ftree-builtin-call-dce
+  55              	@ -ftree-ccp -ftree-ch -ftree-copy-prop -ftree-copyrename -ftree-cselim
+  56              	@ -ftree-dce -ftree-dominator-opts -ftree-dse -ftree-forwprop -ftree-fre
+  57              	@ -ftree-loop-if-convert -ftree-loop-im -ftree-loop-ivcanon
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 2
+
+
+  58              	@ -ftree-loop-optimize -ftree-parallelize-loops= -ftree-phiprop -ftree-pre
+  59              	@ -ftree-pta -ftree-reassoc -ftree-scev-cprop -ftree-sink
+  60              	@ -ftree-slp-vectorize -ftree-sra -ftree-switch-conversion
+  61              	@ -ftree-tail-merge -ftree-ter -ftree-vect-loop-version -ftree-vrp
+  62              	@ -funit-at-a-time -funroll-loops -fvar-tracking -fvar-tracking-assignments
+  63              	@ -fverbose-asm -fweb -fzero-initialized-in-bss -mlittle-endian
+  64              	@ -msched-prolog -mthumb -munaligned-access -mvectorize-with-neon-quad
+  65              	
+  66              		.text
+  67              	.Ltext0:
+  68              		.cfi_sections	.debug_frame
+  69              		.section	.text.nextSawEnv,"ax",%progbits
+  70              		.align	2
+  71              		.global	nextSawEnv
+  72              		.thumb
+  73              		.thumb_func
+  74              		.type	nextSawEnv, %function
+  75              	nextSawEnv:
+  76              	.LFB110:
+  77              		.file 1 "src/synth.c"
+   1:src/synth.c   **** /**
+   2:src/synth.c   ****  ******************************************************************************
+   3:src/synth.c   ****  * @file     synth.c
+   4:src/synth.c   ****  * @author  Xavier Halgand
+   5:src/synth.c   ****  * @version
+   6:src/synth.c   ****  * @date    december 2012
+   7:src/synth.c   ****  * @brief A sawtooth oscillator with light fixed vibrato
+   8:src/synth.c   ****  * goes through a very basic envelope (just Decay)
+   9:src/synth.c   ****  * then an echo (feedback delay) and a phaser.
+  10:src/synth.c   ****  * The oscillator is an alias-free minBLEP based generator :
+  11:src/synth.c   ****  * Thanks to Sean Bolton (for his blepvco), Fons Adriaensen, Eli Brandt, ... for their work !
+  12:src/synth.c   ****  ******************************************************************************
+  13:src/synth.c   ****  * This program is free software; you can redistribute it and/or
+  14:src/synth.c   ****  * modify it under the terms of the GNU General Public License as
+  15:src/synth.c   ****  * published by the Free Software Foundation; either version 2 of
+  16:src/synth.c   ****  * the License, or (at your option) any later version.
+  17:src/synth.c   ****  *
+  18:src/synth.c   ****  * This program is distributed in the hope that it will be
+  19:src/synth.c   ****  * useful, but WITHOUT ANY WARRANTY; without even the implied
+  20:src/synth.c   ****  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+  21:src/synth.c   ****  * PURPOSE.  See the GNU General Public License for more details.
+  22:src/synth.c   ****  *
+  23:src/synth.c   ****  * You should have received a copy of the GNU General Public
+  24:src/synth.c   ****  * License along with this program; if not, write to the Free
+  25:src/synth.c   ****  * Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+  26:src/synth.c   ****  * MA 02111-1307, USA.
+  27:src/synth.c   ****  */
+  28:src/synth.c   **** 
+  29:src/synth.c   **** 
+  30:src/synth.c   **** #include <stdio.h>
+  31:src/synth.c   **** #include <string.h>
+  32:src/synth.c   **** #include <math.h>
+  33:src/synth.c   **** #include "main.h"
+  34:src/synth.c   **** #include "minblep_tables.h"
+  35:src/synth.c   **** #include "synth.h"
+  36:src/synth.c   **** #include "phaser2.h"
+  37:src/synth.c   **** 
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 3
+
+
+  38:src/synth.c   **** //---------------------------------------------------------------------------
+  39:src/synth.c   **** 
+  40:src/synth.c   **** extern float   		 _p, _w, _z;
+  41:src/synth.c   **** extern float  	     _f [FILLEN + STEP_DD_PULSE_LENGTH];
+  42:src/synth.c   **** extern int    		 _j, _init;
+  43:src/synth.c   **** extern float 		 f1, f2, pass;
+  44:src/synth.c   **** extern float         phase2, phase2Step;
+  45:src/synth.c   **** extern uint16_t   	 audiobuff[BUFF_LEN];
+  46:src/synth.c   **** extern float 	     delayline[DELAYLINE_LEN + 10];
+  47:src/synth.c   **** extern float         *readpos;
+  48:src/synth.c   **** extern float         *writepos;
+  49:src/synth.c   **** extern float		coeff_a1, old_dy;
+  50:src/synth.c   **** extern float         fdb, sampleT, envTime;
+  51:src/synth.c   **** extern float		envPhase;
+  52:src/synth.c   **** extern uint8_t		envTrigger, envAmp;
+  53:src/synth.c   **** //extern uint16_t		ADC1ConvertedValues[8] ;
+  54:src/synth.c   **** //---------------------------------------------------------------------------
+  55:src/synth.c   **** 
+  56:src/synth.c   **** //-------------------------Decay Envelope-------------------------------------
+  57:src/synth.c   **** float
+  58:src/synth.c   **** nextSawEnv(uint8_t *trigger, uint8_t amp, float *t, float envTime)
+  59:src/synth.c   **** {
+  78              		.loc 1 59 0
+  79              		.cfi_startproc
+  80              		@ args = 0, pretend = 0, frame = 0
+  81              		@ frame_needed = 0, uses_anonymous_args = 0
+  82              		@ link register save eliminated.
+  83              	.LVL0:
+  60:src/synth.c   **** 	float val;
+  61:src/synth.c   **** 
+  62:src/synth.c   **** 	if (*trigger == ON) // envelope is trigged !
+  84              		.loc 1 62 0
+  85 0000 0378     		ldrb	r3, [r0, #0]	@ zero_extendqisi2	@ *trigger_2(D), *trigger_2(D)
+  86 0002 012B     		cmp	r3, #1	@ *trigger_2(D),
+  87 0004 21D0     		beq	.L6	@,
+  63:src/synth.c   **** 	{
+  64:src/synth.c   **** 		*trigger = OFF;
+  65:src/synth.c   **** 		*t = 0.f;
+  66:src/synth.c   **** 		(*t) += sampleT;
+  67:src/synth.c   **** 		return val = (float)amp / 255.f;
+  68:src/synth.c   **** 	}
+  69:src/synth.c   **** 	else // no trigger
+  70:src/synth.c   **** 	{
+  71:src/synth.c   **** 		if ((*t) >= envTime)
+  88              		.loc 1 71 0
+  89 0006 D2ED007A 		flds	s15, [r2, #0]	@ D.8760, *t_4(D)
+  90 000a F4EEC07A 		fcmpes	s15, s0	@ D.8760, envTime
+  91 000e F1EE10FA 		fmstat
+  92 0012 17DA     		bge	.L4	@,
+  72:src/synth.c   **** 		{
+  73:src/synth.c   **** 			return val = 0.f;
+  74:src/synth.c   **** 		}
+  75:src/synth.c   **** 		else
+  76:src/synth.c   **** 		{
+  77:src/synth.c   **** 			val = (float)amp / 255.f * (1.f - (*t)/envTime);
+  93              		.loc 1 77 0
+  94 0014 07EE101A 		fmsr	s14, r1	@ int	@, amp
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 4
+
+
+  95 0018 87EE800A 		fdivs	s0, s15, s0	@ tmp164, D.8760, envTime
+  96              	.LVL1:
+  78:src/synth.c   **** 			(*t) += sampleT;
+  97              		.loc 1 78 0
+  98 001c 1648     		ldr	r0, .L7	@ tmp167,
+  99              	.LVL2:
+  77:src/synth.c   **** 			val = (float)amp / 255.f * (1.f - (*t)/envTime);
+ 100              		.loc 1 77 0
+ 101 001e F8EE476A 		fuitos	s13, s14	@ tmp161,
+ 102 0022 DFED160A 		flds	s1, .L7+4	@ tmp163,
+ 103 0026 86EEA01A 		fdivs	s2, s13, s1	@ tmp162, tmp161, tmp163
+ 104              		.loc 1 78 0
+ 105 002a D0ED001A 		flds	s3, [r0, #0]	@ sampleT, sampleT
+  77:src/synth.c   **** 			val = (float)amp / 255.f * (1.f - (*t)/envTime);
+ 106              		.loc 1 77 0
+ 107 002e B7EE006A 		fconsts	s12, #112	@ tmp166,
+ 108 0032 36EE402A 		fsubs	s4, s12, s0	@ tmp165, tmp166, tmp164
+ 109              		.loc 1 78 0
+ 110 0036 77EEA12A 		fadds	s5, s15, s3	@ tmp168, D.8760, sampleT
+  77:src/synth.c   **** 			val = (float)amp / 255.f * (1.f - (*t)/envTime);
+ 111              		.loc 1 77 0
+ 112 003a 21EE020A 		fmuls	s0, s2, s4	@ val, tmp162, tmp165
+ 113              	.LVL3:
+ 114              		.loc 1 78 0
+ 115 003e C2ED002A 		fsts	s5, [r2, #0]	@ tmp168, *t_4(D)
+  79:src/synth.c   **** 			return val;
+ 116              		.loc 1 79 0
+ 117 0042 7047     		bx	lr	@
+ 118              	.LVL4:
+ 119              	.L4:
+  73:src/synth.c   **** 			return val = 0.f;
+ 120              		.loc 1 73 0
+ 121 0044 9FED0E0A 		flds	s0, .L7+8	@ val,
+ 122              	.LVL5:
+  80:src/synth.c   **** 		}
+  81:src/synth.c   **** 	}
+  82:src/synth.c   **** }
+ 123              		.loc 1 82 0
+ 124 0048 7047     		bx	lr	@
+ 125              	.LVL6:
+ 126              	.L6:
+  65:src/synth.c   **** 		*t = 0.f;
+ 127              		.loc 1 65 0
+ 128 004a 9FED0D3A 		flds	s6, .L7+8	@ tmp154,
+  64:src/synth.c   **** 		*trigger = OFF;
+ 129              		.loc 1 64 0
+ 130 004e 0023     		movs	r3, #0	@ tmp152,
+ 131 0050 0370     		strb	r3, [r0, #0]	@ tmp152, *trigger_2(D)
+  65:src/synth.c   **** 		*t = 0.f;
+ 132              		.loc 1 65 0
+ 133 0052 82ED003A 		fsts	s6, [r2, #0]	@ tmp154, *t_4(D)
+  66:src/synth.c   **** 		(*t) += sampleT;
+ 134              		.loc 1 66 0
+ 135 0056 0848     		ldr	r0, .L7	@ tmp155,
+ 136              	.LVL7:
+  67:src/synth.c   **** 		return val = (float)amp / 255.f;
+ 137              		.loc 1 67 0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 5
+
+
+ 138 0058 04EE101A 		fmsr	s8, r1	@ int	@, amp
+  66:src/synth.c   **** 		(*t) += sampleT;
+ 139              		.loc 1 66 0
+ 140 005c D0ED003A 		flds	s7, [r0, #0]	@ sampleT, sampleT
+  67:src/synth.c   **** 		return val = (float)amp / 255.f;
+ 141              		.loc 1 67 0
+ 142 0060 F8EE444A 		fuitos	s9, s8	@ tmp159,
+  66:src/synth.c   **** 		(*t) += sampleT;
+ 143              		.loc 1 66 0
+ 144 0064 33EE835A 		fadds	s10, s7, s6	@ tmp156, sampleT, tmp154
+  67:src/synth.c   **** 		return val = (float)amp / 255.f;
+ 145              		.loc 1 67 0
+ 146 0068 DFED045A 		flds	s11, .L7+4	@ tmp160,
+  66:src/synth.c   **** 		(*t) += sampleT;
+ 147              		.loc 1 66 0
+ 148 006c 82ED005A 		fsts	s10, [r2, #0]	@ tmp156, *t_4(D)
+  67:src/synth.c   **** 		return val = (float)amp / 255.f;
+ 149              		.loc 1 67 0
+ 150 0070 84EEA50A 		fdivs	s0, s9, s11	@ val, tmp159, tmp160
+ 151              	.LVL8:
+ 152 0074 7047     		bx	lr	@
+ 153              	.L8:
+ 154 0076 00BF     		.align	2
+ 155              	.L7:
+ 156 0078 00000000 		.word	sampleT
+ 157 007c 00007F43 		.word	1132396544
+ 158 0080 00000000 		.word	0
+ 159              		.cfi_endproc
+ 160              	.LFE110:
+ 161              		.size	nextSawEnv, .-nextSawEnv
+ 162              		.section	.text.place_step_dd,"ax",%progbits
+ 163              		.align	2
+ 164              		.global	place_step_dd
+ 165              		.thumb
+ 166              		.thumb_func
+ 167              		.type	place_step_dd, %function
+ 168              	place_step_dd:
+ 169              	.LFB111:
+  83:src/synth.c   **** 
+  84:src/synth.c   **** //-------------------------this is magic...---------------------------------------
+  85:src/synth.c   **** 
+  86:src/synth.c   **** void
+  87:src/synth.c   **** place_step_dd(float *buffer, int index, float phase, float w, float scale)
+  88:src/synth.c   **** {
+ 170              		.loc 1 88 0
+ 171              		.cfi_startproc
+ 172              		@ args = 0, pretend = 0, frame = 0
+ 173              		@ frame_needed = 0, uses_anonymous_args = 0
+ 174              	.LVL9:
+ 175 0000 38B5     		push	{r3, r4, r5, lr}	@
+ 176              	.LCFI0:
+ 177              		.cfi_def_cfa_offset 16
+ 178              		.cfi_offset 3, -16
+ 179              		.cfi_offset 4, -12
+ 180              		.cfi_offset 5, -8
+ 181              		.cfi_offset 14, -4
+ 182 0002 2DED028B 		fstmfdd	sp!, {d8}	@,
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 6
+
+
+ 183              	.LCFI1:
+ 184              		.cfi_def_cfa_offset 24
+ 185              		.cfi_offset 80, -24
+  89:src/synth.c   **** 	float r;
+  90:src/synth.c   **** 	int i;
+  91:src/synth.c   **** 
+  92:src/synth.c   **** 	r = MINBLEP_PHASES * phase / w;
+ 186              		.loc 1 92 0
+ 187 0006 DFED338A 		flds	s17, .L20	@ tmp215,
+ 188 000a 20EE280A 		fmuls	s0, s0, s17	@ tmp214, phase, tmp215
+ 189              	.LVL10:
+  88:src/synth.c   **** {
+ 190              		.loc 1 88 0
+ 191 000e 0D46     		mov	r5, r1	@ index, index
+ 192              		.loc 1 92 0
+ 193 0010 C0EE208A 		fdivs	s17, s0, s1	@ r, tmp214, w
+ 194              	.LVL11:
+  88:src/synth.c   **** {
+ 195              		.loc 1 88 0
+ 196 0014 0446     		mov	r4, r0	@ buffer, buffer
+  93:src/synth.c   **** 	i = lrintf(r - 0.5f);
+ 197              		.loc 1 93 0
+ 198 0016 F6EE000A 		fconsts	s1, #96	@ tmp217,
+ 199              	.LVL12:
+ 200 001a 38EEE00A 		fsubs	s0, s17, s1	@, r, tmp217
+  88:src/synth.c   **** {
+ 201              		.loc 1 88 0
+ 202 001e B0EE418A 		fcpys	s16, s2	@ scale, scale
+ 203              		.loc 1 93 0
+ 204 0022 FFF7FEFF 		bl	lrintf	@
+ 205              	.LVL13:
+  94:src/synth.c   **** 	r -= (float)i;
+ 206              		.loc 1 94 0
+ 207 0026 07EE900A 		fmsr	s15, r0	@ int	@, tmp218
+  87:src/synth.c   **** place_step_dd(float *buffer, int index, float phase, float w, float scale)
+ 208              		.loc 1 87 0
+ 209 002a 2B4B     		ldr	r3, .L20+4	@ tmp222,
+  95:src/synth.c   **** 	i &= MINBLEP_PHASE_MASK;  /* extreme modulation can cause i to be out-of-range */
+ 210              		.loc 1 95 0
+ 211 002c 00F03F02 		and	r2, r0, #63	@ i, tmp218,
+  94:src/synth.c   **** 	r -= (float)i;
+ 212              		.loc 1 94 0
+ 213 0030 F8EEE76A 		fsitos	s13, s15	@ tmp219,
+  87:src/synth.c   **** place_step_dd(float *buffer, int index, float phase, float w, float scale)
+ 214              		.loc 1 87 0
+ 215 0034 03EBC203 		add	r3, r3, r2, lsl #3	@, ivtmp.57, tmp222, i,
+  96:src/synth.c   **** 	/* this would be better than the above, but more expensive:
+  97:src/synth.c   **** 	 *  while (i < 0) {
+  98:src/synth.c   **** 	 *    i += MINBLEP_PHASES;
+  99:src/synth.c   **** 	 *    index++;
+ 100:src/synth.c   **** 	 *  }
+ 101:src/synth.c   **** 	 */
+ 102:src/synth.c   **** 
+ 103:src/synth.c   **** 	while (i < MINBLEP_PHASES * STEP_DD_PULSE_LENGTH) {
+ 104:src/synth.c   **** 		buffer[index] += scale * (step_dd_table[i].value + r * step_dd_table[i].delta);
+ 216              		.loc 1 104 0
+ 217 0038 93ED011A 		flds	s2, [r3, #4]	@ MEM[base: D.8817_63, offset: 4B], MEM[base: D.8817_63, offset: 4B]
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 7
+
+
+ 218 003c 93ED007A 		flds	s14, [r3, #0]	@ tmp225, MEM[base: D.8817_63, offset: 0B]
+  94:src/synth.c   **** 	r -= (float)i;
+ 219              		.loc 1 94 0
+ 220 0040 78EEE61A 		fsubs	s3, s17, s13	@ r, r, tmp219
+ 221              	.LVL14:
+  87:src/synth.c   **** place_step_dd(float *buffer, int index, float phase, float w, float scale)
+ 222              		.loc 1 87 0
+ 223 0044 04EB8501 		add	r1, r4, r5, lsl #2	@, ivtmp.53, buffer, index,
+ 224              		.loc 1 104 0
+ 225 0048 01EE817A 		fmacs	s14, s3, s2	@ tmp225, r, MEM[base: D.8817_63, offset: 4B]
+ 226 004c 91ED002A 		flds	s4, [r1, #0]	@ tmp228, MEM[base: D.8816_62, offset: 0B]
+ 227 0050 07EE082A 		fmacs	s4, s14, s16	@ tmp228, tmp225, scale
+ 105:src/synth.c   **** 		i += MINBLEP_PHASES;
+ 228              		.loc 1 105 0
+ 229 0054 02F14000 		add	r0, r2, #64	@ i, i,
+ 230 0058 0122     		movs	r2, #1	@ tmp233,
+ 231              	.LVL15:
+ 103:src/synth.c   **** 	while (i < MINBLEP_PHASES * STEP_DD_PULSE_LENGTH) {
+ 232              		.loc 1 103 0
+ 233 005a 41F2FF15 		movw	r5, #4607	@ tmp230,
+ 234              	.LVL16:
+ 104:src/synth.c   **** 		buffer[index] += scale * (step_dd_table[i].value + r * step_dd_table[i].delta);
+ 235              		.loc 1 104 0
+ 236 005e A1EC012A 		fstmias	r1!, {s4}	@ ivtmp.53, tmp228
+ 237              	.LVL17:
+ 238 0062 03F50073 		add	r3, r3, #512	@ ivtmp.57, ivtmp.57,
+ 239 0066 82B1     		cbz	r2, .L10	@ tmp233,
+ 240 0068 D3ED012A 		flds	s5, [r3, #4]	@ MEM[base: D.8817_63, offset: 4B], MEM[base: D.8817_63, offset: 4B]
+ 241 006c 93ED003A 		flds	s6, [r3, #0]	@ tmp264, MEM[base: D.8817_63, offset: 0B]
+ 242 0070 01EEA23A 		fmacs	s6, s3, s5	@ tmp264, r, MEM[base: D.8817_63, offset: 4B]
+ 243 0074 D1ED003A 		flds	s7, [r1, #0]	@ tmp266, MEM[base: D.8816_62, offset: 0B]
+ 244 0078 43EE083A 		fmacs	s7, s6, s16	@ tmp266, tmp264, scale
+ 245              		.loc 1 105 0
+ 246 007c 4030     		adds	r0, r0, #64	@ i, i,
+ 103:src/synth.c   **** 	while (i < MINBLEP_PHASES * STEP_DD_PULSE_LENGTH) {
+ 247              		.loc 1 103 0
+ 248 007e A842     		cmp	r0, r5	@ i, tmp230
+ 104:src/synth.c   **** 		buffer[index] += scale * (step_dd_table[i].value + r * step_dd_table[i].delta);
+ 249              		.loc 1 104 0
+ 250 0080 E1EC013A 		fstmias	r1!, {s7}	@ ivtmp.53, tmp266
+ 251 0084 03F50073 		add	r3, r3, #512	@ ivtmp.57, ivtmp.57,
+ 103:src/synth.c   **** 	while (i < MINBLEP_PHASES * STEP_DD_PULSE_LENGTH) {
+ 252              		.loc 1 103 0
+ 253 0088 20DC     		bgt	.L19	@,
+ 254              	.LVL18:
+ 255              	.L10:
+ 104:src/synth.c   **** 		buffer[index] += scale * (step_dd_table[i].value + r * step_dd_table[i].delta);
+ 256              		.loc 1 104 0
+ 257 008a 93ED014A 		flds	s8, [r3, #4]	@ MEM[base: D.8817_63, offset: 4B], MEM[base: D.8817_63, offset: 4B]
+ 258 008e D3ED004A 		flds	s9, [r3, #0]	@ tmp246, MEM[base: D.8817_63, offset: 0B]
+ 259 0092 41EE844A 		fmacs	s9, s3, s8	@ tmp246, r, MEM[base: D.8817_63, offset: 4B]
+ 260 0096 91ED005A 		flds	s10, [r1, #0]	@ tmp248, MEM[base: D.8816_62, offset: 0B]
+ 261 009a 04EE885A 		fmacs	s10, s9, s16	@ tmp248, tmp246, scale
+ 262 009e 0A46     		mov	r2, r1	@ tmp234, ivtmp.53
+ 263 00a0 A2EC015A 		fstmias	r2!, {s10}	@ tmp234, tmp248
+ 264 00a4 D3ED805A 		flds	s11, [r3, #512]	@ tmp256, MEM[base: D.8817_63, offset: 0B]
+ 265 00a8 93ED816A 		flds	s12, [r3, #516]	@ MEM[base: D.8817_63, offset: 4B], MEM[base: D.8817_63, offset: 4B]
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 8
+
+
+ 266 00ac 41EE865A 		fmacs	s11, s3, s12	@ tmp256, r, MEM[base: D.8817_63, offset: 4B]
+ 267 00b0 91ED010A 		flds	s0, [r1, #4]	@ tmp258, MEM[base: D.8816_62, offset: 0B]
+ 268 00b4 05EE880A 		fmacs	s0, s11, s16	@ tmp258, tmp256, scale
+ 269              		.loc 1 105 0
+ 270 00b8 8030     		adds	r0, r0, #128	@ i, i,
+ 271 00ba 1146     		mov	r1, r2	@ ivtmp.53, tmp234
+ 103:src/synth.c   **** 	while (i < MINBLEP_PHASES * STEP_DD_PULSE_LENGTH) {
+ 272              		.loc 1 103 0
+ 273 00bc A842     		cmp	r0, r5	@ i, tmp230
+ 274 00be 03F50074 		add	r4, r3, #512	@ tmp236, ivtmp.57,
+ 104:src/synth.c   **** 		buffer[index] += scale * (step_dd_table[i].value + r * step_dd_table[i].delta);
+ 275              		.loc 1 104 0
+ 276 00c2 A1EC010A 		fstmias	r1!, {s0}	@ ivtmp.53, tmp258
+ 277 00c6 03F58063 		add	r3, r3, #1024	@ ivtmp.57, ivtmp.57,
+ 103:src/synth.c   **** 	while (i < MINBLEP_PHASES * STEP_DD_PULSE_LENGTH) {
+ 278              		.loc 1 103 0
+ 279 00ca DEDD     		ble	.L10	@,
+ 280              	.L19:
+ 106:src/synth.c   **** 		index++;
+ 107:src/synth.c   **** 	}
+ 108:src/synth.c   **** }
+ 281              		.loc 1 108 0
+ 282 00cc BDEC028B 		fldmfdd	sp!, {d8}
+ 283 00d0 38BD     		pop	{r3, r4, r5, pc}
+ 284              	.L21:
+ 285 00d2 00BF     		.align	2
+ 286              	.L20:
+ 287 00d4 00008042 		.word	1115684864
+ 288 00d8 00000000 		.word	step_dd_table
+ 289              		.cfi_endproc
+ 290              	.LFE111:
+ 291              		.size	place_step_dd, .-place_step_dd
+ 292              		.section	.text.sawtooth_active,"ax",%progbits
+ 293              		.align	2
+ 294              		.global	sawtooth_active
+ 295              		.thumb
+ 296              		.thumb_func
+ 297              		.type	sawtooth_active, %function
+ 298              	sawtooth_active:
+ 299              	.LFB112:
+ 109:src/synth.c   **** //--------------------------Prepare the oscillator----------------------------------------
+ 110:src/synth.c   **** 
+ 111:src/synth.c   **** void
+ 112:src/synth.c   **** sawtooth_active (void)
+ 113:src/synth.c   **** {
+ 300              		.loc 1 113 0
+ 301              		.cfi_startproc
+ 302              		@ args = 0, pretend = 0, frame = 0
+ 303              		@ frame_needed = 0, uses_anonymous_args = 0
+ 304              		@ link register save eliminated.
+ 305 0000 F0B4     		push	{r4, r5, r6, r7}	@
+ 306              	.LCFI2:
+ 307              		.cfi_def_cfa_offset 16
+ 308              		.cfi_offset 4, -16
+ 309              		.cfi_offset 5, -12
+ 310              		.cfi_offset 6, -8
+ 311              		.cfi_offset 7, -4
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 9
+
+
+ 114:src/synth.c   **** 	_init = 1;
+ 312              		.loc 1 114 0
+ 313 0002 40F20005 		movw	r5, #:lower16:_init	@ tmp144,
+ 314 0006 C0F20005 		movt	r5, #:upper16:_init	@ tmp144,
+ 115:src/synth.c   **** 	_z = 0.0f;
+ 116:src/synth.c   **** 	_j = 0;
+ 315              		.loc 1 116 0
+ 316 000a 40F20003 		movw	r3, #:lower16:_j	@ tmp146,
+ 115:src/synth.c   **** 	_z = 0.0f;
+ 317              		.loc 1 115 0
+ 318 000e 40F20004 		movw	r4, #:lower16:_z	@ tmp145,
+ 319              		.loc 1 116 0
+ 320 0012 0026     		movs	r6, #0	@ tmp139,
+ 321 0014 C0F20003 		movt	r3, #:upper16:_j	@ tmp146,
+ 115:src/synth.c   **** 	_z = 0.0f;
+ 322              		.loc 1 115 0
+ 323 0018 C0F20004 		movt	r4, #:upper16:_z	@ tmp145,
+ 114:src/synth.c   **** 	_init = 1;
+ 324              		.loc 1 114 0
+ 325 001c 0127     		movs	r7, #1	@ tmp135,
+ 117:src/synth.c   **** 	memset (_f, 0, (FILLEN + STEP_DD_PULSE_LENGTH) * sizeof (float));
+ 326              		.loc 1 117 0
+ 327 001e 40F20000 		movw	r0, #:lower16:_f	@ tmp140,
+ 114:src/synth.c   **** 	_init = 1;
+ 328              		.loc 1 114 0
+ 329 0022 2F60     		str	r7, [r5, #0]	@ tmp135, _init
+ 330              		.loc 1 117 0
+ 331 0024 C0F20000 		movt	r0, #:upper16:_f	@,
+ 115:src/synth.c   **** 	_z = 0.0f;
+ 332              		.loc 1 115 0
+ 333 0028 0025     		movs	r5, #0	@ tmp137,
+ 334              		.loc 1 117 0
+ 335 002a 3146     		mov	r1, r6	@, tmp139
+ 336 002c 4FF4A462 		mov	r2, #1312	@,
+ 115:src/synth.c   **** 	_z = 0.0f;
+ 337              		.loc 1 115 0
+ 338 0030 2560     		str	r5, [r4, #0]	@ float	@ tmp137, _z
+ 116:src/synth.c   **** 	_j = 0;
+ 339              		.loc 1 116 0
+ 340 0032 1E60     		str	r6, [r3, #0]	@ tmp139, _j
+ 118:src/synth.c   **** }
+ 341              		.loc 1 118 0
+ 342 0034 F0BC     		pop	{r4, r5, r6, r7}
+ 117:src/synth.c   **** 	memset (_f, 0, (FILLEN + STEP_DD_PULSE_LENGTH) * sizeof (float));
+ 343              		.loc 1 117 0
+ 344 0036 FFF7FEBF 		b	memset	@
+ 345              	.LVL19:
+ 346              		.cfi_endproc
+ 347              	.LFE112:
+ 348              		.size	sawtooth_active, .-sawtooth_active
+ 349              		.global	__aeabi_f2d
+ 350              		.global	__aeabi_dcmplt
+ 351 003a 00BF     		.section	.text.sawtooth_runproc,"ax",%progbits
+ 352              		.align	2
+ 353              		.global	sawtooth_runproc
+ 354              		.thumb
+ 355              		.thumb_func
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 10
+
+
+ 356              		.type	sawtooth_runproc, %function
+ 357              	sawtooth_runproc:
+ 358              	.LFB113:
+ 119:src/synth.c   **** 
+ 120:src/synth.c   **** //---------------------------Compute the samples---------------------------------
+ 121:src/synth.c   **** void
+ 122:src/synth.c   **** sawtooth_runproc (uint16_t offset, uint16_t len)
+ 123:src/synth.c   **** {
+ 359              		.loc 1 123 0
+ 360              		.cfi_startproc
+ 361              		@ args = 0, pretend = 0, frame = 8
+ 362              		@ frame_needed = 0, uses_anonymous_args = 0
+ 363              	.LVL20:
+ 364 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, sl, fp, lr}	@
+ 365              	.LCFI3:
+ 366              		.cfi_def_cfa_offset 36
+ 367              		.cfi_offset 4, -36
+ 368              		.cfi_offset 5, -32
+ 369              		.cfi_offset 6, -28
+ 370              		.cfi_offset 7, -24
+ 371              		.cfi_offset 8, -20
+ 372              		.cfi_offset 9, -16
+ 373              		.cfi_offset 10, -12
+ 374              		.cfi_offset 11, -8
+ 375              		.cfi_offset 14, -4
+ 376 0004 2DED0A8B 		fstmfdd	sp!, {d8, d9, d10, d11, d12}	@,
+ 377              	.LCFI4:
+ 378              		.cfi_def_cfa_offset 76
+ 379              		.cfi_offset 80, -76
+ 380              		.cfi_offset 82, -68
+ 381              		.cfi_offset 84, -60
+ 382              		.cfi_offset 86, -52
+ 383              		.cfi_offset 88, -44
+ 124:src/synth.c   **** 	uint16_t	j, n;
+ 125:src/synth.c   **** 	uint16_t	*outp;
+ 126:src/synth.c   **** 	float  		a, p, t, w, dw, z, ze, y, dy, freq;
+ 127:src/synth.c   **** 	uint16_t	value;
+ 128:src/synth.c   **** 
+ 129:src/synth.c   **** 	outp    = audiobuff + offset;
+ 130:src/synth.c   **** 	freq = f1;
+ 131:src/synth.c   **** 	p = _p;  /* phase [0, 1) */
+ 132:src/synth.c   **** 	w = _w;  /* phase increment */
+ 133:src/synth.c   **** 	z = _z;  /* low pass filter state */
+ 134:src/synth.c   **** 	j = _j;  /* index into buffer _f */
+ 135:src/synth.c   **** 
+ 136:src/synth.c   **** 	if (_init)
+ 384              		.loc 1 136 0
+ 385 0008 D94D     		ldr	r5, .L59+8	@ tmp410,
+ 129:src/synth.c   **** 	outp    = audiobuff + offset;
+ 386              		.loc 1 129 0
+ 387 000a DA4C     		ldr	r4, .L59+12	@ tmp274,
+ 388              		.loc 1 136 0
+ 389 000c 2B68     		ldr	r3, [r5, #0]	@ _init, _init
+ 123:src/synth.c   **** {
+ 390              		.loc 1 123 0
+ 391 000e 83B0     		sub	sp, sp, #12	@,,
+ 392              	.LCFI5:
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 11
+
+
+ 393              		.cfi_def_cfa_offset 88
+ 134:src/synth.c   **** 	j = _j;  /* index into buffer _f */
+ 394              		.loc 1 134 0
+ 395 0010 40F20002 		movw	r2, #:lower16:_j	@,
+ 396 0014 C0F20002 		movt	r2, #:upper16:_j	@,
+ 123:src/synth.c   **** {
+ 397              		.loc 1 123 0
+ 398 0018 0191     		str	r1, [sp, #4]	@ len, %sfp
+ 129:src/synth.c   **** 	outp    = audiobuff + offset;
+ 399              		.loc 1 129 0
+ 400 001a 04EB4004 		add	r4, r4, r0, lsl #1	@, outp, tmp274, offset,
+ 401              	.LVL21:
+ 130:src/synth.c   **** 	freq = f1;
+ 402              		.loc 1 130 0
+ 403 001e 40F20001 		movw	r1, #:lower16:f1	@,
+ 404              	.LVL22:
+ 131:src/synth.c   **** 	p = _p;  /* phase [0, 1) */
+ 405              		.loc 1 131 0
+ 406 0022 40F20000 		movw	r0, #:lower16:_p	@,
+ 407              	.LVL23:
+ 132:src/synth.c   **** 	w = _w;  /* phase increment */
+ 408              		.loc 1 132 0
+ 409 0026 40F20006 		movw	r6, #:lower16:_w	@,
+ 133:src/synth.c   **** 	z = _z;  /* low pass filter state */
+ 410              		.loc 1 133 0
+ 411 002a 40F20007 		movw	r7, #:lower16:_z	@,
+ 130:src/synth.c   **** 	freq = f1;
+ 412              		.loc 1 130 0
+ 413 002e C0F20001 		movt	r1, #:upper16:f1	@,
+ 131:src/synth.c   **** 	p = _p;  /* phase [0, 1) */
+ 414              		.loc 1 131 0
+ 415 0032 C0F20000 		movt	r0, #:upper16:_p	@,
+ 132:src/synth.c   **** 	w = _w;  /* phase increment */
+ 416              		.loc 1 132 0
+ 417 0036 C0F20006 		movt	r6, #:upper16:_w	@,
+ 133:src/synth.c   **** 	z = _z;  /* low pass filter state */
+ 418              		.loc 1 133 0
+ 419 003a C0F20007 		movt	r7, #:upper16:_z	@,
+ 134:src/synth.c   **** 	j = _j;  /* index into buffer _f */
+ 420              		.loc 1 134 0
+ 421 003e B2F80090 		ldrh	r9, [r2, #0]	@ j, _j
+ 130:src/synth.c   **** 	freq = f1;
+ 422              		.loc 1 130 0
+ 423 0042 D1ED009A 		flds	s19, [r1, #0]	@ freq, f1
+ 424              	.LVL24:
+ 131:src/synth.c   **** 	p = _p;  /* phase [0, 1) */
+ 425              		.loc 1 131 0
+ 426 0046 90ED008A 		flds	s16, [r0, #0]	@ p, _p
+ 427              	.LVL25:
+ 132:src/synth.c   **** 	w = _w;  /* phase increment */
+ 428              		.loc 1 132 0
+ 429 004a 96ED009A 		flds	s18, [r6, #0]	@ w, _w
+ 430              	.LVL26:
+ 133:src/synth.c   **** 	z = _z;  /* low pass filter state */
+ 431              		.loc 1 133 0
+ 432 004e D7ED008A 		flds	s17, [r7, #0]	@ z, _z
+ 433              	.LVL27:
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 12
+
+
+ 434              		.loc 1 136 0
+ 435 0052 ABB1     		cbz	r3, .L24	@ _init,
+ 436              	.LVL28:
+ 137:src/synth.c   **** 	{
+ 138:src/synth.c   **** 		p = 0.5f;
+ 139:src/synth.c   **** 		w = freq / SAMPLERATE;
+ 437              		.loc 1 139 0
+ 438 0054 9FEDC88A 		flds	s16, .L59+16	@ tmp283,
+ 439 0058 89EE88AA 		fdivs	s20, s19, s16	@ w, freq, tmp283
+ 440              	.LVL29:
+ 140:src/synth.c   **** 		if (w < 1e-5) w = 1e-5;
+ 441              		.loc 1 140 0
+ 442 005c 1AEE100A 		fmrs	r0, s20	@, w
+ 443 0060 FFF7FEFF 		bl	__aeabi_f2d	@
+ 444              	.LVL30:
+ 445 0064 C0A3     		adr	r3, .L59	@,
+ 446 0066 D3E90023 		ldrd	r2, [r3]	@,
+ 447 006a FFF7FEFF 		bl	__aeabi_dcmplt	@
+ 448              	.LVL31:
+ 449 006e 0028     		cmp	r0, #0	@
+ 450 0070 00F06F81 		beq	.L56	@
+ 451 0074 9FEDC19A 		flds	s18, .L59+20	@ w,
+ 452              	.L25:
+ 453              	.LVL32:
+ 141:src/synth.c   **** 		if (w > 0.5) w = 0.5;
+ 142:src/synth.c   **** 		/* if we valued alias-free startup over low startup time, we could do:
+ 143:src/synth.c   **** 		 *   p -= w;
+ 144:src/synth.c   **** 		 *   place_slope_dd(_f, j, 0.0f, w, -1.0f); */
+ 145:src/synth.c   **** 		_init = 0;
+ 454              		.loc 1 145 0
+ 455 0078 0023     		movs	r3, #0	@ tmp289,
+ 456 007a 2B60     		str	r3, [r5, #0]	@ tmp289, _init
+ 138:src/synth.c   **** 		p = 0.5f;
+ 457              		.loc 1 138 0
+ 458 007c B6EE008A 		fconsts	s16, #96	@ p,
+ 459              	.LVL33:
+ 460              	.L24:
+ 461 0080 4434     		adds	r4, r4, #68	@, outp,
+ 462              	.LVL34:
+ 463 0082 DFF830B3 		ldr	fp, .L59+76	@ tmp394,
+ 464 0086 BE4D     		ldr	r5, .L59+24	@ tmp395,
+ 465 0088 DFF82C83 		ldr	r8, .L59+80	@ tmp400,
+ 466 008c DFF82CA3 		ldr	sl, .L59+84	@ tmp398,
+ 467 0090 BC4F     		ldr	r7, .L59+28	@ tmp399,
+ 468 0092 BD4E     		ldr	r6, .L59+32	@ pretmp.80,
+ 469 0094 0094     		str	r4, [sp, #0]	@, %sfp
+ 146:src/synth.c   **** 	}
+ 147:src/synth.c   **** 
+ 148:src/synth.c   **** 	//a = 0.2 + 0.8 * _port [FILT][0];
+ 149:src/synth.c   **** 	// adjust lowpass filter :
+ 150:src/synth.c   **** 	a = 0.9f;
+ 151:src/synth.c   **** 
+ 152:src/synth.c   **** 	do
+ 153:src/synth.c   **** 	{
+ 154:src/synth.c   **** 		n = 16;  //  the osc freq control is undersampled 16 times
+ 155:src/synth.c   **** 
+ 156:src/synth.c   **** 		/***** insert a vibrato  ******/
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 13
+
+
+ 157:src/synth.c   **** 		phase2Step = _2PI * 16.f * f2 / SAMPLERATE;
+ 470              		.loc 1 157 0
+ 471 0096 9FEDBDCA 		flds	s24, .L59+36	@ tmp425,
+ 472 009a DFEDB7AA 		flds	s21, .L59+16	@ tmp426,
+ 158:src/synth.c   **** 		phase2 += phase2Step;
+ 159:src/synth.c   **** 		phase2 = (phase2 > _2PI) ? phase2 - _2PI : phase2;
+ 473              		.loc 1 159 0
+ 474 009e 9FEDBCBA 		flds	s22, .L59+40	@ tmp427,
+ 160:src/synth.c   **** 		   /* modulate freq by a sine   */
+ 161:src/synth.c   **** 		freq = f1 * (1 + 0.01f * sinf(phase2));
+ 475              		.loc 1 161 0
+ 476 00a2 DFEDBCBA 		flds	s23, .L59+44	@ tmp428,
+ 477              	.LVL35:
+ 478              	.L41:
+ 157:src/synth.c   **** 		phase2Step = _2PI * 16.f * f2 / SAMPLERATE;
+ 479              		.loc 1 157 0
+ 480 00a6 40F20002 		movw	r2, #:lower16:f2	@,
+ 481 00aa C0F20002 		movt	r2, #:upper16:f2	@,
+ 482 00ae 92ED007A 		flds	s14, [r2, #0]	@ f2, f2
+ 483 00b2 27EE0C0A 		fmuls	s0, s14, s24	@ tmp291, f2, tmp425
+ 158:src/synth.c   **** 		phase2 += phase2Step;
+ 484              		.loc 1 158 0
+ 485 00b6 40F20004 		movw	r4, #:lower16:phase2	@,
+ 157:src/synth.c   **** 		phase2Step = _2PI * 16.f * f2 / SAMPLERATE;
+ 486              		.loc 1 157 0
+ 487 00ba C0EE2A0A 		fdivs	s1, s0, s21	@ phase2Step.3, tmp291, tmp426
+ 488              	.LVL36:
+ 158:src/synth.c   **** 		phase2 += phase2Step;
+ 489              		.loc 1 158 0
+ 490 00be C0F20004 		movt	r4, #:upper16:phase2	@,
+ 157:src/synth.c   **** 		phase2Step = _2PI * 16.f * f2 / SAMPLERATE;
+ 491              		.loc 1 157 0
+ 492 00c2 40F20001 		movw	r1, #:lower16:phase2Step	@,
+ 159:src/synth.c   **** 		phase2 = (phase2 > _2PI) ? phase2 - _2PI : phase2;
+ 493              		.loc 1 159 0
+ 494 00c6 40F20000 		movw	r0, #:lower16:phase2	@,
+ 157:src/synth.c   **** 		phase2Step = _2PI * 16.f * f2 / SAMPLERATE;
+ 495              		.loc 1 157 0
+ 496 00ca C0F20001 		movt	r1, #:upper16:phase2Step	@,
+ 159:src/synth.c   **** 		phase2 = (phase2 > _2PI) ? phase2 - _2PI : phase2;
+ 497              		.loc 1 159 0
+ 498 00ce C0F20000 		movt	r0, #:upper16:phase2	@,
+ 158:src/synth.c   **** 		phase2 += phase2Step;
+ 499              		.loc 1 158 0
+ 500 00d2 D4ED007A 		flds	s15, [r4, #0]	@ phase2, phase2
+ 501 00d6 30EEA71A 		fadds	s2, s1, s15	@ iftmp.7, phase2Step.3, phase2
+ 502              	.LVL37:
+ 157:src/synth.c   **** 		phase2Step = _2PI * 16.f * f2 / SAMPLERATE;
+ 503              		.loc 1 157 0
+ 504 00da C1ED000A 		fsts	s1, [r1, #0]	@ phase2Step.3, phase2Step
+ 159:src/synth.c   **** 		phase2 = (phase2 > _2PI) ? phase2 - _2PI : phase2;
+ 505              		.loc 1 159 0
+ 506 00de B4EECB1A 		fcmpes	s2, s22	@ iftmp.7, tmp427
+ 507              	.LVL38:
+ 508 00e2 F1EE10FA 		fmstat
+ 509 00e6 C8BF     		it	gt
+ 510 00e8 31EE4B1A 		fsubsgt	s2, s2, s22	@ iftmp.7, iftmp.7, tmp427
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 14
+
+
+ 511              	.LVL39:
+ 512              		.loc 1 161 0
+ 513 00ec B0EE410A 		fcpys	s0, s2	@, iftmp.7
+ 514              	.LVL40:
+ 159:src/synth.c   **** 		phase2 = (phase2 > _2PI) ? phase2 - _2PI : phase2;
+ 515              		.loc 1 159 0
+ 516 00f0 80ED001A 		fsts	s2, [r0, #0]	@ iftmp.7, phase2
+ 517              		.loc 1 161 0
+ 518 00f4 FFF7FEFF 		bl	sinf	@
+ 519              	.LVL41:
+ 520 00f8 F7EE001A 		fconsts	s3, #112	@ tmp304,
+ 521 00fc 40EE2B1A 		fmacs	s3, s0, s23	@ tmp304,, tmp428
+ 162:src/synth.c   **** 
+ 163:src/synth.c   **** 		len -= n;
+ 522              		.loc 1 163 0
+ 523 0100 019B     		ldr	r3, [sp, #4]	@ tmp301, %sfp
+ 161:src/synth.c   **** 		freq = f1 * (1 + 0.01f * sinf(phase2));
+ 524              		.loc 1 161 0
+ 525 0102 61EEA99A 		fmuls	s19, s3, s19	@ tmp306, tmp304, freq
+ 526              	.LVL42:
+ 527              		.loc 1 163 0
+ 528 0106 103B     		subs	r3, r3, #16	@ tmp301, tmp301,
+ 164:src/synth.c   **** 
+ 165:src/synth.c   **** 		t = freq / SAMPLERATE;
+ 529              		.loc 1 165 0
+ 530 0108 C9EEAACA 		fdivs	s25, s19, s21	@ t, tmp306, tmp426
+ 163:src/synth.c   **** 		len -= n;
+ 531              		.loc 1 163 0
+ 532 010c 9AB2     		uxth	r2, r3	@, tmp301
+ 533 010e 0192     		str	r2, [sp, #4]	@, %sfp
+ 534              	.LVL43:
+ 166:src/synth.c   **** 		if (t < 1e-5) t = 1e-5;
+ 535              		.loc 1 166 0
+ 536 0110 1CEE900A 		fmrs	r0, s25	@, t
+ 537 0114 FFF7FEFF 		bl	__aeabi_f2d	@
+ 538              	.LVL44:
+ 539 0118 93A3     		adr	r3, .L59	@,
+ 540 011a D3E90023 		ldrd	r2, [r3]	@,
+ 541 011e FFF7FEFF 		bl	__aeabi_dcmplt	@
+ 542              	.LVL45:
+ 543 0122 0028     		cmp	r0, #0	@
+ 544 0124 40F0F580 		bne	.L44	@
+ 167:src/synth.c   **** 		if (t > 0.5) t = 0.5;
+ 545              		.loc 1 167 0
+ 546 0128 B6EE002A 		fconsts	s4, #96	@ tmp311,
+ 547 012c F4EE42CA 		fcmps	s25, s4	@ t, tmp311
+ 548 0130 F1EE10FA 		fmstat
+ 549 0134 C8BF     		it	gt	@
+ 550 0136 F0EE42CA 		fcpysgt	s25, s4	@, t, tmp311
+ 551              	.LVL46:
+ 552              	.L28:
+ 168:src/synth.c   **** 		dw = (t - w) / n;
+ 553              		.loc 1 168 0
+ 554 013a 7CEEC92A 		fsubs	s5, s25, s18	@ tmp312, t, w
+ 555 013e 9FED963A 		flds	s6, .L59+48	@ tmp313,
+ 122:src/synth.c   **** sawtooth_runproc (uint16_t offset, uint16_t len)
+ 556              		.loc 1 122 0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 15
+
+
+ 557 0142 009C     		ldr	r4, [sp, #0]	@ ivtmp.103, %sfp
+ 169:src/synth.c   **** 
+ 170:src/synth.c   **** 		while (n--) // for each sample...
+ 171:src/synth.c   **** 		{
+ 172:src/synth.c   **** 			w += dw;
+ 173:src/synth.c   **** 			p += w;
+ 174:src/synth.c   **** 
+ 175:src/synth.c   **** 			if (p >= 1.0f)
+ 176:src/synth.c   **** 			{  /* normal phase reset */
+ 177:src/synth.c   **** 				p -= 1.0f;
+ 178:src/synth.c   **** 				place_step_dd(_f, j, p, w, 1.0f);
+ 179:src/synth.c   **** 			}
+ 180:src/synth.c   **** 
+ 181:src/synth.c   **** 			_f[j + DD_SAMPLE_DELAY] += 0.5f - p;
+ 182:src/synth.c   **** 			z += a * (_f[j] - z);
+ 558              		.loc 1 182 0
+ 559 0144 9FED95AA 		flds	s20, .L59+52	@ tmp420,
+ 168:src/synth.c   **** 		dw = (t - w) / n;
+ 560              		.loc 1 168 0
+ 561 0148 62EE839A 		fmuls	s19, s5, s6	@ dw, tmp312, tmp313
+ 562              	.LVL47:
+ 563 014c DFED94CA 		flds	s25, .L59+56	@ tmp424,
+ 122:src/synth.c   **** sawtooth_runproc (uint16_t offset, uint16_t len)
+ 564              		.loc 1 122 0
+ 565 0150 403C     		subs	r4, r4, #64	@ ivtmp.103, ivtmp.103,
+ 566 0152 3FE0     		b	.L39	@
+ 567              	.LVL48:
+ 568              	.L46:
+ 183:src/synth.c   **** 
+ 184:src/synth.c   **** 			/****   insert enveloppe  ****/
+ 185:src/synth.c   **** 			ze = z * nextSawEnv(&envTrigger, envAmp, &envPhase, envTime);
+ 186:src/synth.c   **** 
+ 187:src/synth.c   **** 			/**** insert delay effect  ****/
+ 188:src/synth.c   **** 			// (*readpos) : delayed sample read at the output of the delay line
+ 189:src/synth.c   **** 			dy = (1.f - coeff_a1)*(*readpos) + coeff_a1 * old_dy; // apply lowpass filter in the loop
+ 190:src/synth.c   **** 			old_dy = dy;
+ 191:src/synth.c   **** 			y = pass *  ze + fdb*dy;
+ 192:src/synth.c   **** 			y = (y > 1.0f) ? 1.0f : y ; //clip too loud samples
+ 569              		.loc 1 192 0
+ 570 0154 B0EE660A 		fcpys	s0, s13	@ y, tmp342
+ 571              	.LVL49:
+ 572              	.L32:
+ 193:src/synth.c   **** 			y = (y < -1.0f) ? -1.0f : y ;
+ 194:src/synth.c   **** 			*writepos = y; // write new computed sample at the input of the delay line
+ 573              		.loc 1 194 0 discriminator 3
+ 574 0158 3B68     		ldr	r3, [r7, #0]	@ writepos.19, writepos
+ 575              	.LVL50:
+ 576 015a A3EC010A 		fstmias	r3!, {s0}	@ writepos.19, y
+ 577              	.LVL51:
+ 195:src/synth.c   **** 				/* update the delay line pointers : */
+ 196:src/synth.c   **** 			writepos++;
+ 197:src/synth.c   **** 			readpos++;
+ 198:src/synth.c   **** 			if ((writepos - delayline) >= DELAYLINE_LEN)
+ 578              		.loc 1 198 0 discriminator 3
+ 579 015e 47F2FF61 		movw	r1, #30463	@ tmp362,
+ 197:src/synth.c   **** 			readpos++;
+ 580              		.loc 1 197 0 discriminator 3
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 16
+
+
+ 581 0162 021D     		adds	r2, r0, #4	@ readpos.20, readpos.12,
+ 582              	.LVL52:
+ 583              		.loc 1 198 0 discriminator 3
+ 584 0164 C0F20101 		movt	r1, 1	@ tmp362,
+ 585 0168 981B     		subs	r0, r3, r6	@ tmp361, writepos.19, pretmp.80
+ 586              	.LVL53:
+ 587 016a 8842     		cmp	r0, r1	@ tmp361, tmp362
+ 196:src/synth.c   **** 			writepos++;
+ 588              		.loc 1 196 0 discriminator 3
+ 589 016c 3B60     		str	r3, [r7, #0]	@ writepos.19, writepos
+ 197:src/synth.c   **** 			readpos++;
+ 590              		.loc 1 197 0 discriminator 3
+ 591 016e 2A60     		str	r2, [r5, #0]	@ readpos.20, readpos
+ 592              	.LVL54:
+ 593              		.loc 1 198 0 discriminator 3
+ 594 0170 08DD     		ble	.L33	@,
+ 199:src/synth.c   **** 				writepos = delayline; // wrap pointer
+ 595              		.loc 1 199 0
+ 596 0172 40F20001 		movw	r1, #:lower16:writepos	@,
+ 597 0176 40F20003 		movw	r3, #:lower16:delayline	@,
+ 598              	.LVL55:
+ 599 017a C0F20001 		movt	r1, #:upper16:writepos	@,
+ 600 017e C0F20003 		movt	r3, #:upper16:delayline	@,
+ 601 0182 0B60     		str	r3, [r1, #0]	@, writepos
+ 602              	.LVL56:
+ 603              	.L33:
+ 200:src/synth.c   **** 
+ 201:src/synth.c   **** 			if ((readpos - delayline) >= DELAYLINE_LEN)
+ 604              		.loc 1 201 0
+ 605 0184 47F2FF60 		movw	r0, #30463	@ tmp366,
+ 606 0188 921B     		subs	r2, r2, r6	@ tmp365, readpos.20, pretmp.80
+ 607              	.LVL57:
+ 608 018a C0F20100 		movt	r0, 1	@ tmp366,
+ 609 018e 8242     		cmp	r2, r0	@ tmp365, tmp366
+ 610 0190 04DD     		ble	.L34	@,
+ 202:src/synth.c   **** 				readpos = delayline;  // wrap pointer
+ 611              		.loc 1 202 0
+ 612 0192 40F20003 		movw	r3, #:lower16:delayline	@,
+ 613              	.LVL58:
+ 614 0196 C0F20003 		movt	r3, #:upper16:delayline	@,
+ 615 019a 2B60     		str	r3, [r5, #0]	@, readpos
+ 616              	.LVL59:
+ 617              	.L34:
+ 203:src/synth.c   **** 
+ 204:src/synth.c   **** 			/**** phaser effect *****/
+ 205:src/synth.c   **** 			y = PhaserProcess(y);
+ 618              		.loc 1 205 0
+ 619 019c FFF7FEFF 		bl	PhaserProcess	@
+ 620              	.LVL60:
+ 206:src/synth.c   **** 
+ 207:src/synth.c   **** 			/**** prevent overflow ****/
+ 208:src/synth.c   **** 			y = (y > 1.0f) ? 1.0f : y ; //clip too loud samples
+ 621              		.loc 1 208 0
+ 622 01a0 F7EE003A 		fconsts	s7, #112	@ tmp369,
+ 623 01a4 B4EEE30A 		fcmpes	s0, s7	@ y, tmp369
+ 624 01a8 F1EE10FA 		fmstat
+ 625 01ac 7FDD     		ble	.L57	@,
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 17
+
+
+ 626 01ae 47F6FF70 		movw	r0, #32767	@ prephitmp.97,
+ 627              	.L36:
+ 628              	.LVL61:
+ 209:src/synth.c   **** 			y = (y < -1.0f) ? -1.0f : y ;
+ 210:src/synth.c   **** 
+ 211:src/synth.c   **** 			/****** let's hear the new sample *******/
+ 212:src/synth.c   **** 			value = (uint16_t)((int16_t)((32767.0f) * y ));
+ 213:src/synth.c   **** 			*outp++ = value; // left channel sample
+ 214:src/synth.c   **** 			*outp++ = value; // right channel sample
+ 215:src/synth.c   **** 
+ 216:src/synth.c   **** 			if (++j == FILLEN)
+ 629              		.loc 1 216 0 discriminator 3
+ 630 01b2 09F1010C 		add	ip, r9, #1	@ tmp377, j,
+ 631 01b6 1FFA8CF9 		uxth	r9, ip	@ j, tmp377
+ 632 01ba B9F5807F 		cmp	r9, #256	@ j,
+ 213:src/synth.c   **** 			*outp++ = value; // left channel sample
+ 633              		.loc 1 213 0 discriminator 3
+ 634 01be 24F8040C 		strh	r0, [r4, #-4]	@ movhi	@ prephitmp.97, MEM[base: D.8869_118, offset: 4294967292B]
+ 214:src/synth.c   **** 			*outp++ = value; // right channel sample
+ 635              		.loc 1 214 0 discriminator 3
+ 636 01c2 24F8020C 		strh	r0, [r4, #-2]	@ movhi	@ prephitmp.97, MEM[base: D.8869_118, offset: 4294967294B]
+ 637              	.LVL62:
+ 638              		.loc 1 216 0 discriminator 3
+ 639 01c6 00F08580 		beq	.L37	@,
+ 170:src/synth.c   **** 		while (n--) // for each sample...
+ 640              		.loc 1 170 0
+ 641 01ca 009A     		ldr	r2, [sp, #0]	@, %sfp
+ 642 01cc 0434     		adds	r4, r4, #4	@ ivtmp.103, ivtmp.103,
+ 643 01ce A242     		cmp	r2, r4	@, ivtmp.103
+ 644 01d0 00F09480 		beq	.L58	@,
+ 645              	.LVL63:
+ 646              	.L39:
+ 172:src/synth.c   **** 			w += dw;
+ 647              		.loc 1 172 0
+ 648 01d4 39EE299A 		fadds	s18, s18, s19	@ w, w, dw
+ 649              	.LVL64:
+ 175:src/synth.c   **** 			if (p >= 1.0f)
+ 650              		.loc 1 175 0
+ 651 01d8 B7EE001A 		fconsts	s2, #112	@ tmp314,
+ 173:src/synth.c   **** 			p += w;
+ 652              		.loc 1 173 0
+ 653 01dc 38EE098A 		fadds	s16, s16, s18	@ p, p, w
+ 654              	.LVL65:
+ 175:src/synth.c   **** 			if (p >= 1.0f)
+ 655              		.loc 1 175 0
+ 656 01e0 B4EEC18A 		fcmpes	s16, s2	@ p, tmp314
+ 657 01e4 F1EE10FA 		fmstat
+ 658 01e8 09DB     		blt	.L30	@,
+ 177:src/synth.c   **** 				p -= 1.0f;
+ 659              		.loc 1 177 0
+ 660 01ea 38EE418A 		fsubs	s16, s16, s2	@ p, p, tmp314
+ 661              	.LVL66:
+ 178:src/synth.c   **** 				place_step_dd(_f, j, p, w, 1.0f);
+ 662              		.loc 1 178 0
+ 663 01ee 6D48     		ldr	r0, .L59+60	@,
+ 664 01f0 4946     		mov	r1, r9	@, j
+ 665 01f2 B0EE480A 		fcpys	s0, s16	@, p
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 18
+
+
+ 666 01f6 F0EE490A 		fcpys	s1, s18	@, w
+ 667 01fa FFF7FEFF 		bl	place_step_dd	@
+ 668              	.LVL67:
+ 669              	.L30:
+ 181:src/synth.c   **** 			_f[j + DD_SAMPLE_DELAY] += 0.5f - p;
+ 670              		.loc 1 181 0
+ 671 01fe 40F20001 		movw	r1, #:lower16:_f	@,
+ 672 0202 C0F20001 		movt	r1, #:upper16:_f	@,
+ 673 0206 09F10400 		add	r0, r9, #4	@ D.8690, j,
+ 674 020a 01EB8003 		add	r3, r1, r0, lsl #2	@, tmp319,, D.8690,
+ 675 020e B6EE004A 		fconsts	s8, #96	@ tmp324,
+ 676 0212 D3ED003A 		flds	s7, [r3, #0]	@ tmp326, _f
+ 677 0216 74EE484A 		fsubs	s9, s8, s16	@ tmp323, tmp324, p
+ 182:src/synth.c   **** 			z += a * (_f[j] - z);
+ 678              		.loc 1 182 0
+ 679 021a 01EB890E 		add	lr, r1, r9, lsl #2	@, tmp329,, j,
+ 181:src/synth.c   **** 			_f[j + DD_SAMPLE_DELAY] += 0.5f - p;
+ 680              		.loc 1 181 0
+ 681 021e 33EEA45A 		fadds	s10, s7, s9	@ tmp325, tmp326, tmp323
+ 185:src/synth.c   **** 			ze = z * nextSawEnv(&envTrigger, envAmp, &envPhase, envTime);
+ 682              		.loc 1 185 0
+ 683 0222 40F20002 		movw	r2, #:lower16:envAmp	@,
+ 181:src/synth.c   **** 			_f[j + DD_SAMPLE_DELAY] += 0.5f - p;
+ 684              		.loc 1 181 0
+ 685 0226 83ED005A 		fsts	s10, [r3, #0]	@ tmp325, _f
+ 182:src/synth.c   **** 			z += a * (_f[j] - z);
+ 686              		.loc 1 182 0
+ 687 022a DEED005A 		flds	s11, [lr, #0]	@ tmp331, _f
+ 185:src/synth.c   **** 			ze = z * nextSawEnv(&envTrigger, envAmp, &envPhase, envTime);
+ 688              		.loc 1 185 0
+ 689 022e C0F20002 		movt	r2, #:upper16:envAmp	@,
+ 690 0232 40F20003 		movw	r3, #:lower16:envTime	@,
+ 182:src/synth.c   **** 			z += a * (_f[j] - z);
+ 691              		.loc 1 182 0
+ 692 0236 35EEE86A 		fsubs	s12, s11, s17	@ tmp330, tmp331, z
+ 185:src/synth.c   **** 			ze = z * nextSawEnv(&envTrigger, envAmp, &envPhase, envTime);
+ 693              		.loc 1 185 0
+ 694 023a C0F20003 		movt	r3, #:upper16:envTime	@,
+ 695 023e 1178     		ldrb	r1, [r2, #0]	@ zero_extendqisi2	@, envAmp
+ 696 0240 5948     		ldr	r0, .L59+64	@,
+ 697 0242 5A4A     		ldr	r2, .L59+68	@,
+ 698 0244 93ED000A 		flds	s0, [r3, #0]	@, envTime
+ 182:src/synth.c   **** 			z += a * (_f[j] - z);
+ 699              		.loc 1 182 0
+ 700 0248 46EE0A8A 		fmacs	s17, s12, s20	@ z, tmp330, tmp420
+ 701              	.LVL68:
+ 185:src/synth.c   **** 			ze = z * nextSawEnv(&envTrigger, envAmp, &envPhase, envTime);
+ 702              		.loc 1 185 0
+ 703 024c FFF7FEFF 		bl	nextSawEnv	@
+ 704              	.LVL69:
+ 189:src/synth.c   **** 			dy = (1.f - coeff_a1)*(*readpos) + coeff_a1 * old_dy; // apply lowpass filter in the loop
+ 705              		.loc 1 189 0
+ 706 0250 DBED007A 		flds	s15, [fp, #0]	@ coeff_a1.11, coeff_a1
+ 707 0254 2868     		ldr	r0, [r5, #0]	@ readpos.12, readpos
+ 708 0256 D8ED000A 		flds	s1, [r8, #0]	@ old_dy, old_dy
+ 709 025a F7EE006A 		fconsts	s13, #112	@ tmp342,
+ 710 025e 90ED007A 		flds	s14, [r0, #0]	@ *readpos.12_93, *readpos.12_93
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 19
+
+
+ 711 0262 36EEE71A 		fsubs	s2, s13, s15	@ tmp341, tmp342, coeff_a1.11
+ 712 0266 67EEA01A 		fmuls	s3, s15, s1	@ dy, coeff_a1.11, old_dy
+ 713 026a 41EE071A 		fmacs	s3, s2, s14	@ dy, tmp341, *readpos.12_93
+ 714              	.LVL70:
+ 191:src/synth.c   **** 			y = pass *  ze + fdb*dy;
+ 715              		.loc 1 191 0
+ 716 026e 40F20001 		movw	r1, #:lower16:fdb	@,
+ 717 0272 C0F20001 		movt	r1, #:upper16:fdb	@,
+ 718 0276 91ED002A 		flds	s4, [r1, #0]	@ fdb, fdb
+ 185:src/synth.c   **** 			ze = z * nextSawEnv(&envTrigger, envAmp, &envPhase, envTime);
+ 719              		.loc 1 185 0
+ 720 027a 20EE280A 		fmuls	s0, s0, s17	@ tmp350,, z
+ 721              	.LVL71:
+ 191:src/synth.c   **** 			y = pass *  ze + fdb*dy;
+ 722              		.loc 1 191 0
+ 723 027e DAED002A 		flds	s5, [sl, #0]	@ pass, pass
+ 724 0282 21EE823A 		fmuls	s6, s3, s4	@ y, dy, fdb
+ 725 0286 00EE223A 		fmacs	s6, s0, s5	@ y, tmp350, pass
+ 726              	.LVL72:
+ 190:src/synth.c   **** 			old_dy = dy;
+ 727              		.loc 1 190 0
+ 728 028a C8ED001A 		fsts	s3, [r8, #0]	@ dy, old_dy
+ 192:src/synth.c   **** 			y = (y > 1.0f) ? 1.0f : y ; //clip too loud samples
+ 729              		.loc 1 192 0
+ 730 028e B4EEE63A 		fcmpes	s6, s13	@ y, tmp342
+ 731 0292 F1EE10FA 		fmstat
+ 732 0296 3FF75DAF 		bgt	.L46	@,
+ 193:src/synth.c   **** 			y = (y < -1.0f) ? -1.0f : y ;
+ 733              		.loc 1 193 0 discriminator 3
+ 734 029a BFEE000A 		fconsts	s0, #240	@ tmp357,
+ 735              	.LVL73:
+ 736 029e B4EE403A 		fcmps	s6, s0	@ y, tmp357
+ 737 02a2 F1EE10FA 		fmstat
+ 738 02a6 58BF     		it	pl	@
+ 739 02a8 B0EE430A 		fcpyspl	s0, s6	@, y, y
+ 740 02ac 54E7     		b	.L32	@
+ 741              	.LVL74:
+ 742              	.L57:
+ 209:src/synth.c   **** 			y = (y < -1.0f) ? -1.0f : y ;
+ 743              		.loc 1 209 0 discriminator 3
+ 744 02ae BFEE004A 		fconsts	s8, #240	@ tmp370,
+ 745 02b2 B4EEC40A 		fcmpes	s0, s8	@ y, tmp370
+ 746 02b6 F1EE10FA 		fmstat
+ 747 02ba 48BF     		it	mi
+ 748 02bc 48F20100 		movwmi	r0, #32769	@ prephitmp.97,
+ 749 02c0 3FF577AF 		bmi	.L36	@,
+ 750 02c4 60EE2C4A 		fmuls	s9, s0, s25	@ tmp371, y, tmp424
+ 751 02c8 BDEEE45A 		ftosizs	s10, s9	@, tmp371
+ 752 02cc 15EE101A 		fmrs	r1, s10	@ int	@,
+ 753 02d0 88B2     		uxth	r0, r1	@ prephitmp.97, tmp373
+ 754 02d2 6EE7     		b	.L36	@
+ 755              	.LVL75:
+ 756              	.L37:
+ 217:src/synth.c   **** 			{
+ 218:src/synth.c   **** 				j = 0;
+ 219:src/synth.c   **** 				memcpy (_f, _f + FILLEN, STEP_DD_PULSE_LENGTH * sizeof (float));
+ 757              		.loc 1 219 0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 20
+
+
+ 758 02d4 3348     		ldr	r0, .L59+60	@,
+ 759              	.LVL76:
+ 760 02d6 4FF49072 		mov	r2, #288	@,
+ 761 02da 00F58061 		add	r1, r0, #1024	@,,
+ 220:src/synth.c   **** 				memset (_f + STEP_DD_PULSE_LENGTH, 0,  FILLEN * sizeof (float));
+ 762              		.loc 1 220 0
+ 763 02de 4FF00009 		mov	r9, #0	@ j,
+ 219:src/synth.c   **** 				memcpy (_f, _f + FILLEN, STEP_DD_PULSE_LENGTH * sizeof (float));
+ 764              		.loc 1 219 0
+ 765 02e2 FFF7FEFF 		bl	memcpy	@
+ 766              	.LVL77:
+ 767              		.loc 1 220 0
+ 768 02e6 4FF48062 		mov	r2, #1024	@,
+ 769 02ea 3148     		ldr	r0, .L59+72	@,
+ 770 02ec 4946     		mov	r1, r9	@, j
+ 771 02ee FFF7FEFF 		bl	memset	@
+ 772              	.LVL78:
+ 170:src/synth.c   **** 		while (n--) // for each sample...
+ 773              		.loc 1 170 0
+ 774 02f2 009A     		ldr	r2, [sp, #0]	@, %sfp
+ 775 02f4 0434     		adds	r4, r4, #4	@ ivtmp.103, ivtmp.103,
+ 776 02f6 A242     		cmp	r2, r4	@, ivtmp.103
+ 777 02f8 7FF46CAF 		bne	.L39	@,
+ 778              	.LVL79:
+ 779              	.L58:
+ 221:src/synth.c   **** 			}
+ 222:src/synth.c   **** 		}
+ 223:src/synth.c   **** 	}
+ 224:src/synth.c   **** 	while (len);
+ 780              		.loc 1 224 0
+ 781 02fc 0199     		ldr	r1, [sp, #4]	@, %sfp
+ 782 02fe 4032     		adds	r2, r2, #64	@,,
+ 783 0300 0092     		str	r2, [sp, #0]	@, %sfp
+ 784 0302 49B1     		cbz	r1, .L40	@,
+ 785 0304 40F20004 		movw	r4, #:lower16:f1	@,
+ 786 0308 C0F20004 		movt	r4, #:upper16:f1	@,
+ 787 030c D4ED009A 		flds	s19, [r4, #0]	@ freq, f1
+ 788              	.LVL80:
+ 789 0310 C9E6     		b	.L41	@
+ 790              	.LVL81:
+ 791              	.L44:
+ 166:src/synth.c   **** 		if (t < 1e-5) t = 1e-5;
+ 792              		.loc 1 166 0
+ 793 0312 DFED1ACA 		flds	s25, .L59+20	@ t,
+ 794              	.LVL82:
+ 795 0316 10E7     		b	.L28	@
+ 796              	.LVL83:
+ 797              	.L40:
+ 225:src/synth.c   **** 
+ 226:src/synth.c   **** 	_p = p;
+ 798              		.loc 1 226 0
+ 799 0318 40F20000 		movw	r0, #:lower16:_p	@,
+ 800 031c C0F20000 		movt	r0, #:upper16:_p	@,
+ 801 0320 80ED008A 		fsts	s16, [r0, #0]	@ p, _p
+ 227:src/synth.c   **** 	_w = w;
+ 228:src/synth.c   **** 	_z = z;
+ 229:src/synth.c   **** 	_j = j;
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 21
+
+
+ 802              		.loc 1 229 0
+ 803 0324 40F20000 		movw	r0, #:lower16:_j	@,
+ 227:src/synth.c   **** 	_w = w;
+ 804              		.loc 1 227 0
+ 805 0328 40F20002 		movw	r2, #:lower16:_w	@,
+ 228:src/synth.c   **** 	_z = z;
+ 806              		.loc 1 228 0
+ 807 032c 40F20001 		movw	r1, #:lower16:_z	@,
+ 808              		.loc 1 229 0
+ 809 0330 C0F20000 		movt	r0, #:upper16:_j	@,
+ 227:src/synth.c   **** 	_w = w;
+ 810              		.loc 1 227 0
+ 811 0334 C0F20002 		movt	r2, #:upper16:_w	@,
+ 228:src/synth.c   **** 	_z = z;
+ 812              		.loc 1 228 0
+ 813 0338 C0F20001 		movt	r1, #:upper16:_z	@,
+ 227:src/synth.c   **** 	_w = w;
+ 814              		.loc 1 227 0
+ 815 033c 82ED009A 		fsts	s18, [r2, #0]	@ w, _w
+ 228:src/synth.c   **** 	_z = z;
+ 816              		.loc 1 228 0
+ 817 0340 C1ED008A 		fsts	s17, [r1, #0]	@ z, _z
+ 818              		.loc 1 229 0
+ 819 0344 C0F80090 		str	r9, [r0, #0]	@ prephitmp.91, _j
+ 230:src/synth.c   **** }
+ 820              		.loc 1 230 0
+ 821 0348 03B0     		add	sp, sp, #12	@,,
+ 822 034a BDEC0A8B 		fldmfdd	sp!, {d8, d9, d10, d11, d12}
+ 823 034e BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
+ 824              	.LVL84:
+ 825              	.L56:
+ 141:src/synth.c   **** 		if (w > 0.5) w = 0.5;
+ 826              		.loc 1 141 0
+ 827 0352 B6EE009A 		fconsts	s18, #96	@ tmp287,
+ 828 0356 B4EE49AA 		fcmps	s20, s18	@ w, tmp287
+ 829 035a F1EE10FA 		fmstat
+ 830 035e D8BF     		it	le	@
+ 831 0360 B0EE4A9A 		fcpysle	s18, s20	@, w, w
+ 832 0364 88E6     		b	.L25	@
+ 833              	.L60:
+ 834 0366 00BF     		.align	3
+ 835              	.L59:
+ 836 0368 F168E388 		.word	-1998362383
+ 837 036c B5F8E43E 		.word	1055193269
+ 838 0370 00000000 		.word	_init
+ 839 0374 00000000 		.word	audiobuff
+ 840 0378 00803B47 		.word	1195081728
+ 841 037c ACC52737 		.word	925353388
+ 842 0380 00000000 		.word	readpos
+ 843 0384 00000000 		.word	writepos
+ 844 0388 00000000 		.word	delayline
+ 845 038c DB0FC942 		.word	1120473051
+ 846 0390 DB0FC940 		.word	1086918619
+ 847 0394 0AD7233C 		.word	1008981770
+ 848 0398 0000803D 		.word	1031798784
+ 849 039c 6666663F 		.word	1063675494
+ 850 03a0 00FEFF46 		.word	1191181824
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 22
+
+
+ 851 03a4 00000000 		.word	_f
+ 852 03a8 00000000 		.word	envTrigger
+ 853 03ac 00000000 		.word	envPhase
+ 854 03b0 20010000 		.word	_f+288
+ 855 03b4 00000000 		.word	coeff_a1
+ 856 03b8 00000000 		.word	old_dy
+ 857 03bc 00000000 		.word	pass
+ 858              		.cfi_endproc
+ 859              	.LFE113:
+ 860              		.size	sawtooth_runproc, .-sawtooth_runproc
+ 861              		.text
+ 862              	.Letext0:
+ 863              		.file 2 "c:\\gnutoolsarmembedded\\4.7-2012q4\\bin\\../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-
+ 864              		.file 3 "./inc/minblep_tables.h"
+ 865              		.file 4 "./cmsis/core/core_cm4.h"
+ 866              		.file 5 "c:\\gnutoolsarmembedded\\4.7-2012q4\\bin\\../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-
+ 867              		.file 6 "./inc/phaser2.h"
+ 868              		.section	.debug_info,"",%progbits
+ 869              	.Ldebug_info0:
+ 870 0000 B1050000 		.4byte	0x5b1
+ 871 0004 0200     		.2byte	0x2
+ 872 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 873 000a 04       		.byte	0x4
+ 874 000b 01       		.uleb128 0x1
+ 875 000c FB010000 		.4byte	.LASF29
+ 876 0010 01       		.byte	0x1
+ 877 0011 CA000000 		.4byte	.LASF30
+ 878 0015 52010000 		.4byte	.LASF31
+ 879 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 880 001d 00000000 		.4byte	0
+ 881 0021 00000000 		.4byte	0
+ 882 0025 00000000 		.4byte	.Ldebug_line0
+ 883 0029 02       		.uleb128 0x2
+ 884 002a 04       		.byte	0x4
+ 885 002b 04       		.byte	0x4
+ 886 002c 91000000 		.4byte	.LASF0
+ 887 0030 02       		.uleb128 0x2
+ 888 0031 04       		.byte	0x4
+ 889 0032 07       		.byte	0x7
+ 890 0033 3C010000 		.4byte	.LASF1
+ 891 0037 03       		.uleb128 0x3
+ 892 0038 04       		.byte	0x4
+ 893 0039 02       		.uleb128 0x2
+ 894 003a 01       		.byte	0x1
+ 895 003b 06       		.byte	0x6
+ 896 003c F7000000 		.4byte	.LASF2
+ 897 0040 02       		.uleb128 0x2
+ 898 0041 01       		.byte	0x1
+ 899 0042 08       		.byte	0x8
+ 900 0043 E9000000 		.4byte	.LASF3
+ 901 0047 02       		.uleb128 0x2
+ 902 0048 02       		.byte	0x2
+ 903 0049 05       		.byte	0x5
+ 904 004a 1E000000 		.4byte	.LASF4
+ 905 004e 02       		.uleb128 0x2
+ 906 004f 02       		.byte	0x2
+ 907 0050 07       		.byte	0x7
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 23
+
+
+ 908 0051 8A010000 		.4byte	.LASF5
+ 909 0055 04       		.uleb128 0x4
+ 910 0056 04       		.byte	0x4
+ 911 0057 05       		.byte	0x5
+ 912 0058 696E7400 		.ascii	"int\000"
+ 913 005c 02       		.uleb128 0x2
+ 914 005d 08       		.byte	0x8
+ 915 005e 05       		.byte	0x5
+ 916 005f 9C000000 		.4byte	.LASF6
+ 917 0063 02       		.uleb128 0x2
+ 918 0064 08       		.byte	0x8
+ 919 0065 07       		.byte	0x7
+ 920 0066 0E010000 		.4byte	.LASF7
+ 921 006a 02       		.uleb128 0x2
+ 922 006b 04       		.byte	0x4
+ 923 006c 05       		.byte	0x5
+ 924 006d C2010000 		.4byte	.LASF8
+ 925 0071 02       		.uleb128 0x2
+ 926 0072 04       		.byte	0x4
+ 927 0073 07       		.byte	0x7
+ 928 0074 28000000 		.4byte	.LASF9
+ 929 0078 02       		.uleb128 0x2
+ 930 0079 04       		.byte	0x4
+ 931 007a 07       		.byte	0x7
+ 932 007b E2010000 		.4byte	.LASF10
+ 933 007f 02       		.uleb128 0x2
+ 934 0080 01       		.byte	0x1
+ 935 0081 08       		.byte	0x8
+ 936 0082 BD010000 		.4byte	.LASF11
+ 937 0086 02       		.uleb128 0x2
+ 938 0087 08       		.byte	0x8
+ 939 0088 04       		.byte	0x4
+ 940 0089 F4010000 		.4byte	.LASF12
+ 941 008d 02       		.uleb128 0x2
+ 942 008e 08       		.byte	0x8
+ 943 008f 04       		.byte	0x4
+ 944 0090 DD000000 		.4byte	.LASF13
+ 945 0094 05       		.uleb128 0x5
+ 946 0095 4B020000 		.4byte	.LASF14
+ 947 0099 02       		.byte	0x2
+ 948 009a 2A       		.byte	0x2a
+ 949 009b 40000000 		.4byte	0x40
+ 950 009f 05       		.uleb128 0x5
+ 951 00a0 74020000 		.4byte	.LASF15
+ 952 00a4 02       		.byte	0x2
+ 953 00a5 35       		.byte	0x35
+ 954 00a6 47000000 		.4byte	0x47
+ 955 00aa 05       		.uleb128 0x5
+ 956 00ab 49010000 		.4byte	.LASF16
+ 957 00af 02       		.byte	0x2
+ 958 00b0 36       		.byte	0x36
+ 959 00b1 4E000000 		.4byte	0x4e
+ 960 00b5 05       		.uleb128 0x5
+ 961 00b6 CB010000 		.4byte	.LASF17
+ 962 00ba 02       		.byte	0x2
+ 963 00bb 4F       		.byte	0x4f
+ 964 00bc 6A000000 		.4byte	0x6a
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 24
+
+
+ 965 00c0 06       		.uleb128 0x6
+ 966 00c1 B5000000 		.4byte	0xb5
+ 967 00c5 07       		.uleb128 0x7
+ 968 00c6 08       		.byte	0x8
+ 969 00c7 03       		.byte	0x3
+ 970 00c8 26       		.byte	0x26
+ 971 00c9 EA000000 		.4byte	0xea
+ 972 00cd 08       		.uleb128 0x8
+ 973 00ce 6C000000 		.4byte	.LASF18
+ 974 00d2 03       		.byte	0x3
+ 975 00d3 26       		.byte	0x26
+ 976 00d4 29000000 		.4byte	0x29
+ 977 00d8 02       		.byte	0x2
+ 978 00d9 23       		.byte	0x23
+ 979 00da 00       		.uleb128 0
+ 980 00db 08       		.uleb128 0x8
+ 981 00dc 42000000 		.4byte	.LASF19
+ 982 00e0 03       		.byte	0x3
+ 983 00e1 26       		.byte	0x26
+ 984 00e2 29000000 		.4byte	0x29
+ 985 00e6 02       		.byte	0x2
+ 986 00e7 23       		.byte	0x23
+ 987 00e8 04       		.uleb128 0x4
+ 988 00e9 00       		.byte	0
+ 989 00ea 05       		.uleb128 0x5
+ 990 00eb 9D010000 		.4byte	.LASF20
+ 991 00ef 03       		.byte	0x3
+ 992 00f0 26       		.byte	0x26
+ 993 00f1 C5000000 		.4byte	0xc5
+ 994 00f5 09       		.uleb128 0x9
+ 995 00f6 01       		.byte	0x1
+ 996 00f7 B1000000 		.4byte	.LASF57
+ 997 00fb 01       		.byte	0x1
+ 998 00fc 3A       		.byte	0x3a
+ 999 00fd 01       		.byte	0x1
+ 1000 00fe 29000000 		.4byte	0x29
+ 1001 0102 00000000 		.4byte	.LFB110
+ 1002 0106 84000000 		.4byte	.LFE110
+ 1003 010a 02       		.byte	0x2
+ 1004 010b 7D       		.byte	0x7d
+ 1005 010c 00       		.sleb128 0
+ 1006 010d 01       		.byte	0x1
+ 1007 010e 58010000 		.4byte	0x158
+ 1008 0112 0A       		.uleb128 0xa
+ 1009 0113 D3010000 		.4byte	.LASF21
+ 1010 0117 01       		.byte	0x1
+ 1011 0118 3A       		.byte	0x3a
+ 1012 0119 58010000 		.4byte	0x158
+ 1013 011d 00000000 		.4byte	.LLST0
+ 1014 0121 0B       		.uleb128 0xb
+ 1015 0122 616D7000 		.ascii	"amp\000"
+ 1016 0126 01       		.byte	0x1
+ 1017 0127 3A       		.byte	0x3a
+ 1018 0128 94000000 		.4byte	0x94
+ 1019 012c 01       		.byte	0x1
+ 1020 012d 51       		.byte	0x51
+ 1021 012e 0B       		.uleb128 0xb
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 25
+
+
+ 1022 012f 7400     		.ascii	"t\000"
+ 1023 0131 01       		.byte	0x1
+ 1024 0132 3A       		.byte	0x3a
+ 1025 0133 5E010000 		.4byte	0x15e
+ 1026 0137 01       		.byte	0x1
+ 1027 0138 52       		.byte	0x52
+ 1028 0139 0A       		.uleb128 0xa
+ 1029 013a 10000000 		.4byte	.LASF22
+ 1030 013e 01       		.byte	0x1
+ 1031 013f 3A       		.byte	0x3a
+ 1032 0140 29000000 		.4byte	0x29
+ 1033 0144 3A000000 		.4byte	.LLST1
+ 1034 0148 0C       		.uleb128 0xc
+ 1035 0149 76616C00 		.ascii	"val\000"
+ 1036 014d 01       		.byte	0x1
+ 1037 014e 3C       		.byte	0x3c
+ 1038 014f 29000000 		.4byte	0x29
+ 1039 0153 96000000 		.4byte	.LLST2
+ 1040 0157 00       		.byte	0
+ 1041 0158 0D       		.uleb128 0xd
+ 1042 0159 04       		.byte	0x4
+ 1043 015a 94000000 		.4byte	0x94
+ 1044 015e 0D       		.uleb128 0xd
+ 1045 015f 04       		.byte	0x4
+ 1046 0160 29000000 		.4byte	0x29
+ 1047 0164 0E       		.uleb128 0xe
+ 1048 0165 01       		.byte	0x1
+ 1049 0166 BC000000 		.4byte	.LASF27
+ 1050 016a 01       		.byte	0x1
+ 1051 016b 57       		.byte	0x57
+ 1052 016c 01       		.byte	0x1
+ 1053 016d 00000000 		.4byte	.LFB111
+ 1054 0171 DC000000 		.4byte	.LFE111
+ 1055 0175 B6000000 		.4byte	.LLST3
+ 1056 0179 01       		.byte	0x1
+ 1057 017a FC010000 		.4byte	0x1fc
+ 1058 017e 0A       		.uleb128 0xa
+ 1059 017f DB010000 		.4byte	.LASF23
+ 1060 0183 01       		.byte	0x1
+ 1061 0184 57       		.byte	0x57
+ 1062 0185 5E010000 		.4byte	0x15e
+ 1063 0189 E2000000 		.4byte	.LLST4
+ 1064 018d 0A       		.uleb128 0xa
+ 1065 018e 18000000 		.4byte	.LASF24
+ 1066 0192 01       		.byte	0x1
+ 1067 0193 57       		.byte	0x57
+ 1068 0194 55000000 		.4byte	0x55
+ 1069 0198 0E010000 		.4byte	.LLST5
+ 1070 019c 0A       		.uleb128 0xa
+ 1071 019d 48000000 		.4byte	.LASF25
+ 1072 01a1 01       		.byte	0x1
+ 1073 01a2 57       		.byte	0x57
+ 1074 01a3 29000000 		.4byte	0x29
+ 1075 01a7 3A010000 		.4byte	.LLST6
+ 1076 01ab 0F       		.uleb128 0xf
+ 1077 01ac 7700     		.ascii	"w\000"
+ 1078 01ae 01       		.byte	0x1
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 26
+
+
+ 1079 01af 57       		.byte	0x57
+ 1080 01b0 29000000 		.4byte	0x29
+ 1081 01b4 5E010000 		.4byte	.LLST7
+ 1082 01b8 0A       		.uleb128 0xa
+ 1083 01b9 25010000 		.4byte	.LASF26
+ 1084 01bd 01       		.byte	0x1
+ 1085 01be 57       		.byte	0x57
+ 1086 01bf 29000000 		.4byte	0x29
+ 1087 01c3 82010000 		.4byte	.LLST8
+ 1088 01c7 0C       		.uleb128 0xc
+ 1089 01c8 7200     		.ascii	"r\000"
+ 1090 01ca 01       		.byte	0x1
+ 1091 01cb 59       		.byte	0x59
+ 1092 01cc 29000000 		.4byte	0x29
+ 1093 01d0 A2010000 		.4byte	.LLST9
+ 1094 01d4 0C       		.uleb128 0xc
+ 1095 01d5 6900     		.ascii	"i\000"
+ 1096 01d7 01       		.byte	0x1
+ 1097 01d8 5A       		.byte	0x5a
+ 1098 01d9 55000000 		.4byte	0x55
+ 1099 01dd C2010000 		.4byte	.LLST10
+ 1100 01e1 10       		.uleb128 0x10
+ 1101 01e2 26000000 		.4byte	.LVL13
+ 1102 01e6 21050000 		.4byte	0x521
+ 1103 01ea 11       		.uleb128 0x11
+ 1104 01eb 02       		.byte	0x2
+ 1105 01ec 90       		.byte	0x90
+ 1106 01ed 40       		.uleb128 0x40
+ 1107 01ee 0B       		.byte	0xb
+ 1108 01ef F5       		.byte	0xf5
+ 1109 01f0 51       		.uleb128 0x51
+ 1110 01f1 29       		.uleb128 0x29
+ 1111 01f2 F4       		.byte	0xf4
+ 1112 01f3 29       		.uleb128 0x29
+ 1113 01f4 04       		.byte	0x4
+ 1114 01f5 0000003F 		.4byte	0x3f000000
+ 1115 01f9 1C       		.byte	0x1c
+ 1116 01fa 00       		.byte	0
+ 1117 01fb 00       		.byte	0
+ 1118 01fc 0E       		.uleb128 0xe
+ 1119 01fd 01       		.byte	0x1
+ 1120 01fe 53020000 		.4byte	.LASF28
+ 1121 0202 01       		.byte	0x1
+ 1122 0203 70       		.byte	0x70
+ 1123 0204 01       		.byte	0x1
+ 1124 0205 00000000 		.4byte	.LFB112
+ 1125 0209 3A000000 		.4byte	.LFE112
+ 1126 020d ED010000 		.4byte	.LLST11
+ 1127 0211 01       		.byte	0x1
+ 1128 0212 2F020000 		.4byte	0x22f
+ 1129 0216 12       		.uleb128 0x12
+ 1130 0217 3A000000 		.4byte	.LVL19
+ 1131 021b 01       		.byte	0x1
+ 1132 021c 3A050000 		.4byte	0x53a
+ 1133 0220 11       		.uleb128 0x11
+ 1134 0221 01       		.byte	0x1
+ 1135 0222 52       		.byte	0x52
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 27
+
+
+ 1136 0223 03       		.byte	0x3
+ 1137 0224 0A       		.byte	0xa
+ 1138 0225 2005     		.2byte	0x520
+ 1139 0227 11       		.uleb128 0x11
+ 1140 0228 01       		.byte	0x1
+ 1141 0229 51       		.byte	0x51
+ 1142 022a 02       		.byte	0x2
+ 1143 022b 75       		.byte	0x75
+ 1144 022c 00       		.sleb128 0
+ 1145 022d 00       		.byte	0
+ 1146 022e 00       		.byte	0
+ 1147 022f 13       		.uleb128 0x13
+ 1148 0230 01       		.byte	0x1
+ 1149 0231 2B010000 		.4byte	.LASF32
+ 1150 0235 01       		.byte	0x1
+ 1151 0236 7A       		.byte	0x7a
+ 1152 0237 01       		.byte	0x1
+ 1153 0238 00000000 		.4byte	.LFB113
+ 1154 023c C0030000 		.4byte	.LFE113
+ 1155 0240 0D020000 		.4byte	.LLST12
+ 1156 0244 01       		.byte	0x1
+ 1157 0245 99030000 		.4byte	0x399
+ 1158 0249 0A       		.uleb128 0xa
+ 1159 024a D6000000 		.4byte	.LASF33
+ 1160 024e 01       		.byte	0x1
+ 1161 024f 7A       		.byte	0x7a
+ 1162 0250 AA000000 		.4byte	0xaa
+ 1163 0254 47020000 		.4byte	.LLST13
+ 1164 0258 0F       		.uleb128 0xf
+ 1165 0259 6C656E00 		.ascii	"len\000"
+ 1166 025d 01       		.byte	0x1
+ 1167 025e 7A       		.byte	0x7a
+ 1168 025f AA000000 		.4byte	0xaa
+ 1169 0263 68020000 		.4byte	.LLST14
+ 1170 0267 0C       		.uleb128 0xc
+ 1171 0268 6A00     		.ascii	"j\000"
+ 1172 026a 01       		.byte	0x1
+ 1173 026b 7C       		.byte	0x7c
+ 1174 026c AA000000 		.4byte	0xaa
+ 1175 0270 A4020000 		.4byte	.LLST15
+ 1176 0274 0C       		.uleb128 0xc
+ 1177 0275 6E00     		.ascii	"n\000"
+ 1178 0277 01       		.byte	0x1
+ 1179 0278 7C       		.byte	0x7c
+ 1180 0279 AA000000 		.4byte	0xaa
+ 1181 027d FB020000 		.4byte	.LLST16
+ 1182 0281 14       		.uleb128 0x14
+ 1183 0282 8C000000 		.4byte	.LASF34
+ 1184 0286 01       		.byte	0x1
+ 1185 0287 7D       		.byte	0x7d
+ 1186 0288 99030000 		.4byte	0x399
+ 1187 028c 27030000 		.4byte	.LLST17
+ 1188 0290 15       		.uleb128 0x15
+ 1189 0291 6100     		.ascii	"a\000"
+ 1190 0293 01       		.byte	0x1
+ 1191 0294 7E       		.byte	0x7e
+ 1192 0295 29000000 		.4byte	0x29
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 28
+
+
+ 1193 0299 0C       		.uleb128 0xc
+ 1194 029a 7000     		.ascii	"p\000"
+ 1195 029c 01       		.byte	0x1
+ 1196 029d 7E       		.byte	0x7e
+ 1197 029e 29000000 		.4byte	0x29
+ 1198 02a2 53030000 		.4byte	.LLST18
+ 1199 02a6 0C       		.uleb128 0xc
+ 1200 02a7 7400     		.ascii	"t\000"
+ 1201 02a9 01       		.byte	0x1
+ 1202 02aa 7E       		.byte	0x7e
+ 1203 02ab 29000000 		.4byte	0x29
+ 1204 02af 93030000 		.4byte	.LLST19
+ 1205 02b3 0C       		.uleb128 0xc
+ 1206 02b4 7700     		.ascii	"w\000"
+ 1207 02b6 01       		.byte	0x1
+ 1208 02b7 7E       		.byte	0x7e
+ 1209 02b8 29000000 		.4byte	0x29
+ 1210 02bc C5030000 		.4byte	.LLST20
+ 1211 02c0 0C       		.uleb128 0xc
+ 1212 02c1 647700   		.ascii	"dw\000"
+ 1213 02c4 01       		.byte	0x1
+ 1214 02c5 7E       		.byte	0x7e
+ 1215 02c6 29000000 		.4byte	0x29
+ 1216 02ca E5030000 		.4byte	.LLST21
+ 1217 02ce 16       		.uleb128 0x16
+ 1218 02cf 7A00     		.ascii	"z\000"
+ 1219 02d1 01       		.byte	0x1
+ 1220 02d2 7E       		.byte	0x7e
+ 1221 02d3 29000000 		.4byte	0x29
+ 1222 02d7 02       		.byte	0x2
+ 1223 02d8 90       		.byte	0x90
+ 1224 02d9 51       		.uleb128 0x51
+ 1225 02da 0C       		.uleb128 0xc
+ 1226 02db 7A6500   		.ascii	"ze\000"
+ 1227 02de 01       		.byte	0x1
+ 1228 02df 7E       		.byte	0x7e
+ 1229 02e0 29000000 		.4byte	0x29
+ 1230 02e4 05040000 		.4byte	.LLST22
+ 1231 02e8 0C       		.uleb128 0xc
+ 1232 02e9 7900     		.ascii	"y\000"
+ 1233 02eb 01       		.byte	0x1
+ 1234 02ec 7E       		.byte	0x7e
+ 1235 02ed 29000000 		.4byte	0x29
+ 1236 02f1 37040000 		.4byte	.LLST23
+ 1237 02f5 0C       		.uleb128 0xc
+ 1238 02f6 647900   		.ascii	"dy\000"
+ 1239 02f9 01       		.byte	0x1
+ 1240 02fa 7E       		.byte	0x7e
+ 1241 02fb 29000000 		.4byte	0x29
+ 1242 02ff 6F040000 		.4byte	.LLST24
+ 1243 0303 14       		.uleb128 0x14
+ 1244 0304 97000000 		.4byte	.LASF35
+ 1245 0308 01       		.byte	0x1
+ 1246 0309 7E       		.byte	0x7e
+ 1247 030a 29000000 		.4byte	0x29
+ 1248 030e 8F040000 		.4byte	.LLST25
+ 1249 0312 14       		.uleb128 0x14
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 29
+
+
+ 1250 0313 6C000000 		.4byte	.LASF18
+ 1251 0317 01       		.byte	0x1
+ 1252 0318 7F       		.byte	0x7f
+ 1253 0319 AA000000 		.4byte	0xaa
+ 1254 031d D1040000 		.4byte	.LLST26
+ 1255 0321 17       		.uleb128 0x17
+ 1256 0322 F8000000 		.4byte	.LVL41
+ 1257 0326 5B050000 		.4byte	0x55b
+ 1258 032a 17       		.uleb128 0x17
+ 1259 032b A0010000 		.4byte	.LVL60
+ 1260 032f 74050000 		.4byte	0x574
+ 1261 0333 18       		.uleb128 0x18
+ 1262 0334 FE010000 		.4byte	.LVL67
+ 1263 0338 64010000 		.4byte	0x164
+ 1264 033c 63030000 		.4byte	0x363
+ 1265 0340 11       		.uleb128 0x11
+ 1266 0341 02       		.byte	0x2
+ 1267 0342 90       		.byte	0x90
+ 1268 0343 42       		.uleb128 0x42
+ 1269 0344 07       		.byte	0x7
+ 1270 0345 F4       		.byte	0xf4
+ 1271 0346 29       		.uleb128 0x29
+ 1272 0347 04       		.byte	0x4
+ 1273 0348 0000803F 		.4byte	0x3f800000
+ 1274 034c 11       		.uleb128 0x11
+ 1275 034d 02       		.byte	0x2
+ 1276 034e 90       		.byte	0x90
+ 1277 034f 41       		.uleb128 0x41
+ 1278 0350 03       		.byte	0x3
+ 1279 0351 F5       		.byte	0xf5
+ 1280 0352 52       		.uleb128 0x52
+ 1281 0353 29       		.uleb128 0x29
+ 1282 0354 11       		.uleb128 0x11
+ 1283 0355 02       		.byte	0x2
+ 1284 0356 90       		.byte	0x90
+ 1285 0357 40       		.uleb128 0x40
+ 1286 0358 03       		.byte	0x3
+ 1287 0359 F5       		.byte	0xf5
+ 1288 035a 50       		.uleb128 0x50
+ 1289 035b 29       		.uleb128 0x29
+ 1290 035c 11       		.uleb128 0x11
+ 1291 035d 01       		.byte	0x1
+ 1292 035e 51       		.byte	0x51
+ 1293 035f 02       		.byte	0x2
+ 1294 0360 79       		.byte	0x79
+ 1295 0361 00       		.sleb128 0
+ 1296 0362 00       		.byte	0
+ 1297 0363 17       		.uleb128 0x17
+ 1298 0364 50020000 		.4byte	.LVL69
+ 1299 0368 F5000000 		.4byte	0xf5
+ 1300 036c 18       		.uleb128 0x18
+ 1301 036d E6020000 		.4byte	.LVL77
+ 1302 0371 8C050000 		.4byte	0x58c
+ 1303 0375 81030000 		.4byte	0x381
+ 1304 0379 11       		.uleb128 0x11
+ 1305 037a 01       		.byte	0x1
+ 1306 037b 52       		.byte	0x52
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 30
+
+
+ 1307 037c 03       		.byte	0x3
+ 1308 037d 0A       		.byte	0xa
+ 1309 037e 2001     		.2byte	0x120
+ 1310 0380 00       		.byte	0
+ 1311 0381 10       		.uleb128 0x10
+ 1312 0382 F2020000 		.4byte	.LVL78
+ 1313 0386 3A050000 		.4byte	0x53a
+ 1314 038a 11       		.uleb128 0x11
+ 1315 038b 01       		.byte	0x1
+ 1316 038c 52       		.byte	0x52
+ 1317 038d 03       		.byte	0x3
+ 1318 038e 0A       		.byte	0xa
+ 1319 038f 0004     		.2byte	0x400
+ 1320 0391 11       		.uleb128 0x11
+ 1321 0392 01       		.byte	0x1
+ 1322 0393 51       		.byte	0x51
+ 1323 0394 02       		.byte	0x2
+ 1324 0395 79       		.byte	0x79
+ 1325 0396 00       		.sleb128 0
+ 1326 0397 00       		.byte	0
+ 1327 0398 00       		.byte	0
+ 1328 0399 0D       		.uleb128 0xd
+ 1329 039a 04       		.byte	0x4
+ 1330 039b AA000000 		.4byte	0xaa
+ 1331 039f 19       		.uleb128 0x19
+ 1332 03a0 83020000 		.4byte	.LASF36
+ 1333 03a4 04       		.byte	0x4
+ 1334 03a5 1A05     		.2byte	0x51a
+ 1335 03a7 C0000000 		.4byte	0xc0
+ 1336 03ab 01       		.byte	0x1
+ 1337 03ac 01       		.byte	0x1
+ 1338 03ad 1A       		.uleb128 0x1a
+ 1339 03ae EA000000 		.4byte	0xea
+ 1340 03b2 B8030000 		.4byte	0x3b8
+ 1341 03b6 1B       		.uleb128 0x1b
+ 1342 03b7 00       		.byte	0
+ 1343 03b8 1C       		.uleb128 0x1c
+ 1344 03b9 7C010000 		.4byte	.LASF37
+ 1345 03bd 03       		.byte	0x3
+ 1346 03be 29       		.byte	0x29
+ 1347 03bf C5030000 		.4byte	0x3c5
+ 1348 03c3 01       		.byte	0x1
+ 1349 03c4 01       		.byte	0x1
+ 1350 03c5 1D       		.uleb128 0x1d
+ 1351 03c6 AD030000 		.4byte	0x3ad
+ 1352 03ca 1E       		.uleb128 0x1e
+ 1353 03cb 5F7000   		.ascii	"_p\000"
+ 1354 03ce 01       		.byte	0x1
+ 1355 03cf 28       		.byte	0x28
+ 1356 03d0 29000000 		.4byte	0x29
+ 1357 03d4 01       		.byte	0x1
+ 1358 03d5 01       		.byte	0x1
+ 1359 03d6 1E       		.uleb128 0x1e
+ 1360 03d7 5F7700   		.ascii	"_w\000"
+ 1361 03da 01       		.byte	0x1
+ 1362 03db 28       		.byte	0x28
+ 1363 03dc 29000000 		.4byte	0x29
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 31
+
+
+ 1364 03e0 01       		.byte	0x1
+ 1365 03e1 01       		.byte	0x1
+ 1366 03e2 1E       		.uleb128 0x1e
+ 1367 03e3 5F7A00   		.ascii	"_z\000"
+ 1368 03e6 01       		.byte	0x1
+ 1369 03e7 28       		.byte	0x28
+ 1370 03e8 29000000 		.4byte	0x29
+ 1371 03ec 01       		.byte	0x1
+ 1372 03ed 01       		.byte	0x1
+ 1373 03ee 1A       		.uleb128 0x1a
+ 1374 03ef 29000000 		.4byte	0x29
+ 1375 03f3 FF030000 		.4byte	0x3ff
+ 1376 03f7 1F       		.uleb128 0x1f
+ 1377 03f8 71000000 		.4byte	0x71
+ 1378 03fc 4701     		.2byte	0x147
+ 1379 03fe 00       		.byte	0
+ 1380 03ff 1E       		.uleb128 0x1e
+ 1381 0400 5F6600   		.ascii	"_f\000"
+ 1382 0403 01       		.byte	0x1
+ 1383 0404 29       		.byte	0x29
+ 1384 0405 EE030000 		.4byte	0x3ee
+ 1385 0409 01       		.byte	0x1
+ 1386 040a 01       		.byte	0x1
+ 1387 040b 1E       		.uleb128 0x1e
+ 1388 040c 5F6A00   		.ascii	"_j\000"
+ 1389 040f 01       		.byte	0x1
+ 1390 0410 2A       		.byte	0x2a
+ 1391 0411 55000000 		.4byte	0x55
+ 1392 0415 01       		.byte	0x1
+ 1393 0416 01       		.byte	0x1
+ 1394 0417 1C       		.uleb128 0x1c
+ 1395 0418 3C000000 		.4byte	.LASF38
+ 1396 041c 01       		.byte	0x1
+ 1397 041d 2A       		.byte	0x2a
+ 1398 041e 55000000 		.4byte	0x55
+ 1399 0422 01       		.byte	0x1
+ 1400 0423 01       		.byte	0x1
+ 1401 0424 1E       		.uleb128 0x1e
+ 1402 0425 663100   		.ascii	"f1\000"
+ 1403 0428 01       		.byte	0x1
+ 1404 0429 2B       		.byte	0x2b
+ 1405 042a 29000000 		.4byte	0x29
+ 1406 042e 01       		.byte	0x1
+ 1407 042f 01       		.byte	0x1
+ 1408 0430 1E       		.uleb128 0x1e
+ 1409 0431 663200   		.ascii	"f2\000"
+ 1410 0434 01       		.byte	0x1
+ 1411 0435 2B       		.byte	0x2b
+ 1412 0436 29000000 		.4byte	0x29
+ 1413 043a 01       		.byte	0x1
+ 1414 043b 01       		.byte	0x1
+ 1415 043c 1C       		.uleb128 0x1c
+ 1416 043d AF010000 		.4byte	.LASF39
+ 1417 0441 01       		.byte	0x1
+ 1418 0442 2B       		.byte	0x2b
+ 1419 0443 29000000 		.4byte	0x29
+ 1420 0447 01       		.byte	0x1
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 32
+
+
+ 1421 0448 01       		.byte	0x1
+ 1422 0449 1C       		.uleb128 0x1c
+ 1423 044a 00000000 		.4byte	.LASF40
+ 1424 044e 01       		.byte	0x1
+ 1425 044f 2C       		.byte	0x2c
+ 1426 0450 29000000 		.4byte	0x29
+ 1427 0454 01       		.byte	0x1
+ 1428 0455 01       		.byte	0x1
+ 1429 0456 1C       		.uleb128 0x1c
+ 1430 0457 03010000 		.4byte	.LASF41
+ 1431 045b 01       		.byte	0x1
+ 1432 045c 2C       		.byte	0x2c
+ 1433 045d 29000000 		.4byte	0x29
+ 1434 0461 01       		.byte	0x1
+ 1435 0462 01       		.byte	0x1
+ 1436 0463 1A       		.uleb128 0x1a
+ 1437 0464 AA000000 		.4byte	0xaa
+ 1438 0468 74040000 		.4byte	0x474
+ 1439 046c 1F       		.uleb128 0x1f
+ 1440 046d 71000000 		.4byte	0x71
+ 1441 0471 7F02     		.2byte	0x27f
+ 1442 0473 00       		.byte	0
+ 1443 0474 1C       		.uleb128 0x1c
+ 1444 0475 7A000000 		.4byte	.LASF42
+ 1445 0479 01       		.byte	0x1
+ 1446 047a 2D       		.byte	0x2d
+ 1447 047b 63040000 		.4byte	0x463
+ 1448 047f 01       		.byte	0x1
+ 1449 0480 01       		.byte	0x1
+ 1450 0481 1A       		.uleb128 0x1a
+ 1451 0482 29000000 		.4byte	0x29
+ 1452 0486 92040000 		.4byte	0x492
+ 1453 048a 1F       		.uleb128 0x1f
+ 1454 048b 71000000 		.4byte	0x71
+ 1455 048f C95D     		.2byte	0x5dc9
+ 1456 0491 00       		.byte	0
+ 1457 0492 1C       		.uleb128 0x1c
+ 1458 0493 6A020000 		.4byte	.LASF43
+ 1459 0497 01       		.byte	0x1
+ 1460 0498 2E       		.byte	0x2e
+ 1461 0499 81040000 		.4byte	0x481
+ 1462 049d 01       		.byte	0x1
+ 1463 049e 01       		.byte	0x1
+ 1464 049f 1C       		.uleb128 0x1c
+ 1465 04a0 72000000 		.4byte	.LASF44
+ 1466 04a4 01       		.byte	0x1
+ 1467 04a5 2F       		.byte	0x2f
+ 1468 04a6 5E010000 		.4byte	0x15e
+ 1469 04aa 01       		.byte	0x1
+ 1470 04ab 01       		.byte	0x1
+ 1471 04ac 1C       		.uleb128 0x1c
+ 1472 04ad 63000000 		.4byte	.LASF45
+ 1473 04b1 01       		.byte	0x1
+ 1474 04b2 30       		.byte	0x30
+ 1475 04b3 5E010000 		.4byte	0x15e
+ 1476 04b7 01       		.byte	0x1
+ 1477 04b8 01       		.byte	0x1
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 33
+
+
+ 1478 04b9 1C       		.uleb128 0x1c
+ 1479 04ba 07000000 		.4byte	.LASF46
+ 1480 04be 01       		.byte	0x1
+ 1481 04bf 31       		.byte	0x31
+ 1482 04c0 29000000 		.4byte	0x29
+ 1483 04c4 01       		.byte	0x1
+ 1484 04c5 01       		.byte	0x1
+ 1485 04c6 1C       		.uleb128 0x1c
+ 1486 04c7 63020000 		.4byte	.LASF47
+ 1487 04cb 01       		.byte	0x1
+ 1488 04cc 31       		.byte	0x31
+ 1489 04cd 29000000 		.4byte	0x29
+ 1490 04d1 01       		.byte	0x1
+ 1491 04d2 01       		.byte	0x1
+ 1492 04d3 1E       		.uleb128 0x1e
+ 1493 04d4 66646200 		.ascii	"fdb\000"
+ 1494 04d8 01       		.byte	0x1
+ 1495 04d9 32       		.byte	0x32
+ 1496 04da 29000000 		.4byte	0x29
+ 1497 04de 01       		.byte	0x1
+ 1498 04df 01       		.byte	0x1
+ 1499 04e0 1C       		.uleb128 0x1c
+ 1500 04e1 84000000 		.4byte	.LASF48
+ 1501 04e5 01       		.byte	0x1
+ 1502 04e6 32       		.byte	0x32
+ 1503 04e7 29000000 		.4byte	0x29
+ 1504 04eb 01       		.byte	0x1
+ 1505 04ec 01       		.byte	0x1
+ 1506 04ed 1C       		.uleb128 0x1c
+ 1507 04ee 10000000 		.4byte	.LASF22
+ 1508 04f2 01       		.byte	0x1
+ 1509 04f3 32       		.byte	0x32
+ 1510 04f4 29000000 		.4byte	0x29
+ 1511 04f8 01       		.byte	0x1
+ 1512 04f9 01       		.byte	0x1
+ 1513 04fa 1C       		.uleb128 0x1c
+ 1514 04fb B4010000 		.4byte	.LASF49
+ 1515 04ff 01       		.byte	0x1
+ 1516 0500 33       		.byte	0x33
+ 1517 0501 29000000 		.4byte	0x29
+ 1518 0505 01       		.byte	0x1
+ 1519 0506 01       		.byte	0x1
+ 1520 0507 1C       		.uleb128 0x1c
+ 1521 0508 31000000 		.4byte	.LASF50
+ 1522 050c 01       		.byte	0x1
+ 1523 050d 34       		.byte	0x34
+ 1524 050e 94000000 		.4byte	0x94
+ 1525 0512 01       		.byte	0x1
+ 1526 0513 01       		.byte	0x1
+ 1527 0514 1C       		.uleb128 0x1c
+ 1528 0515 44020000 		.4byte	.LASF51
+ 1529 0519 01       		.byte	0x1
+ 1530 051a 34       		.byte	0x34
+ 1531 051b 94000000 		.4byte	0x94
+ 1532 051f 01       		.byte	0x1
+ 1533 0520 01       		.byte	0x1
+ 1534 0521 20       		.uleb128 0x20
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 34
+
+
+ 1535 0522 01       		.byte	0x1
+ 1536 0523 7C020000 		.4byte	.LASF52
+ 1537 0527 05       		.byte	0x5
+ 1538 0528 4201     		.2byte	0x142
+ 1539 052a 01       		.byte	0x1
+ 1540 052b 6A000000 		.4byte	0x6a
+ 1541 052f 01       		.byte	0x1
+ 1542 0530 3A050000 		.4byte	0x53a
+ 1543 0534 21       		.uleb128 0x21
+ 1544 0535 29000000 		.4byte	0x29
+ 1545 0539 00       		.byte	0
+ 1546 053a 22       		.uleb128 0x22
+ 1547 053b 01       		.byte	0x1
+ 1548 053c AA000000 		.4byte	.LASF55
+ 1549 0540 01       		.byte	0x1
+ 1550 0541 37000000 		.4byte	0x37
+ 1551 0545 01       		.byte	0x1
+ 1552 0546 01       		.byte	0x1
+ 1553 0547 5B050000 		.4byte	0x55b
+ 1554 054b 21       		.uleb128 0x21
+ 1555 054c 37000000 		.4byte	0x37
+ 1556 0550 21       		.uleb128 0x21
+ 1557 0551 55000000 		.4byte	0x55
+ 1558 0555 21       		.uleb128 0x21
+ 1559 0556 71000000 		.4byte	0x71
+ 1560 055a 00       		.byte	0
+ 1561 055b 20       		.uleb128 0x20
+ 1562 055c 01       		.byte	0x1
+ 1563 055d 77010000 		.4byte	.LASF53
+ 1564 0561 05       		.byte	0x5
+ 1565 0562 2401     		.2byte	0x124
+ 1566 0564 01       		.byte	0x1
+ 1567 0565 29000000 		.4byte	0x29
+ 1568 0569 01       		.byte	0x1
+ 1569 056a 74050000 		.4byte	0x574
+ 1570 056e 21       		.uleb128 0x21
+ 1571 056f 29000000 		.4byte	0x29
+ 1572 0573 00       		.byte	0
+ 1573 0574 23       		.uleb128 0x23
+ 1574 0575 01       		.byte	0x1
+ 1575 0576 4E000000 		.4byte	.LASF54
+ 1576 057a 06       		.byte	0x6
+ 1577 057b 1F       		.byte	0x1f
+ 1578 057c 01       		.byte	0x1
+ 1579 057d 29000000 		.4byte	0x29
+ 1580 0581 01       		.byte	0x1
+ 1581 0582 8C050000 		.4byte	0x58c
+ 1582 0586 21       		.uleb128 0x21
+ 1583 0587 29000000 		.4byte	0x29
+ 1584 058b 00       		.byte	0
+ 1585 058c 22       		.uleb128 0x22
+ 1586 058d 01       		.byte	0x1
+ 1587 058e 5C000000 		.4byte	.LASF56
+ 1588 0592 01       		.byte	0x1
+ 1589 0593 37000000 		.4byte	0x37
+ 1590 0597 01       		.byte	0x1
+ 1591 0598 01       		.byte	0x1
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 35
+
+
+ 1592 0599 AD050000 		.4byte	0x5ad
+ 1593 059d 21       		.uleb128 0x21
+ 1594 059e 37000000 		.4byte	0x37
+ 1595 05a2 21       		.uleb128 0x21
+ 1596 05a3 AD050000 		.4byte	0x5ad
+ 1597 05a7 21       		.uleb128 0x21
+ 1598 05a8 71000000 		.4byte	0x71
+ 1599 05ac 00       		.byte	0
+ 1600 05ad 0D       		.uleb128 0xd
+ 1601 05ae 04       		.byte	0x4
+ 1602 05af B3050000 		.4byte	0x5b3
+ 1603 05b3 24       		.uleb128 0x24
+ 1604 05b4 00       		.byte	0
+ 1605              		.section	.debug_abbrev,"",%progbits
+ 1606              	.Ldebug_abbrev0:
+ 1607 0000 01       		.uleb128 0x1
+ 1608 0001 11       		.uleb128 0x11
+ 1609 0002 01       		.byte	0x1
+ 1610 0003 25       		.uleb128 0x25
+ 1611 0004 0E       		.uleb128 0xe
+ 1612 0005 13       		.uleb128 0x13
+ 1613 0006 0B       		.uleb128 0xb
+ 1614 0007 03       		.uleb128 0x3
+ 1615 0008 0E       		.uleb128 0xe
+ 1616 0009 1B       		.uleb128 0x1b
+ 1617 000a 0E       		.uleb128 0xe
+ 1618 000b 55       		.uleb128 0x55
+ 1619 000c 06       		.uleb128 0x6
+ 1620 000d 11       		.uleb128 0x11
+ 1621 000e 01       		.uleb128 0x1
+ 1622 000f 52       		.uleb128 0x52
+ 1623 0010 01       		.uleb128 0x1
+ 1624 0011 10       		.uleb128 0x10
+ 1625 0012 06       		.uleb128 0x6
+ 1626 0013 00       		.byte	0
+ 1627 0014 00       		.byte	0
+ 1628 0015 02       		.uleb128 0x2
+ 1629 0016 24       		.uleb128 0x24
+ 1630 0017 00       		.byte	0
+ 1631 0018 0B       		.uleb128 0xb
+ 1632 0019 0B       		.uleb128 0xb
+ 1633 001a 3E       		.uleb128 0x3e
+ 1634 001b 0B       		.uleb128 0xb
+ 1635 001c 03       		.uleb128 0x3
+ 1636 001d 0E       		.uleb128 0xe
+ 1637 001e 00       		.byte	0
+ 1638 001f 00       		.byte	0
+ 1639 0020 03       		.uleb128 0x3
+ 1640 0021 0F       		.uleb128 0xf
+ 1641 0022 00       		.byte	0
+ 1642 0023 0B       		.uleb128 0xb
+ 1643 0024 0B       		.uleb128 0xb
+ 1644 0025 00       		.byte	0
+ 1645 0026 00       		.byte	0
+ 1646 0027 04       		.uleb128 0x4
+ 1647 0028 24       		.uleb128 0x24
+ 1648 0029 00       		.byte	0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 36
+
+
+ 1649 002a 0B       		.uleb128 0xb
+ 1650 002b 0B       		.uleb128 0xb
+ 1651 002c 3E       		.uleb128 0x3e
+ 1652 002d 0B       		.uleb128 0xb
+ 1653 002e 03       		.uleb128 0x3
+ 1654 002f 08       		.uleb128 0x8
+ 1655 0030 00       		.byte	0
+ 1656 0031 00       		.byte	0
+ 1657 0032 05       		.uleb128 0x5
+ 1658 0033 16       		.uleb128 0x16
+ 1659 0034 00       		.byte	0
+ 1660 0035 03       		.uleb128 0x3
+ 1661 0036 0E       		.uleb128 0xe
+ 1662 0037 3A       		.uleb128 0x3a
+ 1663 0038 0B       		.uleb128 0xb
+ 1664 0039 3B       		.uleb128 0x3b
+ 1665 003a 0B       		.uleb128 0xb
+ 1666 003b 49       		.uleb128 0x49
+ 1667 003c 13       		.uleb128 0x13
+ 1668 003d 00       		.byte	0
+ 1669 003e 00       		.byte	0
+ 1670 003f 06       		.uleb128 0x6
+ 1671 0040 35       		.uleb128 0x35
+ 1672 0041 00       		.byte	0
+ 1673 0042 49       		.uleb128 0x49
+ 1674 0043 13       		.uleb128 0x13
+ 1675 0044 00       		.byte	0
+ 1676 0045 00       		.byte	0
+ 1677 0046 07       		.uleb128 0x7
+ 1678 0047 13       		.uleb128 0x13
+ 1679 0048 01       		.byte	0x1
+ 1680 0049 0B       		.uleb128 0xb
+ 1681 004a 0B       		.uleb128 0xb
+ 1682 004b 3A       		.uleb128 0x3a
+ 1683 004c 0B       		.uleb128 0xb
+ 1684 004d 3B       		.uleb128 0x3b
+ 1685 004e 0B       		.uleb128 0xb
+ 1686 004f 01       		.uleb128 0x1
+ 1687 0050 13       		.uleb128 0x13
+ 1688 0051 00       		.byte	0
+ 1689 0052 00       		.byte	0
+ 1690 0053 08       		.uleb128 0x8
+ 1691 0054 0D       		.uleb128 0xd
+ 1692 0055 00       		.byte	0
+ 1693 0056 03       		.uleb128 0x3
+ 1694 0057 0E       		.uleb128 0xe
+ 1695 0058 3A       		.uleb128 0x3a
+ 1696 0059 0B       		.uleb128 0xb
+ 1697 005a 3B       		.uleb128 0x3b
+ 1698 005b 0B       		.uleb128 0xb
+ 1699 005c 49       		.uleb128 0x49
+ 1700 005d 13       		.uleb128 0x13
+ 1701 005e 38       		.uleb128 0x38
+ 1702 005f 0A       		.uleb128 0xa
+ 1703 0060 00       		.byte	0
+ 1704 0061 00       		.byte	0
+ 1705 0062 09       		.uleb128 0x9
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 37
+
+
+ 1706 0063 2E       		.uleb128 0x2e
+ 1707 0064 01       		.byte	0x1
+ 1708 0065 3F       		.uleb128 0x3f
+ 1709 0066 0C       		.uleb128 0xc
+ 1710 0067 03       		.uleb128 0x3
+ 1711 0068 0E       		.uleb128 0xe
+ 1712 0069 3A       		.uleb128 0x3a
+ 1713 006a 0B       		.uleb128 0xb
+ 1714 006b 3B       		.uleb128 0x3b
+ 1715 006c 0B       		.uleb128 0xb
+ 1716 006d 27       		.uleb128 0x27
+ 1717 006e 0C       		.uleb128 0xc
+ 1718 006f 49       		.uleb128 0x49
+ 1719 0070 13       		.uleb128 0x13
+ 1720 0071 11       		.uleb128 0x11
+ 1721 0072 01       		.uleb128 0x1
+ 1722 0073 12       		.uleb128 0x12
+ 1723 0074 01       		.uleb128 0x1
+ 1724 0075 40       		.uleb128 0x40
+ 1725 0076 0A       		.uleb128 0xa
+ 1726 0077 9742     		.uleb128 0x2117
+ 1727 0079 0C       		.uleb128 0xc
+ 1728 007a 01       		.uleb128 0x1
+ 1729 007b 13       		.uleb128 0x13
+ 1730 007c 00       		.byte	0
+ 1731 007d 00       		.byte	0
+ 1732 007e 0A       		.uleb128 0xa
+ 1733 007f 05       		.uleb128 0x5
+ 1734 0080 00       		.byte	0
+ 1735 0081 03       		.uleb128 0x3
+ 1736 0082 0E       		.uleb128 0xe
+ 1737 0083 3A       		.uleb128 0x3a
+ 1738 0084 0B       		.uleb128 0xb
+ 1739 0085 3B       		.uleb128 0x3b
+ 1740 0086 0B       		.uleb128 0xb
+ 1741 0087 49       		.uleb128 0x49
+ 1742 0088 13       		.uleb128 0x13
+ 1743 0089 02       		.uleb128 0x2
+ 1744 008a 06       		.uleb128 0x6
+ 1745 008b 00       		.byte	0
+ 1746 008c 00       		.byte	0
+ 1747 008d 0B       		.uleb128 0xb
+ 1748 008e 05       		.uleb128 0x5
+ 1749 008f 00       		.byte	0
+ 1750 0090 03       		.uleb128 0x3
+ 1751 0091 08       		.uleb128 0x8
+ 1752 0092 3A       		.uleb128 0x3a
+ 1753 0093 0B       		.uleb128 0xb
+ 1754 0094 3B       		.uleb128 0x3b
+ 1755 0095 0B       		.uleb128 0xb
+ 1756 0096 49       		.uleb128 0x49
+ 1757 0097 13       		.uleb128 0x13
+ 1758 0098 02       		.uleb128 0x2
+ 1759 0099 0A       		.uleb128 0xa
+ 1760 009a 00       		.byte	0
+ 1761 009b 00       		.byte	0
+ 1762 009c 0C       		.uleb128 0xc
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 38
+
+
+ 1763 009d 34       		.uleb128 0x34
+ 1764 009e 00       		.byte	0
+ 1765 009f 03       		.uleb128 0x3
+ 1766 00a0 08       		.uleb128 0x8
+ 1767 00a1 3A       		.uleb128 0x3a
+ 1768 00a2 0B       		.uleb128 0xb
+ 1769 00a3 3B       		.uleb128 0x3b
+ 1770 00a4 0B       		.uleb128 0xb
+ 1771 00a5 49       		.uleb128 0x49
+ 1772 00a6 13       		.uleb128 0x13
+ 1773 00a7 02       		.uleb128 0x2
+ 1774 00a8 06       		.uleb128 0x6
+ 1775 00a9 00       		.byte	0
+ 1776 00aa 00       		.byte	0
+ 1777 00ab 0D       		.uleb128 0xd
+ 1778 00ac 0F       		.uleb128 0xf
+ 1779 00ad 00       		.byte	0
+ 1780 00ae 0B       		.uleb128 0xb
+ 1781 00af 0B       		.uleb128 0xb
+ 1782 00b0 49       		.uleb128 0x49
+ 1783 00b1 13       		.uleb128 0x13
+ 1784 00b2 00       		.byte	0
+ 1785 00b3 00       		.byte	0
+ 1786 00b4 0E       		.uleb128 0xe
+ 1787 00b5 2E       		.uleb128 0x2e
+ 1788 00b6 01       		.byte	0x1
+ 1789 00b7 3F       		.uleb128 0x3f
+ 1790 00b8 0C       		.uleb128 0xc
+ 1791 00b9 03       		.uleb128 0x3
+ 1792 00ba 0E       		.uleb128 0xe
+ 1793 00bb 3A       		.uleb128 0x3a
+ 1794 00bc 0B       		.uleb128 0xb
+ 1795 00bd 3B       		.uleb128 0x3b
+ 1796 00be 0B       		.uleb128 0xb
+ 1797 00bf 27       		.uleb128 0x27
+ 1798 00c0 0C       		.uleb128 0xc
+ 1799 00c1 11       		.uleb128 0x11
+ 1800 00c2 01       		.uleb128 0x1
+ 1801 00c3 12       		.uleb128 0x12
+ 1802 00c4 01       		.uleb128 0x1
+ 1803 00c5 40       		.uleb128 0x40
+ 1804 00c6 06       		.uleb128 0x6
+ 1805 00c7 9742     		.uleb128 0x2117
+ 1806 00c9 0C       		.uleb128 0xc
+ 1807 00ca 01       		.uleb128 0x1
+ 1808 00cb 13       		.uleb128 0x13
+ 1809 00cc 00       		.byte	0
+ 1810 00cd 00       		.byte	0
+ 1811 00ce 0F       		.uleb128 0xf
+ 1812 00cf 05       		.uleb128 0x5
+ 1813 00d0 00       		.byte	0
+ 1814 00d1 03       		.uleb128 0x3
+ 1815 00d2 08       		.uleb128 0x8
+ 1816 00d3 3A       		.uleb128 0x3a
+ 1817 00d4 0B       		.uleb128 0xb
+ 1818 00d5 3B       		.uleb128 0x3b
+ 1819 00d6 0B       		.uleb128 0xb
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 39
+
+
+ 1820 00d7 49       		.uleb128 0x49
+ 1821 00d8 13       		.uleb128 0x13
+ 1822 00d9 02       		.uleb128 0x2
+ 1823 00da 06       		.uleb128 0x6
+ 1824 00db 00       		.byte	0
+ 1825 00dc 00       		.byte	0
+ 1826 00dd 10       		.uleb128 0x10
+ 1827 00de 898201   		.uleb128 0x4109
+ 1828 00e1 01       		.byte	0x1
+ 1829 00e2 11       		.uleb128 0x11
+ 1830 00e3 01       		.uleb128 0x1
+ 1831 00e4 31       		.uleb128 0x31
+ 1832 00e5 13       		.uleb128 0x13
+ 1833 00e6 00       		.byte	0
+ 1834 00e7 00       		.byte	0
+ 1835 00e8 11       		.uleb128 0x11
+ 1836 00e9 8A8201   		.uleb128 0x410a
+ 1837 00ec 00       		.byte	0
+ 1838 00ed 02       		.uleb128 0x2
+ 1839 00ee 0A       		.uleb128 0xa
+ 1840 00ef 9142     		.uleb128 0x2111
+ 1841 00f1 0A       		.uleb128 0xa
+ 1842 00f2 00       		.byte	0
+ 1843 00f3 00       		.byte	0
+ 1844 00f4 12       		.uleb128 0x12
+ 1845 00f5 898201   		.uleb128 0x4109
+ 1846 00f8 01       		.byte	0x1
+ 1847 00f9 11       		.uleb128 0x11
+ 1848 00fa 01       		.uleb128 0x1
+ 1849 00fb 9542     		.uleb128 0x2115
+ 1850 00fd 0C       		.uleb128 0xc
+ 1851 00fe 31       		.uleb128 0x31
+ 1852 00ff 13       		.uleb128 0x13
+ 1853 0100 00       		.byte	0
+ 1854 0101 00       		.byte	0
+ 1855 0102 13       		.uleb128 0x13
+ 1856 0103 2E       		.uleb128 0x2e
+ 1857 0104 01       		.byte	0x1
+ 1858 0105 3F       		.uleb128 0x3f
+ 1859 0106 0C       		.uleb128 0xc
+ 1860 0107 03       		.uleb128 0x3
+ 1861 0108 0E       		.uleb128 0xe
+ 1862 0109 3A       		.uleb128 0x3a
+ 1863 010a 0B       		.uleb128 0xb
+ 1864 010b 3B       		.uleb128 0x3b
+ 1865 010c 0B       		.uleb128 0xb
+ 1866 010d 27       		.uleb128 0x27
+ 1867 010e 0C       		.uleb128 0xc
+ 1868 010f 11       		.uleb128 0x11
+ 1869 0110 01       		.uleb128 0x1
+ 1870 0111 12       		.uleb128 0x12
+ 1871 0112 01       		.uleb128 0x1
+ 1872 0113 40       		.uleb128 0x40
+ 1873 0114 06       		.uleb128 0x6
+ 1874 0115 9642     		.uleb128 0x2116
+ 1875 0117 0C       		.uleb128 0xc
+ 1876 0118 01       		.uleb128 0x1
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 40
+
+
+ 1877 0119 13       		.uleb128 0x13
+ 1878 011a 00       		.byte	0
+ 1879 011b 00       		.byte	0
+ 1880 011c 14       		.uleb128 0x14
+ 1881 011d 34       		.uleb128 0x34
+ 1882 011e 00       		.byte	0
+ 1883 011f 03       		.uleb128 0x3
+ 1884 0120 0E       		.uleb128 0xe
+ 1885 0121 3A       		.uleb128 0x3a
+ 1886 0122 0B       		.uleb128 0xb
+ 1887 0123 3B       		.uleb128 0x3b
+ 1888 0124 0B       		.uleb128 0xb
+ 1889 0125 49       		.uleb128 0x49
+ 1890 0126 13       		.uleb128 0x13
+ 1891 0127 02       		.uleb128 0x2
+ 1892 0128 06       		.uleb128 0x6
+ 1893 0129 00       		.byte	0
+ 1894 012a 00       		.byte	0
+ 1895 012b 15       		.uleb128 0x15
+ 1896 012c 34       		.uleb128 0x34
+ 1897 012d 00       		.byte	0
+ 1898 012e 03       		.uleb128 0x3
+ 1899 012f 08       		.uleb128 0x8
+ 1900 0130 3A       		.uleb128 0x3a
+ 1901 0131 0B       		.uleb128 0xb
+ 1902 0132 3B       		.uleb128 0x3b
+ 1903 0133 0B       		.uleb128 0xb
+ 1904 0134 49       		.uleb128 0x49
+ 1905 0135 13       		.uleb128 0x13
+ 1906 0136 00       		.byte	0
+ 1907 0137 00       		.byte	0
+ 1908 0138 16       		.uleb128 0x16
+ 1909 0139 34       		.uleb128 0x34
+ 1910 013a 00       		.byte	0
+ 1911 013b 03       		.uleb128 0x3
+ 1912 013c 08       		.uleb128 0x8
+ 1913 013d 3A       		.uleb128 0x3a
+ 1914 013e 0B       		.uleb128 0xb
+ 1915 013f 3B       		.uleb128 0x3b
+ 1916 0140 0B       		.uleb128 0xb
+ 1917 0141 49       		.uleb128 0x49
+ 1918 0142 13       		.uleb128 0x13
+ 1919 0143 02       		.uleb128 0x2
+ 1920 0144 0A       		.uleb128 0xa
+ 1921 0145 00       		.byte	0
+ 1922 0146 00       		.byte	0
+ 1923 0147 17       		.uleb128 0x17
+ 1924 0148 898201   		.uleb128 0x4109
+ 1925 014b 00       		.byte	0
+ 1926 014c 11       		.uleb128 0x11
+ 1927 014d 01       		.uleb128 0x1
+ 1928 014e 31       		.uleb128 0x31
+ 1929 014f 13       		.uleb128 0x13
+ 1930 0150 00       		.byte	0
+ 1931 0151 00       		.byte	0
+ 1932 0152 18       		.uleb128 0x18
+ 1933 0153 898201   		.uleb128 0x4109
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 41
+
+
+ 1934 0156 01       		.byte	0x1
+ 1935 0157 11       		.uleb128 0x11
+ 1936 0158 01       		.uleb128 0x1
+ 1937 0159 31       		.uleb128 0x31
+ 1938 015a 13       		.uleb128 0x13
+ 1939 015b 01       		.uleb128 0x1
+ 1940 015c 13       		.uleb128 0x13
+ 1941 015d 00       		.byte	0
+ 1942 015e 00       		.byte	0
+ 1943 015f 19       		.uleb128 0x19
+ 1944 0160 34       		.uleb128 0x34
+ 1945 0161 00       		.byte	0
+ 1946 0162 03       		.uleb128 0x3
+ 1947 0163 0E       		.uleb128 0xe
+ 1948 0164 3A       		.uleb128 0x3a
+ 1949 0165 0B       		.uleb128 0xb
+ 1950 0166 3B       		.uleb128 0x3b
+ 1951 0167 05       		.uleb128 0x5
+ 1952 0168 49       		.uleb128 0x49
+ 1953 0169 13       		.uleb128 0x13
+ 1954 016a 3F       		.uleb128 0x3f
+ 1955 016b 0C       		.uleb128 0xc
+ 1956 016c 3C       		.uleb128 0x3c
+ 1957 016d 0C       		.uleb128 0xc
+ 1958 016e 00       		.byte	0
+ 1959 016f 00       		.byte	0
+ 1960 0170 1A       		.uleb128 0x1a
+ 1961 0171 01       		.uleb128 0x1
+ 1962 0172 01       		.byte	0x1
+ 1963 0173 49       		.uleb128 0x49
+ 1964 0174 13       		.uleb128 0x13
+ 1965 0175 01       		.uleb128 0x1
+ 1966 0176 13       		.uleb128 0x13
+ 1967 0177 00       		.byte	0
+ 1968 0178 00       		.byte	0
+ 1969 0179 1B       		.uleb128 0x1b
+ 1970 017a 21       		.uleb128 0x21
+ 1971 017b 00       		.byte	0
+ 1972 017c 00       		.byte	0
+ 1973 017d 00       		.byte	0
+ 1974 017e 1C       		.uleb128 0x1c
+ 1975 017f 34       		.uleb128 0x34
+ 1976 0180 00       		.byte	0
+ 1977 0181 03       		.uleb128 0x3
+ 1978 0182 0E       		.uleb128 0xe
+ 1979 0183 3A       		.uleb128 0x3a
+ 1980 0184 0B       		.uleb128 0xb
+ 1981 0185 3B       		.uleb128 0x3b
+ 1982 0186 0B       		.uleb128 0xb
+ 1983 0187 49       		.uleb128 0x49
+ 1984 0188 13       		.uleb128 0x13
+ 1985 0189 3F       		.uleb128 0x3f
+ 1986 018a 0C       		.uleb128 0xc
+ 1987 018b 3C       		.uleb128 0x3c
+ 1988 018c 0C       		.uleb128 0xc
+ 1989 018d 00       		.byte	0
+ 1990 018e 00       		.byte	0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 42
+
+
+ 1991 018f 1D       		.uleb128 0x1d
+ 1992 0190 26       		.uleb128 0x26
+ 1993 0191 00       		.byte	0
+ 1994 0192 49       		.uleb128 0x49
+ 1995 0193 13       		.uleb128 0x13
+ 1996 0194 00       		.byte	0
+ 1997 0195 00       		.byte	0
+ 1998 0196 1E       		.uleb128 0x1e
+ 1999 0197 34       		.uleb128 0x34
+ 2000 0198 00       		.byte	0
+ 2001 0199 03       		.uleb128 0x3
+ 2002 019a 08       		.uleb128 0x8
+ 2003 019b 3A       		.uleb128 0x3a
+ 2004 019c 0B       		.uleb128 0xb
+ 2005 019d 3B       		.uleb128 0x3b
+ 2006 019e 0B       		.uleb128 0xb
+ 2007 019f 49       		.uleb128 0x49
+ 2008 01a0 13       		.uleb128 0x13
+ 2009 01a1 3F       		.uleb128 0x3f
+ 2010 01a2 0C       		.uleb128 0xc
+ 2011 01a3 3C       		.uleb128 0x3c
+ 2012 01a4 0C       		.uleb128 0xc
+ 2013 01a5 00       		.byte	0
+ 2014 01a6 00       		.byte	0
+ 2015 01a7 1F       		.uleb128 0x1f
+ 2016 01a8 21       		.uleb128 0x21
+ 2017 01a9 00       		.byte	0
+ 2018 01aa 49       		.uleb128 0x49
+ 2019 01ab 13       		.uleb128 0x13
+ 2020 01ac 2F       		.uleb128 0x2f
+ 2021 01ad 05       		.uleb128 0x5
+ 2022 01ae 00       		.byte	0
+ 2023 01af 00       		.byte	0
+ 2024 01b0 20       		.uleb128 0x20
+ 2025 01b1 2E       		.uleb128 0x2e
+ 2026 01b2 01       		.byte	0x1
+ 2027 01b3 3F       		.uleb128 0x3f
+ 2028 01b4 0C       		.uleb128 0xc
+ 2029 01b5 03       		.uleb128 0x3
+ 2030 01b6 0E       		.uleb128 0xe
+ 2031 01b7 3A       		.uleb128 0x3a
+ 2032 01b8 0B       		.uleb128 0xb
+ 2033 01b9 3B       		.uleb128 0x3b
+ 2034 01ba 05       		.uleb128 0x5
+ 2035 01bb 27       		.uleb128 0x27
+ 2036 01bc 0C       		.uleb128 0xc
+ 2037 01bd 49       		.uleb128 0x49
+ 2038 01be 13       		.uleb128 0x13
+ 2039 01bf 3C       		.uleb128 0x3c
+ 2040 01c0 0C       		.uleb128 0xc
+ 2041 01c1 01       		.uleb128 0x1
+ 2042 01c2 13       		.uleb128 0x13
+ 2043 01c3 00       		.byte	0
+ 2044 01c4 00       		.byte	0
+ 2045 01c5 21       		.uleb128 0x21
+ 2046 01c6 05       		.uleb128 0x5
+ 2047 01c7 00       		.byte	0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 43
+
+
+ 2048 01c8 49       		.uleb128 0x49
+ 2049 01c9 13       		.uleb128 0x13
+ 2050 01ca 00       		.byte	0
+ 2051 01cb 00       		.byte	0
+ 2052 01cc 22       		.uleb128 0x22
+ 2053 01cd 2E       		.uleb128 0x2e
+ 2054 01ce 01       		.byte	0x1
+ 2055 01cf 3F       		.uleb128 0x3f
+ 2056 01d0 0C       		.uleb128 0xc
+ 2057 01d1 03       		.uleb128 0x3
+ 2058 01d2 0E       		.uleb128 0xe
+ 2059 01d3 27       		.uleb128 0x27
+ 2060 01d4 0C       		.uleb128 0xc
+ 2061 01d5 49       		.uleb128 0x49
+ 2062 01d6 13       		.uleb128 0x13
+ 2063 01d7 34       		.uleb128 0x34
+ 2064 01d8 0C       		.uleb128 0xc
+ 2065 01d9 3C       		.uleb128 0x3c
+ 2066 01da 0C       		.uleb128 0xc
+ 2067 01db 01       		.uleb128 0x1
+ 2068 01dc 13       		.uleb128 0x13
+ 2069 01dd 00       		.byte	0
+ 2070 01de 00       		.byte	0
+ 2071 01df 23       		.uleb128 0x23
+ 2072 01e0 2E       		.uleb128 0x2e
+ 2073 01e1 01       		.byte	0x1
+ 2074 01e2 3F       		.uleb128 0x3f
+ 2075 01e3 0C       		.uleb128 0xc
+ 2076 01e4 03       		.uleb128 0x3
+ 2077 01e5 0E       		.uleb128 0xe
+ 2078 01e6 3A       		.uleb128 0x3a
+ 2079 01e7 0B       		.uleb128 0xb
+ 2080 01e8 3B       		.uleb128 0x3b
+ 2081 01e9 0B       		.uleb128 0xb
+ 2082 01ea 27       		.uleb128 0x27
+ 2083 01eb 0C       		.uleb128 0xc
+ 2084 01ec 49       		.uleb128 0x49
+ 2085 01ed 13       		.uleb128 0x13
+ 2086 01ee 3C       		.uleb128 0x3c
+ 2087 01ef 0C       		.uleb128 0xc
+ 2088 01f0 01       		.uleb128 0x1
+ 2089 01f1 13       		.uleb128 0x13
+ 2090 01f2 00       		.byte	0
+ 2091 01f3 00       		.byte	0
+ 2092 01f4 24       		.uleb128 0x24
+ 2093 01f5 26       		.uleb128 0x26
+ 2094 01f6 00       		.byte	0
+ 2095 01f7 00       		.byte	0
+ 2096 01f8 00       		.byte	0
+ 2097 01f9 00       		.byte	0
+ 2098              		.section	.debug_loc,"",%progbits
+ 2099              	.Ldebug_loc0:
+ 2100              	.LLST0:
+ 2101 0000 00000000 		.4byte	.LVL0
+ 2102 0004 1E000000 		.4byte	.LVL2
+ 2103 0008 0100     		.2byte	0x1
+ 2104 000a 50       		.byte	0x50
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 44
+
+
+ 2105 000b 1E000000 		.4byte	.LVL2
+ 2106 000f 44000000 		.4byte	.LVL4
+ 2107 0013 0400     		.2byte	0x4
+ 2108 0015 F3       		.byte	0xf3
+ 2109 0016 01       		.uleb128 0x1
+ 2110 0017 50       		.byte	0x50
+ 2111 0018 9F       		.byte	0x9f
+ 2112 0019 44000000 		.4byte	.LVL4
+ 2113 001d 58000000 		.4byte	.LVL7
+ 2114 0021 0100     		.2byte	0x1
+ 2115 0023 50       		.byte	0x50
+ 2116 0024 58000000 		.4byte	.LVL7
+ 2117 0028 84000000 		.4byte	.LFE110
+ 2118 002c 0400     		.2byte	0x4
+ 2119 002e F3       		.byte	0xf3
+ 2120 002f 01       		.uleb128 0x1
+ 2121 0030 50       		.byte	0x50
+ 2122 0031 9F       		.byte	0x9f
+ 2123 0032 00000000 		.4byte	0
+ 2124 0036 00000000 		.4byte	0
+ 2125              	.LLST1:
+ 2126 003a 00000000 		.4byte	.LVL0
+ 2127 003e 1C000000 		.4byte	.LVL1
+ 2128 0042 0200     		.2byte	0x2
+ 2129 0044 90       		.byte	0x90
+ 2130 0045 40       		.uleb128 0x40
+ 2131 0046 1C000000 		.4byte	.LVL1
+ 2132 004a 44000000 		.4byte	.LVL4
+ 2133 004e 0600     		.2byte	0x6
+ 2134 0050 F3       		.byte	0xf3
+ 2135 0051 03       		.uleb128 0x3
+ 2136 0052 F5       		.byte	0xf5
+ 2137 0053 40       		.uleb128 0x40
+ 2138 0054 29       		.uleb128 0x29
+ 2139 0055 9F       		.byte	0x9f
+ 2140 0056 44000000 		.4byte	.LVL4
+ 2141 005a 48000000 		.4byte	.LVL5
+ 2142 005e 0200     		.2byte	0x2
+ 2143 0060 90       		.byte	0x90
+ 2144 0061 40       		.uleb128 0x40
+ 2145 0062 48000000 		.4byte	.LVL5
+ 2146 0066 4A000000 		.4byte	.LVL6
+ 2147 006a 0600     		.2byte	0x6
+ 2148 006c F3       		.byte	0xf3
+ 2149 006d 03       		.uleb128 0x3
+ 2150 006e F5       		.byte	0xf5
+ 2151 006f 40       		.uleb128 0x40
+ 2152 0070 29       		.uleb128 0x29
+ 2153 0071 9F       		.byte	0x9f
+ 2154 0072 4A000000 		.4byte	.LVL6
+ 2155 0076 74000000 		.4byte	.LVL8
+ 2156 007a 0200     		.2byte	0x2
+ 2157 007c 90       		.byte	0x90
+ 2158 007d 40       		.uleb128 0x40
+ 2159 007e 74000000 		.4byte	.LVL8
+ 2160 0082 84000000 		.4byte	.LFE110
+ 2161 0086 0600     		.2byte	0x6
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 45
+
+
+ 2162 0088 F3       		.byte	0xf3
+ 2163 0089 03       		.uleb128 0x3
+ 2164 008a F5       		.byte	0xf5
+ 2165 008b 40       		.uleb128 0x40
+ 2166 008c 29       		.uleb128 0x29
+ 2167 008d 9F       		.byte	0x9f
+ 2168 008e 00000000 		.4byte	0
+ 2169 0092 00000000 		.4byte	0
+ 2170              	.LLST2:
+ 2171 0096 3E000000 		.4byte	.LVL3
+ 2172 009a 44000000 		.4byte	.LVL4
+ 2173 009e 0200     		.2byte	0x2
+ 2174 00a0 90       		.byte	0x90
+ 2175 00a1 40       		.uleb128 0x40
+ 2176 00a2 74000000 		.4byte	.LVL8
+ 2177 00a6 84000000 		.4byte	.LFE110
+ 2178 00aa 0200     		.2byte	0x2
+ 2179 00ac 90       		.byte	0x90
+ 2180 00ad 40       		.uleb128 0x40
+ 2181 00ae 00000000 		.4byte	0
+ 2182 00b2 00000000 		.4byte	0
+ 2183              	.LLST3:
+ 2184 00b6 00000000 		.4byte	.LFB111
+ 2185 00ba 02000000 		.4byte	.LCFI0
+ 2186 00be 0200     		.2byte	0x2
+ 2187 00c0 7D       		.byte	0x7d
+ 2188 00c1 00       		.sleb128 0
+ 2189 00c2 02000000 		.4byte	.LCFI0
+ 2190 00c6 06000000 		.4byte	.LCFI1
+ 2191 00ca 0200     		.2byte	0x2
+ 2192 00cc 7D       		.byte	0x7d
+ 2193 00cd 10       		.sleb128 16
+ 2194 00ce 06000000 		.4byte	.LCFI1
+ 2195 00d2 DC000000 		.4byte	.LFE111
+ 2196 00d6 0200     		.2byte	0x2
+ 2197 00d8 7D       		.byte	0x7d
+ 2198 00d9 18       		.sleb128 24
+ 2199 00da 00000000 		.4byte	0
+ 2200 00de 00000000 		.4byte	0
+ 2201              	.LLST4:
+ 2202 00e2 00000000 		.4byte	.LVL9
+ 2203 00e6 25000000 		.4byte	.LVL13-1
+ 2204 00ea 0100     		.2byte	0x1
+ 2205 00ec 50       		.byte	0x50
+ 2206 00ed 25000000 		.4byte	.LVL13-1
+ 2207 00f1 8A000000 		.4byte	.LVL18
+ 2208 00f5 0100     		.2byte	0x1
+ 2209 00f7 54       		.byte	0x54
+ 2210 00f8 8A000000 		.4byte	.LVL18
+ 2211 00fc DC000000 		.4byte	.LFE111
+ 2212 0100 0400     		.2byte	0x4
+ 2213 0102 F3       		.byte	0xf3
+ 2214 0103 01       		.uleb128 0x1
+ 2215 0104 50       		.byte	0x50
+ 2216 0105 9F       		.byte	0x9f
+ 2217 0106 00000000 		.4byte	0
+ 2218 010a 00000000 		.4byte	0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 46
+
+
+ 2219              	.LLST5:
+ 2220 010e 00000000 		.4byte	.LVL9
+ 2221 0112 25000000 		.4byte	.LVL13-1
+ 2222 0116 0100     		.2byte	0x1
+ 2223 0118 51       		.byte	0x51
+ 2224 0119 25000000 		.4byte	.LVL13-1
+ 2225 011d 5E000000 		.4byte	.LVL16
+ 2226 0121 0100     		.2byte	0x1
+ 2227 0123 55       		.byte	0x55
+ 2228 0124 5E000000 		.4byte	.LVL16
+ 2229 0128 62000000 		.4byte	.LVL17
+ 2230 012c 0400     		.2byte	0x4
+ 2231 012e F3       		.byte	0xf3
+ 2232 012f 01       		.uleb128 0x1
+ 2233 0130 51       		.byte	0x51
+ 2234 0131 9F       		.byte	0x9f
+ 2235 0132 00000000 		.4byte	0
+ 2236 0136 00000000 		.4byte	0
+ 2237              	.LLST6:
+ 2238 013a 00000000 		.4byte	.LVL9
+ 2239 013e 0E000000 		.4byte	.LVL10
+ 2240 0142 0200     		.2byte	0x2
+ 2241 0144 90       		.byte	0x90
+ 2242 0145 40       		.uleb128 0x40
+ 2243 0146 0E000000 		.4byte	.LVL10
+ 2244 014a DC000000 		.4byte	.LFE111
+ 2245 014e 0600     		.2byte	0x6
+ 2246 0150 F3       		.byte	0xf3
+ 2247 0151 03       		.uleb128 0x3
+ 2248 0152 F5       		.byte	0xf5
+ 2249 0153 40       		.uleb128 0x40
+ 2250 0154 29       		.uleb128 0x29
+ 2251 0155 9F       		.byte	0x9f
+ 2252 0156 00000000 		.4byte	0
+ 2253 015a 00000000 		.4byte	0
+ 2254              	.LLST7:
+ 2255 015e 00000000 		.4byte	.LVL9
+ 2256 0162 1A000000 		.4byte	.LVL12
+ 2257 0166 0200     		.2byte	0x2
+ 2258 0168 90       		.byte	0x90
+ 2259 0169 41       		.uleb128 0x41
+ 2260 016a 1A000000 		.4byte	.LVL12
+ 2261 016e DC000000 		.4byte	.LFE111
+ 2262 0172 0600     		.2byte	0x6
+ 2263 0174 F3       		.byte	0xf3
+ 2264 0175 03       		.uleb128 0x3
+ 2265 0176 F5       		.byte	0xf5
+ 2266 0177 41       		.uleb128 0x41
+ 2267 0178 29       		.uleb128 0x29
+ 2268 0179 9F       		.byte	0x9f
+ 2269 017a 00000000 		.4byte	0
+ 2270 017e 00000000 		.4byte	0
+ 2271              	.LLST8:
+ 2272 0182 00000000 		.4byte	.LVL9
+ 2273 0186 25000000 		.4byte	.LVL13-1
+ 2274 018a 0200     		.2byte	0x2
+ 2275 018c 90       		.byte	0x90
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 47
+
+
+ 2276 018d 42       		.uleb128 0x42
+ 2277 018e 25000000 		.4byte	.LVL13-1
+ 2278 0192 DC000000 		.4byte	.LFE111
+ 2279 0196 0200     		.2byte	0x2
+ 2280 0198 90       		.byte	0x90
+ 2281 0199 50       		.uleb128 0x50
+ 2282 019a 00000000 		.4byte	0
+ 2283 019e 00000000 		.4byte	0
+ 2284              	.LLST9:
+ 2285 01a2 14000000 		.4byte	.LVL11
+ 2286 01a6 44000000 		.4byte	.LVL14
+ 2287 01aa 0200     		.2byte	0x2
+ 2288 01ac 90       		.byte	0x90
+ 2289 01ad 51       		.uleb128 0x51
+ 2290 01ae 44000000 		.4byte	.LVL14
+ 2291 01b2 DC000000 		.4byte	.LFE111
+ 2292 01b6 0200     		.2byte	0x2
+ 2293 01b8 90       		.byte	0x90
+ 2294 01b9 43       		.uleb128 0x43
+ 2295 01ba 00000000 		.4byte	0
+ 2296 01be 00000000 		.4byte	0
+ 2297              	.LLST10:
+ 2298 01c2 26000000 		.4byte	.LVL13
+ 2299 01c6 44000000 		.4byte	.LVL14
+ 2300 01ca 0100     		.2byte	0x1
+ 2301 01cc 50       		.byte	0x50
+ 2302 01cd 44000000 		.4byte	.LVL14
+ 2303 01d1 5A000000 		.4byte	.LVL15
+ 2304 01d5 0100     		.2byte	0x1
+ 2305 01d7 52       		.byte	0x52
+ 2306 01d8 5A000000 		.4byte	.LVL15
+ 2307 01dc 62000000 		.4byte	.LVL17
+ 2308 01e0 0300     		.2byte	0x3
+ 2309 01e2 70       		.byte	0x70
+ 2310 01e3 40       		.sleb128 -64
+ 2311 01e4 9F       		.byte	0x9f
+ 2312 01e5 00000000 		.4byte	0
+ 2313 01e9 00000000 		.4byte	0
+ 2314              	.LLST11:
+ 2315 01ed 00000000 		.4byte	.LFB112
+ 2316 01f1 02000000 		.4byte	.LCFI2
+ 2317 01f5 0200     		.2byte	0x2
+ 2318 01f7 7D       		.byte	0x7d
+ 2319 01f8 00       		.sleb128 0
+ 2320 01f9 02000000 		.4byte	.LCFI2
+ 2321 01fd 3A000000 		.4byte	.LFE112
+ 2322 0201 0200     		.2byte	0x2
+ 2323 0203 7D       		.byte	0x7d
+ 2324 0204 10       		.sleb128 16
+ 2325 0205 00000000 		.4byte	0
+ 2326 0209 00000000 		.4byte	0
+ 2327              	.LLST12:
+ 2328 020d 00000000 		.4byte	.LFB113
+ 2329 0211 04000000 		.4byte	.LCFI3
+ 2330 0215 0200     		.2byte	0x2
+ 2331 0217 7D       		.byte	0x7d
+ 2332 0218 00       		.sleb128 0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 48
+
+
+ 2333 0219 04000000 		.4byte	.LCFI3
+ 2334 021d 08000000 		.4byte	.LCFI4
+ 2335 0221 0200     		.2byte	0x2
+ 2336 0223 7D       		.byte	0x7d
+ 2337 0224 24       		.sleb128 36
+ 2338 0225 08000000 		.4byte	.LCFI4
+ 2339 0229 10000000 		.4byte	.LCFI5
+ 2340 022d 0300     		.2byte	0x3
+ 2341 022f 7D       		.byte	0x7d
+ 2342 0230 CC00     		.sleb128 76
+ 2343 0232 10000000 		.4byte	.LCFI5
+ 2344 0236 C0030000 		.4byte	.LFE113
+ 2345 023a 0300     		.2byte	0x3
+ 2346 023c 7D       		.byte	0x7d
+ 2347 023d D800     		.sleb128 88
+ 2348 023f 00000000 		.4byte	0
+ 2349 0243 00000000 		.4byte	0
+ 2350              	.LLST13:
+ 2351 0247 00000000 		.4byte	.LVL20
+ 2352 024b 26000000 		.4byte	.LVL23
+ 2353 024f 0100     		.2byte	0x1
+ 2354 0251 50       		.byte	0x50
+ 2355 0252 26000000 		.4byte	.LVL23
+ 2356 0256 C0030000 		.4byte	.LFE113
+ 2357 025a 0400     		.2byte	0x4
+ 2358 025c F3       		.byte	0xf3
+ 2359 025d 01       		.uleb128 0x1
+ 2360 025e 50       		.byte	0x50
+ 2361 025f 9F       		.byte	0x9f
+ 2362 0260 00000000 		.4byte	0
+ 2363 0264 00000000 		.4byte	0
+ 2364              	.LLST14:
+ 2365 0268 00000000 		.4byte	.LVL20
+ 2366 026c 22000000 		.4byte	.LVL22
+ 2367 0270 0100     		.2byte	0x1
+ 2368 0272 51       		.byte	0x51
+ 2369 0273 22000000 		.4byte	.LVL22
+ 2370 0277 A6000000 		.4byte	.LVL35
+ 2371 027b 0400     		.2byte	0x4
+ 2372 027d F3       		.byte	0xf3
+ 2373 027e 01       		.uleb128 0x1
+ 2374 027f 51       		.byte	0x51
+ 2375 0280 9F       		.byte	0x9f
+ 2376 0281 A6000000 		.4byte	.LVL35
+ 2377 0285 52030000 		.4byte	.LVL84
+ 2378 0289 0300     		.2byte	0x3
+ 2379 028b 91       		.byte	0x91
+ 2380 028c AC7F     		.sleb128 -84
+ 2381 028e 52030000 		.4byte	.LVL84
+ 2382 0292 C0030000 		.4byte	.LFE113
+ 2383 0296 0400     		.2byte	0x4
+ 2384 0298 F3       		.byte	0xf3
+ 2385 0299 01       		.uleb128 0x1
+ 2386 029a 51       		.byte	0x51
+ 2387 029b 9F       		.byte	0x9f
+ 2388 029c 00000000 		.4byte	0
+ 2389 02a0 00000000 		.4byte	0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 49
+
+
+ 2390              	.LLST15:
+ 2391 02a4 52000000 		.4byte	.LVL27
+ 2392 02a8 63000000 		.4byte	.LVL30-1
+ 2393 02ac 0200     		.2byte	0x2
+ 2394 02ae 72       		.byte	0x72
+ 2395 02af 00       		.sleb128 0
+ 2396 02b0 63000000 		.4byte	.LVL30-1
+ 2397 02b4 54010000 		.4byte	.LVL48
+ 2398 02b8 0100     		.2byte	0x1
+ 2399 02ba 59       		.byte	0x59
+ 2400 02bb C6010000 		.4byte	.LVL62
+ 2401 02bf D4010000 		.4byte	.LVL63
+ 2402 02c3 0100     		.2byte	0x1
+ 2403 02c5 5C       		.byte	0x5c
+ 2404 02c6 D4020000 		.4byte	.LVL75
+ 2405 02ca F2020000 		.4byte	.LVL78
+ 2406 02ce 0200     		.2byte	0x2
+ 2407 02d0 30       		.byte	0x30
+ 2408 02d1 9F       		.byte	0x9f
+ 2409 02d2 F2020000 		.4byte	.LVL78
+ 2410 02d6 FC020000 		.4byte	.LVL79
+ 2411 02da 0100     		.2byte	0x1
+ 2412 02dc 59       		.byte	0x59
+ 2413 02dd 12030000 		.4byte	.LVL81
+ 2414 02e1 18030000 		.4byte	.LVL83
+ 2415 02e5 0100     		.2byte	0x1
+ 2416 02e7 59       		.byte	0x59
+ 2417 02e8 52030000 		.4byte	.LVL84
+ 2418 02ec C0030000 		.4byte	.LFE113
+ 2419 02f0 0100     		.2byte	0x1
+ 2420 02f2 59       		.byte	0x59
+ 2421 02f3 00000000 		.4byte	0
+ 2422 02f7 00000000 		.4byte	0
+ 2423              	.LLST16:
+ 2424 02fb A6000000 		.4byte	.LVL35
+ 2425 02ff 4C010000 		.4byte	.LVL47
+ 2426 0303 0200     		.2byte	0x2
+ 2427 0305 40       		.byte	0x40
+ 2428 0306 9F       		.byte	0x9f
+ 2429 0307 4C010000 		.4byte	.LVL47
+ 2430 030b 54010000 		.4byte	.LVL48
+ 2431 030f 0200     		.2byte	0x2
+ 2432 0311 3F       		.byte	0x3f
+ 2433 0312 9F       		.byte	0x9f
+ 2434 0313 12030000 		.4byte	.LVL81
+ 2435 0317 18030000 		.4byte	.LVL83
+ 2436 031b 0200     		.2byte	0x2
+ 2437 031d 40       		.byte	0x40
+ 2438 031e 9F       		.byte	0x9f
+ 2439 031f 00000000 		.4byte	0
+ 2440 0323 00000000 		.4byte	0
+ 2441              	.LLST17:
+ 2442 0327 1E000000 		.4byte	.LVL21
+ 2443 032b 82000000 		.4byte	.LVL34
+ 2444 032f 0100     		.2byte	0x1
+ 2445 0331 54       		.byte	0x54
+ 2446 0332 82000000 		.4byte	.LVL34
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 50
+
+
+ 2447 0336 A6000000 		.4byte	.LVL35
+ 2448 033a 0400     		.2byte	0x4
+ 2449 033c 74       		.byte	0x74
+ 2450 033d BC7F     		.sleb128 -68
+ 2451 033f 9F       		.byte	0x9f
+ 2452 0340 52030000 		.4byte	.LVL84
+ 2453 0344 C0030000 		.4byte	.LFE113
+ 2454 0348 0100     		.2byte	0x1
+ 2455 034a 54       		.byte	0x54
+ 2456 034b 00000000 		.4byte	0
+ 2457 034f 00000000 		.4byte	0
+ 2458              	.LLST18:
+ 2459 0353 4A000000 		.4byte	.LVL25
+ 2460 0357 54000000 		.4byte	.LVL28
+ 2461 035b 0200     		.2byte	0x2
+ 2462 035d 90       		.byte	0x90
+ 2463 035e 50       		.uleb128 0x50
+ 2464 035f 54000000 		.4byte	.LVL28
+ 2465 0363 80000000 		.4byte	.LVL33
+ 2466 0367 0600     		.2byte	0x6
+ 2467 0369 9E       		.byte	0x9e
+ 2468 036a 04       		.uleb128 0x4
+ 2469 036b 0000003F 		.4byte	0x3f000000
+ 2470 036f A6000000 		.4byte	.LVL35
+ 2471 0373 52030000 		.4byte	.LVL84
+ 2472 0377 0200     		.2byte	0x2
+ 2473 0379 90       		.byte	0x90
+ 2474 037a 50       		.uleb128 0x50
+ 2475 037b 52030000 		.4byte	.LVL84
+ 2476 037f C0030000 		.4byte	.LFE113
+ 2477 0383 0600     		.2byte	0x6
+ 2478 0385 9E       		.byte	0x9e
+ 2479 0386 04       		.uleb128 0x4
+ 2480 0387 0000003F 		.4byte	0x3f000000
+ 2481 038b 00000000 		.4byte	0
+ 2482 038f 00000000 		.4byte	0
+ 2483              	.LLST19:
+ 2484 0393 10010000 		.4byte	.LVL43
+ 2485 0397 3A010000 		.4byte	.LVL46
+ 2486 039b 0200     		.2byte	0x2
+ 2487 039d 90       		.byte	0x90
+ 2488 039e 59       		.uleb128 0x59
+ 2489 039f 12030000 		.4byte	.LVL81
+ 2490 03a3 16030000 		.4byte	.LVL82
+ 2491 03a7 0200     		.2byte	0x2
+ 2492 03a9 90       		.byte	0x90
+ 2493 03aa 59       		.uleb128 0x59
+ 2494 03ab 16030000 		.4byte	.LVL82
+ 2495 03af 18030000 		.4byte	.LVL83
+ 2496 03b3 0800     		.2byte	0x8
+ 2497 03b5 F5       		.byte	0xf5
+ 2498 03b6 53       		.uleb128 0x53
+ 2499 03b7 29       		.uleb128 0x29
+ 2500 03b8 F5       		.byte	0xf5
+ 2501 03b9 55       		.uleb128 0x55
+ 2502 03ba 29       		.uleb128 0x29
+ 2503 03bb 1B       		.byte	0x1b
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 51
+
+
+ 2504 03bc 9F       		.byte	0x9f
+ 2505 03bd 00000000 		.4byte	0
+ 2506 03c1 00000000 		.4byte	0
+ 2507              	.LLST20:
+ 2508 03c5 4E000000 		.4byte	.LVL26
+ 2509 03c9 5C000000 		.4byte	.LVL29
+ 2510 03cd 0200     		.2byte	0x2
+ 2511 03cf 90       		.byte	0x90
+ 2512 03d0 52       		.uleb128 0x52
+ 2513 03d1 78000000 		.4byte	.LVL32
+ 2514 03d5 52030000 		.4byte	.LVL84
+ 2515 03d9 0200     		.2byte	0x2
+ 2516 03db 90       		.byte	0x90
+ 2517 03dc 52       		.uleb128 0x52
+ 2518 03dd 00000000 		.4byte	0
+ 2519 03e1 00000000 		.4byte	0
+ 2520              	.LLST21:
+ 2521 03e5 4C010000 		.4byte	.LVL47
+ 2522 03e9 10030000 		.4byte	.LVL80
+ 2523 03ed 0200     		.2byte	0x2
+ 2524 03ef 90       		.byte	0x90
+ 2525 03f0 53       		.uleb128 0x53
+ 2526 03f1 18030000 		.4byte	.LVL83
+ 2527 03f5 52030000 		.4byte	.LVL84
+ 2528 03f9 0200     		.2byte	0x2
+ 2529 03fb 90       		.byte	0x90
+ 2530 03fc 53       		.uleb128 0x53
+ 2531 03fd 00000000 		.4byte	0
+ 2532 0401 00000000 		.4byte	0
+ 2533              	.LLST22:
+ 2534 0405 54010000 		.4byte	.LVL48
+ 2535 0409 58010000 		.4byte	.LVL49
+ 2536 040d 0200     		.2byte	0x2
+ 2537 040f 90       		.byte	0x90
+ 2538 0410 40       		.uleb128 0x40
+ 2539 0411 50020000 		.4byte	.LVL69
+ 2540 0415 7E020000 		.4byte	.LVL71
+ 2541 0419 0800     		.2byte	0x8
+ 2542 041b F5       		.byte	0xf5
+ 2543 041c 40       		.uleb128 0x40
+ 2544 041d 29       		.uleb128 0x29
+ 2545 041e F5       		.byte	0xf5
+ 2546 041f 51       		.uleb128 0x51
+ 2547 0420 29       		.uleb128 0x29
+ 2548 0421 1E       		.byte	0x1e
+ 2549 0422 9F       		.byte	0x9f
+ 2550 0423 7E020000 		.4byte	.LVL71
+ 2551 0427 9E020000 		.4byte	.LVL73
+ 2552 042b 0200     		.2byte	0x2
+ 2553 042d 90       		.byte	0x90
+ 2554 042e 40       		.uleb128 0x40
+ 2555 042f 00000000 		.4byte	0
+ 2556 0433 00000000 		.4byte	0
+ 2557              	.LLST23:
+ 2558 0437 54010000 		.4byte	.LVL48
+ 2559 043b 58010000 		.4byte	.LVL49
+ 2560 043f 0200     		.2byte	0x2
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 52
+
+
+ 2561 0441 90       		.byte	0x90
+ 2562 0442 46       		.uleb128 0x46
+ 2563 0443 A0010000 		.4byte	.LVL60
+ 2564 0447 B2010000 		.4byte	.LVL61
+ 2565 044b 0200     		.2byte	0x2
+ 2566 044d 90       		.byte	0x90
+ 2567 044e 40       		.uleb128 0x40
+ 2568 044f 8A020000 		.4byte	.LVL72
+ 2569 0453 AE020000 		.4byte	.LVL74
+ 2570 0457 0200     		.2byte	0x2
+ 2571 0459 90       		.byte	0x90
+ 2572 045a 46       		.uleb128 0x46
+ 2573 045b AE020000 		.4byte	.LVL74
+ 2574 045f D4020000 		.4byte	.LVL75
+ 2575 0463 0200     		.2byte	0x2
+ 2576 0465 90       		.byte	0x90
+ 2577 0466 40       		.uleb128 0x40
+ 2578 0467 00000000 		.4byte	0
+ 2579 046b 00000000 		.4byte	0
+ 2580              	.LLST24:
+ 2581 046f 54010000 		.4byte	.LVL48
+ 2582 0473 9F010000 		.4byte	.LVL60-1
+ 2583 0477 0200     		.2byte	0x2
+ 2584 0479 90       		.byte	0x90
+ 2585 047a 43       		.uleb128 0x43
+ 2586 047b 6E020000 		.4byte	.LVL70
+ 2587 047f AE020000 		.4byte	.LVL74
+ 2588 0483 0200     		.2byte	0x2
+ 2589 0485 90       		.byte	0x90
+ 2590 0486 43       		.uleb128 0x43
+ 2591 0487 00000000 		.4byte	0
+ 2592 048b 00000000 		.4byte	0
+ 2593              	.LLST25:
+ 2594 048f 46000000 		.4byte	.LVL24
+ 2595 0493 A6000000 		.4byte	.LVL35
+ 2596 0497 0200     		.2byte	0x2
+ 2597 0499 90       		.byte	0x90
+ 2598 049a 53       		.uleb128 0x53
+ 2599 049b F8000000 		.4byte	.LVL41
+ 2600 049f 06010000 		.4byte	.LVL42
+ 2601 04a3 1800     		.2byte	0x18
+ 2602 04a5 F5       		.byte	0xf5
+ 2603 04a6 40       		.uleb128 0x40
+ 2604 04a7 29       		.uleb128 0x29
+ 2605 04a8 F4       		.byte	0xf4
+ 2606 04a9 29       		.uleb128 0x29
+ 2607 04aa 04       		.byte	0x4
+ 2608 04ab 0AD7233C 		.4byte	0x3c23d70a
+ 2609 04af 1E       		.byte	0x1e
+ 2610 04b0 F4       		.byte	0xf4
+ 2611 04b1 29       		.uleb128 0x29
+ 2612 04b2 04       		.byte	0x4
+ 2613 04b3 0000803F 		.4byte	0x3f800000
+ 2614 04b7 22       		.byte	0x22
+ 2615 04b8 F5       		.byte	0xf5
+ 2616 04b9 53       		.uleb128 0x53
+ 2617 04ba 29       		.uleb128 0x29
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 53
+
+
+ 2618 04bb 1E       		.byte	0x1e
+ 2619 04bc 9F       		.byte	0x9f
+ 2620 04bd 52030000 		.4byte	.LVL84
+ 2621 04c1 C0030000 		.4byte	.LFE113
+ 2622 04c5 0200     		.2byte	0x2
+ 2623 04c7 90       		.byte	0x90
+ 2624 04c8 53       		.uleb128 0x53
+ 2625 04c9 00000000 		.4byte	0
+ 2626 04cd 00000000 		.4byte	0
+ 2627              	.LLST26:
+ 2628 04d1 B2010000 		.4byte	.LVL61
+ 2629 04d5 D4010000 		.4byte	.LVL63
+ 2630 04d9 0100     		.2byte	0x1
+ 2631 04db 50       		.byte	0x50
+ 2632 04dc D4020000 		.4byte	.LVL75
+ 2633 04e0 D6020000 		.4byte	.LVL76
+ 2634 04e4 0100     		.2byte	0x1
+ 2635 04e6 50       		.byte	0x50
+ 2636 04e7 00000000 		.4byte	0
+ 2637 04eb 00000000 		.4byte	0
+ 2638              		.section	.debug_aranges,"",%progbits
+ 2639 0000 34000000 		.4byte	0x34
+ 2640 0004 0200     		.2byte	0x2
+ 2641 0006 00000000 		.4byte	.Ldebug_info0
+ 2642 000a 04       		.byte	0x4
+ 2643 000b 00       		.byte	0
+ 2644 000c 0000     		.2byte	0
+ 2645 000e 0000     		.2byte	0
+ 2646 0010 00000000 		.4byte	.LFB110
+ 2647 0014 84000000 		.4byte	.LFE110-.LFB110
+ 2648 0018 00000000 		.4byte	.LFB111
+ 2649 001c DC000000 		.4byte	.LFE111-.LFB111
+ 2650 0020 00000000 		.4byte	.LFB112
+ 2651 0024 3A000000 		.4byte	.LFE112-.LFB112
+ 2652 0028 00000000 		.4byte	.LFB113
+ 2653 002c C0030000 		.4byte	.LFE113-.LFB113
+ 2654 0030 00000000 		.4byte	0
+ 2655 0034 00000000 		.4byte	0
+ 2656              		.section	.debug_ranges,"",%progbits
+ 2657              	.Ldebug_ranges0:
+ 2658 0000 00000000 		.4byte	.LFB110
+ 2659 0004 84000000 		.4byte	.LFE110
+ 2660 0008 00000000 		.4byte	.LFB111
+ 2661 000c DC000000 		.4byte	.LFE111
+ 2662 0010 00000000 		.4byte	.LFB112
+ 2663 0014 3A000000 		.4byte	.LFE112
+ 2664 0018 00000000 		.4byte	.LFB113
+ 2665 001c C0030000 		.4byte	.LFE113
+ 2666 0020 00000000 		.4byte	0
+ 2667 0024 00000000 		.4byte	0
+ 2668              		.section	.debug_line,"",%progbits
+ 2669              	.Ldebug_line0:
+ 2670 0000 54020000 		.section	.debug_str,"MS",%progbits,1
+ 2670      0200E100 
+ 2670      00000201 
+ 2670      FB0E0D00 
+ 2670      01010101 
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 54
+
+
+ 2671              	.LASF40:
+ 2672 0000 70686173 		.ascii	"phase2\000"
+ 2672      653200
+ 2673              	.LASF46:
+ 2674 0007 636F6566 		.ascii	"coeff_a1\000"
+ 2674      665F6131 
+ 2674      00
+ 2675              	.LASF22:
+ 2676 0010 656E7654 		.ascii	"envTime\000"
+ 2676      696D6500 
+ 2677              	.LASF24:
+ 2678 0018 696E6465 		.ascii	"index\000"
+ 2678      7800
+ 2679              	.LASF4:
+ 2680 001e 73686F72 		.ascii	"short int\000"
+ 2680      7420696E 
+ 2680      7400
+ 2681              	.LASF9:
+ 2682 0028 73697A65 		.ascii	"sizetype\000"
+ 2682      74797065 
+ 2682      00
+ 2683              	.LASF50:
+ 2684 0031 656E7654 		.ascii	"envTrigger\000"
+ 2684      72696767 
+ 2684      657200
+ 2685              	.LASF38:
+ 2686 003c 5F696E69 		.ascii	"_init\000"
+ 2686      7400
+ 2687              	.LASF19:
+ 2688 0042 64656C74 		.ascii	"delta\000"
+ 2688      6100
+ 2689              	.LASF25:
+ 2690 0048 70686173 		.ascii	"phase\000"
+ 2690      6500
+ 2691              	.LASF54:
+ 2692 004e 50686173 		.ascii	"PhaserProcess\000"
+ 2692      65725072 
+ 2692      6F636573 
+ 2692      7300
+ 2693              	.LASF56:
+ 2694 005c 6D656D63 		.ascii	"memcpy\000"
+ 2694      707900
+ 2695              	.LASF45:
+ 2696 0063 77726974 		.ascii	"writepos\000"
+ 2696      65706F73 
+ 2696      00
+ 2697              	.LASF18:
+ 2698 006c 76616C75 		.ascii	"value\000"
+ 2698      6500
+ 2699              	.LASF44:
+ 2700 0072 72656164 		.ascii	"readpos\000"
+ 2700      706F7300 
+ 2701              	.LASF42:
+ 2702 007a 61756469 		.ascii	"audiobuff\000"
+ 2702      6F627566 
+ 2702      6600
+ 2703              	.LASF48:
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 55
+
+
+ 2704 0084 73616D70 		.ascii	"sampleT\000"
+ 2704      6C655400 
+ 2705              	.LASF34:
+ 2706 008c 6F757470 		.ascii	"outp\000"
+ 2706      00
+ 2707              	.LASF0:
+ 2708 0091 666C6F61 		.ascii	"float\000"
+ 2708      7400
+ 2709              	.LASF35:
+ 2710 0097 66726571 		.ascii	"freq\000"
+ 2710      00
+ 2711              	.LASF6:
+ 2712 009c 6C6F6E67 		.ascii	"long long int\000"
+ 2712      206C6F6E 
+ 2712      6720696E 
+ 2712      7400
+ 2713              	.LASF55:
+ 2714 00aa 6D656D73 		.ascii	"memset\000"
+ 2714      657400
+ 2715              	.LASF57:
+ 2716 00b1 6E657874 		.ascii	"nextSawEnv\000"
+ 2716      53617745 
+ 2716      6E7600
+ 2717              	.LASF27:
+ 2718 00bc 706C6163 		.ascii	"place_step_dd\000"
+ 2718      655F7374 
+ 2718      65705F64 
+ 2718      6400
+ 2719              	.LASF30:
+ 2720 00ca 7372632F 		.ascii	"src/synth.c\000"
+ 2720      73796E74 
+ 2720      682E6300 
+ 2721              	.LASF33:
+ 2722 00d6 6F666673 		.ascii	"offset\000"
+ 2722      657400
+ 2723              	.LASF13:
+ 2724 00dd 6C6F6E67 		.ascii	"long double\000"
+ 2724      20646F75 
+ 2724      626C6500 
+ 2725              	.LASF3:
+ 2726 00e9 756E7369 		.ascii	"unsigned char\000"
+ 2726      676E6564 
+ 2726      20636861 
+ 2726      7200
+ 2727              	.LASF2:
+ 2728 00f7 7369676E 		.ascii	"signed char\000"
+ 2728      65642063 
+ 2728      68617200 
+ 2729              	.LASF41:
+ 2730 0103 70686173 		.ascii	"phase2Step\000"
+ 2730      65325374 
+ 2730      657000
+ 2731              	.LASF7:
+ 2732 010e 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2732      206C6F6E 
+ 2732      6720756E 
+ 2732      7369676E 
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 56
+
+
+ 2732      65642069 
+ 2733              	.LASF26:
+ 2734 0125 7363616C 		.ascii	"scale\000"
+ 2734      6500
+ 2735              	.LASF32:
+ 2736 012b 73617774 		.ascii	"sawtooth_runproc\000"
+ 2736      6F6F7468 
+ 2736      5F72756E 
+ 2736      70726F63 
+ 2736      00
+ 2737              	.LASF1:
+ 2738 013c 756E7369 		.ascii	"unsigned int\000"
+ 2738      676E6564 
+ 2738      20696E74 
+ 2738      00
+ 2739              	.LASF16:
+ 2740 0149 75696E74 		.ascii	"uint16_t\000"
+ 2740      31365F74 
+ 2740      00
+ 2741              	.LASF31:
+ 2742 0152 433A5C78 		.ascii	"C:\\xav_dev\\eclipse\\ambiantiseur-make\000"
+ 2742      61765F64 
+ 2742      65765C65 
+ 2742      636C6970 
+ 2742      73655C61 
+ 2743              	.LASF53:
+ 2744 0177 73696E66 		.ascii	"sinf\000"
+ 2744      00
+ 2745              	.LASF37:
+ 2746 017c 73746570 		.ascii	"step_dd_table\000"
+ 2746      5F64645F 
+ 2746      7461626C 
+ 2746      6500
+ 2747              	.LASF5:
+ 2748 018a 73686F72 		.ascii	"short unsigned int\000"
+ 2748      7420756E 
+ 2748      7369676E 
+ 2748      65642069 
+ 2748      6E7400
+ 2749              	.LASF20:
+ 2750 019d 666C6F61 		.ascii	"float_value_delta\000"
+ 2750      745F7661 
+ 2750      6C75655F 
+ 2750      64656C74 
+ 2750      6100
+ 2751              	.LASF39:
+ 2752 01af 70617373 		.ascii	"pass\000"
+ 2752      00
+ 2753              	.LASF49:
+ 2754 01b4 656E7650 		.ascii	"envPhase\000"
+ 2754      68617365 
+ 2754      00
+ 2755              	.LASF11:
+ 2756 01bd 63686172 		.ascii	"char\000"
+ 2756      00
+ 2757              	.LASF8:
+ 2758 01c2 6C6F6E67 		.ascii	"long int\000"
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 57
+
+
+ 2758      20696E74 
+ 2758      00
+ 2759              	.LASF17:
+ 2760 01cb 696E7433 		.ascii	"int32_t\000"
+ 2760      325F7400 
+ 2761              	.LASF21:
+ 2762 01d3 74726967 		.ascii	"trigger\000"
+ 2762      67657200 
+ 2763              	.LASF23:
+ 2764 01db 62756666 		.ascii	"buffer\000"
+ 2764      657200
+ 2765              	.LASF10:
+ 2766 01e2 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2766      20756E73 
+ 2766      69676E65 
+ 2766      6420696E 
+ 2766      7400
+ 2767              	.LASF12:
+ 2768 01f4 646F7562 		.ascii	"double\000"
+ 2768      6C6500
+ 2769              	.LASF29:
+ 2770 01fb 474E5520 		.ascii	"GNU C 4.7.3 20121207 (release) [ARM/embedded-4_7-br"
+ 2770      4320342E 
+ 2770      372E3320 
+ 2770      32303132 
+ 2770      31323037 
+ 2771 022e 616E6368 		.ascii	"anch revision 194305]\000"
+ 2771      20726576 
+ 2771      6973696F 
+ 2771      6E203139 
+ 2771      34333035 
+ 2772              	.LASF51:
+ 2773 0244 656E7641 		.ascii	"envAmp\000"
+ 2773      6D7000
+ 2774              	.LASF14:
+ 2775 024b 75696E74 		.ascii	"uint8_t\000"
+ 2775      385F7400 
+ 2776              	.LASF28:
+ 2777 0253 73617774 		.ascii	"sawtooth_active\000"
+ 2777      6F6F7468 
+ 2777      5F616374 
+ 2777      69766500 
+ 2778              	.LASF47:
+ 2779 0263 6F6C645F 		.ascii	"old_dy\000"
+ 2779      647900
+ 2780              	.LASF43:
+ 2781 026a 64656C61 		.ascii	"delayline\000"
+ 2781      796C696E 
+ 2781      6500
+ 2782              	.LASF15:
+ 2783 0274 696E7431 		.ascii	"int16_t\000"
+ 2783      365F7400 
+ 2784              	.LASF52:
+ 2785 027c 6C72696E 		.ascii	"lrintf\000"
+ 2785      746600
+ 2786              	.LASF36:
+ 2787 0283 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 58
+
+
+ 2787      52784275 
+ 2787      66666572 
+ 2787      00
+ 2788              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20121207 (release) [ARM/embedded-4_7-br
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s 			page 59
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 synth.c
+C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s:70     .text.nextSawEnv:00000000 $t
+C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s:75     .text.nextSawEnv:00000000 nextSawEnv
+C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s:156    .text.nextSawEnv:00000078 $d
+C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s:163    .text.place_step_dd:00000000 $t
+C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s:168    .text.place_step_dd:00000000 place_step_dd
+C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s:287    .text.place_step_dd:000000d4 $d
+C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s:293    .text.sawtooth_active:00000000 $t
+C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s:298    .text.sawtooth_active:00000000 sawtooth_active
+C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s:352    .text.sawtooth_runproc:00000000 $t
+C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s:357    .text.sawtooth_runproc:00000000 sawtooth_runproc
+C:\Users\CNous\AppData\Local\Temp\cc7sxCzv.s:836    .text.sawtooth_runproc:00000368 $d
+                     .debug_frame:00000010 $d
+
+UNDEFINED SYMBOLS
+sampleT
+lrintf
+step_dd_table
+_init
+_j
+_z
+_f
+memset
+__aeabi_f2d
+__aeabi_dcmplt
+f1
+_p
+_w
+f2
+phase2
+phase2Step
+sinf
+writepos
+delayline
+PhaserProcess
+envAmp
+envTime
+fdb
+memcpy
+audiobuff
+readpos
+envTrigger
+envPhase
+coeff_a1
+old_dy
+pass

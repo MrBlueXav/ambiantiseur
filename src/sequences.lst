@@ -1,0 +1,1538 @@
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc8BTyXT.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 3	@ Tag_ABI_HardFP_use
+   4              		.eabi_attribute 28, 1	@ Tag_ABI_VFP_args
+   5              		.fpu fpv4-sp-d16
+   6              		.eabi_attribute 20, 1	@ Tag_ABI_FP_denormal
+   7              		.eabi_attribute 21, 1	@ Tag_ABI_FP_exceptions
+   8              		.eabi_attribute 23, 3	@ Tag_ABI_FP_number_model
+   9              		.eabi_attribute 24, 1	@ Tag_ABI_align8_needed
+  10              		.eabi_attribute 25, 1	@ Tag_ABI_align8_preserved
+  11              		.eabi_attribute 26, 1	@ Tag_ABI_enum_size
+  12              		.eabi_attribute 30, 2	@ Tag_ABI_optimization_goals
+  13              		.eabi_attribute 34, 1	@ Tag_CPU_unaligned_access
+  14              		.eabi_attribute 18, 4	@ Tag_ABI_PCS_wchar_t
+  15              		.file	"sequences.c"
+  16              	@ GNU C (GNU Tools for ARM Embedded Processors) version 4.7.3 20121207 (release) [ARM/embedded-4_7-
+  17              	@	compiled by GNU C version 4.2.1-sjlj (mingw32-2), GMP version 4.3.2, MPFR version 2.4.2, MPC vers
+  18              	@ GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+  19              	@ options passed:  -I . -I ./inc -I ./cmsis/core -I ./cmsis/device
+  20              	@ -imultilib armv7e-m/fpu
+  21              	@ -iprefix c:\gnutoolsarmembedded\4.7-2012q4\bin\../lib/gcc/arm-none-eabi/4.7.3/
+  22              	@ -isysroot c:\gnutoolsarmembedded\4.7-2012q4\bin\../arm-none-eabi
+  23              	@ -MD src/sequences.d -MF .dep/sequences.o.d -MP -MQ src/sequences.o
+  24              	@ -D__USES_INITFINI__ -D __FPU_USED=1 -D __arm__ -D __ASSEMBLY__
+  25              	@ -D USE_STDPERIPH_DRIVER -D STM32F4XX -D HSE_VALUE=8000000
+  26              	@ -D __FPU_PRESENT=1 -D STM32F407VG -D RUN_FROM_FLASH=1 src/sequences.c
+  27              	@ -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16
+  28              	@ -auxbase-strip src/sequences.o -gdwarf-2 -O2 -Wall -Wstrict-prototypes
+  29              	@ -fverbose-asm -ffunction-sections -fdata-sections
+  30              	@ options enabled:  -fauto-inc-dec -fbranch-count-reg -fcaller-saves
+  31              	@ -fcombine-stack-adjustments -fcommon -fcompare-elim -fcprop-registers
+  32              	@ -fcrossjumping -fcse-follow-jumps -fdata-sections -fdebug-types-section
+  33              	@ -fdefer-pop -fdelete-null-pointer-checks -fdevirtualize -fdwarf2-cfi-asm
+  34              	@ -fearly-inlining -feliminate-unused-debug-types -fexpensive-optimizations
+  35              	@ -fforward-propagate -ffunction-cse -ffunction-sections -fgcse -fgcse-lm
+  36              	@ -fgnu-runtime -fguess-branch-probability -fident -fif-conversion
+  37              	@ -fif-conversion2 -findirect-inlining -finline -finline-atomics
+  38              	@ -finline-functions-called-once -finline-small-functions -fipa-cp
+  39              	@ -fipa-profile -fipa-pure-const -fipa-reference -fipa-sra
+  40              	@ -fira-share-save-slots -fira-share-spill-slots -fivopts
+  41              	@ -fkeep-static-consts -fleading-underscore -fmath-errno -fmerge-constants
+  42              	@ -fmerge-debug-strings -fmove-loop-invariants -fomit-frame-pointer
+  43              	@ -foptimize-register-move -foptimize-sibling-calls -foptimize-strlen
+  44              	@ -fpartial-inlining -fpeephole -fpeephole2 -fprefetch-loop-arrays
+  45              	@ -freg-struct-return -fregmove -frename-registers -freorder-blocks
+  46              	@ -freorder-functions -frerun-cse-after-loop
+  47              	@ -fsched-critical-path-heuristic -fsched-dep-count-heuristic
+  48              	@ -fsched-group-heuristic -fsched-interblock -fsched-last-insn-heuristic
+  49              	@ -fsched-rank-heuristic -fsched-spec -fsched-spec-insn-heuristic
+  50              	@ -fsched-stalled-insns-dep -fschedule-insns -fschedule-insns2
+  51              	@ -fsection-anchors -fshow-column -fshrink-wrap -fsigned-zeros
+  52              	@ -fsplit-ivs-in-unroller -fsplit-wide-types -fstrict-aliasing
+  53              	@ -fstrict-overflow -fstrict-volatile-bitfields -fthread-jumps
+  54              	@ -ftoplevel-reorder -ftrapping-math -ftree-bit-ccp -ftree-builtin-call-dce
+  55              	@ -ftree-ccp -ftree-ch -ftree-copy-prop -ftree-copyrename -ftree-cselim
+  56              	@ -ftree-dce -ftree-dominator-opts -ftree-dse -ftree-forwprop -ftree-fre
+  57              	@ -ftree-loop-if-convert -ftree-loop-im -ftree-loop-ivcanon
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc8BTyXT.s 			page 2
+
+
+  58              	@ -ftree-loop-optimize -ftree-parallelize-loops= -ftree-phiprop -ftree-pre
+  59              	@ -ftree-pta -ftree-reassoc -ftree-scev-cprop -ftree-sink
+  60              	@ -ftree-slp-vectorize -ftree-sra -ftree-switch-conversion
+  61              	@ -ftree-tail-merge -ftree-ter -ftree-vect-loop-version -ftree-vrp
+  62              	@ -funit-at-a-time -funroll-loops -fvar-tracking -fvar-tracking-assignments
+  63              	@ -fverbose-asm -fweb -fzero-initialized-in-bss -mlittle-endian
+  64              	@ -msched-prolog -mthumb -munaligned-access -mvectorize-with-neon-quad
+  65              	
+  66              		.text
+  67              	.Ltext0:
+  68              		.cfi_sections	.debug_frame
+  69              		.global	seq1
+  70              		.section	.rodata.seq1,"a",%progbits
+  71              		.align	2
+  72              		.type	seq1, %object
+  73              		.size	seq1, 1024
+  74              	seq1:
+  75 0000 FF       		.byte	-1
+  76 0001 00       		.byte	0
+  77 0002 00       		.byte	0
+  78 0003 00       		.byte	0
+  79 0004 FF       		.byte	-1
+  80 0005 00       		.byte	0
+  81 0006 00       		.byte	0
+  82 0007 00       		.byte	0
+  83 0008 FF       		.byte	-1
+  84 0009 00       		.byte	0
+  85 000a 00       		.byte	0
+  86 000b 00       		.byte	0
+  87 000c FF       		.byte	-1
+  88 000d 00       		.byte	0
+  89 000e 00       		.byte	0
+  90 000f 00       		.byte	0
+  91 0010 FF       		.byte	-1
+  92 0011 00       		.byte	0
+  93 0012 C8       		.byte	-56
+  94 0013 00       		.byte	0
+  95 0014 FF       		.byte	-1
+  96 0015 00       		.byte	0
+  97 0016 D2       		.byte	-46
+  98 0017 00       		.byte	0
+  99 0018 FF       		.byte	-1
+ 100 0019 00       		.byte	0
+ 101 001a BE       		.byte	-66
+ 102 001b 00       		.byte	0
+ 103 001c FF       		.byte	-1
+ 104 001d 00       		.byte	0
+ 105 001e DC       		.byte	-36
+ 106 001f 00       		.byte	0
+ 107 0020 FF       		.byte	-1
+ 108 0021 E6       		.byte	-26
+ 109 0022 C8       		.byte	-56
+ 110 0023 B4       		.byte	-76
+ 111 0024 FF       		.byte	-1
+ 112 0025 E1       		.byte	-31
+ 113 0026 CD       		.byte	-51
+ 114 0027 BE       		.byte	-66
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc8BTyXT.s 			page 3
+
+
+ 115 0028 FF       		.byte	-1
+ 116 0029 E8       		.byte	-24
+ 117 002a D4       		.byte	-44
+ 118 002b B9       		.byte	-71
+ 119 002c FF       		.byte	-1
+ 120 002d F0       		.byte	-16
+ 121 002e E2       		.byte	-30
+ 122 002f CF       		.byte	-49
+ 123 0030 FF       		.byte	-1
+ 124 0031 00       		.byte	0
+ 125 0032 00       		.byte	0
+ 126 0033 FF       		.byte	-1
+ 127 0034 EC       		.byte	-20
+ 128 0035 00       		.byte	0
+ 129 0036 00       		.byte	0
+ 130 0037 FF       		.byte	-1
+ 131 0038 EA       		.byte	-22
+ 132 0039 00       		.byte	0
+ 133 003a 00       		.byte	0
+ 134 003b FF       		.byte	-1
+ 135 003c FA       		.byte	-6
+ 136 003d 00       		.byte	0
+ 137 003e 00       		.byte	0
+ 138 003f FF       		.byte	-1
+ 139 0040 FF       		.byte	-1
+ 140 0041 00       		.byte	0
+ 141 0042 00       		.byte	0
+ 142 0043 FF       		.byte	-1
+ 143 0044 FF       		.byte	-1
+ 144 0045 00       		.byte	0
+ 145 0046 00       		.byte	0
+ 146 0047 00       		.byte	0
+ 147 0048 FF       		.byte	-1
+ 148 0049 00       		.byte	0
+ 149 004a 00       		.byte	0
+ 150 004b FF       		.byte	-1
+ 151 004c FF       		.byte	-1
+ 152 004d 00       		.byte	0
+ 153 004e 00       		.byte	0
+ 154 004f 00       		.byte	0
+ 155 0050 FF       		.byte	-1
+ 156 0051 00       		.byte	0
+ 157 0052 00       		.byte	0
+ 158 0053 00       		.byte	0
+ 159 0054 FF       		.byte	-1
+ 160 0055 00       		.byte	0
+ 161 0056 00       		.byte	0
+ 162 0057 00       		.byte	0
+ 163 0058 FF       		.byte	-1
+ 164 0059 00       		.byte	0
+ 165 005a 00       		.byte	0
+ 166 005b FF       		.byte	-1
+ 167 005c FF       		.byte	-1
+ 168 005d 00       		.byte	0
+ 169 005e 00       		.byte	0
+ 170 005f 00       		.byte	0
+ 171 0060 FF       		.byte	-1
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc8BTyXT.s 			page 4
+
+
+ 172 0061 00       		.byte	0
+ 173 0062 C8       		.byte	-56
+ 174 0063 00       		.byte	0
+ 175 0064 B6       		.byte	-74
+ 176 0065 00       		.byte	0
+ 177 0066 8C       		.byte	-116
+ 178 0067 00       		.byte	0
+ 179 0068 FF       		.byte	-1
+ 180 0069 00       		.byte	0
+ 181 006a 00       		.byte	0
+ 182 006b FF       		.byte	-1
+ 183 006c E6       		.byte	-26
+ 184 006d 00       		.byte	0
+ 185 006e 00       		.byte	0
+ 186 006f 00       		.byte	0
+ 187 0070 FF       		.byte	-1
+ 188 0071 00       		.byte	0
+ 189 0072 00       		.byte	0
+ 190 0073 00       		.byte	0
+ 191 0074 00       		.byte	0
+ 192 0075 00       		.byte	0
+ 193 0076 00       		.byte	0
+ 194 0077 00       		.byte	0
+ 195 0078 FF       		.byte	-1
+ 196 0079 00       		.byte	0
+ 197 007a 00       		.byte	0
+ 198 007b 00       		.byte	0
+ 199 007c FF       		.byte	-1
+ 200 007d FF       		.byte	-1
+ 201 007e FF       		.byte	-1
+ 202 007f FF       		.byte	-1
+ 203 0080 FF       		.byte	-1
+ 204 0081 F0       		.byte	-16
+ 205 0082 E6       		.byte	-26
+ 206 0083 DF       		.byte	-33
+ 207 0084 FF       		.byte	-1
+ 208 0085 00       		.byte	0
+ 209 0086 00       		.byte	0
+ 210 0087 00       		.byte	0
+ 211 0088 FF       		.byte	-1
+ 212 0089 EE       		.byte	-18
+ 213 008a E1       		.byte	-31
+ 214 008b D3       		.byte	-45
+ 215 008c FF       		.byte	-1
+ 216 008d 00       		.byte	0
+ 217 008e 00       		.byte	0
+ 218 008f 00       		.byte	0
+ 219 0090 FF       		.byte	-1
+ 220 0091 00       		.byte	0
+ 221 0092 00       		.byte	0
+ 222 0093 00       		.byte	0
+ 223 0094 00       		.byte	0
+ 224 0095 00       		.byte	0
+ 225 0096 00       		.byte	0
+ 226 0097 00       		.byte	0
+ 227 0098 FF       		.byte	-1
+ 228 0099 00       		.byte	0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc8BTyXT.s 			page 5
+
+
+ 229 009a 00       		.byte	0
+ 230 009b 00       		.byte	0
+ 231 009c 00       		.byte	0
+ 232 009d 00       		.byte	0
+ 233 009e 00       		.byte	0
+ 234 009f 00       		.byte	0
+ 235 00a0 FF       		.byte	-1
+ 236 00a1 00       		.byte	0
+ 237 00a2 00       		.byte	0
+ 238 00a3 00       		.byte	0
+ 239 00a4 00       		.byte	0
+ 240 00a5 00       		.byte	0
+ 241 00a6 00       		.byte	0
+ 242 00a7 00       		.byte	0
+ 243 00a8 00       		.byte	0
+ 244 00a9 00       		.byte	0
+ 245 00aa 00       		.byte	0
+ 246 00ab 00       		.byte	0
+ 247 00ac 00       		.byte	0
+ 248 00ad 00       		.byte	0
+ 249 00ae 00       		.byte	0
+ 250 00af 00       		.byte	0
+ 251 00b0 FF       		.byte	-1
+ 252 00b1 00       		.byte	0
+ 253 00b2 00       		.byte	0
+ 254 00b3 00       		.byte	0
+ 255 00b4 FF       		.byte	-1
+ 256 00b5 00       		.byte	0
+ 257 00b6 00       		.byte	0
+ 258 00b7 00       		.byte	0
+ 259 00b8 FF       		.byte	-1
+ 260 00b9 00       		.byte	0
+ 261 00ba 00       		.byte	0
+ 262 00bb 00       		.byte	0
+ 263 00bc FF       		.byte	-1
+ 264 00bd 00       		.byte	0
+ 265 00be 00       		.byte	0
+ 266 00bf 00       		.byte	0
+ 267 00c0 FF       		.byte	-1
+ 268 00c1 00       		.byte	0
+ 269 00c2 00       		.byte	0
+ 270 00c3 00       		.byte	0
+ 271 00c4 FF       		.byte	-1
+ 272 00c5 00       		.byte	0
+ 273 00c6 00       		.byte	0
+ 274 00c7 00       		.byte	0
+ 275 00c8 FF       		.byte	-1
+ 276 00c9 00       		.byte	0
+ 277 00ca 00       		.byte	0
+ 278 00cb 00       		.byte	0
+ 279 00cc FF       		.byte	-1
+ 280 00cd 00       		.byte	0
+ 281 00ce 00       		.byte	0
+ 282 00cf 00       		.byte	0
+ 283 00d0 FF       		.byte	-1
+ 284 00d1 00       		.byte	0
+ 285 00d2 00       		.byte	0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc8BTyXT.s 			page 6
+
+
+ 286 00d3 00       		.byte	0
+ 287 00d4 FF       		.byte	-1
+ 288 00d5 00       		.byte	0
+ 289 00d6 00       		.byte	0
+ 290 00d7 00       		.byte	0
+ 291 00d8 FF       		.byte	-1
+ 292 00d9 00       		.byte	0
+ 293 00da 00       		.byte	0
+ 294 00db 00       		.byte	0
+ 295 00dc FF       		.byte	-1
+ 296 00dd 00       		.byte	0
+ 297 00de 00       		.byte	0
+ 298 00df 00       		.byte	0
+ 299 00e0 FF       		.byte	-1
+ 300 00e1 00       		.byte	0
+ 301 00e2 00       		.byte	0
+ 302 00e3 00       		.byte	0
+ 303 00e4 FF       		.byte	-1
+ 304 00e5 00       		.byte	0
+ 305 00e6 00       		.byte	0
+ 306 00e7 00       		.byte	0
+ 307 00e8 FF       		.byte	-1
+ 308 00e9 00       		.byte	0
+ 309 00ea 00       		.byte	0
+ 310 00eb 00       		.byte	0
+ 311 00ec FF       		.byte	-1
+ 312 00ed 00       		.byte	0
+ 313 00ee 00       		.byte	0
+ 314 00ef 00       		.byte	0
+ 315 00f0 FF       		.byte	-1
+ 316 00f1 00       		.byte	0
+ 317 00f2 00       		.byte	0
+ 318 00f3 00       		.byte	0
+ 319 00f4 FF       		.byte	-1
+ 320 00f5 00       		.byte	0
+ 321 00f6 00       		.byte	0
+ 322 00f7 00       		.byte	0
+ 323 00f8 FF       		.byte	-1
+ 324 00f9 00       		.byte	0
+ 325 00fa 00       		.byte	0
+ 326 00fb 00       		.byte	0
+ 327 00fc FF       		.byte	-1
+ 328 00fd 00       		.byte	0
+ 329 00fe 00       		.byte	0
+ 330 00ff 00       		.byte	0
+ 331 0100 FF       		.byte	-1
+ 332 0101 00       		.byte	0
+ 333 0102 00       		.byte	0
+ 334 0103 00       		.byte	0
+ 335 0104 FF       		.byte	-1
+ 336 0105 00       		.byte	0
+ 337 0106 00       		.byte	0
+ 338 0107 00       		.byte	0
+ 339 0108 FF       		.byte	-1
+ 340 0109 00       		.byte	0
+ 341 010a 00       		.byte	0
+ 342 010b 00       		.byte	0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc8BTyXT.s 			page 7
+
+
+ 343 010c FF       		.byte	-1
+ 344 010d 00       		.byte	0
+ 345 010e 00       		.byte	0
+ 346 010f 00       		.byte	0
+ 347 0110 FF       		.byte	-1
+ 348 0111 00       		.byte	0
+ 349 0112 00       		.byte	0
+ 350 0113 00       		.byte	0
+ 351 0114 FF       		.byte	-1
+ 352 0115 00       		.byte	0
+ 353 0116 00       		.byte	0
+ 354 0117 00       		.byte	0
+ 355 0118 FF       		.byte	-1
+ 356 0119 00       		.byte	0
+ 357 011a 00       		.byte	0
+ 358 011b 00       		.byte	0
+ 359 011c FF       		.byte	-1
+ 360 011d 00       		.byte	0
+ 361 011e 00       		.byte	0
+ 362 011f 00       		.byte	0
+ 363 0120 FF       		.byte	-1
+ 364 0121 00       		.byte	0
+ 365 0122 00       		.byte	0
+ 366 0123 00       		.byte	0
+ 367 0124 FF       		.byte	-1
+ 368 0125 00       		.byte	0
+ 369 0126 00       		.byte	0
+ 370 0127 00       		.byte	0
+ 371 0128 FF       		.byte	-1
+ 372 0129 00       		.byte	0
+ 373 012a 00       		.byte	0
+ 374 012b 00       		.byte	0
+ 375 012c FF       		.byte	-1
+ 376 012d 00       		.byte	0
+ 377 012e 00       		.byte	0
+ 378 012f 00       		.byte	0
+ 379 0130 FF       		.byte	-1
+ 380 0131 00       		.byte	0
+ 381 0132 00       		.byte	0
+ 382 0133 00       		.byte	0
+ 383 0134 FF       		.byte	-1
+ 384 0135 00       		.byte	0
+ 385 0136 00       		.byte	0
+ 386 0137 00       		.byte	0
+ 387 0138 FF       		.byte	-1
+ 388 0139 00       		.byte	0
+ 389 013a 00       		.byte	0
+ 390 013b 00       		.byte	0
+ 391 013c FF       		.byte	-1
+ 392 013d 00       		.byte	0
+ 393 013e 00       		.byte	0
+ 394 013f 00       		.byte	0
+ 395 0140 FF       		.byte	-1
+ 396 0141 00       		.byte	0
+ 397 0142 00       		.byte	0
+ 398 0143 00       		.byte	0
+ 399 0144 FF       		.byte	-1
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc8BTyXT.s 			page 8
+
+
+ 400 0145 00       		.byte	0
+ 401 0146 00       		.byte	0
+ 402 0147 00       		.byte	0
+ 403 0148 FF       		.byte	-1
+ 404 0149 00       		.byte	0
+ 405 014a 00       		.byte	0
+ 406 014b 00       		.byte	0
+ 407 014c FF       		.byte	-1
+ 408 014d 00       		.byte	0
+ 409 014e 00       		.byte	0
+ 410 014f 00       		.byte	0
+ 411 0150 FF       		.byte	-1
+ 412 0151 00       		.byte	0
+ 413 0152 00       		.byte	0
+ 414 0153 00       		.byte	0
+ 415 0154 FF       		.byte	-1
+ 416 0155 00       		.byte	0
+ 417 0156 00       		.byte	0
+ 418 0157 00       		.byte	0
+ 419 0158 FF       		.byte	-1
+ 420 0159 00       		.byte	0
+ 421 015a 00       		.byte	0
+ 422 015b 00       		.byte	0
+ 423 015c FF       		.byte	-1
+ 424 015d 00       		.byte	0
+ 425 015e 00       		.byte	0
+ 426 015f 00       		.byte	0
+ 427 0160 FF       		.byte	-1
+ 428 0161 00       		.byte	0
+ 429 0162 00       		.byte	0
+ 430 0163 00       		.byte	0
+ 431 0164 FF       		.byte	-1
+ 432 0165 00       		.byte	0
+ 433 0166 00       		.byte	0
+ 434 0167 00       		.byte	0
+ 435 0168 FF       		.byte	-1
+ 436 0169 00       		.byte	0
+ 437 016a 00       		.byte	0
+ 438 016b 00       		.byte	0
+ 439 016c FF       		.byte	-1
+ 440 016d 00       		.byte	0
+ 441 016e 00       		.byte	0
+ 442 016f 00       		.byte	0
+ 443 0170 FF       		.byte	-1
+ 444 0171 00       		.byte	0
+ 445 0172 00       		.byte	0
+ 446 0173 00       		.byte	0
+ 447 0174 FF       		.byte	-1
+ 448 0175 00       		.byte	0
+ 449 0176 00       		.byte	0
+ 450 0177 00       		.byte	0
+ 451 0178 FF       		.byte	-1
+ 452 0179 00       		.byte	0
+ 453 017a 00       		.byte	0
+ 454 017b 00       		.byte	0
+ 455 017c FF       		.byte	-1
+ 456 017d 00       		.byte	0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc8BTyXT.s 			page 9
+
+
+ 457 017e 00       		.byte	0
+ 458 017f 00       		.byte	0
+ 459 0180 FF       		.byte	-1
+ 460 0181 00       		.byte	0
+ 461 0182 00       		.byte	0
+ 462 0183 00       		.byte	0
+ 463 0184 FF       		.byte	-1
+ 464 0185 00       		.byte	0
+ 465 0186 00       		.byte	0
+ 466 0187 00       		.byte	0
+ 467 0188 FF       		.byte	-1
+ 468 0189 00       		.byte	0
+ 469 018a 00       		.byte	0
+ 470 018b 00       		.byte	0
+ 471 018c FF       		.byte	-1
+ 472 018d 00       		.byte	0
+ 473 018e 00       		.byte	0
+ 474 018f 00       		.byte	0
+ 475 0190 FF       		.byte	-1
+ 476 0191 00       		.byte	0
+ 477 0192 00       		.byte	0
+ 478 0193 00       		.byte	0
+ 479 0194 FF       		.byte	-1
+ 480 0195 00       		.byte	0
+ 481 0196 00       		.byte	0
+ 482 0197 00       		.byte	0
+ 483 0198 FF       		.byte	-1
+ 484 0199 00       		.byte	0
+ 485 019a 00       		.byte	0
+ 486 019b 00       		.byte	0
+ 487 019c FF       		.byte	-1
+ 488 019d 00       		.byte	0
+ 489 019e 00       		.byte	0
+ 490 019f 00       		.byte	0
+ 491 01a0 FF       		.byte	-1
+ 492 01a1 00       		.byte	0
+ 493 01a2 00       		.byte	0
+ 494 01a3 00       		.byte	0
+ 495 01a4 FF       		.byte	-1
+ 496 01a5 00       		.byte	0
+ 497 01a6 00       		.byte	0
+ 498 01a7 00       		.byte	0
+ 499 01a8 FF       		.byte	-1
+ 500 01a9 00       		.byte	0
+ 501 01aa 00       		.byte	0
+ 502 01ab 00       		.byte	0
+ 503 01ac FF       		.byte	-1
+ 504 01ad 00       		.byte	0
+ 505 01ae 00       		.byte	0
+ 506 01af 00       		.byte	0
+ 507 01b0 FF       		.byte	-1
+ 508 01b1 00       		.byte	0
+ 509 01b2 00       		.byte	0
+ 510 01b3 00       		.byte	0
+ 511 01b4 FF       		.byte	-1
+ 512 01b5 00       		.byte	0
+ 513 01b6 00       		.byte	0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc8BTyXT.s 			page 10
+
+
+ 514 01b7 00       		.byte	0
+ 515 01b8 FF       		.byte	-1
+ 516 01b9 00       		.byte	0
+ 517 01ba 00       		.byte	0
+ 518 01bb 00       		.byte	0
+ 519 01bc FF       		.byte	-1
+ 520 01bd 00       		.byte	0
+ 521 01be 00       		.byte	0
+ 522 01bf 00       		.byte	0
+ 523 01c0 FF       		.byte	-1
+ 524 01c1 00       		.byte	0
+ 525 01c2 00       		.byte	0
+ 526 01c3 00       		.byte	0
+ 527 01c4 FF       		.byte	-1
+ 528 01c5 00       		.byte	0
+ 529 01c6 00       		.byte	0
+ 530 01c7 00       		.byte	0
+ 531 01c8 FF       		.byte	-1
+ 532 01c9 00       		.byte	0
+ 533 01ca 00       		.byte	0
+ 534 01cb 00       		.byte	0
+ 535 01cc FF       		.byte	-1
+ 536 01cd 00       		.byte	0
+ 537 01ce 00       		.byte	0
+ 538 01cf 00       		.byte	0
+ 539 01d0 FF       		.byte	-1
+ 540 01d1 00       		.byte	0
+ 541 01d2 00       		.byte	0
+ 542 01d3 00       		.byte	0
+ 543 01d4 FF       		.byte	-1
+ 544 01d5 00       		.byte	0
+ 545 01d6 00       		.byte	0
+ 546 01d7 00       		.byte	0
+ 547 01d8 FF       		.byte	-1
+ 548 01d9 00       		.byte	0
+ 549 01da 00       		.byte	0
+ 550 01db 00       		.byte	0
+ 551 01dc FF       		.byte	-1
+ 552 01dd 00       		.byte	0
+ 553 01de 00       		.byte	0
+ 554 01df 00       		.byte	0
+ 555 01e0 FF       		.byte	-1
+ 556 01e1 00       		.byte	0
+ 557 01e2 00       		.byte	0
+ 558 01e3 00       		.byte	0
+ 559 01e4 FF       		.byte	-1
+ 560 01e5 00       		.byte	0
+ 561 01e6 00       		.byte	0
+ 562 01e7 00       		.byte	0
+ 563 01e8 FF       		.byte	-1
+ 564 01e9 00       		.byte	0
+ 565 01ea 00       		.byte	0
+ 566 01eb 00       		.byte	0
+ 567 01ec FF       		.byte	-1
+ 568 01ed 00       		.byte	0
+ 569 01ee 00       		.byte	0
+ 570 01ef 00       		.byte	0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc8BTyXT.s 			page 11
+
+
+ 571 01f0 FF       		.byte	-1
+ 572 01f1 00       		.byte	0
+ 573 01f2 00       		.byte	0
+ 574 01f3 00       		.byte	0
+ 575 01f4 FF       		.byte	-1
+ 576 01f5 00       		.byte	0
+ 577 01f6 00       		.byte	0
+ 578 01f7 00       		.byte	0
+ 579 01f8 FF       		.byte	-1
+ 580 01f9 00       		.byte	0
+ 581 01fa 00       		.byte	0
+ 582 01fb 00       		.byte	0
+ 583 01fc FF       		.byte	-1
+ 584 01fd 00       		.byte	0
+ 585 01fe 00       		.byte	0
+ 586 01ff 00       		.byte	0
+ 587 0200 FF       		.byte	-1
+ 588 0201 00       		.byte	0
+ 589 0202 00       		.byte	0
+ 590 0203 00       		.byte	0
+ 591 0204 FF       		.byte	-1
+ 592 0205 00       		.byte	0
+ 593 0206 00       		.byte	0
+ 594 0207 00       		.byte	0
+ 595 0208 FF       		.byte	-1
+ 596 0209 00       		.byte	0
+ 597 020a 00       		.byte	0
+ 598 020b 00       		.byte	0
+ 599 020c FF       		.byte	-1
+ 600 020d 00       		.byte	0
+ 601 020e 00       		.byte	0
+ 602 020f 00       		.byte	0
+ 603 0210 FF       		.byte	-1
+ 604 0211 00       		.byte	0
+ 605 0212 00       		.byte	0
+ 606 0213 00       		.byte	0
+ 607 0214 FF       		.byte	-1
+ 608 0215 00       		.byte	0
+ 609 0216 00       		.byte	0
+ 610 0217 00       		.byte	0
+ 611 0218 FF       		.byte	-1
+ 612 0219 00       		.byte	0
+ 613 021a 00       		.byte	0
+ 614 021b 00       		.byte	0
+ 615 021c FF       		.byte	-1
+ 616 021d 00       		.byte	0
+ 617 021e 00       		.byte	0
+ 618 021f 00       		.byte	0
+ 619 0220 FF       		.byte	-1
+ 620 0221 00       		.byte	0
+ 621 0222 00       		.byte	0
+ 622 0223 00       		.byte	0
+ 623 0224 FF       		.byte	-1
+ 624 0225 00       		.byte	0
+ 625 0226 00       		.byte	0
+ 626 0227 00       		.byte	0
+ 627 0228 FF       		.byte	-1
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc8BTyXT.s 			page 12
+
+
+ 628 0229 00       		.byte	0
+ 629 022a 00       		.byte	0
+ 630 022b 00       		.byte	0
+ 631 022c FF       		.byte	-1
+ 632 022d 00       		.byte	0
+ 633 022e 00       		.byte	0
+ 634 022f 00       		.byte	0
+ 635 0230 FF       		.byte	-1
+ 636 0231 00       		.byte	0
+ 637 0232 00       		.byte	0
+ 638 0233 00       		.byte	0
+ 639 0234 FF       		.byte	-1
+ 640 0235 00       		.byte	0
+ 641 0236 00       		.byte	0
+ 642 0237 00       		.byte	0
+ 643 0238 FF       		.byte	-1
+ 644 0239 00       		.byte	0
+ 645 023a 00       		.byte	0
+ 646 023b 00       		.byte	0
+ 647 023c FF       		.byte	-1
+ 648 023d 00       		.byte	0
+ 649 023e 00       		.byte	0
+ 650 023f 00       		.byte	0
+ 651 0240 FF       		.byte	-1
+ 652 0241 00       		.byte	0
+ 653 0242 00       		.byte	0
+ 654 0243 00       		.byte	0
+ 655 0244 FF       		.byte	-1
+ 656 0245 00       		.byte	0
+ 657 0246 00       		.byte	0
+ 658 0247 00       		.byte	0
+ 659 0248 FF       		.byte	-1
+ 660 0249 00       		.byte	0
+ 661 024a 00       		.byte	0
+ 662 024b 00       		.byte	0
+ 663 024c FF       		.byte	-1
+ 664 024d 00       		.byte	0
+ 665 024e 00       		.byte	0
+ 666 024f 00       		.byte	0
+ 667 0250 FF       		.byte	-1
+ 668 0251 00       		.byte	0
+ 669 0252 00       		.byte	0
+ 670 0253 00       		.byte	0
+ 671 0254 FF       		.byte	-1
+ 672 0255 00       		.byte	0
+ 673 0256 00       		.byte	0
+ 674 0257 00       		.byte	0
+ 675 0258 FF       		.byte	-1
+ 676 0259 00       		.byte	0
+ 677 025a 00       		.byte	0
+ 678 025b 00       		.byte	0
+ 679 025c FF       		.byte	-1
+ 680 025d 00       		.byte	0
+ 681 025e 00       		.byte	0
+ 682 025f 00       		.byte	0
+ 683 0260 FF       		.byte	-1
+ 684 0261 00       		.byte	0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc8BTyXT.s 			page 13
+
+
+ 685 0262 00       		.byte	0
+ 686 0263 00       		.byte	0
+ 687 0264 FF       		.byte	-1
+ 688 0265 00       		.byte	0
+ 689 0266 00       		.byte	0
+ 690 0267 00       		.byte	0
+ 691 0268 FF       		.byte	-1
+ 692 0269 00       		.byte	0
+ 693 026a 00       		.byte	0
+ 694 026b 00       		.byte	0
+ 695 026c FF       		.byte	-1
+ 696 026d 00       		.byte	0
+ 697 026e 00       		.byte	0
+ 698 026f 00       		.byte	0
+ 699 0270 FF       		.byte	-1
+ 700 0271 00       		.byte	0
+ 701 0272 00       		.byte	0
+ 702 0273 00       		.byte	0
+ 703 0274 FF       		.byte	-1
+ 704 0275 00       		.byte	0
+ 705 0276 00       		.byte	0
+ 706 0277 00       		.byte	0
+ 707 0278 FF       		.byte	-1
+ 708 0279 00       		.byte	0
+ 709 027a 00       		.byte	0
+ 710 027b 00       		.byte	0
+ 711 027c FF       		.byte	-1
+ 712 027d 00       		.byte	0
+ 713 027e 00       		.byte	0
+ 714 027f 00       		.byte	0
+ 715 0280 FF       		.byte	-1
+ 716 0281 00       		.byte	0
+ 717 0282 00       		.byte	0
+ 718 0283 00       		.byte	0
+ 719 0284 FF       		.byte	-1
+ 720 0285 00       		.byte	0
+ 721 0286 00       		.byte	0
+ 722 0287 00       		.byte	0
+ 723 0288 FF       		.byte	-1
+ 724 0289 00       		.byte	0
+ 725 028a 00       		.byte	0
+ 726 028b 00       		.byte	0
+ 727 028c FF       		.byte	-1
+ 728 028d 00       		.byte	0
+ 729 028e 00       		.byte	0
+ 730 028f 00       		.byte	0
+ 731 0290 FF       		.byte	-1
+ 732 0291 00       		.byte	0
+ 733 0292 00       		.byte	0
+ 734 0293 00       		.byte	0
+ 735 0294 FF       		.byte	-1
+ 736 0295 00       		.byte	0
+ 737 0296 00       		.byte	0
+ 738 0297 00       		.byte	0
+ 739 0298 FF       		.byte	-1
+ 740 0299 00       		.byte	0
+ 741 029a 00       		.byte	0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc8BTyXT.s 			page 14
+
+
+ 742 029b 00       		.byte	0
+ 743 029c FF       		.byte	-1
+ 744 029d 00       		.byte	0
+ 745 029e 00       		.byte	0
+ 746 029f 00       		.byte	0
+ 747 02a0 FF       		.byte	-1
+ 748 02a1 00       		.byte	0
+ 749 02a2 00       		.byte	0
+ 750 02a3 00       		.byte	0
+ 751 02a4 FF       		.byte	-1
+ 752 02a5 00       		.byte	0
+ 753 02a6 00       		.byte	0
+ 754 02a7 00       		.byte	0
+ 755 02a8 FF       		.byte	-1
+ 756 02a9 00       		.byte	0
+ 757 02aa 00       		.byte	0
+ 758 02ab 00       		.byte	0
+ 759 02ac FF       		.byte	-1
+ 760 02ad 00       		.byte	0
+ 761 02ae 00       		.byte	0
+ 762 02af 00       		.byte	0
+ 763 02b0 FF       		.byte	-1
+ 764 02b1 00       		.byte	0
+ 765 02b2 00       		.byte	0
+ 766 02b3 00       		.byte	0
+ 767 02b4 FF       		.byte	-1
+ 768 02b5 00       		.byte	0
+ 769 02b6 00       		.byte	0
+ 770 02b7 00       		.byte	0
+ 771 02b8 FF       		.byte	-1
+ 772 02b9 00       		.byte	0
+ 773 02ba 00       		.byte	0
+ 774 02bb 00       		.byte	0
+ 775 02bc FF       		.byte	-1
+ 776 02bd 00       		.byte	0
+ 777 02be 00       		.byte	0
+ 778 02bf 00       		.byte	0
+ 779 02c0 FF       		.byte	-1
+ 780 02c1 00       		.byte	0
+ 781 02c2 00       		.byte	0
+ 782 02c3 00       		.byte	0
+ 783 02c4 FF       		.byte	-1
+ 784 02c5 00       		.byte	0
+ 785 02c6 00       		.byte	0
+ 786 02c7 00       		.byte	0
+ 787 02c8 FF       		.byte	-1
+ 788 02c9 00       		.byte	0
+ 789 02ca 00       		.byte	0
+ 790 02cb 00       		.byte	0
+ 791 02cc FF       		.byte	-1
+ 792 02cd 00       		.byte	0
+ 793 02ce 00       		.byte	0
+ 794 02cf 00       		.byte	0
+ 795 02d0 FF       		.byte	-1
+ 796 02d1 00       		.byte	0
+ 797 02d2 00       		.byte	0
+ 798 02d3 00       		.byte	0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc8BTyXT.s 			page 15
+
+
+ 799 02d4 FF       		.byte	-1
+ 800 02d5 00       		.byte	0
+ 801 02d6 00       		.byte	0
+ 802 02d7 00       		.byte	0
+ 803 02d8 FF       		.byte	-1
+ 804 02d9 00       		.byte	0
+ 805 02da 00       		.byte	0
+ 806 02db 00       		.byte	0
+ 807 02dc FF       		.byte	-1
+ 808 02dd 00       		.byte	0
+ 809 02de 00       		.byte	0
+ 810 02df 00       		.byte	0
+ 811 02e0 FF       		.byte	-1
+ 812 02e1 00       		.byte	0
+ 813 02e2 00       		.byte	0
+ 814 02e3 00       		.byte	0
+ 815 02e4 FF       		.byte	-1
+ 816 02e5 00       		.byte	0
+ 817 02e6 00       		.byte	0
+ 818 02e7 00       		.byte	0
+ 819 02e8 FF       		.byte	-1
+ 820 02e9 00       		.byte	0
+ 821 02ea 00       		.byte	0
+ 822 02eb 00       		.byte	0
+ 823 02ec FF       		.byte	-1
+ 824 02ed 00       		.byte	0
+ 825 02ee 00       		.byte	0
+ 826 02ef 00       		.byte	0
+ 827 02f0 FF       		.byte	-1
+ 828 02f1 00       		.byte	0
+ 829 02f2 00       		.byte	0
+ 830 02f3 00       		.byte	0
+ 831 02f4 FF       		.byte	-1
+ 832 02f5 00       		.byte	0
+ 833 02f6 00       		.byte	0
+ 834 02f7 00       		.byte	0
+ 835 02f8 FF       		.byte	-1
+ 836 02f9 00       		.byte	0
+ 837 02fa 00       		.byte	0
+ 838 02fb 00       		.byte	0
+ 839 02fc FF       		.byte	-1
+ 840 02fd 00       		.byte	0
+ 841 02fe 00       		.byte	0
+ 842 02ff 00       		.byte	0
+ 843 0300 FF       		.byte	-1
+ 844 0301 00       		.byte	0
+ 845 0302 00       		.byte	0
+ 846 0303 00       		.byte	0
+ 847 0304 FF       		.byte	-1
+ 848 0305 00       		.byte	0
+ 849 0306 00       		.byte	0
+ 850 0307 00       		.byte	0
+ 851 0308 FF       		.byte	-1
+ 852 0309 00       		.byte	0
+ 853 030a 00       		.byte	0
+ 854 030b 00       		.byte	0
+ 855 030c FF       		.byte	-1
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc8BTyXT.s 			page 16
+
+
+ 856 030d 00       		.byte	0
+ 857 030e 00       		.byte	0
+ 858 030f 00       		.byte	0
+ 859 0310 FF       		.byte	-1
+ 860 0311 00       		.byte	0
+ 861 0312 00       		.byte	0
+ 862 0313 00       		.byte	0
+ 863 0314 FF       		.byte	-1
+ 864 0315 00       		.byte	0
+ 865 0316 00       		.byte	0
+ 866 0317 00       		.byte	0
+ 867 0318 FF       		.byte	-1
+ 868 0319 00       		.byte	0
+ 869 031a 00       		.byte	0
+ 870 031b 00       		.byte	0
+ 871 031c FF       		.byte	-1
+ 872 031d 00       		.byte	0
+ 873 031e 00       		.byte	0
+ 874 031f 00       		.byte	0
+ 875 0320 FF       		.byte	-1
+ 876 0321 00       		.byte	0
+ 877 0322 00       		.byte	0
+ 878 0323 00       		.byte	0
+ 879 0324 FF       		.byte	-1
+ 880 0325 00       		.byte	0
+ 881 0326 00       		.byte	0
+ 882 0327 00       		.byte	0
+ 883 0328 FF       		.byte	-1
+ 884 0329 00       		.byte	0
+ 885 032a 00       		.byte	0
+ 886 032b 00       		.byte	0
+ 887 032c FF       		.byte	-1
+ 888 032d 00       		.byte	0
+ 889 032e 00       		.byte	0
+ 890 032f 00       		.byte	0
+ 891 0330 FF       		.byte	-1
+ 892 0331 00       		.byte	0
+ 893 0332 00       		.byte	0
+ 894 0333 00       		.byte	0
+ 895 0334 FF       		.byte	-1
+ 896 0335 00       		.byte	0
+ 897 0336 00       		.byte	0
+ 898 0337 00       		.byte	0
+ 899 0338 FF       		.byte	-1
+ 900 0339 00       		.byte	0
+ 901 033a 00       		.byte	0
+ 902 033b 00       		.byte	0
+ 903 033c FF       		.byte	-1
+ 904 033d 00       		.byte	0
+ 905 033e 00       		.byte	0
+ 906 033f 00       		.byte	0
+ 907 0340 FF       		.byte	-1
+ 908 0341 00       		.byte	0
+ 909 0342 00       		.byte	0
+ 910 0343 00       		.byte	0
+ 911 0344 FF       		.byte	-1
+ 912 0345 00       		.byte	0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc8BTyXT.s 			page 17
+
+
+ 913 0346 00       		.byte	0
+ 914 0347 00       		.byte	0
+ 915 0348 FF       		.byte	-1
+ 916 0349 00       		.byte	0
+ 917 034a 00       		.byte	0
+ 918 034b 00       		.byte	0
+ 919 034c FF       		.byte	-1
+ 920 034d 00       		.byte	0
+ 921 034e 00       		.byte	0
+ 922 034f 00       		.byte	0
+ 923 0350 FF       		.byte	-1
+ 924 0351 00       		.byte	0
+ 925 0352 00       		.byte	0
+ 926 0353 00       		.byte	0
+ 927 0354 FF       		.byte	-1
+ 928 0355 00       		.byte	0
+ 929 0356 00       		.byte	0
+ 930 0357 00       		.byte	0
+ 931 0358 FF       		.byte	-1
+ 932 0359 00       		.byte	0
+ 933 035a 00       		.byte	0
+ 934 035b 00       		.byte	0
+ 935 035c FF       		.byte	-1
+ 936 035d 00       		.byte	0
+ 937 035e 00       		.byte	0
+ 938 035f 00       		.byte	0
+ 939 0360 FF       		.byte	-1
+ 940 0361 00       		.byte	0
+ 941 0362 00       		.byte	0
+ 942 0363 00       		.byte	0
+ 943 0364 FF       		.byte	-1
+ 944 0365 00       		.byte	0
+ 945 0366 00       		.byte	0
+ 946 0367 00       		.byte	0
+ 947 0368 FF       		.byte	-1
+ 948 0369 00       		.byte	0
+ 949 036a 00       		.byte	0
+ 950 036b 00       		.byte	0
+ 951 036c FF       		.byte	-1
+ 952 036d 00       		.byte	0
+ 953 036e 00       		.byte	0
+ 954 036f 00       		.byte	0
+ 955 0370 FF       		.byte	-1
+ 956 0371 00       		.byte	0
+ 957 0372 00       		.byte	0
+ 958 0373 00       		.byte	0
+ 959 0374 FF       		.byte	-1
+ 960 0375 00       		.byte	0
+ 961 0376 00       		.byte	0
+ 962 0377 00       		.byte	0
+ 963 0378 FF       		.byte	-1
+ 964 0379 00       		.byte	0
+ 965 037a 00       		.byte	0
+ 966 037b 00       		.byte	0
+ 967 037c FF       		.byte	-1
+ 968 037d 00       		.byte	0
+ 969 037e 00       		.byte	0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc8BTyXT.s 			page 18
+
+
+ 970 037f 00       		.byte	0
+ 971 0380 FF       		.byte	-1
+ 972 0381 00       		.byte	0
+ 973 0382 00       		.byte	0
+ 974 0383 00       		.byte	0
+ 975 0384 FF       		.byte	-1
+ 976 0385 00       		.byte	0
+ 977 0386 00       		.byte	0
+ 978 0387 00       		.byte	0
+ 979 0388 FF       		.byte	-1
+ 980 0389 00       		.byte	0
+ 981 038a 00       		.byte	0
+ 982 038b 00       		.byte	0
+ 983 038c FF       		.byte	-1
+ 984 038d 00       		.byte	0
+ 985 038e 00       		.byte	0
+ 986 038f 00       		.byte	0
+ 987 0390 FF       		.byte	-1
+ 988 0391 00       		.byte	0
+ 989 0392 00       		.byte	0
+ 990 0393 00       		.byte	0
+ 991 0394 FF       		.byte	-1
+ 992 0395 00       		.byte	0
+ 993 0396 00       		.byte	0
+ 994 0397 00       		.byte	0
+ 995 0398 FF       		.byte	-1
+ 996 0399 00       		.byte	0
+ 997 039a 00       		.byte	0
+ 998 039b 00       		.byte	0
+ 999 039c FF       		.byte	-1
+ 1000 039d 00       		.byte	0
+ 1001 039e 00       		.byte	0
+ 1002 039f 00       		.byte	0
+ 1003 03a0 FF       		.byte	-1
+ 1004 03a1 00       		.byte	0
+ 1005 03a2 00       		.byte	0
+ 1006 03a3 00       		.byte	0
+ 1007 03a4 FF       		.byte	-1
+ 1008 03a5 00       		.byte	0
+ 1009 03a6 00       		.byte	0
+ 1010 03a7 00       		.byte	0
+ 1011 03a8 FF       		.byte	-1
+ 1012 03a9 00       		.byte	0
+ 1013 03aa 00       		.byte	0
+ 1014 03ab 00       		.byte	0
+ 1015 03ac FF       		.byte	-1
+ 1016 03ad 00       		.byte	0
+ 1017 03ae 00       		.byte	0
+ 1018 03af 00       		.byte	0
+ 1019 03b0 FF       		.byte	-1
+ 1020 03b1 00       		.byte	0
+ 1021 03b2 00       		.byte	0
+ 1022 03b3 00       		.byte	0
+ 1023 03b4 FF       		.byte	-1
+ 1024 03b5 00       		.byte	0
+ 1025 03b6 00       		.byte	0
+ 1026 03b7 00       		.byte	0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc8BTyXT.s 			page 19
+
+
+ 1027 03b8 FF       		.byte	-1
+ 1028 03b9 00       		.byte	0
+ 1029 03ba 00       		.byte	0
+ 1030 03bb 00       		.byte	0
+ 1031 03bc FF       		.byte	-1
+ 1032 03bd 00       		.byte	0
+ 1033 03be 00       		.byte	0
+ 1034 03bf 00       		.byte	0
+ 1035 03c0 FF       		.byte	-1
+ 1036 03c1 00       		.byte	0
+ 1037 03c2 00       		.byte	0
+ 1038 03c3 00       		.byte	0
+ 1039 03c4 FF       		.byte	-1
+ 1040 03c5 00       		.byte	0
+ 1041 03c6 00       		.byte	0
+ 1042 03c7 00       		.byte	0
+ 1043 03c8 FF       		.byte	-1
+ 1044 03c9 00       		.byte	0
+ 1045 03ca 00       		.byte	0
+ 1046 03cb 00       		.byte	0
+ 1047 03cc FF       		.byte	-1
+ 1048 03cd 00       		.byte	0
+ 1049 03ce 00       		.byte	0
+ 1050 03cf 00       		.byte	0
+ 1051 03d0 FF       		.byte	-1
+ 1052 03d1 00       		.byte	0
+ 1053 03d2 00       		.byte	0
+ 1054 03d3 00       		.byte	0
+ 1055 03d4 FF       		.byte	-1
+ 1056 03d5 00       		.byte	0
+ 1057 03d6 00       		.byte	0
+ 1058 03d7 00       		.byte	0
+ 1059 03d8 FF       		.byte	-1
+ 1060 03d9 00       		.byte	0
+ 1061 03da 00       		.byte	0
+ 1062 03db 00       		.byte	0
+ 1063 03dc FF       		.byte	-1
+ 1064 03dd 00       		.byte	0
+ 1065 03de 00       		.byte	0
+ 1066 03df 00       		.byte	0
+ 1067 03e0 FF       		.byte	-1
+ 1068 03e1 00       		.byte	0
+ 1069 03e2 00       		.byte	0
+ 1070 03e3 00       		.byte	0
+ 1071 03e4 FF       		.byte	-1
+ 1072 03e5 00       		.byte	0
+ 1073 03e6 00       		.byte	0
+ 1074 03e7 00       		.byte	0
+ 1075 03e8 FF       		.byte	-1
+ 1076 03e9 00       		.byte	0
+ 1077 03ea 00       		.byte	0
+ 1078 03eb 00       		.byte	0
+ 1079 03ec FF       		.byte	-1
+ 1080 03ed 00       		.byte	0
+ 1081 03ee 00       		.byte	0
+ 1082 03ef 00       		.byte	0
+ 1083 03f0 FF       		.byte	-1
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc8BTyXT.s 			page 20
+
+
+ 1084 03f1 00       		.byte	0
+ 1085 03f2 00       		.byte	0
+ 1086 03f3 00       		.byte	0
+ 1087 03f4 FF       		.byte	-1
+ 1088 03f5 00       		.byte	0
+ 1089 03f6 00       		.byte	0
+ 1090 03f7 00       		.byte	0
+ 1091 03f8 FF       		.byte	-1
+ 1092 03f9 00       		.byte	0
+ 1093 03fa 00       		.byte	0
+ 1094 03fb 00       		.byte	0
+ 1095 03fc FF       		.byte	-1
+ 1096 03fd 00       		.byte	0
+ 1097 03fe 00       		.byte	0
+ 1098 03ff 00       		.byte	0
+ 1099              		.text
+ 1100              	.Letext0:
+ 1101              		.file 1 "c:\\gnutoolsarmembedded\\4.7-2012q4\\bin\\../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-
+ 1102              		.file 2 "./cmsis/core/core_cm4.h"
+ 1103              		.file 3 "src/sequences.c"
+ 1104              		.section	.debug_info,"",%progbits
+ 1105              	.Ldebug_info0:
+ 1106 0000 D9000000 		.4byte	0xd9
+ 1107 0004 0200     		.2byte	0x2
+ 1108 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1109 000a 04       		.byte	0x4
+ 1110 000b 01       		.uleb128 0x1
+ 1111 000c E1000000 		.4byte	.LASF18
+ 1112 0010 01       		.byte	0x1
+ 1113 0011 6A000000 		.4byte	.LASF19
+ 1114 0015 45000000 		.4byte	.LASF20
+ 1115 0019 00000000 		.4byte	.Ldebug_line0
+ 1116 001d 02       		.uleb128 0x2
+ 1117 001e 01       		.byte	0x1
+ 1118 001f 06       		.byte	0x6
+ 1119 0020 C9000000 		.4byte	.LASF0
+ 1120 0024 02       		.uleb128 0x2
+ 1121 0025 01       		.byte	0x1
+ 1122 0026 08       		.byte	0x8
+ 1123 0027 99000000 		.4byte	.LASF1
+ 1124 002b 02       		.uleb128 0x2
+ 1125 002c 02       		.byte	0x2
+ 1126 002d 05       		.byte	0x5
+ 1127 002e 30010000 		.4byte	.LASF2
+ 1128 0032 02       		.uleb128 0x2
+ 1129 0033 02       		.byte	0x2
+ 1130 0034 07       		.byte	0x7
+ 1131 0035 0E000000 		.4byte	.LASF3
+ 1132 0039 03       		.uleb128 0x3
+ 1133 003a 04       		.byte	0x4
+ 1134 003b 05       		.byte	0x5
+ 1135 003c 696E7400 		.ascii	"int\000"
+ 1136 0040 02       		.uleb128 0x2
+ 1137 0041 04       		.byte	0x4
+ 1138 0042 07       		.byte	0x7
+ 1139 0043 21000000 		.4byte	.LASF4
+ 1140 0047 02       		.uleb128 0x2
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc8BTyXT.s 			page 21
+
+
+ 1141 0048 08       		.byte	0x8
+ 1142 0049 05       		.byte	0x5
+ 1143 004a 00000000 		.4byte	.LASF5
+ 1144 004e 02       		.uleb128 0x2
+ 1145 004f 08       		.byte	0x8
+ 1146 0050 07       		.byte	0x7
+ 1147 0051 7A000000 		.4byte	.LASF6
+ 1148 0055 02       		.uleb128 0x2
+ 1149 0056 04       		.byte	0x4
+ 1150 0057 05       		.byte	0x5
+ 1151 0058 AC000000 		.4byte	.LASF7
+ 1152 005c 02       		.uleb128 0x2
+ 1153 005d 04       		.byte	0x4
+ 1154 005e 07       		.byte	0x7
+ 1155 005f 42010000 		.4byte	.LASF8
+ 1156 0063 02       		.uleb128 0x2
+ 1157 0064 04       		.byte	0x4
+ 1158 0065 07       		.byte	0x7
+ 1159 0066 33000000 		.4byte	.LASF9
+ 1160 006a 02       		.uleb128 0x2
+ 1161 006b 01       		.byte	0x1
+ 1162 006c 08       		.byte	0x8
+ 1163 006d A7000000 		.4byte	.LASF10
+ 1164 0071 02       		.uleb128 0x2
+ 1165 0072 08       		.byte	0x8
+ 1166 0073 04       		.byte	0x4
+ 1167 0074 B5000000 		.4byte	.LASF11
+ 1168 0078 02       		.uleb128 0x2
+ 1169 0079 04       		.byte	0x4
+ 1170 007a 04       		.byte	0x4
+ 1171 007b 2A010000 		.4byte	.LASF12
+ 1172 007f 02       		.uleb128 0x2
+ 1173 0080 08       		.byte	0x8
+ 1174 0081 04       		.byte	0x4
+ 1175 0082 D5000000 		.4byte	.LASF13
+ 1176 0086 04       		.uleb128 0x4
+ 1177 0087 91000000 		.4byte	.LASF14
+ 1178 008b 01       		.byte	0x1
+ 1179 008c 2A       		.byte	0x2a
+ 1180 008d 24000000 		.4byte	0x24
+ 1181 0091 04       		.uleb128 0x4
+ 1182 0092 3A010000 		.4byte	.LASF15
+ 1183 0096 01       		.byte	0x1
+ 1184 0097 4F       		.byte	0x4f
+ 1185 0098 55000000 		.4byte	0x55
+ 1186 009c 05       		.uleb128 0x5
+ 1187 009d 91000000 		.4byte	0x91
+ 1188 00a1 06       		.uleb128 0x6
+ 1189 00a2 BC000000 		.4byte	.LASF16
+ 1190 00a6 02       		.byte	0x2
+ 1191 00a7 1A05     		.2byte	0x51a
+ 1192 00a9 9C000000 		.4byte	0x9c
+ 1193 00ad 01       		.byte	0x1
+ 1194 00ae 01       		.byte	0x1
+ 1195 00af 07       		.uleb128 0x7
+ 1196 00b0 86000000 		.4byte	0x86
+ 1197 00b4 C5000000 		.4byte	0xc5
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc8BTyXT.s 			page 22
+
+
+ 1198 00b8 08       		.uleb128 0x8
+ 1199 00b9 5C000000 		.4byte	0x5c
+ 1200 00bd 3F       		.byte	0x3f
+ 1201 00be 08       		.uleb128 0x8
+ 1202 00bf 5C000000 		.4byte	0x5c
+ 1203 00c3 0F       		.byte	0xf
+ 1204 00c4 00       		.byte	0
+ 1205 00c5 09       		.uleb128 0x9
+ 1206 00c6 2E000000 		.4byte	.LASF17
+ 1207 00ca 03       		.byte	0x3
+ 1208 00cb 22       		.byte	0x22
+ 1209 00cc D7000000 		.4byte	0xd7
+ 1210 00d0 01       		.byte	0x1
+ 1211 00d1 05       		.byte	0x5
+ 1212 00d2 03       		.byte	0x3
+ 1213 00d3 00000000 		.4byte	seq1
+ 1214 00d7 0A       		.uleb128 0xa
+ 1215 00d8 AF000000 		.4byte	0xaf
+ 1216 00dc 00       		.byte	0
+ 1217              		.section	.debug_abbrev,"",%progbits
+ 1218              	.Ldebug_abbrev0:
+ 1219 0000 01       		.uleb128 0x1
+ 1220 0001 11       		.uleb128 0x11
+ 1221 0002 01       		.byte	0x1
+ 1222 0003 25       		.uleb128 0x25
+ 1223 0004 0E       		.uleb128 0xe
+ 1224 0005 13       		.uleb128 0x13
+ 1225 0006 0B       		.uleb128 0xb
+ 1226 0007 03       		.uleb128 0x3
+ 1227 0008 0E       		.uleb128 0xe
+ 1228 0009 1B       		.uleb128 0x1b
+ 1229 000a 0E       		.uleb128 0xe
+ 1230 000b 10       		.uleb128 0x10
+ 1231 000c 06       		.uleb128 0x6
+ 1232 000d 00       		.byte	0
+ 1233 000e 00       		.byte	0
+ 1234 000f 02       		.uleb128 0x2
+ 1235 0010 24       		.uleb128 0x24
+ 1236 0011 00       		.byte	0
+ 1237 0012 0B       		.uleb128 0xb
+ 1238 0013 0B       		.uleb128 0xb
+ 1239 0014 3E       		.uleb128 0x3e
+ 1240 0015 0B       		.uleb128 0xb
+ 1241 0016 03       		.uleb128 0x3
+ 1242 0017 0E       		.uleb128 0xe
+ 1243 0018 00       		.byte	0
+ 1244 0019 00       		.byte	0
+ 1245 001a 03       		.uleb128 0x3
+ 1246 001b 24       		.uleb128 0x24
+ 1247 001c 00       		.byte	0
+ 1248 001d 0B       		.uleb128 0xb
+ 1249 001e 0B       		.uleb128 0xb
+ 1250 001f 3E       		.uleb128 0x3e
+ 1251 0020 0B       		.uleb128 0xb
+ 1252 0021 03       		.uleb128 0x3
+ 1253 0022 08       		.uleb128 0x8
+ 1254 0023 00       		.byte	0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc8BTyXT.s 			page 23
+
+
+ 1255 0024 00       		.byte	0
+ 1256 0025 04       		.uleb128 0x4
+ 1257 0026 16       		.uleb128 0x16
+ 1258 0027 00       		.byte	0
+ 1259 0028 03       		.uleb128 0x3
+ 1260 0029 0E       		.uleb128 0xe
+ 1261 002a 3A       		.uleb128 0x3a
+ 1262 002b 0B       		.uleb128 0xb
+ 1263 002c 3B       		.uleb128 0x3b
+ 1264 002d 0B       		.uleb128 0xb
+ 1265 002e 49       		.uleb128 0x49
+ 1266 002f 13       		.uleb128 0x13
+ 1267 0030 00       		.byte	0
+ 1268 0031 00       		.byte	0
+ 1269 0032 05       		.uleb128 0x5
+ 1270 0033 35       		.uleb128 0x35
+ 1271 0034 00       		.byte	0
+ 1272 0035 49       		.uleb128 0x49
+ 1273 0036 13       		.uleb128 0x13
+ 1274 0037 00       		.byte	0
+ 1275 0038 00       		.byte	0
+ 1276 0039 06       		.uleb128 0x6
+ 1277 003a 34       		.uleb128 0x34
+ 1278 003b 00       		.byte	0
+ 1279 003c 03       		.uleb128 0x3
+ 1280 003d 0E       		.uleb128 0xe
+ 1281 003e 3A       		.uleb128 0x3a
+ 1282 003f 0B       		.uleb128 0xb
+ 1283 0040 3B       		.uleb128 0x3b
+ 1284 0041 05       		.uleb128 0x5
+ 1285 0042 49       		.uleb128 0x49
+ 1286 0043 13       		.uleb128 0x13
+ 1287 0044 3F       		.uleb128 0x3f
+ 1288 0045 0C       		.uleb128 0xc
+ 1289 0046 3C       		.uleb128 0x3c
+ 1290 0047 0C       		.uleb128 0xc
+ 1291 0048 00       		.byte	0
+ 1292 0049 00       		.byte	0
+ 1293 004a 07       		.uleb128 0x7
+ 1294 004b 01       		.uleb128 0x1
+ 1295 004c 01       		.byte	0x1
+ 1296 004d 49       		.uleb128 0x49
+ 1297 004e 13       		.uleb128 0x13
+ 1298 004f 01       		.uleb128 0x1
+ 1299 0050 13       		.uleb128 0x13
+ 1300 0051 00       		.byte	0
+ 1301 0052 00       		.byte	0
+ 1302 0053 08       		.uleb128 0x8
+ 1303 0054 21       		.uleb128 0x21
+ 1304 0055 00       		.byte	0
+ 1305 0056 49       		.uleb128 0x49
+ 1306 0057 13       		.uleb128 0x13
+ 1307 0058 2F       		.uleb128 0x2f
+ 1308 0059 0B       		.uleb128 0xb
+ 1309 005a 00       		.byte	0
+ 1310 005b 00       		.byte	0
+ 1311 005c 09       		.uleb128 0x9
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc8BTyXT.s 			page 24
+
+
+ 1312 005d 34       		.uleb128 0x34
+ 1313 005e 00       		.byte	0
+ 1314 005f 03       		.uleb128 0x3
+ 1315 0060 0E       		.uleb128 0xe
+ 1316 0061 3A       		.uleb128 0x3a
+ 1317 0062 0B       		.uleb128 0xb
+ 1318 0063 3B       		.uleb128 0x3b
+ 1319 0064 0B       		.uleb128 0xb
+ 1320 0065 49       		.uleb128 0x49
+ 1321 0066 13       		.uleb128 0x13
+ 1322 0067 3F       		.uleb128 0x3f
+ 1323 0068 0C       		.uleb128 0xc
+ 1324 0069 02       		.uleb128 0x2
+ 1325 006a 0A       		.uleb128 0xa
+ 1326 006b 00       		.byte	0
+ 1327 006c 00       		.byte	0
+ 1328 006d 0A       		.uleb128 0xa
+ 1329 006e 26       		.uleb128 0x26
+ 1330 006f 00       		.byte	0
+ 1331 0070 49       		.uleb128 0x49
+ 1332 0071 13       		.uleb128 0x13
+ 1333 0072 00       		.byte	0
+ 1334 0073 00       		.byte	0
+ 1335 0074 00       		.byte	0
+ 1336              		.section	.debug_aranges,"",%progbits
+ 1337 0000 14000000 		.4byte	0x14
+ 1338 0004 0200     		.2byte	0x2
+ 1339 0006 00000000 		.4byte	.Ldebug_info0
+ 1340 000a 04       		.byte	0x4
+ 1341 000b 00       		.byte	0
+ 1342 000c 0000     		.2byte	0
+ 1343 000e 0000     		.2byte	0
+ 1344 0010 00000000 		.4byte	0
+ 1345 0014 00000000 		.4byte	0
+ 1346              		.section	.debug_line,"",%progbits
+ 1347              	.Ldebug_line0:
+ 1348 0000 BA000000 		.section	.debug_str,"MS",%progbits,1
+ 1348      0200B400 
+ 1348      00000201 
+ 1348      FB0E0D00 
+ 1348      01010101 
+ 1349              	.LASF5:
+ 1350 0000 6C6F6E67 		.ascii	"long long int\000"
+ 1350      206C6F6E 
+ 1350      6720696E 
+ 1350      7400
+ 1351              	.LASF3:
+ 1352 000e 73686F72 		.ascii	"short unsigned int\000"
+ 1352      7420756E 
+ 1352      7369676E 
+ 1352      65642069 
+ 1352      6E7400
+ 1353              	.LASF4:
+ 1354 0021 756E7369 		.ascii	"unsigned int\000"
+ 1354      676E6564 
+ 1354      20696E74 
+ 1354      00
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc8BTyXT.s 			page 25
+
+
+ 1355              	.LASF17:
+ 1356 002e 73657131 		.ascii	"seq1\000"
+ 1356      00
+ 1357              	.LASF9:
+ 1358 0033 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1358      20756E73 
+ 1358      69676E65 
+ 1358      6420696E 
+ 1358      7400
+ 1359              	.LASF20:
+ 1360 0045 433A5C78 		.ascii	"C:\\xav_dev\\eclipse\\ambiantiseur-make\000"
+ 1360      61765F64 
+ 1360      65765C65 
+ 1360      636C6970 
+ 1360      73655C61 
+ 1361              	.LASF19:
+ 1362 006a 7372632F 		.ascii	"src/sequences.c\000"
+ 1362      73657175 
+ 1362      656E6365 
+ 1362      732E6300 
+ 1363              	.LASF6:
+ 1364 007a 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1364      206C6F6E 
+ 1364      6720756E 
+ 1364      7369676E 
+ 1364      65642069 
+ 1365              	.LASF14:
+ 1366 0091 75696E74 		.ascii	"uint8_t\000"
+ 1366      385F7400 
+ 1367              	.LASF1:
+ 1368 0099 756E7369 		.ascii	"unsigned char\000"
+ 1368      676E6564 
+ 1368      20636861 
+ 1368      7200
+ 1369              	.LASF10:
+ 1370 00a7 63686172 		.ascii	"char\000"
+ 1370      00
+ 1371              	.LASF7:
+ 1372 00ac 6C6F6E67 		.ascii	"long int\000"
+ 1372      20696E74 
+ 1372      00
+ 1373              	.LASF11:
+ 1374 00b5 646F7562 		.ascii	"double\000"
+ 1374      6C6500
+ 1375              	.LASF16:
+ 1376 00bc 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1376      52784275 
+ 1376      66666572 
+ 1376      00
+ 1377              	.LASF0:
+ 1378 00c9 7369676E 		.ascii	"signed char\000"
+ 1378      65642063 
+ 1378      68617200 
+ 1379              	.LASF13:
+ 1380 00d5 6C6F6E67 		.ascii	"long double\000"
+ 1380      20646F75 
+ 1380      626C6500 
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc8BTyXT.s 			page 26
+
+
+ 1381              	.LASF18:
+ 1382 00e1 474E5520 		.ascii	"GNU C 4.7.3 20121207 (release) [ARM/embedded-4_7-br"
+ 1382      4320342E 
+ 1382      372E3320 
+ 1382      32303132 
+ 1382      31323037 
+ 1383 0114 616E6368 		.ascii	"anch revision 194305]\000"
+ 1383      20726576 
+ 1383      6973696F 
+ 1383      6E203139 
+ 1383      34333035 
+ 1384              	.LASF12:
+ 1385 012a 666C6F61 		.ascii	"float\000"
+ 1385      7400
+ 1386              	.LASF2:
+ 1387 0130 73686F72 		.ascii	"short int\000"
+ 1387      7420696E 
+ 1387      7400
+ 1388              	.LASF15:
+ 1389 013a 696E7433 		.ascii	"int32_t\000"
+ 1389      325F7400 
+ 1390              	.LASF8:
+ 1391 0142 73697A65 		.ascii	"sizetype\000"
+ 1391      74797065 
+ 1391      00
+ 1392              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20121207 (release) [ARM/embedded-4_7-br
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\cc8BTyXT.s 			page 27
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 sequences.c
+C:\Users\CNous\AppData\Local\Temp\cc8BTyXT.s:74     .rodata.seq1:00000000 seq1
+C:\Users\CNous\AppData\Local\Temp\cc8BTyXT.s:71     .rodata.seq1:00000000 $d
+
+NO UNDEFINED SYMBOLS

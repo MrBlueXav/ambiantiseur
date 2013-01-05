@@ -43,6 +43,8 @@ extern const uint16_t 	scale3[18];
 extern const uint16_t 	scale4[12];
 extern const uint16_t 	scale5[42];
 extern const uint16_t 	scale6[42];
+extern const uint16_t 	scale7[11];
+extern const uint16_t 	scale8[12];
 
 extern uint8_t			envTrigger, envAmp;
 extern float			envTime;
@@ -341,18 +343,22 @@ void TIM6_DAC_IRQHandler(void)
 			/*if (ADC1ConvertedValues[3] >= 50) // if automatic generation selected...
 			{*/
 
-				if (knobValue < 10)
-					f1 = (float)(scale4[(uint16_t)(randomNum() * 11.f)]);
-				else if (knobValue < 20)
-					f1 = (float)(scale3[(uint16_t)(randomNum() * 17.f)]);
-				else if (knobValue < 30)
-					f1 = (float)(scale1[(uint16_t)(randomNum() * 38.f)]);
-				else if (knobValue < 40)
-					f1 = (float)(scale5[(uint16_t)(randomNum() * 41.f)]);
-				else if (knobValue < 50)
-					f1 = (float)(scale6[(uint16_t)(randomNum() * 41.f)]);
-				else
-					f1 = (float)(scale2[(uint16_t)(randomNum() * 46.f)]);
+			if 	(knobValue < 5)
+				f1 = (float)(scale7[(uint16_t)(randomNum() * 10.f)]);
+			else if (knobValue < 10)
+				f1 = (float)(scale8[(uint16_t)(randomNum() * 11.f)]);
+			else if (knobValue < 15)
+				f1 = (float)(scale4[(uint16_t)(randomNum() * 11.f)]);
+			else if (knobValue < 20)
+				f1 = (float)(scale3[(uint16_t)(randomNum() * 17.f)]);
+			else if (knobValue < 30)
+				f1 = (float)(scale1[(uint16_t)(randomNum() * 38.f)]);
+			else if (knobValue < 40)
+				f1 = (float)(scale5[(uint16_t)(randomNum() * 41.f)]);
+			else if (knobValue < 50)
+				f1 = (float)(scale6[(uint16_t)(randomNum() * 41.f)]);
+			else
+				f1 = (float)(scale2[(uint16_t)(randomNum() * 46.f)]);
 			/*}
 			else	// manual note generation
 				f1 = (float) (MIDINOTES_FREQ_LUT[knobValue + 45]);*/

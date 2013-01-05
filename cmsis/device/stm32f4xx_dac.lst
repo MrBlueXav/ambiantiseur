@@ -1,0 +1,4100 @@
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 3	@ Tag_ABI_HardFP_use
+   4              		.eabi_attribute 28, 1	@ Tag_ABI_VFP_args
+   5              		.fpu fpv4-sp-d16
+   6              		.eabi_attribute 20, 1	@ Tag_ABI_FP_denormal
+   7              		.eabi_attribute 21, 1	@ Tag_ABI_FP_exceptions
+   8              		.eabi_attribute 23, 3	@ Tag_ABI_FP_number_model
+   9              		.eabi_attribute 24, 1	@ Tag_ABI_align8_needed
+  10              		.eabi_attribute 25, 1	@ Tag_ABI_align8_preserved
+  11              		.eabi_attribute 26, 1	@ Tag_ABI_enum_size
+  12              		.eabi_attribute 30, 2	@ Tag_ABI_optimization_goals
+  13              		.eabi_attribute 34, 1	@ Tag_CPU_unaligned_access
+  14              		.eabi_attribute 18, 4	@ Tag_ABI_PCS_wchar_t
+  15              		.file	"stm32f4xx_dac.c"
+  16              	@ GNU C (GNU Tools for ARM Embedded Processors) version 4.7.3 20121207 (release) [ARM/embedded-4_7-
+  17              	@	compiled by GNU C version 4.2.1-sjlj (mingw32-2), GMP version 4.3.2, MPFR version 2.4.2, MPC vers
+  18              	@ GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+  19              	@ options passed:  -I . -I ./inc -I ./cmsis/core -I ./cmsis/device
+  20              	@ -imultilib armv7e-m/fpu
+  21              	@ -iprefix c:\gnutoolsarmembedded\4.7-2012q4\bin\../lib/gcc/arm-none-eabi/4.7.3/
+  22              	@ -isysroot c:\gnutoolsarmembedded\4.7-2012q4\bin\../arm-none-eabi
+  23              	@ -MD cmsis/device/stm32f4xx_dac.d -MF .dep/stm32f4xx_dac.o.d -MP
+  24              	@ -MQ cmsis/device/stm32f4xx_dac.o -D__USES_INITFINI__ -D __FPU_USED=1
+  25              	@ -D __arm__ -D __ASSEMBLY__ -D USE_STDPERIPH_DRIVER -D STM32F4XX
+  26              	@ -D HSE_VALUE=8000000 -D __FPU_PRESENT=1 -D STM32F407VG
+  27              	@ -D RUN_FROM_FLASH=1 cmsis/device/stm32f4xx_dac.c -mthumb -mcpu=cortex-m4
+  28              	@ -mfloat-abi=hard -mfpu=fpv4-sp-d16
+  29              	@ -auxbase-strip cmsis/device/stm32f4xx_dac.o -gdwarf-2 -O2 -Wall
+  30              	@ -Wstrict-prototypes -fverbose-asm -ffunction-sections -fdata-sections
+  31              	@ options enabled:  -fauto-inc-dec -fbranch-count-reg -fcaller-saves
+  32              	@ -fcombine-stack-adjustments -fcommon -fcompare-elim -fcprop-registers
+  33              	@ -fcrossjumping -fcse-follow-jumps -fdata-sections -fdebug-types-section
+  34              	@ -fdefer-pop -fdelete-null-pointer-checks -fdevirtualize -fdwarf2-cfi-asm
+  35              	@ -fearly-inlining -feliminate-unused-debug-types -fexpensive-optimizations
+  36              	@ -fforward-propagate -ffunction-cse -ffunction-sections -fgcse -fgcse-lm
+  37              	@ -fgnu-runtime -fguess-branch-probability -fident -fif-conversion
+  38              	@ -fif-conversion2 -findirect-inlining -finline -finline-atomics
+  39              	@ -finline-functions-called-once -finline-small-functions -fipa-cp
+  40              	@ -fipa-profile -fipa-pure-const -fipa-reference -fipa-sra
+  41              	@ -fira-share-save-slots -fira-share-spill-slots -fivopts
+  42              	@ -fkeep-static-consts -fleading-underscore -fmath-errno -fmerge-constants
+  43              	@ -fmerge-debug-strings -fmove-loop-invariants -fomit-frame-pointer
+  44              	@ -foptimize-register-move -foptimize-sibling-calls -foptimize-strlen
+  45              	@ -fpartial-inlining -fpeephole -fpeephole2 -fprefetch-loop-arrays
+  46              	@ -freg-struct-return -fregmove -frename-registers -freorder-blocks
+  47              	@ -freorder-functions -frerun-cse-after-loop
+  48              	@ -fsched-critical-path-heuristic -fsched-dep-count-heuristic
+  49              	@ -fsched-group-heuristic -fsched-interblock -fsched-last-insn-heuristic
+  50              	@ -fsched-rank-heuristic -fsched-spec -fsched-spec-insn-heuristic
+  51              	@ -fsched-stalled-insns-dep -fschedule-insns -fschedule-insns2
+  52              	@ -fsection-anchors -fshow-column -fshrink-wrap -fsigned-zeros
+  53              	@ -fsplit-ivs-in-unroller -fsplit-wide-types -fstrict-aliasing
+  54              	@ -fstrict-overflow -fstrict-volatile-bitfields -fthread-jumps
+  55              	@ -ftoplevel-reorder -ftrapping-math -ftree-bit-ccp -ftree-builtin-call-dce
+  56              	@ -ftree-ccp -ftree-ch -ftree-copy-prop -ftree-copyrename -ftree-cselim
+  57              	@ -ftree-dce -ftree-dominator-opts -ftree-dse -ftree-forwprop -ftree-fre
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 2
+
+
+  58              	@ -ftree-loop-if-convert -ftree-loop-im -ftree-loop-ivcanon
+  59              	@ -ftree-loop-optimize -ftree-parallelize-loops= -ftree-phiprop -ftree-pre
+  60              	@ -ftree-pta -ftree-reassoc -ftree-scev-cprop -ftree-sink
+  61              	@ -ftree-slp-vectorize -ftree-sra -ftree-switch-conversion
+  62              	@ -ftree-tail-merge -ftree-ter -ftree-vect-loop-version -ftree-vrp
+  63              	@ -funit-at-a-time -funroll-loops -fvar-tracking -fvar-tracking-assignments
+  64              	@ -fverbose-asm -fweb -fzero-initialized-in-bss -mlittle-endian
+  65              	@ -msched-prolog -mthumb -munaligned-access -mvectorize-with-neon-quad
+  66              	
+  67              		.text
+  68              	.Ltext0:
+  69              		.cfi_sections	.debug_frame
+  70              		.section	.text.DAC_DeInit,"ax",%progbits
+  71              		.align	2
+  72              		.global	DAC_DeInit
+  73              		.thumb
+  74              		.thumb_func
+  75              		.type	DAC_DeInit, %function
+  76              	DAC_DeInit:
+  77              	.LFB110:
+  78              		.file 1 "cmsis/device/stm32f4xx_dac.c"
+   1:cmsis/device/stm32f4xx_dac.c **** /**
+   2:cmsis/device/stm32f4xx_dac.c ****   ******************************************************************************
+   3:cmsis/device/stm32f4xx_dac.c ****   * @file    stm32f4xx_dac.c
+   4:cmsis/device/stm32f4xx_dac.c ****   * @author  MCD Application Team
+   5:cmsis/device/stm32f4xx_dac.c ****   * @version V1.0.0
+   6:cmsis/device/stm32f4xx_dac.c ****   * @date    30-September-2011
+   7:cmsis/device/stm32f4xx_dac.c ****    * @brief   This file provides firmware functions to manage the following 
+   8:cmsis/device/stm32f4xx_dac.c ****   *          functionalities of the Digital-to-Analog Converter (DAC) peripheral: 
+   9:cmsis/device/stm32f4xx_dac.c ****   *           - DAC channels configuration: trigger, output buffer, data format
+  10:cmsis/device/stm32f4xx_dac.c ****   *           - DMA management      
+  11:cmsis/device/stm32f4xx_dac.c ****   *           - Interrupts and flags management
+  12:cmsis/device/stm32f4xx_dac.c ****   *
+  13:cmsis/device/stm32f4xx_dac.c ****   *  @verbatim
+  14:cmsis/device/stm32f4xx_dac.c ****   *    
+  15:cmsis/device/stm32f4xx_dac.c ****   *          ===================================================================
+  16:cmsis/device/stm32f4xx_dac.c ****   *                             DAC Peripheral features
+  17:cmsis/device/stm32f4xx_dac.c ****   *          ===================================================================
+  18:cmsis/device/stm32f4xx_dac.c ****   *          
+  19:cmsis/device/stm32f4xx_dac.c ****   *          DAC Channels
+  20:cmsis/device/stm32f4xx_dac.c ****   *          =============  
+  21:cmsis/device/stm32f4xx_dac.c ****   *          The device integrates two 12-bit Digital Analog Converters that can 
+  22:cmsis/device/stm32f4xx_dac.c ****   *          be used independently or simultaneously (dual mode):
+  23:cmsis/device/stm32f4xx_dac.c ****   *            1- DAC channel1 with DAC_OUT1 (PA4) as output
+  24:cmsis/device/stm32f4xx_dac.c ****   *            1- DAC channel2 with DAC_OUT2 (PA5) as output
+  25:cmsis/device/stm32f4xx_dac.c ****   *
+  26:cmsis/device/stm32f4xx_dac.c ****   *          DAC Triggers
+  27:cmsis/device/stm32f4xx_dac.c ****   *          =============
+  28:cmsis/device/stm32f4xx_dac.c ****   *          Digital to Analog conversion can be non-triggered using DAC_Trigger_None
+  29:cmsis/device/stm32f4xx_dac.c ****   *          and DAC_OUT1/DAC_OUT2 is available once writing to DHRx register 
+  30:cmsis/device/stm32f4xx_dac.c ****   *          using DAC_SetChannel1Data() / DAC_SetChannel2Data() functions.
+  31:cmsis/device/stm32f4xx_dac.c ****   *   
+  32:cmsis/device/stm32f4xx_dac.c ****   *         Digital to Analog conversion can be triggered by:
+  33:cmsis/device/stm32f4xx_dac.c ****   *             1- External event: EXTI Line 9 (any GPIOx_Pin9) using DAC_Trigger_Ext_IT9.
+  34:cmsis/device/stm32f4xx_dac.c ****   *                The used pin (GPIOx_Pin9) must be configured in input mode.
+  35:cmsis/device/stm32f4xx_dac.c ****   *
+  36:cmsis/device/stm32f4xx_dac.c ****   *             2- Timers TRGO: TIM2, TIM4, TIM5, TIM6, TIM7 and TIM8 
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 3
+
+
+  37:cmsis/device/stm32f4xx_dac.c ****   *                (DAC_Trigger_T2_TRGO, DAC_Trigger_T4_TRGO...)
+  38:cmsis/device/stm32f4xx_dac.c ****   *                The timer TRGO event should be selected using TIM_SelectOutputTrigger()
+  39:cmsis/device/stm32f4xx_dac.c ****   *
+  40:cmsis/device/stm32f4xx_dac.c ****   *             3- Software using DAC_Trigger_Software
+  41:cmsis/device/stm32f4xx_dac.c ****   *
+  42:cmsis/device/stm32f4xx_dac.c ****   *          DAC Buffer mode feature
+  43:cmsis/device/stm32f4xx_dac.c ****   *          ========================  
+  44:cmsis/device/stm32f4xx_dac.c ****   *          Each DAC channel integrates an output buffer that can be used to 
+  45:cmsis/device/stm32f4xx_dac.c ****   *          reduce the output impedance, and to drive external loads directly
+  46:cmsis/device/stm32f4xx_dac.c ****   *          without having to add an external operational amplifier.
+  47:cmsis/device/stm32f4xx_dac.c ****   *          To enable, the output buffer use  
+  48:cmsis/device/stm32f4xx_dac.c ****   *              DAC_InitStructure.DAC_OutputBuffer = DAC_OutputBuffer_Enable;
+  49:cmsis/device/stm32f4xx_dac.c ****   *          
+  50:cmsis/device/stm32f4xx_dac.c ****   *          Refer to the device datasheet for more details about output 
+  51:cmsis/device/stm32f4xx_dac.c ****   *          impedance value with and without output buffer.
+  52:cmsis/device/stm32f4xx_dac.c ****   *          
+  53:cmsis/device/stm32f4xx_dac.c ****   *          DAC wave generation feature
+  54:cmsis/device/stm32f4xx_dac.c ****   *          =============================      
+  55:cmsis/device/stm32f4xx_dac.c ****   *          Both DAC channels can be used to generate
+  56:cmsis/device/stm32f4xx_dac.c ****   *             1- Noise wave using DAC_WaveGeneration_Noise
+  57:cmsis/device/stm32f4xx_dac.c ****   *             2- Triangle wave using DAC_WaveGeneration_Triangle
+  58:cmsis/device/stm32f4xx_dac.c ****   *        
+  59:cmsis/device/stm32f4xx_dac.c ****   *          Wave generation can be disabled using DAC_WaveGeneration_None
+  60:cmsis/device/stm32f4xx_dac.c ****   *
+  61:cmsis/device/stm32f4xx_dac.c ****   *          DAC data format
+  62:cmsis/device/stm32f4xx_dac.c ****   *          ================   
+  63:cmsis/device/stm32f4xx_dac.c ****   *          The DAC data format can be:
+  64:cmsis/device/stm32f4xx_dac.c ****   *             1- 8-bit right alignment using DAC_Align_8b_R
+  65:cmsis/device/stm32f4xx_dac.c ****   *             2- 12-bit left alignment using DAC_Align_12b_L
+  66:cmsis/device/stm32f4xx_dac.c ****   *             3- 12-bit right alignment using DAC_Align_12b_R
+  67:cmsis/device/stm32f4xx_dac.c ****   *
+  68:cmsis/device/stm32f4xx_dac.c ****   *          DAC data value to voltage correspondence  
+  69:cmsis/device/stm32f4xx_dac.c ****   *          ========================================  
+  70:cmsis/device/stm32f4xx_dac.c ****   *          The analog output voltage on each DAC channel pin is determined
+  71:cmsis/device/stm32f4xx_dac.c ****   *          by the following equation: 
+  72:cmsis/device/stm32f4xx_dac.c ****   *          DAC_OUTx = VREF+ * DOR / 4095
+  73:cmsis/device/stm32f4xx_dac.c ****   *          with  DOR is the Data Output Register
+  74:cmsis/device/stm32f4xx_dac.c ****   *                VEF+ is the input voltage reference (refer to the device datasheet)
+  75:cmsis/device/stm32f4xx_dac.c ****   *          e.g. To set DAC_OUT1 to 0.7V, use
+  76:cmsis/device/stm32f4xx_dac.c ****   *            DAC_SetChannel1Data(DAC_Align_12b_R, 868);
+  77:cmsis/device/stm32f4xx_dac.c ****   *          Assuming that VREF+ = 3.3V, DAC_OUT1 = (3.3 * 868) / 4095 = 0.7V
+  78:cmsis/device/stm32f4xx_dac.c ****   *
+  79:cmsis/device/stm32f4xx_dac.c ****   *          DMA requests 
+  80:cmsis/device/stm32f4xx_dac.c ****   *          =============    
+  81:cmsis/device/stm32f4xx_dac.c ****   *          A DMA1 request can be generated when an external trigger (but not
+  82:cmsis/device/stm32f4xx_dac.c ****   *          a software trigger) occurs if DMA1 requests are enabled using
+  83:cmsis/device/stm32f4xx_dac.c ****   *          DAC_DMACmd()
+  84:cmsis/device/stm32f4xx_dac.c ****   *          DMA1 requests are mapped as following:
+  85:cmsis/device/stm32f4xx_dac.c ****   *             1- DAC channel1 : mapped on DMA1 Stream5 channel7 which must be 
+  86:cmsis/device/stm32f4xx_dac.c ****   *                               already configured
+  87:cmsis/device/stm32f4xx_dac.c ****   *             2- DAC channel2 : mapped on DMA1 Stream6 channel7 which must be 
+  88:cmsis/device/stm32f4xx_dac.c ****   *                               already configured
+  89:cmsis/device/stm32f4xx_dac.c ****   *
+  90:cmsis/device/stm32f4xx_dac.c ****   *          ===================================================================      
+  91:cmsis/device/stm32f4xx_dac.c ****   *                              How to use this driver 
+  92:cmsis/device/stm32f4xx_dac.c ****   *          ===================================================================          
+  93:cmsis/device/stm32f4xx_dac.c ****   *            - DAC APB clock must be enabled to get write access to DAC
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 4
+
+
+  94:cmsis/device/stm32f4xx_dac.c ****   *              registers using
+  95:cmsis/device/stm32f4xx_dac.c ****   *              RCC_APB1PeriphClockCmd(RCC_APB1Periph_DAC, ENABLE)
+  96:cmsis/device/stm32f4xx_dac.c ****   *            - Configure DAC_OUTx (DAC_OUT1: PA4, DAC_OUT2: PA5) in analog mode.
+  97:cmsis/device/stm32f4xx_dac.c ****   *            - Configure the DAC channel using DAC_Init() function
+  98:cmsis/device/stm32f4xx_dac.c ****   *            - Enable the DAC channel using DAC_Cmd() function
+  99:cmsis/device/stm32f4xx_dac.c ****   * 
+ 100:cmsis/device/stm32f4xx_dac.c ****   *  @endverbatim
+ 101:cmsis/device/stm32f4xx_dac.c ****   *    
+ 102:cmsis/device/stm32f4xx_dac.c ****   ******************************************************************************
+ 103:cmsis/device/stm32f4xx_dac.c ****   * @attention
+ 104:cmsis/device/stm32f4xx_dac.c ****   *
+ 105:cmsis/device/stm32f4xx_dac.c ****   * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
+ 106:cmsis/device/stm32f4xx_dac.c ****   * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE
+ 107:cmsis/device/stm32f4xx_dac.c ****   * TIME. AS A RESULT, STMICROELECTRONICS SHALL NOT BE HELD LIABLE FOR ANY
+ 108:cmsis/device/stm32f4xx_dac.c ****   * DIRECT, INDIRECT OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING
+ 109:cmsis/device/stm32f4xx_dac.c ****   * FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE
+ 110:cmsis/device/stm32f4xx_dac.c ****   * CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+ 111:cmsis/device/stm32f4xx_dac.c ****   *
+ 112:cmsis/device/stm32f4xx_dac.c ****   * <h2><center>&copy; COPYRIGHT 2011 STMicroelectronics</center></h2>
+ 113:cmsis/device/stm32f4xx_dac.c ****   ******************************************************************************  
+ 114:cmsis/device/stm32f4xx_dac.c ****   */ 
+ 115:cmsis/device/stm32f4xx_dac.c **** 
+ 116:cmsis/device/stm32f4xx_dac.c **** 
+ 117:cmsis/device/stm32f4xx_dac.c **** /* Includes ------------------------------------------------------------------*/
+ 118:cmsis/device/stm32f4xx_dac.c **** #include "stm32f4xx_dac.h"
+ 119:cmsis/device/stm32f4xx_dac.c **** #include "stm32f4xx_rcc.h"
+ 120:cmsis/device/stm32f4xx_dac.c **** 
+ 121:cmsis/device/stm32f4xx_dac.c **** /** @addtogroup STM32F4xx_StdPeriph_Driver
+ 122:cmsis/device/stm32f4xx_dac.c ****   * @{
+ 123:cmsis/device/stm32f4xx_dac.c ****   */
+ 124:cmsis/device/stm32f4xx_dac.c **** 
+ 125:cmsis/device/stm32f4xx_dac.c **** /** @defgroup DAC 
+ 126:cmsis/device/stm32f4xx_dac.c ****   * @brief DAC driver modules
+ 127:cmsis/device/stm32f4xx_dac.c ****   * @{
+ 128:cmsis/device/stm32f4xx_dac.c ****   */ 
+ 129:cmsis/device/stm32f4xx_dac.c **** 
+ 130:cmsis/device/stm32f4xx_dac.c **** /* Private typedef -----------------------------------------------------------*/
+ 131:cmsis/device/stm32f4xx_dac.c **** /* Private define ------------------------------------------------------------*/
+ 132:cmsis/device/stm32f4xx_dac.c **** 
+ 133:cmsis/device/stm32f4xx_dac.c **** /* CR register Mask */
+ 134:cmsis/device/stm32f4xx_dac.c **** #define CR_CLEAR_MASK              ((uint32_t)0x00000FFE)
+ 135:cmsis/device/stm32f4xx_dac.c **** 
+ 136:cmsis/device/stm32f4xx_dac.c **** /* DAC Dual Channels SWTRIG masks */
+ 137:cmsis/device/stm32f4xx_dac.c **** #define DUAL_SWTRIG_SET            ((uint32_t)0x00000003)
+ 138:cmsis/device/stm32f4xx_dac.c **** #define DUAL_SWTRIG_RESET          ((uint32_t)0xFFFFFFFC)
+ 139:cmsis/device/stm32f4xx_dac.c **** 
+ 140:cmsis/device/stm32f4xx_dac.c **** /* DHR registers offsets */
+ 141:cmsis/device/stm32f4xx_dac.c **** #define DHR12R1_OFFSET             ((uint32_t)0x00000008)
+ 142:cmsis/device/stm32f4xx_dac.c **** #define DHR12R2_OFFSET             ((uint32_t)0x00000014)
+ 143:cmsis/device/stm32f4xx_dac.c **** #define DHR12RD_OFFSET             ((uint32_t)0x00000020)
+ 144:cmsis/device/stm32f4xx_dac.c **** 
+ 145:cmsis/device/stm32f4xx_dac.c **** /* DOR register offset */
+ 146:cmsis/device/stm32f4xx_dac.c **** #define DOR_OFFSET                 ((uint32_t)0x0000002C)
+ 147:cmsis/device/stm32f4xx_dac.c **** 
+ 148:cmsis/device/stm32f4xx_dac.c **** /* Private macro -------------------------------------------------------------*/
+ 149:cmsis/device/stm32f4xx_dac.c **** /* Private variables ---------------------------------------------------------*/
+ 150:cmsis/device/stm32f4xx_dac.c **** /* Private function prototypes -----------------------------------------------*/
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 5
+
+
+ 151:cmsis/device/stm32f4xx_dac.c **** /* Private functions ---------------------------------------------------------*/
+ 152:cmsis/device/stm32f4xx_dac.c **** 
+ 153:cmsis/device/stm32f4xx_dac.c **** /** @defgroup DAC_Private_Functions
+ 154:cmsis/device/stm32f4xx_dac.c ****   * @{
+ 155:cmsis/device/stm32f4xx_dac.c ****   */
+ 156:cmsis/device/stm32f4xx_dac.c **** 
+ 157:cmsis/device/stm32f4xx_dac.c **** /** @defgroup DAC_Group1 DAC channels configuration
+ 158:cmsis/device/stm32f4xx_dac.c ****  *  @brief   DAC channels configuration: trigger, output buffer, data format 
+ 159:cmsis/device/stm32f4xx_dac.c ****  *
+ 160:cmsis/device/stm32f4xx_dac.c **** @verbatim   
+ 161:cmsis/device/stm32f4xx_dac.c ****  ===============================================================================
+ 162:cmsis/device/stm32f4xx_dac.c ****           DAC channels configuration: trigger, output buffer, data format
+ 163:cmsis/device/stm32f4xx_dac.c ****  ===============================================================================  
+ 164:cmsis/device/stm32f4xx_dac.c **** 
+ 165:cmsis/device/stm32f4xx_dac.c **** @endverbatim
+ 166:cmsis/device/stm32f4xx_dac.c ****   * @{
+ 167:cmsis/device/stm32f4xx_dac.c ****   */
+ 168:cmsis/device/stm32f4xx_dac.c **** 
+ 169:cmsis/device/stm32f4xx_dac.c **** /**
+ 170:cmsis/device/stm32f4xx_dac.c ****   * @brief  Deinitializes the DAC peripheral registers to their default reset values.
+ 171:cmsis/device/stm32f4xx_dac.c ****   * @param  None
+ 172:cmsis/device/stm32f4xx_dac.c ****   * @retval None
+ 173:cmsis/device/stm32f4xx_dac.c ****   */
+ 174:cmsis/device/stm32f4xx_dac.c **** void DAC_DeInit(void)
+ 175:cmsis/device/stm32f4xx_dac.c **** {
+  79              		.loc 1 175 0
+  80              		.cfi_startproc
+  81              		@ args = 0, pretend = 0, frame = 0
+  82              		@ frame_needed = 0, uses_anonymous_args = 0
+  83 0000 08B5     		push	{r3, lr}	@
+  84              	.LCFI0:
+  85              		.cfi_def_cfa_offset 8
+  86              		.cfi_offset 3, -8
+  87              		.cfi_offset 14, -4
+ 176:cmsis/device/stm32f4xx_dac.c ****   /* Enable DAC reset state */
+ 177:cmsis/device/stm32f4xx_dac.c ****   RCC_APB1PeriphResetCmd(RCC_APB1Periph_DAC, ENABLE);
+  88              		.loc 1 177 0
+  89 0002 0121     		movs	r1, #1	@,
+  90 0004 4FF00050 		mov	r0, #536870912	@,
+  91 0008 FFF7FEFF 		bl	RCC_APB1PeriphResetCmd	@
+  92              	.LVL0:
+ 178:cmsis/device/stm32f4xx_dac.c ****   /* Release DAC from reset state */
+ 179:cmsis/device/stm32f4xx_dac.c ****   RCC_APB1PeriphResetCmd(RCC_APB1Periph_DAC, DISABLE);
+  93              		.loc 1 179 0
+  94 000c 4FF00050 		mov	r0, #536870912	@,
+  95 0010 0021     		movs	r1, #0	@,
+ 180:cmsis/device/stm32f4xx_dac.c **** }
+  96              		.loc 1 180 0
+  97 0012 BDE80840 		pop	{r3, lr}	@
+ 179:cmsis/device/stm32f4xx_dac.c ****   RCC_APB1PeriphResetCmd(RCC_APB1Periph_DAC, DISABLE);
+  98              		.loc 1 179 0
+  99 0016 FFF7FEBF 		b	RCC_APB1PeriphResetCmd	@
+ 100              	.LVL1:
+ 101              		.cfi_endproc
+ 102              	.LFE110:
+ 103              		.size	DAC_DeInit, .-DAC_DeInit
+ 104 001a 00BF     		.section	.text.DAC_Init,"ax",%progbits
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 6
+
+
+ 105              		.align	2
+ 106              		.global	DAC_Init
+ 107              		.thumb
+ 108              		.thumb_func
+ 109              		.type	DAC_Init, %function
+ 110              	DAC_Init:
+ 111              	.LFB111:
+ 181:cmsis/device/stm32f4xx_dac.c **** 
+ 182:cmsis/device/stm32f4xx_dac.c **** /**
+ 183:cmsis/device/stm32f4xx_dac.c ****   * @brief  Initializes the DAC peripheral according to the specified parameters
+ 184:cmsis/device/stm32f4xx_dac.c ****   *         in the DAC_InitStruct.
+ 185:cmsis/device/stm32f4xx_dac.c ****   * @param  DAC_Channel: the selected DAC channel. 
+ 186:cmsis/device/stm32f4xx_dac.c ****   *          This parameter can be one of the following values:
+ 187:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_Channel_1: DAC Channel1 selected
+ 188:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_Channel_2: DAC Channel2 selected
+ 189:cmsis/device/stm32f4xx_dac.c ****   * @param  DAC_InitStruct: pointer to a DAC_InitTypeDef structure that contains
+ 190:cmsis/device/stm32f4xx_dac.c ****   *         the configuration information for the  specified DAC channel.
+ 191:cmsis/device/stm32f4xx_dac.c ****   * @retval None
+ 192:cmsis/device/stm32f4xx_dac.c ****   */
+ 193:cmsis/device/stm32f4xx_dac.c **** void DAC_Init(uint32_t DAC_Channel, DAC_InitTypeDef* DAC_InitStruct)
+ 194:cmsis/device/stm32f4xx_dac.c **** {
+ 112              		.loc 1 194 0
+ 113              		.cfi_startproc
+ 114              		@ args = 0, pretend = 0, frame = 0
+ 115              		@ frame_needed = 0, uses_anonymous_args = 0
+ 116              		@ link register save eliminated.
+ 117              	.LVL2:
+ 118 0000 70B4     		push	{r4, r5, r6}	@
+ 119              	.LCFI1:
+ 120              		.cfi_def_cfa_offset 12
+ 121              		.cfi_offset 4, -12
+ 122              		.cfi_offset 5, -8
+ 123              		.cfi_offset 6, -4
+ 195:cmsis/device/stm32f4xx_dac.c ****   uint32_t tmpreg1 = 0, tmpreg2 = 0;
+ 196:cmsis/device/stm32f4xx_dac.c **** 
+ 197:cmsis/device/stm32f4xx_dac.c ****   /* Check the DAC parameters */
+ 198:cmsis/device/stm32f4xx_dac.c ****   assert_param(IS_DAC_TRIGGER(DAC_InitStruct->DAC_Trigger));
+ 199:cmsis/device/stm32f4xx_dac.c ****   assert_param(IS_DAC_GENERATE_WAVE(DAC_InitStruct->DAC_WaveGeneration));
+ 200:cmsis/device/stm32f4xx_dac.c ****   assert_param(IS_DAC_LFSR_UNMASK_TRIANGLE_AMPLITUDE(DAC_InitStruct->DAC_LFSRUnmask_TriangleAmplitu
+ 201:cmsis/device/stm32f4xx_dac.c ****   assert_param(IS_DAC_OUTPUT_BUFFER_STATE(DAC_InitStruct->DAC_OutputBuffer));
+ 202:cmsis/device/stm32f4xx_dac.c **** 
+ 203:cmsis/device/stm32f4xx_dac.c **** /*---------------------------- DAC CR Configuration --------------------------*/
+ 204:cmsis/device/stm32f4xx_dac.c ****   /* Get the DAC CR value */
+ 205:cmsis/device/stm32f4xx_dac.c ****   tmpreg1 = DAC->CR;
+ 206:cmsis/device/stm32f4xx_dac.c ****   /* Clear BOFFx, TENx, TSELx, WAVEx and MAMPx bits */
+ 207:cmsis/device/stm32f4xx_dac.c ****   tmpreg1 &= ~(CR_CLEAR_MASK << DAC_Channel);
+ 208:cmsis/device/stm32f4xx_dac.c ****   /* Configure for the selected DAC channel: buffer output, trigger, 
+ 209:cmsis/device/stm32f4xx_dac.c ****      wave generation, mask/amplitude for wave generation */
+ 210:cmsis/device/stm32f4xx_dac.c ****   /* Set TSELx and TENx bits according to DAC_Trigger value */
+ 211:cmsis/device/stm32f4xx_dac.c ****   /* Set WAVEx bits according to DAC_WaveGeneration value */
+ 212:cmsis/device/stm32f4xx_dac.c ****   /* Set MAMPx bits according to DAC_LFSRUnmask_TriangleAmplitude value */ 
+ 213:cmsis/device/stm32f4xx_dac.c ****   /* Set BOFFx bit according to DAC_OutputBuffer value */   
+ 214:cmsis/device/stm32f4xx_dac.c ****   tmpreg2 = (DAC_InitStruct->DAC_Trigger | DAC_InitStruct->DAC_WaveGeneration |
+ 124              		.loc 1 214 0
+ 125 0002 91E86000 		ldmia	r1, {r5, r6}	@ DAC_InitStruct,,
+ 205:cmsis/device/stm32f4xx_dac.c ****   tmpreg1 = DAC->CR;
+ 126              		.loc 1 205 0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 7
+
+
+ 127 0006 4FF4E843 		mov	r3, #29696	@ tmp150,
+ 128              		.loc 1 214 0
+ 129 000a 8C68     		ldr	r4, [r1, #8]	@ DAC_InitStruct_10(D)->DAC_LFSRUnmask_TriangleAmplitude, DAC_InitStruct_10(D)->D
+ 130 000c CA68     		ldr	r2, [r1, #12]	@ DAC_InitStruct_10(D)->DAC_OutputBuffer, DAC_InitStruct_10(D)->DAC_OutputBuffer
+ 205:cmsis/device/stm32f4xx_dac.c ****   tmpreg1 = DAC->CR;
+ 131              		.loc 1 205 0
+ 132 000e C4F20003 		movt	r3, 16384	@ tmp150,
+ 133              		.loc 1 214 0
+ 134 0012 46EA0501 		orr	r1, r6, r5	@ tmp154, DAC_InitStruct_10(D)->DAC_WaveGeneration, DAC_InitStruct_10(D)->DAC_Trigg
+ 135              	.LVL3:
+ 136 0016 0C43     		orrs	r4, r4, r1	@, tmp157, DAC_InitStruct_10(D)->DAC_LFSRUnmask_TriangleAmplitude, tmp154
+ 205:cmsis/device/stm32f4xx_dac.c ****   tmpreg1 = DAC->CR;
+ 137              		.loc 1 205 0
+ 138 0018 1E68     		ldr	r6, [r3, #0]	@ tmpreg1, MEM[(struct DAC_TypeDef *)1073771520B].CR
+ 139              	.LVL4:
+ 207:cmsis/device/stm32f4xx_dac.c ****   tmpreg1 &= ~(CR_CLEAR_MASK << DAC_Channel);
+ 140              		.loc 1 207 0
+ 141 001a 40F6FE75 		movw	r5, #4094	@ tmp152,
+ 142 001e 05FA00F5 		lsl	r5, r5, r0	@ tmp151, tmp152, DAC_Channel
+ 143              		.loc 1 214 0
+ 144 0022 2243     		orrs	r2, r2, r4	@, tmp159, DAC_InitStruct_10(D)->DAC_OutputBuffer, tmp157
+ 207:cmsis/device/stm32f4xx_dac.c ****   tmpreg1 &= ~(CR_CLEAR_MASK << DAC_Channel);
+ 145              		.loc 1 207 0
+ 146 0024 26EA0505 		bic	r5, r6, r5	@ tmpreg1, tmpreg1, tmp151
+ 147              	.LVL5:
+ 215:cmsis/device/stm32f4xx_dac.c ****              DAC_InitStruct->DAC_LFSRUnmask_TriangleAmplitude | \
+ 216:cmsis/device/stm32f4xx_dac.c ****              DAC_InitStruct->DAC_OutputBuffer);
+ 217:cmsis/device/stm32f4xx_dac.c ****   /* Calculate CR register value depending on DAC_Channel */
+ 218:cmsis/device/stm32f4xx_dac.c ****   tmpreg1 |= tmpreg2 << DAC_Channel;
+ 148              		.loc 1 218 0
+ 149 0028 02FA00F0 		lsl	r0, r2, r0	@ tmp161, tmp159, DAC_Channel
+ 150              	.LVL6:
+ 151 002c 45EA0001 		orr	r1, r5, r0	@ tmpreg1, tmpreg1, tmp161
+ 152              	.LVL7:
+ 219:cmsis/device/stm32f4xx_dac.c ****   /* Write to DAC CR */
+ 220:cmsis/device/stm32f4xx_dac.c ****   DAC->CR = tmpreg1;
+ 153              		.loc 1 220 0
+ 154 0030 1960     		str	r1, [r3, #0]	@ tmpreg1, MEM[(struct DAC_TypeDef *)1073771520B].CR
+ 221:cmsis/device/stm32f4xx_dac.c **** }
+ 155              		.loc 1 221 0
+ 156 0032 70BC     		pop	{r4, r5, r6}
+ 157 0034 7047     		bx	lr
+ 158              		.cfi_endproc
+ 159              	.LFE111:
+ 160              		.size	DAC_Init, .-DAC_Init
+ 161 0036 00BF     		.section	.text.DAC_StructInit,"ax",%progbits
+ 162              		.align	2
+ 163              		.global	DAC_StructInit
+ 164              		.thumb
+ 165              		.thumb_func
+ 166              		.type	DAC_StructInit, %function
+ 167              	DAC_StructInit:
+ 168              	.LFB112:
+ 222:cmsis/device/stm32f4xx_dac.c **** 
+ 223:cmsis/device/stm32f4xx_dac.c **** /**
+ 224:cmsis/device/stm32f4xx_dac.c ****   * @brief  Fills each DAC_InitStruct member with its default value.
+ 225:cmsis/device/stm32f4xx_dac.c ****   * @param  DAC_InitStruct: pointer to a DAC_InitTypeDef structure which will 
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 8
+
+
+ 226:cmsis/device/stm32f4xx_dac.c ****   *         be initialized.
+ 227:cmsis/device/stm32f4xx_dac.c ****   * @retval None
+ 228:cmsis/device/stm32f4xx_dac.c ****   */
+ 229:cmsis/device/stm32f4xx_dac.c **** void DAC_StructInit(DAC_InitTypeDef* DAC_InitStruct)
+ 230:cmsis/device/stm32f4xx_dac.c **** {
+ 169              		.loc 1 230 0
+ 170              		.cfi_startproc
+ 171              		@ args = 0, pretend = 0, frame = 0
+ 172              		@ frame_needed = 0, uses_anonymous_args = 0
+ 173              		@ link register save eliminated.
+ 174              	.LVL8:
+ 231:cmsis/device/stm32f4xx_dac.c **** /*--------------- Reset DAC init structure parameters values -----------------*/
+ 232:cmsis/device/stm32f4xx_dac.c ****   /* Initialize the DAC_Trigger member */
+ 233:cmsis/device/stm32f4xx_dac.c ****   DAC_InitStruct->DAC_Trigger = DAC_Trigger_None;
+ 175              		.loc 1 233 0
+ 176 0000 0023     		movs	r3, #0	@ tmp135,
+ 177 0002 0360     		str	r3, [r0, #0]	@ tmp135, DAC_InitStruct_1(D)->DAC_Trigger
+ 234:cmsis/device/stm32f4xx_dac.c ****   /* Initialize the DAC_WaveGeneration member */
+ 235:cmsis/device/stm32f4xx_dac.c ****   DAC_InitStruct->DAC_WaveGeneration = DAC_WaveGeneration_None;
+ 178              		.loc 1 235 0
+ 179 0004 4360     		str	r3, [r0, #4]	@ tmp135, DAC_InitStruct_1(D)->DAC_WaveGeneration
+ 236:cmsis/device/stm32f4xx_dac.c ****   /* Initialize the DAC_LFSRUnmask_TriangleAmplitude member */
+ 237:cmsis/device/stm32f4xx_dac.c ****   DAC_InitStruct->DAC_LFSRUnmask_TriangleAmplitude = DAC_LFSRUnmask_Bit0;
+ 180              		.loc 1 237 0
+ 181 0006 8360     		str	r3, [r0, #8]	@ tmp135, DAC_InitStruct_1(D)->DAC_LFSRUnmask_TriangleAmplitude
+ 238:cmsis/device/stm32f4xx_dac.c ****   /* Initialize the DAC_OutputBuffer member */
+ 239:cmsis/device/stm32f4xx_dac.c ****   DAC_InitStruct->DAC_OutputBuffer = DAC_OutputBuffer_Enable;
+ 182              		.loc 1 239 0
+ 183 0008 C360     		str	r3, [r0, #12]	@ tmp135, DAC_InitStruct_1(D)->DAC_OutputBuffer
+ 184 000a 7047     		bx	lr	@
+ 185              		.cfi_endproc
+ 186              	.LFE112:
+ 187              		.size	DAC_StructInit, .-DAC_StructInit
+ 188              		.section	.text.DAC_Cmd,"ax",%progbits
+ 189              		.align	2
+ 190              		.global	DAC_Cmd
+ 191              		.thumb
+ 192              		.thumb_func
+ 193              		.type	DAC_Cmd, %function
+ 194              	DAC_Cmd:
+ 195              	.LFB113:
+ 240:cmsis/device/stm32f4xx_dac.c **** }
+ 241:cmsis/device/stm32f4xx_dac.c **** 
+ 242:cmsis/device/stm32f4xx_dac.c **** /**
+ 243:cmsis/device/stm32f4xx_dac.c ****   * @brief  Enables or disables the specified DAC channel.
+ 244:cmsis/device/stm32f4xx_dac.c ****   * @param  DAC_Channel: The selected DAC channel. 
+ 245:cmsis/device/stm32f4xx_dac.c ****   *          This parameter can be one of the following values:
+ 246:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_Channel_1: DAC Channel1 selected
+ 247:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_Channel_2: DAC Channel2 selected
+ 248:cmsis/device/stm32f4xx_dac.c ****   * @param  NewState: new state of the DAC channel. 
+ 249:cmsis/device/stm32f4xx_dac.c ****   *          This parameter can be: ENABLE or DISABLE.
+ 250:cmsis/device/stm32f4xx_dac.c ****   * @note   When the DAC channel is enabled the trigger source can no more be modified.
+ 251:cmsis/device/stm32f4xx_dac.c ****   * @retval None
+ 252:cmsis/device/stm32f4xx_dac.c ****   */
+ 253:cmsis/device/stm32f4xx_dac.c **** void DAC_Cmd(uint32_t DAC_Channel, FunctionalState NewState)
+ 254:cmsis/device/stm32f4xx_dac.c **** {
+ 196              		.loc 1 254 0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 9
+
+
+ 197              		.cfi_startproc
+ 198              		@ args = 0, pretend = 0, frame = 0
+ 199              		@ frame_needed = 0, uses_anonymous_args = 0
+ 200              		@ link register save eliminated.
+ 201              	.LVL9:
+ 255:cmsis/device/stm32f4xx_dac.c ****   /* Check the parameters */
+ 256:cmsis/device/stm32f4xx_dac.c ****   assert_param(IS_DAC_CHANNEL(DAC_Channel));
+ 257:cmsis/device/stm32f4xx_dac.c ****   assert_param(IS_FUNCTIONAL_STATE(NewState));
+ 258:cmsis/device/stm32f4xx_dac.c **** 
+ 259:cmsis/device/stm32f4xx_dac.c ****   if (NewState != DISABLE)
+ 260:cmsis/device/stm32f4xx_dac.c ****   {
+ 261:cmsis/device/stm32f4xx_dac.c ****     /* Enable the selected DAC channel */
+ 262:cmsis/device/stm32f4xx_dac.c ****     DAC->CR |= (DAC_CR_EN1 << DAC_Channel);
+ 202              		.loc 1 262 0
+ 203 0000 4FF4E843 		mov	r3, #29696	@ tmp145,
+ 204 0004 C4F20003 		movt	r3, 16384	@ tmp145,
+ 205 0008 1A68     		ldr	r2, [r3, #0]	@ D.6698,
+ 259:cmsis/device/stm32f4xx_dac.c ****   if (NewState != DISABLE)
+ 206              		.loc 1 259 0
+ 207 000a 31B9     		cbnz	r1, .L8	@ NewState,
+ 263:cmsis/device/stm32f4xx_dac.c ****   }
+ 264:cmsis/device/stm32f4xx_dac.c ****   else
+ 265:cmsis/device/stm32f4xx_dac.c ****   {
+ 266:cmsis/device/stm32f4xx_dac.c ****     /* Disable the selected DAC channel */
+ 267:cmsis/device/stm32f4xx_dac.c ****     DAC->CR &= (~(DAC_CR_EN1 << DAC_Channel));
+ 208              		.loc 1 267 0
+ 209 000c 0121     		movs	r1, #1	@ tmp151,
+ 210              	.LVL10:
+ 211 000e 01FA00F0 		lsl	r0, r1, r0	@ tmp150, tmp151, DAC_Channel
+ 212              	.LVL11:
+ 213 0012 22EA0002 		bic	r2, r2, r0	@ D.6705, D.6703, tmp150
+ 214 0016 1A60     		str	r2, [r3, #0]	@ D.6705,
+ 215 0018 7047     		bx	lr	@
+ 216              	.LVL12:
+ 217              	.L8:
+ 262:cmsis/device/stm32f4xx_dac.c ****     DAC->CR |= (DAC_CR_EN1 << DAC_Channel);
+ 218              		.loc 1 262 0
+ 219 001a 0121     		movs	r1, #1	@ tmp147,
+ 220              	.LVL13:
+ 221 001c 01FA00F0 		lsl	r0, r1, r0	@ tmp146, tmp147, DAC_Channel
+ 222              	.LVL14:
+ 223 0020 1043     		orrs	r0, r0, r2	@, D.6701, tmp146, D.6698
+ 224 0022 1860     		str	r0, [r3, #0]	@ D.6701,
+ 225 0024 7047     		bx	lr	@
+ 226              		.cfi_endproc
+ 227              	.LFE113:
+ 228              		.size	DAC_Cmd, .-DAC_Cmd
+ 229 0026 00BF     		.section	.text.DAC_SoftwareTriggerCmd,"ax",%progbits
+ 230              		.align	2
+ 231              		.global	DAC_SoftwareTriggerCmd
+ 232              		.thumb
+ 233              		.thumb_func
+ 234              		.type	DAC_SoftwareTriggerCmd, %function
+ 235              	DAC_SoftwareTriggerCmd:
+ 236              	.LFB114:
+ 268:cmsis/device/stm32f4xx_dac.c ****   }
+ 269:cmsis/device/stm32f4xx_dac.c **** }
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 10
+
+
+ 270:cmsis/device/stm32f4xx_dac.c **** 
+ 271:cmsis/device/stm32f4xx_dac.c **** /**
+ 272:cmsis/device/stm32f4xx_dac.c ****   * @brief  Enables or disables the selected DAC channel software trigger.
+ 273:cmsis/device/stm32f4xx_dac.c ****   * @param  DAC_Channel: The selected DAC channel. 
+ 274:cmsis/device/stm32f4xx_dac.c ****   *          This parameter can be one of the following values:
+ 275:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_Channel_1: DAC Channel1 selected
+ 276:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_Channel_2: DAC Channel2 selected
+ 277:cmsis/device/stm32f4xx_dac.c ****   * @param  NewState: new state of the selected DAC channel software trigger.
+ 278:cmsis/device/stm32f4xx_dac.c ****   *          This parameter can be: ENABLE or DISABLE.
+ 279:cmsis/device/stm32f4xx_dac.c ****   * @retval None
+ 280:cmsis/device/stm32f4xx_dac.c ****   */
+ 281:cmsis/device/stm32f4xx_dac.c **** void DAC_SoftwareTriggerCmd(uint32_t DAC_Channel, FunctionalState NewState)
+ 282:cmsis/device/stm32f4xx_dac.c **** {
+ 237              		.loc 1 282 0
+ 238              		.cfi_startproc
+ 239              		@ args = 0, pretend = 0, frame = 0
+ 240              		@ frame_needed = 0, uses_anonymous_args = 0
+ 241              		@ link register save eliminated.
+ 242              	.LVL15:
+ 283:cmsis/device/stm32f4xx_dac.c ****   /* Check the parameters */
+ 284:cmsis/device/stm32f4xx_dac.c ****   assert_param(IS_DAC_CHANNEL(DAC_Channel));
+ 285:cmsis/device/stm32f4xx_dac.c ****   assert_param(IS_FUNCTIONAL_STATE(NewState));
+ 286:cmsis/device/stm32f4xx_dac.c **** 
+ 287:cmsis/device/stm32f4xx_dac.c ****   if (NewState != DISABLE)
+ 288:cmsis/device/stm32f4xx_dac.c ****   {
+ 289:cmsis/device/stm32f4xx_dac.c ****     /* Enable software trigger for the selected DAC channel */
+ 290:cmsis/device/stm32f4xx_dac.c ****     DAC->SWTRIGR |= (uint32_t)DAC_SWTRIGR_SWTRIG1 << (DAC_Channel >> 4);
+ 243              		.loc 1 290 0
+ 244 0000 4FF4E843 		mov	r3, #29696	@ tmp147,
+ 245 0004 C4F20003 		movt	r3, 16384	@ tmp147,
+ 246 0008 0009     		lsrs	r0, r0, #4	@ tmp148, DAC_Channel,
+ 247              	.LVL16:
+ 248 000a 5A68     		ldr	r2, [r3, #4]	@ D.6686,
+ 287:cmsis/device/stm32f4xx_dac.c ****   if (NewState != DISABLE)
+ 249              		.loc 1 287 0
+ 250 000c 31B9     		cbnz	r1, .L12	@ NewState,
+ 291:cmsis/device/stm32f4xx_dac.c ****   }
+ 292:cmsis/device/stm32f4xx_dac.c ****   else
+ 293:cmsis/device/stm32f4xx_dac.c ****   {
+ 294:cmsis/device/stm32f4xx_dac.c ****     /* Disable software trigger for the selected DAC channel */
+ 295:cmsis/device/stm32f4xx_dac.c ****     DAC->SWTRIGR &= ~((uint32_t)DAC_SWTRIGR_SWTRIG1 << (DAC_Channel >> 4));
+ 251              		.loc 1 295 0
+ 252 000e 0121     		movs	r1, #1	@ tmp155,
+ 253              	.LVL17:
+ 254 0010 01FA00F0 		lsl	r0, r1, r0	@ tmp154, tmp155, tmp153
+ 255 0014 22EA0002 		bic	r2, r2, r0	@ D.6694, D.6692, tmp154
+ 256 0018 5A60     		str	r2, [r3, #4]	@ D.6694,
+ 257 001a 7047     		bx	lr	@
+ 258              	.LVL18:
+ 259              	.L12:
+ 290:cmsis/device/stm32f4xx_dac.c ****     DAC->SWTRIGR |= (uint32_t)DAC_SWTRIGR_SWTRIG1 << (DAC_Channel >> 4);
+ 260              		.loc 1 290 0
+ 261 001c 0121     		movs	r1, #1	@ tmp150,
+ 262              	.LVL19:
+ 263 001e 01FA00F0 		lsl	r0, r1, r0	@ tmp149, tmp150, tmp148
+ 264 0022 1043     		orrs	r0, r0, r2	@, D.6690, tmp149, D.6686
+ 265 0024 5860     		str	r0, [r3, #4]	@ D.6690,
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 11
+
+
+ 266 0026 7047     		bx	lr	@
+ 267              		.cfi_endproc
+ 268              	.LFE114:
+ 269              		.size	DAC_SoftwareTriggerCmd, .-DAC_SoftwareTriggerCmd
+ 270              		.section	.text.DAC_DualSoftwareTriggerCmd,"ax",%progbits
+ 271              		.align	2
+ 272              		.global	DAC_DualSoftwareTriggerCmd
+ 273              		.thumb
+ 274              		.thumb_func
+ 275              		.type	DAC_DualSoftwareTriggerCmd, %function
+ 276              	DAC_DualSoftwareTriggerCmd:
+ 277              	.LFB115:
+ 296:cmsis/device/stm32f4xx_dac.c ****   }
+ 297:cmsis/device/stm32f4xx_dac.c **** }
+ 298:cmsis/device/stm32f4xx_dac.c **** 
+ 299:cmsis/device/stm32f4xx_dac.c **** /**
+ 300:cmsis/device/stm32f4xx_dac.c ****   * @brief  Enables or disables simultaneously the two DAC channels software triggers.
+ 301:cmsis/device/stm32f4xx_dac.c ****   * @param  NewState: new state of the DAC channels software triggers.
+ 302:cmsis/device/stm32f4xx_dac.c ****   *          This parameter can be: ENABLE or DISABLE.
+ 303:cmsis/device/stm32f4xx_dac.c ****   * @retval None
+ 304:cmsis/device/stm32f4xx_dac.c ****   */
+ 305:cmsis/device/stm32f4xx_dac.c **** void DAC_DualSoftwareTriggerCmd(FunctionalState NewState)
+ 306:cmsis/device/stm32f4xx_dac.c **** {
+ 278              		.loc 1 306 0
+ 279              		.cfi_startproc
+ 280              		@ args = 0, pretend = 0, frame = 0
+ 281              		@ frame_needed = 0, uses_anonymous_args = 0
+ 282              		@ link register save eliminated.
+ 283              	.LVL20:
+ 307:cmsis/device/stm32f4xx_dac.c ****   /* Check the parameters */
+ 308:cmsis/device/stm32f4xx_dac.c ****   assert_param(IS_FUNCTIONAL_STATE(NewState));
+ 309:cmsis/device/stm32f4xx_dac.c **** 
+ 310:cmsis/device/stm32f4xx_dac.c ****   if (NewState != DISABLE)
+ 311:cmsis/device/stm32f4xx_dac.c ****   {
+ 312:cmsis/device/stm32f4xx_dac.c ****     /* Enable software trigger for both DAC channels */
+ 313:cmsis/device/stm32f4xx_dac.c ****     DAC->SWTRIGR |= DUAL_SWTRIG_SET;
+ 284              		.loc 1 313 0
+ 285 0000 4FF4E843 		mov	r3, #29696	@ tmp139,
+ 286 0004 C4F20003 		movt	r3, 16384	@ tmp139,
+ 287 0008 5A68     		ldr	r2, [r3, #4]	@ D.6678,
+ 310:cmsis/device/stm32f4xx_dac.c ****   if (NewState != DISABLE)
+ 288              		.loc 1 310 0
+ 289 000a 18B9     		cbnz	r0, .L16	@ NewState,
+ 314:cmsis/device/stm32f4xx_dac.c ****   }
+ 315:cmsis/device/stm32f4xx_dac.c ****   else
+ 316:cmsis/device/stm32f4xx_dac.c ****   {
+ 317:cmsis/device/stm32f4xx_dac.c ****     /* Disable software trigger for both DAC channels */
+ 318:cmsis/device/stm32f4xx_dac.c ****     DAC->SWTRIGR &= DUAL_SWTRIG_RESET;
+ 290              		.loc 1 318 0
+ 291 000c 22F00300 		bic	r0, r2, #3	@ D.6682, D.6681,
+ 292              	.LVL21:
+ 293 0010 5860     		str	r0, [r3, #4]	@ D.6682,
+ 294 0012 7047     		bx	lr	@
+ 295              	.LVL22:
+ 296              	.L16:
+ 313:cmsis/device/stm32f4xx_dac.c ****     DAC->SWTRIGR |= DUAL_SWTRIG_SET;
+ 297              		.loc 1 313 0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 12
+
+
+ 298 0014 42F00301 		orr	r1, r2, #3	@ D.6679, D.6678,
+ 299 0018 5960     		str	r1, [r3, #4]	@ D.6679,
+ 300 001a 7047     		bx	lr	@
+ 301              		.cfi_endproc
+ 302              	.LFE115:
+ 303              		.size	DAC_DualSoftwareTriggerCmd, .-DAC_DualSoftwareTriggerCmd
+ 304              		.section	.text.DAC_WaveGenerationCmd,"ax",%progbits
+ 305              		.align	2
+ 306              		.global	DAC_WaveGenerationCmd
+ 307              		.thumb
+ 308              		.thumb_func
+ 309              		.type	DAC_WaveGenerationCmd, %function
+ 310              	DAC_WaveGenerationCmd:
+ 311              	.LFB116:
+ 319:cmsis/device/stm32f4xx_dac.c ****   }
+ 320:cmsis/device/stm32f4xx_dac.c **** }
+ 321:cmsis/device/stm32f4xx_dac.c **** 
+ 322:cmsis/device/stm32f4xx_dac.c **** /**
+ 323:cmsis/device/stm32f4xx_dac.c ****   * @brief  Enables or disables the selected DAC channel wave generation.
+ 324:cmsis/device/stm32f4xx_dac.c ****   * @param  DAC_Channel: The selected DAC channel. 
+ 325:cmsis/device/stm32f4xx_dac.c ****   *          This parameter can be one of the following values:
+ 326:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_Channel_1: DAC Channel1 selected
+ 327:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_Channel_2: DAC Channel2 selected
+ 328:cmsis/device/stm32f4xx_dac.c ****   * @param  DAC_Wave: specifies the wave type to enable or disable.
+ 329:cmsis/device/stm32f4xx_dac.c ****   *          This parameter can be one of the following values:
+ 330:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_Wave_Noise: noise wave generation
+ 331:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_Wave_Triangle: triangle wave generation
+ 332:cmsis/device/stm32f4xx_dac.c ****   * @param  NewState: new state of the selected DAC channel wave generation.
+ 333:cmsis/device/stm32f4xx_dac.c ****   *          This parameter can be: ENABLE or DISABLE.  
+ 334:cmsis/device/stm32f4xx_dac.c ****   * @retval None
+ 335:cmsis/device/stm32f4xx_dac.c ****   */
+ 336:cmsis/device/stm32f4xx_dac.c **** void DAC_WaveGenerationCmd(uint32_t DAC_Channel, uint32_t DAC_Wave, FunctionalState NewState)
+ 337:cmsis/device/stm32f4xx_dac.c **** {
+ 312              		.loc 1 337 0
+ 313              		.cfi_startproc
+ 314              		@ args = 0, pretend = 0, frame = 0
+ 315              		@ frame_needed = 0, uses_anonymous_args = 0
+ 316              		@ link register save eliminated.
+ 317              	.LVL23:
+ 338:cmsis/device/stm32f4xx_dac.c ****   /* Check the parameters */
+ 339:cmsis/device/stm32f4xx_dac.c ****   assert_param(IS_DAC_CHANNEL(DAC_Channel));
+ 340:cmsis/device/stm32f4xx_dac.c ****   assert_param(IS_DAC_WAVE(DAC_Wave)); 
+ 341:cmsis/device/stm32f4xx_dac.c ****   assert_param(IS_FUNCTIONAL_STATE(NewState));
+ 342:cmsis/device/stm32f4xx_dac.c **** 
+ 343:cmsis/device/stm32f4xx_dac.c ****   if (NewState != DISABLE)
+ 344:cmsis/device/stm32f4xx_dac.c ****   {
+ 345:cmsis/device/stm32f4xx_dac.c ****     /* Enable the selected wave generation for the selected DAC channel */
+ 346:cmsis/device/stm32f4xx_dac.c ****     DAC->CR |= DAC_Wave << DAC_Channel;
+ 318              		.loc 1 346 0
+ 319 0000 4FF4E843 		mov	r3, #29696	@ tmp146,
+ 320 0004 C4F20003 		movt	r3, 16384	@ tmp146,
+ 321 0008 01FA00F1 		lsl	r1, r1, r0	@ tmp147, DAC_Wave, DAC_Channel
+ 322              	.LVL24:
+ 343:cmsis/device/stm32f4xx_dac.c ****   if (NewState != DISABLE)
+ 323              		.loc 1 343 0
+ 324 000c 22B9     		cbnz	r2, .L20	@ NewState,
+ 347:cmsis/device/stm32f4xx_dac.c ****   }
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 13
+
+
+ 348:cmsis/device/stm32f4xx_dac.c ****   else
+ 349:cmsis/device/stm32f4xx_dac.c ****   {
+ 350:cmsis/device/stm32f4xx_dac.c ****     /* Disable the selected wave generation for the selected DAC channel */
+ 351:cmsis/device/stm32f4xx_dac.c ****     DAC->CR &= ~(DAC_Wave << DAC_Channel);
+ 325              		.loc 1 351 0
+ 326 000e 1A68     		ldr	r2, [r3, #0]	@ D.6672,
+ 327              	.LVL25:
+ 328 0010 22EA0101 		bic	r1, r2, r1	@ D.6674, D.6672, tmp150
+ 329 0014 1960     		str	r1, [r3, #0]	@ D.6674,
+ 330 0016 7047     		bx	lr	@
+ 331              	.LVL26:
+ 332              	.L20:
+ 346:cmsis/device/stm32f4xx_dac.c ****     DAC->CR |= DAC_Wave << DAC_Channel;
+ 333              		.loc 1 346 0
+ 334 0018 1868     		ldr	r0, [r3, #0]	@ D.6667,
+ 335              	.LVL27:
+ 336 001a 0143     		orrs	r1, r1, r0	@, D.6670, tmp147, D.6667
+ 337 001c 1960     		str	r1, [r3, #0]	@ D.6670,
+ 338 001e 7047     		bx	lr	@
+ 339              		.cfi_endproc
+ 340              	.LFE116:
+ 341              		.size	DAC_WaveGenerationCmd, .-DAC_WaveGenerationCmd
+ 342              		.section	.text.DAC_SetChannel1Data,"ax",%progbits
+ 343              		.align	2
+ 344              		.global	DAC_SetChannel1Data
+ 345              		.thumb
+ 346              		.thumb_func
+ 347              		.type	DAC_SetChannel1Data, %function
+ 348              	DAC_SetChannel1Data:
+ 349              	.LFB117:
+ 352:cmsis/device/stm32f4xx_dac.c ****   }
+ 353:cmsis/device/stm32f4xx_dac.c **** }
+ 354:cmsis/device/stm32f4xx_dac.c **** 
+ 355:cmsis/device/stm32f4xx_dac.c **** /**
+ 356:cmsis/device/stm32f4xx_dac.c ****   * @brief  Set the specified data holding register value for DAC channel1.
+ 357:cmsis/device/stm32f4xx_dac.c ****   * @param  DAC_Align: Specifies the data alignment for DAC channel1.
+ 358:cmsis/device/stm32f4xx_dac.c ****   *          This parameter can be one of the following values:
+ 359:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_Align_8b_R: 8bit right data alignment selected
+ 360:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_Align_12b_L: 12bit left data alignment selected
+ 361:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_Align_12b_R: 12bit right data alignment selected
+ 362:cmsis/device/stm32f4xx_dac.c ****   * @param  Data: Data to be loaded in the selected data holding register.
+ 363:cmsis/device/stm32f4xx_dac.c ****   * @retval None
+ 364:cmsis/device/stm32f4xx_dac.c ****   */
+ 365:cmsis/device/stm32f4xx_dac.c **** void DAC_SetChannel1Data(uint32_t DAC_Align, uint16_t Data)
+ 366:cmsis/device/stm32f4xx_dac.c **** {  
+ 350              		.loc 1 366 0
+ 351              		.cfi_startproc
+ 352              		@ args = 0, pretend = 0, frame = 8
+ 353              		@ frame_needed = 0, uses_anonymous_args = 0
+ 354              		@ link register save eliminated.
+ 355              	.LVL28:
+ 356 0000 82B0     		sub	sp, sp, #8	@,,
+ 357              	.LCFI2:
+ 358              		.cfi_def_cfa_offset 8
+ 367:cmsis/device/stm32f4xx_dac.c ****   __IO uint32_t tmp = 0;
+ 368:cmsis/device/stm32f4xx_dac.c ****   
+ 369:cmsis/device/stm32f4xx_dac.c ****   /* Check the parameters */
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 14
+
+
+ 370:cmsis/device/stm32f4xx_dac.c ****   assert_param(IS_DAC_ALIGN(DAC_Align));
+ 371:cmsis/device/stm32f4xx_dac.c ****   assert_param(IS_DAC_DATA(Data));
+ 372:cmsis/device/stm32f4xx_dac.c ****   
+ 373:cmsis/device/stm32f4xx_dac.c ****   tmp = (uint32_t)DAC_BASE; 
+ 359              		.loc 1 373 0
+ 360 0002 4FF4E843 		mov	r3, #29696	@ tmp143,
+ 361 0006 C4F20003 		movt	r3, 16384	@ tmp143,
+ 367:cmsis/device/stm32f4xx_dac.c ****   __IO uint32_t tmp = 0;
+ 362              		.loc 1 367 0
+ 363 000a 0022     		movs	r2, #0	@ tmp142,
+ 364 000c 0192     		str	r2, [sp, #4]	@ tmp142, tmp
+ 365              	.LVL29:
+ 366              		.loc 1 373 0
+ 367 000e 0193     		str	r3, [sp, #4]	@ tmp143, tmp
+ 374:cmsis/device/stm32f4xx_dac.c ****   tmp += DHR12R1_OFFSET + DAC_Align;
+ 368              		.loc 1 374 0
+ 369 0010 019B     		ldr	r3, [sp, #4]	@ tmp.15, tmp
+ 370 0012 0833     		adds	r3, r3, #8	@ tmp144, tmp.15,
+ 371 0014 1818     		adds	r0, r3, r0	@ tmp.16, tmp144, DAC_Align
+ 372              	.LVL30:
+ 373 0016 0190     		str	r0, [sp, #4]	@ tmp.16, tmp
+ 374              	.LVL31:
+ 375:cmsis/device/stm32f4xx_dac.c **** 
+ 376:cmsis/device/stm32f4xx_dac.c ****   /* Set the DAC channel1 selected data holding register */
+ 377:cmsis/device/stm32f4xx_dac.c ****   *(__IO uint32_t *) tmp = Data;
+ 375              		.loc 1 377 0
+ 376 0018 019A     		ldr	r2, [sp, #4]	@ tmp.17, tmp
+ 377 001a 1160     		str	r1, [r2, #0]	@ Data, *tmp.18_6
+ 378:cmsis/device/stm32f4xx_dac.c **** }
+ 378              		.loc 1 378 0
+ 379 001c 02B0     		add	sp, sp, #8	@,,
+ 380 001e 7047     		bx	lr
+ 381              		.cfi_endproc
+ 382              	.LFE117:
+ 383              		.size	DAC_SetChannel1Data, .-DAC_SetChannel1Data
+ 384              		.section	.text.DAC_SetChannel2Data,"ax",%progbits
+ 385              		.align	2
+ 386              		.global	DAC_SetChannel2Data
+ 387              		.thumb
+ 388              		.thumb_func
+ 389              		.type	DAC_SetChannel2Data, %function
+ 390              	DAC_SetChannel2Data:
+ 391              	.LFB118:
+ 379:cmsis/device/stm32f4xx_dac.c **** 
+ 380:cmsis/device/stm32f4xx_dac.c **** /**
+ 381:cmsis/device/stm32f4xx_dac.c ****   * @brief  Set the specified data holding register value for DAC channel2.
+ 382:cmsis/device/stm32f4xx_dac.c ****   * @param  DAC_Align: Specifies the data alignment for DAC channel2.
+ 383:cmsis/device/stm32f4xx_dac.c ****   *          This parameter can be one of the following values:
+ 384:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_Align_8b_R: 8bit right data alignment selected
+ 385:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_Align_12b_L: 12bit left data alignment selected
+ 386:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_Align_12b_R: 12bit right data alignment selected
+ 387:cmsis/device/stm32f4xx_dac.c ****   * @param  Data: Data to be loaded in the selected data holding register.
+ 388:cmsis/device/stm32f4xx_dac.c ****   * @retval None
+ 389:cmsis/device/stm32f4xx_dac.c ****   */
+ 390:cmsis/device/stm32f4xx_dac.c **** void DAC_SetChannel2Data(uint32_t DAC_Align, uint16_t Data)
+ 391:cmsis/device/stm32f4xx_dac.c **** {
+ 392              		.loc 1 391 0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 15
+
+
+ 393              		.cfi_startproc
+ 394              		@ args = 0, pretend = 0, frame = 8
+ 395              		@ frame_needed = 0, uses_anonymous_args = 0
+ 396              		@ link register save eliminated.
+ 397              	.LVL32:
+ 398 0000 82B0     		sub	sp, sp, #8	@,,
+ 399              	.LCFI3:
+ 400              		.cfi_def_cfa_offset 8
+ 392:cmsis/device/stm32f4xx_dac.c ****   __IO uint32_t tmp = 0;
+ 393:cmsis/device/stm32f4xx_dac.c **** 
+ 394:cmsis/device/stm32f4xx_dac.c ****   /* Check the parameters */
+ 395:cmsis/device/stm32f4xx_dac.c ****   assert_param(IS_DAC_ALIGN(DAC_Align));
+ 396:cmsis/device/stm32f4xx_dac.c ****   assert_param(IS_DAC_DATA(Data));
+ 397:cmsis/device/stm32f4xx_dac.c ****   
+ 398:cmsis/device/stm32f4xx_dac.c ****   tmp = (uint32_t)DAC_BASE;
+ 401              		.loc 1 398 0
+ 402 0002 4FF4E843 		mov	r3, #29696	@ tmp143,
+ 403 0006 C4F20003 		movt	r3, 16384	@ tmp143,
+ 392:cmsis/device/stm32f4xx_dac.c ****   __IO uint32_t tmp = 0;
+ 404              		.loc 1 392 0
+ 405 000a 0022     		movs	r2, #0	@ tmp142,
+ 406 000c 0192     		str	r2, [sp, #4]	@ tmp142, tmp
+ 407              	.LVL33:
+ 408              		.loc 1 398 0
+ 409 000e 0193     		str	r3, [sp, #4]	@ tmp143, tmp
+ 399:cmsis/device/stm32f4xx_dac.c ****   tmp += DHR12R2_OFFSET + DAC_Align;
+ 410              		.loc 1 399 0
+ 411 0010 019B     		ldr	r3, [sp, #4]	@ tmp.11, tmp
+ 412 0012 1433     		adds	r3, r3, #20	@ tmp144, tmp.11,
+ 413 0014 1818     		adds	r0, r3, r0	@ tmp.12, tmp144, DAC_Align
+ 414              	.LVL34:
+ 415 0016 0190     		str	r0, [sp, #4]	@ tmp.12, tmp
+ 416              	.LVL35:
+ 400:cmsis/device/stm32f4xx_dac.c **** 
+ 401:cmsis/device/stm32f4xx_dac.c ****   /* Set the DAC channel2 selected data holding register */
+ 402:cmsis/device/stm32f4xx_dac.c ****   *(__IO uint32_t *)tmp = Data;
+ 417              		.loc 1 402 0
+ 418 0018 019A     		ldr	r2, [sp, #4]	@ tmp.13, tmp
+ 419 001a 1160     		str	r1, [r2, #0]	@ Data, *tmp.14_6
+ 403:cmsis/device/stm32f4xx_dac.c **** }
+ 420              		.loc 1 403 0
+ 421 001c 02B0     		add	sp, sp, #8	@,,
+ 422 001e 7047     		bx	lr
+ 423              		.cfi_endproc
+ 424              	.LFE118:
+ 425              		.size	DAC_SetChannel2Data, .-DAC_SetChannel2Data
+ 426              		.section	.text.DAC_SetDualChannelData,"ax",%progbits
+ 427              		.align	2
+ 428              		.global	DAC_SetDualChannelData
+ 429              		.thumb
+ 430              		.thumb_func
+ 431              		.type	DAC_SetDualChannelData, %function
+ 432              	DAC_SetDualChannelData:
+ 433              	.LFB119:
+ 404:cmsis/device/stm32f4xx_dac.c **** 
+ 405:cmsis/device/stm32f4xx_dac.c **** /**
+ 406:cmsis/device/stm32f4xx_dac.c ****   * @brief  Set the specified data holding register value for dual channel DAC.
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 16
+
+
+ 407:cmsis/device/stm32f4xx_dac.c ****   * @param  DAC_Align: Specifies the data alignment for dual channel DAC.
+ 408:cmsis/device/stm32f4xx_dac.c ****   *          This parameter can be one of the following values:
+ 409:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_Align_8b_R: 8bit right data alignment selected
+ 410:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_Align_12b_L: 12bit left data alignment selected
+ 411:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_Align_12b_R: 12bit right data alignment selected
+ 412:cmsis/device/stm32f4xx_dac.c ****   * @param  Data2: Data for DAC Channel2 to be loaded in the selected data holding register.
+ 413:cmsis/device/stm32f4xx_dac.c ****   * @param  Data1: Data for DAC Channel1 to be loaded in the selected data  holding register.
+ 414:cmsis/device/stm32f4xx_dac.c ****   * @note   In dual mode, a unique register access is required to write in both
+ 415:cmsis/device/stm32f4xx_dac.c ****   *          DAC channels at the same time.
+ 416:cmsis/device/stm32f4xx_dac.c ****   * @retval None
+ 417:cmsis/device/stm32f4xx_dac.c ****   */
+ 418:cmsis/device/stm32f4xx_dac.c **** void DAC_SetDualChannelData(uint32_t DAC_Align, uint16_t Data2, uint16_t Data1)
+ 419:cmsis/device/stm32f4xx_dac.c **** {
+ 434              		.loc 1 419 0
+ 435              		.cfi_startproc
+ 436              		@ args = 0, pretend = 0, frame = 0
+ 437              		@ frame_needed = 0, uses_anonymous_args = 0
+ 438              		@ link register save eliminated.
+ 439              	.LVL36:
+ 420:cmsis/device/stm32f4xx_dac.c ****   uint32_t data = 0, tmp = 0;
+ 421:cmsis/device/stm32f4xx_dac.c ****   
+ 422:cmsis/device/stm32f4xx_dac.c ****   /* Check the parameters */
+ 423:cmsis/device/stm32f4xx_dac.c ****   assert_param(IS_DAC_ALIGN(DAC_Align));
+ 424:cmsis/device/stm32f4xx_dac.c ****   assert_param(IS_DAC_DATA(Data1));
+ 425:cmsis/device/stm32f4xx_dac.c ****   assert_param(IS_DAC_DATA(Data2));
+ 426:cmsis/device/stm32f4xx_dac.c ****   
+ 427:cmsis/device/stm32f4xx_dac.c ****   /* Calculate and set dual DAC data holding register value */
+ 428:cmsis/device/stm32f4xx_dac.c ****   if (DAC_Align == DAC_Align_8b_R)
+ 429:cmsis/device/stm32f4xx_dac.c ****   {
+ 430:cmsis/device/stm32f4xx_dac.c ****     data = ((uint32_t)Data2 << 8) | Data1; 
+ 431:cmsis/device/stm32f4xx_dac.c ****   }
+ 432:cmsis/device/stm32f4xx_dac.c ****   else
+ 433:cmsis/device/stm32f4xx_dac.c ****   {
+ 434:cmsis/device/stm32f4xx_dac.c ****     data = ((uint32_t)Data2 << 16) | Data1;
+ 435:cmsis/device/stm32f4xx_dac.c ****   }
+ 436:cmsis/device/stm32f4xx_dac.c ****   
+ 437:cmsis/device/stm32f4xx_dac.c ****   tmp = (uint32_t)DAC_BASE;
+ 438:cmsis/device/stm32f4xx_dac.c ****   tmp += DHR12RD_OFFSET + DAC_Align;
+ 440              		.loc 1 438 0
+ 441 0000 47F22043 		movw	r3, #29728	@ tmp148,
+ 428:cmsis/device/stm32f4xx_dac.c ****   if (DAC_Align == DAC_Align_8b_R)
+ 442              		.loc 1 428 0
+ 443 0004 0828     		cmp	r0, #8	@ DAC_Align,
+ 444              		.loc 1 438 0
+ 445 0006 C4F20003 		movt	r3, 16384	@ tmp148,
+ 430:cmsis/device/stm32f4xx_dac.c ****     data = ((uint32_t)Data2 << 8) | Data1; 
+ 446              		.loc 1 430 0
+ 447 000a 0CBF     		ite	eq
+ 448 000c 42EA0121 		orreq	r1, r2, r1, lsl #8	@, data, Data1, Data2,
+ 449              	.LVL37:
+ 434:cmsis/device/stm32f4xx_dac.c ****     data = ((uint32_t)Data2 << 16) | Data1;
+ 450              		.loc 1 434 0
+ 451 0010 42EA0141 		orrne	r1, r2, r1, lsl #16	@, data, Data1, Data2,
+ 452              	.LVL38:
+ 439:cmsis/device/stm32f4xx_dac.c **** 
+ 440:cmsis/device/stm32f4xx_dac.c ****   /* Set the dual DAC selected data holding register */
+ 441:cmsis/device/stm32f4xx_dac.c ****   *(__IO uint32_t *)tmp = data;
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 17
+
+
+ 453              		.loc 1 441 0
+ 454 0014 C150     		str	r1, [r0, r3]	@ data, *tmp.10_18
+ 455 0016 7047     		bx	lr	@
+ 456              		.cfi_endproc
+ 457              	.LFE119:
+ 458              		.size	DAC_SetDualChannelData, .-DAC_SetDualChannelData
+ 459              		.section	.text.DAC_GetDataOutputValue,"ax",%progbits
+ 460              		.align	2
+ 461              		.global	DAC_GetDataOutputValue
+ 462              		.thumb
+ 463              		.thumb_func
+ 464              		.type	DAC_GetDataOutputValue, %function
+ 465              	DAC_GetDataOutputValue:
+ 466              	.LFB120:
+ 442:cmsis/device/stm32f4xx_dac.c **** }
+ 443:cmsis/device/stm32f4xx_dac.c **** 
+ 444:cmsis/device/stm32f4xx_dac.c **** /**
+ 445:cmsis/device/stm32f4xx_dac.c ****   * @brief  Returns the last data output value of the selected DAC channel.
+ 446:cmsis/device/stm32f4xx_dac.c ****   * @param  DAC_Channel: The selected DAC channel. 
+ 447:cmsis/device/stm32f4xx_dac.c ****   *          This parameter can be one of the following values:
+ 448:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_Channel_1: DAC Channel1 selected
+ 449:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_Channel_2: DAC Channel2 selected
+ 450:cmsis/device/stm32f4xx_dac.c ****   * @retval The selected DAC channel data output value.
+ 451:cmsis/device/stm32f4xx_dac.c ****   */
+ 452:cmsis/device/stm32f4xx_dac.c **** uint16_t DAC_GetDataOutputValue(uint32_t DAC_Channel)
+ 453:cmsis/device/stm32f4xx_dac.c **** {
+ 467              		.loc 1 453 0
+ 468              		.cfi_startproc
+ 469              		@ args = 0, pretend = 0, frame = 8
+ 470              		@ frame_needed = 0, uses_anonymous_args = 0
+ 471              		@ link register save eliminated.
+ 472              	.LVL39:
+ 473 0000 82B0     		sub	sp, sp, #8	@,,
+ 474              	.LCFI4:
+ 475              		.cfi_def_cfa_offset 8
+ 454:cmsis/device/stm32f4xx_dac.c ****   __IO uint32_t tmp = 0;
+ 455:cmsis/device/stm32f4xx_dac.c ****   
+ 456:cmsis/device/stm32f4xx_dac.c ****   /* Check the parameters */
+ 457:cmsis/device/stm32f4xx_dac.c ****   assert_param(IS_DAC_CHANNEL(DAC_Channel));
+ 458:cmsis/device/stm32f4xx_dac.c ****   
+ 459:cmsis/device/stm32f4xx_dac.c ****   tmp = (uint32_t) DAC_BASE ;
+ 476              		.loc 1 459 0
+ 477 0002 4FF4E843 		mov	r3, #29696	@ tmp145,
+ 454:cmsis/device/stm32f4xx_dac.c ****   __IO uint32_t tmp = 0;
+ 478              		.loc 1 454 0
+ 479 0006 0022     		movs	r2, #0	@ tmp144,
+ 480              		.loc 1 459 0
+ 481 0008 C4F20003 		movt	r3, 16384	@ tmp145,
+ 454:cmsis/device/stm32f4xx_dac.c ****   __IO uint32_t tmp = 0;
+ 482              		.loc 1 454 0
+ 483 000c 0192     		str	r2, [sp, #4]	@ tmp144, tmp
+ 484              	.LVL40:
+ 485              		.loc 1 459 0
+ 486 000e 0193     		str	r3, [sp, #4]	@ tmp145, tmp
+ 460:cmsis/device/stm32f4xx_dac.c ****   tmp += DOR_OFFSET + ((uint32_t)DAC_Channel >> 2);
+ 487              		.loc 1 460 0
+ 488 0010 0199     		ldr	r1, [sp, #4]	@ tmp.6, tmp
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 18
+
+
+ 489 0012 2C31     		adds	r1, r1, #44	@ tmp146, tmp.6,
+ 490 0014 01EB9000 		add	r0, r1, r0, lsr #2	@, tmp.7, tmp146, DAC_Channel,
+ 491              	.LVL41:
+ 492 0018 0190     		str	r0, [sp, #4]	@ tmp.7, tmp
+ 493              	.LVL42:
+ 461:cmsis/device/stm32f4xx_dac.c ****   
+ 462:cmsis/device/stm32f4xx_dac.c ****   /* Returns the DAC channel data output register value */
+ 463:cmsis/device/stm32f4xx_dac.c ****   return (uint16_t) (*(__IO uint32_t*) tmp);
+ 494              		.loc 1 463 0
+ 495 001a 019B     		ldr	r3, [sp, #4]	@ tmp.8, tmp
+ 496 001c 1A68     		ldr	r2, [r3, #0]	@ D.6641, *tmp.9_7
+ 464:cmsis/device/stm32f4xx_dac.c **** }
+ 497              		.loc 1 464 0
+ 498 001e 90B2     		uxth	r0, r2	@, D.6641
+ 499              	.LVL43:
+ 500 0020 02B0     		add	sp, sp, #8	@,,
+ 501 0022 7047     		bx	lr
+ 502              		.cfi_endproc
+ 503              	.LFE120:
+ 504              		.size	DAC_GetDataOutputValue, .-DAC_GetDataOutputValue
+ 505              		.section	.text.DAC_DMACmd,"ax",%progbits
+ 506              		.align	2
+ 507              		.global	DAC_DMACmd
+ 508              		.thumb
+ 509              		.thumb_func
+ 510              		.type	DAC_DMACmd, %function
+ 511              	DAC_DMACmd:
+ 512              	.LFB121:
+ 465:cmsis/device/stm32f4xx_dac.c **** /**
+ 466:cmsis/device/stm32f4xx_dac.c ****   * @}
+ 467:cmsis/device/stm32f4xx_dac.c ****   */
+ 468:cmsis/device/stm32f4xx_dac.c **** 
+ 469:cmsis/device/stm32f4xx_dac.c **** /** @defgroup DAC_Group2 DMA management functions
+ 470:cmsis/device/stm32f4xx_dac.c ****  *  @brief   DMA management functions
+ 471:cmsis/device/stm32f4xx_dac.c ****  *
+ 472:cmsis/device/stm32f4xx_dac.c **** @verbatim   
+ 473:cmsis/device/stm32f4xx_dac.c ****  ===============================================================================
+ 474:cmsis/device/stm32f4xx_dac.c ****                           DMA management functions
+ 475:cmsis/device/stm32f4xx_dac.c ****  ===============================================================================  
+ 476:cmsis/device/stm32f4xx_dac.c **** 
+ 477:cmsis/device/stm32f4xx_dac.c **** @endverbatim
+ 478:cmsis/device/stm32f4xx_dac.c ****   * @{
+ 479:cmsis/device/stm32f4xx_dac.c ****   */
+ 480:cmsis/device/stm32f4xx_dac.c **** 
+ 481:cmsis/device/stm32f4xx_dac.c **** /**
+ 482:cmsis/device/stm32f4xx_dac.c ****   * @brief  Enables or disables the specified DAC channel DMA request.
+ 483:cmsis/device/stm32f4xx_dac.c ****   * @note   When enabled DMA1 is generated when an external trigger (EXTI Line9,
+ 484:cmsis/device/stm32f4xx_dac.c ****   *         TIM2, TIM4, TIM5, TIM6, TIM7 or TIM8  but not a software trigger) occurs.
+ 485:cmsis/device/stm32f4xx_dac.c ****   * @param  DAC_Channel: The selected DAC channel. 
+ 486:cmsis/device/stm32f4xx_dac.c ****   *          This parameter can be one of the following values:
+ 487:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_Channel_1: DAC Channel1 selected
+ 488:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_Channel_2: DAC Channel2 selected
+ 489:cmsis/device/stm32f4xx_dac.c ****   * @param  NewState: new state of the selected DAC channel DMA request.
+ 490:cmsis/device/stm32f4xx_dac.c ****   *          This parameter can be: ENABLE or DISABLE.
+ 491:cmsis/device/stm32f4xx_dac.c ****   * @note   The DAC channel1 is mapped on DMA1 Stream 5 channel7 which must be
+ 492:cmsis/device/stm32f4xx_dac.c ****   *          already configured.
+ 493:cmsis/device/stm32f4xx_dac.c ****   * @note   The DAC channel2 is mapped on DMA1 Stream 6 channel7 which must be
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 19
+
+
+ 494:cmsis/device/stm32f4xx_dac.c ****   *          already configured.    
+ 495:cmsis/device/stm32f4xx_dac.c ****   * @retval None
+ 496:cmsis/device/stm32f4xx_dac.c ****   */
+ 497:cmsis/device/stm32f4xx_dac.c **** void DAC_DMACmd(uint32_t DAC_Channel, FunctionalState NewState)
+ 498:cmsis/device/stm32f4xx_dac.c **** {
+ 513              		.loc 1 498 0
+ 514              		.cfi_startproc
+ 515              		@ args = 0, pretend = 0, frame = 0
+ 516              		@ frame_needed = 0, uses_anonymous_args = 0
+ 517              		@ link register save eliminated.
+ 518              	.LVL44:
+ 499:cmsis/device/stm32f4xx_dac.c ****   /* Check the parameters */
+ 500:cmsis/device/stm32f4xx_dac.c ****   assert_param(IS_DAC_CHANNEL(DAC_Channel));
+ 501:cmsis/device/stm32f4xx_dac.c ****   assert_param(IS_FUNCTIONAL_STATE(NewState));
+ 502:cmsis/device/stm32f4xx_dac.c **** 
+ 503:cmsis/device/stm32f4xx_dac.c ****   if (NewState != DISABLE)
+ 504:cmsis/device/stm32f4xx_dac.c ****   {
+ 505:cmsis/device/stm32f4xx_dac.c ****     /* Enable the selected DAC channel DMA request */
+ 506:cmsis/device/stm32f4xx_dac.c ****     DAC->CR |= (DAC_CR_DMAEN1 << DAC_Channel);
+ 519              		.loc 1 506 0
+ 520 0000 4FF4E843 		mov	r3, #29696	@ tmp145,
+ 521 0004 C4F20003 		movt	r3, 16384	@ tmp145,
+ 522 0008 1A68     		ldr	r2, [r3, #0]	@ D.6626,
+ 503:cmsis/device/stm32f4xx_dac.c ****   if (NewState != DISABLE)
+ 523              		.loc 1 503 0
+ 524 000a 39B9     		cbnz	r1, .L30	@ NewState,
+ 507:cmsis/device/stm32f4xx_dac.c ****   }
+ 508:cmsis/device/stm32f4xx_dac.c ****   else
+ 509:cmsis/device/stm32f4xx_dac.c ****   {
+ 510:cmsis/device/stm32f4xx_dac.c ****     /* Disable the selected DAC channel DMA request */
+ 511:cmsis/device/stm32f4xx_dac.c ****     DAC->CR &= (~(DAC_CR_DMAEN1 << DAC_Channel));
+ 525              		.loc 1 511 0
+ 526 000c 4FF48051 		mov	r1, #4096	@ tmp151,
+ 527              	.LVL45:
+ 528 0010 01FA00F0 		lsl	r0, r1, r0	@ tmp150, tmp151, DAC_Channel
+ 529              	.LVL46:
+ 530 0014 22EA0002 		bic	r2, r2, r0	@ D.6633, D.6631, tmp150
+ 531 0018 1A60     		str	r2, [r3, #0]	@ D.6633,
+ 532 001a 7047     		bx	lr	@
+ 533              	.LVL47:
+ 534              	.L30:
+ 506:cmsis/device/stm32f4xx_dac.c ****     DAC->CR |= (DAC_CR_DMAEN1 << DAC_Channel);
+ 535              		.loc 1 506 0
+ 536 001c 4FF48051 		mov	r1, #4096	@ tmp147,
+ 537              	.LVL48:
+ 538 0020 01FA00F0 		lsl	r0, r1, r0	@ tmp146, tmp147, DAC_Channel
+ 539              	.LVL49:
+ 540 0024 1043     		orrs	r0, r0, r2	@, D.6629, tmp146, D.6626
+ 541 0026 1860     		str	r0, [r3, #0]	@ D.6629,
+ 542 0028 7047     		bx	lr	@
+ 543              		.cfi_endproc
+ 544              	.LFE121:
+ 545              		.size	DAC_DMACmd, .-DAC_DMACmd
+ 546 002a 00BF     		.section	.text.DAC_ITConfig,"ax",%progbits
+ 547              		.align	2
+ 548              		.global	DAC_ITConfig
+ 549              		.thumb
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 20
+
+
+ 550              		.thumb_func
+ 551              		.type	DAC_ITConfig, %function
+ 552              	DAC_ITConfig:
+ 553              	.LFB122:
+ 512:cmsis/device/stm32f4xx_dac.c ****   }
+ 513:cmsis/device/stm32f4xx_dac.c **** }
+ 514:cmsis/device/stm32f4xx_dac.c **** /**
+ 515:cmsis/device/stm32f4xx_dac.c ****   * @}
+ 516:cmsis/device/stm32f4xx_dac.c ****   */
+ 517:cmsis/device/stm32f4xx_dac.c **** 
+ 518:cmsis/device/stm32f4xx_dac.c **** /** @defgroup DAC_Group3 Interrupts and flags management functions
+ 519:cmsis/device/stm32f4xx_dac.c ****  *  @brief   Interrupts and flags management functions
+ 520:cmsis/device/stm32f4xx_dac.c ****  *
+ 521:cmsis/device/stm32f4xx_dac.c **** @verbatim   
+ 522:cmsis/device/stm32f4xx_dac.c ****  ===============================================================================
+ 523:cmsis/device/stm32f4xx_dac.c ****                    Interrupts and flags management functions
+ 524:cmsis/device/stm32f4xx_dac.c ****  ===============================================================================  
+ 525:cmsis/device/stm32f4xx_dac.c **** 
+ 526:cmsis/device/stm32f4xx_dac.c **** @endverbatim
+ 527:cmsis/device/stm32f4xx_dac.c ****   * @{
+ 528:cmsis/device/stm32f4xx_dac.c ****   */
+ 529:cmsis/device/stm32f4xx_dac.c **** 
+ 530:cmsis/device/stm32f4xx_dac.c **** /**
+ 531:cmsis/device/stm32f4xx_dac.c ****   * @brief  Enables or disables the specified DAC interrupts.
+ 532:cmsis/device/stm32f4xx_dac.c ****   * @param  DAC_Channel: The selected DAC channel. 
+ 533:cmsis/device/stm32f4xx_dac.c ****   *          This parameter can be one of the following values:
+ 534:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_Channel_1: DAC Channel1 selected
+ 535:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_Channel_2: DAC Channel2 selected
+ 536:cmsis/device/stm32f4xx_dac.c ****   * @param  DAC_IT: specifies the DAC interrupt sources to be enabled or disabled. 
+ 537:cmsis/device/stm32f4xx_dac.c ****   *          This parameter can be the following values:
+ 538:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_IT_DMAUDR: DMA underrun interrupt mask
+ 539:cmsis/device/stm32f4xx_dac.c ****   * @note   The DMA underrun occurs when a second external trigger arrives before the 
+ 540:cmsis/device/stm32f4xx_dac.c ****   *         acknowledgement for the first external trigger is received (first request).
+ 541:cmsis/device/stm32f4xx_dac.c ****   * @param  NewState: new state of the specified DAC interrupts.
+ 542:cmsis/device/stm32f4xx_dac.c ****   *          This parameter can be: ENABLE or DISABLE.
+ 543:cmsis/device/stm32f4xx_dac.c ****   * @retval None
+ 544:cmsis/device/stm32f4xx_dac.c ****   */ 
+ 545:cmsis/device/stm32f4xx_dac.c **** void DAC_ITConfig(uint32_t DAC_Channel, uint32_t DAC_IT, FunctionalState NewState)  
+ 546:cmsis/device/stm32f4xx_dac.c **** {
+ 554              		.loc 1 546 0
+ 555              		.cfi_startproc
+ 556              		@ args = 0, pretend = 0, frame = 0
+ 557              		@ frame_needed = 0, uses_anonymous_args = 0
+ 558              		@ link register save eliminated.
+ 559              	.LVL50:
+ 547:cmsis/device/stm32f4xx_dac.c ****   /* Check the parameters */
+ 548:cmsis/device/stm32f4xx_dac.c ****   assert_param(IS_DAC_CHANNEL(DAC_Channel));
+ 549:cmsis/device/stm32f4xx_dac.c ****   assert_param(IS_FUNCTIONAL_STATE(NewState));
+ 550:cmsis/device/stm32f4xx_dac.c ****   assert_param(IS_DAC_IT(DAC_IT)); 
+ 551:cmsis/device/stm32f4xx_dac.c **** 
+ 552:cmsis/device/stm32f4xx_dac.c ****   if (NewState != DISABLE)
+ 553:cmsis/device/stm32f4xx_dac.c ****   {
+ 554:cmsis/device/stm32f4xx_dac.c ****     /* Enable the selected DAC interrupts */
+ 555:cmsis/device/stm32f4xx_dac.c ****     DAC->CR |=  (DAC_IT << DAC_Channel);
+ 560              		.loc 1 555 0
+ 561 0000 4FF4E843 		mov	r3, #29696	@ tmp146,
+ 562 0004 C4F20003 		movt	r3, 16384	@ tmp146,
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 21
+
+
+ 563 0008 01FA00F1 		lsl	r1, r1, r0	@ tmp147, DAC_IT, DAC_Channel
+ 564              	.LVL51:
+ 552:cmsis/device/stm32f4xx_dac.c ****   if (NewState != DISABLE)
+ 565              		.loc 1 552 0
+ 566 000c 22B9     		cbnz	r2, .L34	@ NewState,
+ 556:cmsis/device/stm32f4xx_dac.c ****   }
+ 557:cmsis/device/stm32f4xx_dac.c ****   else
+ 558:cmsis/device/stm32f4xx_dac.c ****   {
+ 559:cmsis/device/stm32f4xx_dac.c ****     /* Disable the selected DAC interrupts */
+ 560:cmsis/device/stm32f4xx_dac.c ****     DAC->CR &= (~(uint32_t)(DAC_IT << DAC_Channel));
+ 567              		.loc 1 560 0
+ 568 000e 1A68     		ldr	r2, [r3, #0]	@ D.6620,
+ 569              	.LVL52:
+ 570 0010 22EA0101 		bic	r1, r2, r1	@ D.6622, D.6620, tmp150
+ 571 0014 1960     		str	r1, [r3, #0]	@ D.6622,
+ 572 0016 7047     		bx	lr	@
+ 573              	.LVL53:
+ 574              	.L34:
+ 555:cmsis/device/stm32f4xx_dac.c ****     DAC->CR |=  (DAC_IT << DAC_Channel);
+ 575              		.loc 1 555 0
+ 576 0018 1868     		ldr	r0, [r3, #0]	@ D.6615,
+ 577              	.LVL54:
+ 578 001a 0143     		orrs	r1, r1, r0	@, D.6618, tmp147, D.6615
+ 579 001c 1960     		str	r1, [r3, #0]	@ D.6618,
+ 580 001e 7047     		bx	lr	@
+ 581              		.cfi_endproc
+ 582              	.LFE122:
+ 583              		.size	DAC_ITConfig, .-DAC_ITConfig
+ 584              		.section	.text.DAC_GetFlagStatus,"ax",%progbits
+ 585              		.align	2
+ 586              		.global	DAC_GetFlagStatus
+ 587              		.thumb
+ 588              		.thumb_func
+ 589              		.type	DAC_GetFlagStatus, %function
+ 590              	DAC_GetFlagStatus:
+ 591              	.LFB123:
+ 561:cmsis/device/stm32f4xx_dac.c ****   }
+ 562:cmsis/device/stm32f4xx_dac.c **** }
+ 563:cmsis/device/stm32f4xx_dac.c **** 
+ 564:cmsis/device/stm32f4xx_dac.c **** /**
+ 565:cmsis/device/stm32f4xx_dac.c ****   * @brief  Checks whether the specified DAC flag is set or not.
+ 566:cmsis/device/stm32f4xx_dac.c ****   * @param  DAC_Channel: The selected DAC channel. 
+ 567:cmsis/device/stm32f4xx_dac.c ****   *          This parameter can be one of the following values:
+ 568:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_Channel_1: DAC Channel1 selected
+ 569:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_Channel_2: DAC Channel2 selected
+ 570:cmsis/device/stm32f4xx_dac.c ****   * @param  DAC_FLAG: specifies the flag to check. 
+ 571:cmsis/device/stm32f4xx_dac.c ****   *          This parameter can be only of the following value:
+ 572:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_FLAG_DMAUDR: DMA underrun flag
+ 573:cmsis/device/stm32f4xx_dac.c ****   * @note   The DMA underrun occurs when a second external trigger arrives before the 
+ 574:cmsis/device/stm32f4xx_dac.c ****   *         acknowledgement for the first external trigger is received (first request).
+ 575:cmsis/device/stm32f4xx_dac.c ****   * @retval The new state of DAC_FLAG (SET or RESET).
+ 576:cmsis/device/stm32f4xx_dac.c ****   */
+ 577:cmsis/device/stm32f4xx_dac.c **** FlagStatus DAC_GetFlagStatus(uint32_t DAC_Channel, uint32_t DAC_FLAG)
+ 578:cmsis/device/stm32f4xx_dac.c **** {
+ 592              		.loc 1 578 0
+ 593              		.cfi_startproc
+ 594              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 22
+
+
+ 595              		@ frame_needed = 0, uses_anonymous_args = 0
+ 596              		@ link register save eliminated.
+ 597              	.LVL55:
+ 579:cmsis/device/stm32f4xx_dac.c ****   FlagStatus bitstatus = RESET;
+ 580:cmsis/device/stm32f4xx_dac.c ****   /* Check the parameters */
+ 581:cmsis/device/stm32f4xx_dac.c ****   assert_param(IS_DAC_CHANNEL(DAC_Channel));
+ 582:cmsis/device/stm32f4xx_dac.c ****   assert_param(IS_DAC_FLAG(DAC_FLAG));
+ 583:cmsis/device/stm32f4xx_dac.c **** 
+ 584:cmsis/device/stm32f4xx_dac.c ****   /* Check the status of the specified DAC flag */
+ 585:cmsis/device/stm32f4xx_dac.c ****   if ((DAC->SR & (DAC_FLAG << DAC_Channel)) != (uint8_t)RESET)
+ 598              		.loc 1 585 0
+ 599 0000 4FF4E843 		mov	r3, #29696	@ tmp143,
+ 600 0004 C4F20003 		movt	r3, 16384	@ tmp143,
+ 601 0008 01FA00F1 		lsl	r1, r1, r0	@ tmp145, DAC_FLAG, DAC_Channel
+ 602              	.LVL56:
+ 603 000c 586B     		ldr	r0, [r3, #52]	@ D.6603, MEM[(struct DAC_TypeDef *)1073771520B].SR
+ 604              	.LVL57:
+ 605 000e 0142     		tst	r1, r0	@ tmp145, D.6603
+ 586:cmsis/device/stm32f4xx_dac.c ****   {
+ 587:cmsis/device/stm32f4xx_dac.c ****     /* DAC_FLAG is set */
+ 588:cmsis/device/stm32f4xx_dac.c ****     bitstatus = SET;
+ 589:cmsis/device/stm32f4xx_dac.c ****   }
+ 590:cmsis/device/stm32f4xx_dac.c ****   else
+ 591:cmsis/device/stm32f4xx_dac.c ****   {
+ 592:cmsis/device/stm32f4xx_dac.c ****     /* DAC_FLAG is reset */
+ 593:cmsis/device/stm32f4xx_dac.c ****     bitstatus = RESET;
+ 594:cmsis/device/stm32f4xx_dac.c ****   }
+ 595:cmsis/device/stm32f4xx_dac.c ****   /* Return the DAC_FLAG status */
+ 596:cmsis/device/stm32f4xx_dac.c ****   return  bitstatus;
+ 597:cmsis/device/stm32f4xx_dac.c **** }
+ 606              		.loc 1 597 0
+ 607 0010 0CBF     		ite	eq	@
+ 608 0012 0020     		moveq	r0, #0	@,
+ 609 0014 0120     		movne	r0, #1	@,
+ 610              	.LVL58:
+ 611 0016 7047     		bx	lr	@
+ 612              		.cfi_endproc
+ 613              	.LFE123:
+ 614              		.size	DAC_GetFlagStatus, .-DAC_GetFlagStatus
+ 615              		.section	.text.DAC_ClearFlag,"ax",%progbits
+ 616              		.align	2
+ 617              		.global	DAC_ClearFlag
+ 618              		.thumb
+ 619              		.thumb_func
+ 620              		.type	DAC_ClearFlag, %function
+ 621              	DAC_ClearFlag:
+ 622              	.LFB124:
+ 598:cmsis/device/stm32f4xx_dac.c **** 
+ 599:cmsis/device/stm32f4xx_dac.c **** /**
+ 600:cmsis/device/stm32f4xx_dac.c ****   * @brief  Clears the DAC channel's pending flags.
+ 601:cmsis/device/stm32f4xx_dac.c ****   * @param  DAC_Channel: The selected DAC channel. 
+ 602:cmsis/device/stm32f4xx_dac.c ****   *          This parameter can be one of the following values:
+ 603:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_Channel_1: DAC Channel1 selected
+ 604:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_Channel_2: DAC Channel2 selected
+ 605:cmsis/device/stm32f4xx_dac.c ****   * @param  DAC_FLAG: specifies the flag to clear. 
+ 606:cmsis/device/stm32f4xx_dac.c ****   *          This parameter can be of the following value:
+ 607:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_FLAG_DMAUDR: DMA underrun flag 
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 23
+
+
+ 608:cmsis/device/stm32f4xx_dac.c ****   * @note   The DMA underrun occurs when a second external trigger arrives before the 
+ 609:cmsis/device/stm32f4xx_dac.c ****   *         acknowledgement for the first external trigger is received (first request).            
+ 610:cmsis/device/stm32f4xx_dac.c ****   * @retval None
+ 611:cmsis/device/stm32f4xx_dac.c ****   */
+ 612:cmsis/device/stm32f4xx_dac.c **** void DAC_ClearFlag(uint32_t DAC_Channel, uint32_t DAC_FLAG)
+ 613:cmsis/device/stm32f4xx_dac.c **** {
+ 623              		.loc 1 613 0
+ 624              		.cfi_startproc
+ 625              		@ args = 0, pretend = 0, frame = 0
+ 626              		@ frame_needed = 0, uses_anonymous_args = 0
+ 627              		@ link register save eliminated.
+ 628              	.LVL59:
+ 614:cmsis/device/stm32f4xx_dac.c ****   /* Check the parameters */
+ 615:cmsis/device/stm32f4xx_dac.c ****   assert_param(IS_DAC_CHANNEL(DAC_Channel));
+ 616:cmsis/device/stm32f4xx_dac.c ****   assert_param(IS_DAC_FLAG(DAC_FLAG));
+ 617:cmsis/device/stm32f4xx_dac.c **** 
+ 618:cmsis/device/stm32f4xx_dac.c ****   /* Clear the selected DAC flags */
+ 619:cmsis/device/stm32f4xx_dac.c ****   DAC->SR = (DAC_FLAG << DAC_Channel);
+ 629              		.loc 1 619 0
+ 630 0000 4FF4E843 		mov	r3, #29696	@ tmp139,
+ 631 0004 C4F20003 		movt	r3, 16384	@ tmp139,
+ 632 0008 01FA00F1 		lsl	r1, r1, r0	@ D.6601, DAC_FLAG, DAC_Channel
+ 633              	.LVL60:
+ 634 000c 5963     		str	r1, [r3, #52]	@ D.6601, MEM[(struct DAC_TypeDef *)1073771520B].SR
+ 635 000e 7047     		bx	lr	@
+ 636              		.cfi_endproc
+ 637              	.LFE124:
+ 638              		.size	DAC_ClearFlag, .-DAC_ClearFlag
+ 639              		.section	.text.DAC_GetITStatus,"ax",%progbits
+ 640              		.align	2
+ 641              		.global	DAC_GetITStatus
+ 642              		.thumb
+ 643              		.thumb_func
+ 644              		.type	DAC_GetITStatus, %function
+ 645              	DAC_GetITStatus:
+ 646              	.LFB125:
+ 620:cmsis/device/stm32f4xx_dac.c **** }
+ 621:cmsis/device/stm32f4xx_dac.c **** 
+ 622:cmsis/device/stm32f4xx_dac.c **** /**
+ 623:cmsis/device/stm32f4xx_dac.c ****   * @brief  Checks whether the specified DAC interrupt has occurred or not.
+ 624:cmsis/device/stm32f4xx_dac.c ****   * @param  DAC_Channel: The selected DAC channel. 
+ 625:cmsis/device/stm32f4xx_dac.c ****   *          This parameter can be one of the following values:
+ 626:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_Channel_1: DAC Channel1 selected
+ 627:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_Channel_2: DAC Channel2 selected
+ 628:cmsis/device/stm32f4xx_dac.c ****   * @param  DAC_IT: specifies the DAC interrupt source to check. 
+ 629:cmsis/device/stm32f4xx_dac.c ****   *          This parameter can be the following values:
+ 630:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_IT_DMAUDR: DMA underrun interrupt mask
+ 631:cmsis/device/stm32f4xx_dac.c ****   * @note   The DMA underrun occurs when a second external trigger arrives before the 
+ 632:cmsis/device/stm32f4xx_dac.c ****   *         acknowledgement for the first external trigger is received (first request).
+ 633:cmsis/device/stm32f4xx_dac.c ****   * @retval The new state of DAC_IT (SET or RESET).
+ 634:cmsis/device/stm32f4xx_dac.c ****   */
+ 635:cmsis/device/stm32f4xx_dac.c **** ITStatus DAC_GetITStatus(uint32_t DAC_Channel, uint32_t DAC_IT)
+ 636:cmsis/device/stm32f4xx_dac.c **** {
+ 647              		.loc 1 636 0
+ 648              		.cfi_startproc
+ 649              		@ args = 0, pretend = 0, frame = 0
+ 650              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 24
+
+
+ 651              		@ link register save eliminated.
+ 652              	.LVL61:
+ 637:cmsis/device/stm32f4xx_dac.c ****   ITStatus bitstatus = RESET;
+ 638:cmsis/device/stm32f4xx_dac.c ****   uint32_t enablestatus = 0;
+ 639:cmsis/device/stm32f4xx_dac.c ****   
+ 640:cmsis/device/stm32f4xx_dac.c ****   /* Check the parameters */
+ 641:cmsis/device/stm32f4xx_dac.c ****   assert_param(IS_DAC_CHANNEL(DAC_Channel));
+ 642:cmsis/device/stm32f4xx_dac.c ****   assert_param(IS_DAC_IT(DAC_IT));
+ 643:cmsis/device/stm32f4xx_dac.c **** 
+ 644:cmsis/device/stm32f4xx_dac.c ****   /* Get the DAC_IT enable bit status */
+ 645:cmsis/device/stm32f4xx_dac.c ****   enablestatus = (DAC->CR & (DAC_IT << DAC_Channel)) ;
+ 653              		.loc 1 645 0
+ 654 0000 4FF4E843 		mov	r3, #29696	@ tmp145,
+ 655 0004 C4F20003 		movt	r3, 16384	@ tmp145,
+ 656 0008 01FA00F1 		lsl	r1, r1, r0	@ D.6590, DAC_IT, DAC_Channel
+ 657              	.LVL62:
+ 658 000c 1A68     		ldr	r2, [r3, #0]	@ D.6588, MEM[(struct DAC_TypeDef *)1073771520B].CR
+ 659              	.LVL63:
+ 646:cmsis/device/stm32f4xx_dac.c ****   
+ 647:cmsis/device/stm32f4xx_dac.c ****   /* Check the status of the specified DAC interrupt */
+ 648:cmsis/device/stm32f4xx_dac.c ****   if (((DAC->SR & (DAC_IT << DAC_Channel)) != (uint32_t)RESET) && enablestatus)
+ 660              		.loc 1 648 0
+ 661 000e 586B     		ldr	r0, [r3, #52]	@ D.6593, MEM[(struct DAC_TypeDef *)1073771520B].SR
+ 662              	.LVL64:
+ 663 0010 0840     		ands	r0, r1, r0	@ tmp147, D.6590, D.6593
+ 664 0012 03D0     		beq	.L38	@,
+ 665              		.loc 1 648 0 is_stmt 0 discriminator 1
+ 666 0014 1142     		tst	r1, r2	@ D.6590, D.6588
+ 649:cmsis/device/stm32f4xx_dac.c ****   {
+ 650:cmsis/device/stm32f4xx_dac.c ****     /* DAC_IT is set */
+ 651:cmsis/device/stm32f4xx_dac.c ****     bitstatus = SET;
+ 667              		.loc 1 651 0 is_stmt 1 discriminator 1
+ 668 0016 0CBF     		ite	eq	@
+ 669 0018 0020     		moveq	r0, #0	@, bitstatus
+ 670 001a 0120     		movne	r0, #1	@, bitstatus
+ 671              	.L38:
+ 672              	.LVL65:
+ 652:cmsis/device/stm32f4xx_dac.c ****   }
+ 653:cmsis/device/stm32f4xx_dac.c ****   else
+ 654:cmsis/device/stm32f4xx_dac.c ****   {
+ 655:cmsis/device/stm32f4xx_dac.c ****     /* DAC_IT is reset */
+ 656:cmsis/device/stm32f4xx_dac.c ****     bitstatus = RESET;
+ 657:cmsis/device/stm32f4xx_dac.c ****   }
+ 658:cmsis/device/stm32f4xx_dac.c ****   /* Return the DAC_IT status */
+ 659:cmsis/device/stm32f4xx_dac.c ****   return  bitstatus;
+ 660:cmsis/device/stm32f4xx_dac.c **** }
+ 673              		.loc 1 660 0
+ 674 001c 7047     		bx	lr	@
+ 675              		.cfi_endproc
+ 676              	.LFE125:
+ 677              		.size	DAC_GetITStatus, .-DAC_GetITStatus
+ 678 001e 00BF     		.section	.text.DAC_ClearITPendingBit,"ax",%progbits
+ 679              		.align	2
+ 680              		.global	DAC_ClearITPendingBit
+ 681              		.thumb
+ 682              		.thumb_func
+ 683              		.type	DAC_ClearITPendingBit, %function
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 25
+
+
+ 684              	DAC_ClearITPendingBit:
+ 685              	.LFB126:
+ 661:cmsis/device/stm32f4xx_dac.c **** 
+ 662:cmsis/device/stm32f4xx_dac.c **** /**
+ 663:cmsis/device/stm32f4xx_dac.c ****   * @brief  Clears the DAC channel's interrupt pending bits.
+ 664:cmsis/device/stm32f4xx_dac.c ****   * @param  DAC_Channel: The selected DAC channel. 
+ 665:cmsis/device/stm32f4xx_dac.c ****   *          This parameter can be one of the following values:
+ 666:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_Channel_1: DAC Channel1 selected
+ 667:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_Channel_2: DAC Channel2 selected
+ 668:cmsis/device/stm32f4xx_dac.c ****   * @param  DAC_IT: specifies the DAC interrupt pending bit to clear.
+ 669:cmsis/device/stm32f4xx_dac.c ****   *          This parameter can be the following values:
+ 670:cmsis/device/stm32f4xx_dac.c ****   *            @arg DAC_IT_DMAUDR: DMA underrun interrupt mask                         
+ 671:cmsis/device/stm32f4xx_dac.c ****   * @note   The DMA underrun occurs when a second external trigger arrives before the 
+ 672:cmsis/device/stm32f4xx_dac.c ****   *         acknowledgement for the first external trigger is received (first request).            
+ 673:cmsis/device/stm32f4xx_dac.c ****   * @retval None
+ 674:cmsis/device/stm32f4xx_dac.c ****   */
+ 675:cmsis/device/stm32f4xx_dac.c **** void DAC_ClearITPendingBit(uint32_t DAC_Channel, uint32_t DAC_IT)
+ 676:cmsis/device/stm32f4xx_dac.c **** {
+ 686              		.loc 1 676 0
+ 687              		.cfi_startproc
+ 688              		@ args = 0, pretend = 0, frame = 0
+ 689              		@ frame_needed = 0, uses_anonymous_args = 0
+ 690              		@ link register save eliminated.
+ 691              	.LVL66:
+ 677:cmsis/device/stm32f4xx_dac.c ****   /* Check the parameters */
+ 678:cmsis/device/stm32f4xx_dac.c ****   assert_param(IS_DAC_CHANNEL(DAC_Channel));
+ 679:cmsis/device/stm32f4xx_dac.c ****   assert_param(IS_DAC_IT(DAC_IT)); 
+ 680:cmsis/device/stm32f4xx_dac.c **** 
+ 681:cmsis/device/stm32f4xx_dac.c ****   /* Clear the selected DAC interrupt pending bits */
+ 682:cmsis/device/stm32f4xx_dac.c ****   DAC->SR = (DAC_IT << DAC_Channel);
+ 692              		.loc 1 682 0
+ 693 0000 4FF4E843 		mov	r3, #29696	@ tmp139,
+ 694 0004 C4F20003 		movt	r3, 16384	@ tmp139,
+ 695 0008 01FA00F1 		lsl	r1, r1, r0	@ D.6586, DAC_IT, DAC_Channel
+ 696              	.LVL67:
+ 697 000c 5963     		str	r1, [r3, #52]	@ D.6586, MEM[(struct DAC_TypeDef *)1073771520B].SR
+ 698 000e 7047     		bx	lr	@
+ 699              		.cfi_endproc
+ 700              	.LFE126:
+ 701              		.size	DAC_ClearITPendingBit, .-DAC_ClearITPendingBit
+ 702              		.text
+ 703              	.Letext0:
+ 704              		.file 2 "c:\\gnutoolsarmembedded\\4.7-2012q4\\bin\\../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-
+ 705              		.file 3 "cmsis/device/stm32f4xx.h"
+ 706              		.file 4 "cmsis/device/stm32f4xx_dac.h"
+ 707              		.file 5 "./cmsis/core/core_cm4.h"
+ 708              		.file 6 "./cmsis/device/stm32f4xx_rcc.h"
+ 709              		.section	.debug_info,"",%progbits
+ 710              	.Ldebug_info0:
+ 711 0000 E9060000 		.4byte	0x6e9
+ 712 0004 0200     		.2byte	0x2
+ 713 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 714 000a 04       		.byte	0x4
+ 715 000b 01       		.uleb128 0x1
+ 716 000c E8020000 		.4byte	.LASF70
+ 717 0010 01       		.byte	0x1
+ 718 0011 B4000000 		.4byte	.LASF71
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 26
+
+
+ 719 0015 FB010000 		.4byte	.LASF72
+ 720 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 721 001d 00000000 		.4byte	0
+ 722 0021 00000000 		.4byte	0
+ 723 0025 00000000 		.4byte	.Ldebug_line0
+ 724 0029 02       		.uleb128 0x2
+ 725 002a 01       		.byte	0x1
+ 726 002b 06       		.byte	0x6
+ 727 002c A3010000 		.4byte	.LASF0
+ 728 0030 03       		.uleb128 0x3
+ 729 0031 89030000 		.4byte	.LASF3
+ 730 0035 02       		.byte	0x2
+ 731 0036 2A       		.byte	0x2a
+ 732 0037 3B000000 		.4byte	0x3b
+ 733 003b 02       		.uleb128 0x2
+ 734 003c 01       		.byte	0x1
+ 735 003d 08       		.byte	0x8
+ 736 003e 86010000 		.4byte	.LASF1
+ 737 0042 02       		.uleb128 0x2
+ 738 0043 02       		.byte	0x2
+ 739 0044 05       		.byte	0x5
+ 740 0045 A0000000 		.4byte	.LASF2
+ 741 0049 03       		.uleb128 0x3
+ 742 004a DB010000 		.4byte	.LASF4
+ 743 004e 02       		.byte	0x2
+ 744 004f 36       		.byte	0x36
+ 745 0050 54000000 		.4byte	0x54
+ 746 0054 02       		.uleb128 0x2
+ 747 0055 02       		.byte	0x2
+ 748 0056 07       		.byte	0x7
+ 749 0057 33020000 		.4byte	.LASF5
+ 750 005b 03       		.uleb128 0x3
+ 751 005c 8A020000 		.4byte	.LASF6
+ 752 0060 02       		.byte	0x2
+ 753 0061 4F       		.byte	0x4f
+ 754 0062 66000000 		.4byte	0x66
+ 755 0066 02       		.uleb128 0x2
+ 756 0067 04       		.byte	0x4
+ 757 0068 05       		.byte	0x5
+ 758 0069 2B010000 		.4byte	.LASF7
+ 759 006d 03       		.uleb128 0x3
+ 760 006e C6010000 		.4byte	.LASF8
+ 761 0072 02       		.byte	0x2
+ 762 0073 50       		.byte	0x50
+ 763 0074 78000000 		.4byte	0x78
+ 764 0078 02       		.uleb128 0x2
+ 765 0079 04       		.byte	0x4
+ 766 007a 07       		.byte	0x7
+ 767 007b D6020000 		.4byte	.LASF9
+ 768 007f 02       		.uleb128 0x2
+ 769 0080 08       		.byte	0x8
+ 770 0081 05       		.byte	0x5
+ 771 0082 FD000000 		.4byte	.LASF10
+ 772 0086 02       		.uleb128 0x2
+ 773 0087 08       		.byte	0x8
+ 774 0088 07       		.byte	0x7
+ 775 0089 AF010000 		.4byte	.LASF11
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 27
+
+
+ 776 008d 04       		.uleb128 0x4
+ 777 008e 04       		.byte	0x4
+ 778 008f 05       		.byte	0x5
+ 779 0090 696E7400 		.ascii	"int\000"
+ 780 0094 02       		.uleb128 0x2
+ 781 0095 04       		.byte	0x4
+ 782 0096 07       		.byte	0x7
+ 783 0097 B9030000 		.4byte	.LASF12
+ 784 009b 02       		.uleb128 0x2
+ 785 009c 04       		.byte	0x4
+ 786 009d 07       		.byte	0x7
+ 787 009e 63000000 		.4byte	.LASF13
+ 788 00a2 05       		.uleb128 0x5
+ 789 00a3 6D000000 		.4byte	0x6d
+ 790 00a7 05       		.uleb128 0x5
+ 791 00a8 5B000000 		.4byte	0x5b
+ 792 00ac 06       		.uleb128 0x6
+ 793 00ad 01       		.byte	0x1
+ 794 00ae 03       		.byte	0x3
+ 795 00af 1801     		.2byte	0x118
+ 796 00b1 C2000000 		.4byte	0xc2
+ 797 00b5 07       		.uleb128 0x7
+ 798 00b6 83030000 		.4byte	.LASF14
+ 799 00ba 00       		.sleb128 0
+ 800 00bb 08       		.uleb128 0x8
+ 801 00bc 53455400 		.ascii	"SET\000"
+ 802 00c0 01       		.sleb128 1
+ 803 00c1 00       		.byte	0
+ 804 00c2 09       		.uleb128 0x9
+ 805 00c3 F4030000 		.4byte	.LASF15
+ 806 00c7 03       		.byte	0x3
+ 807 00c8 1801     		.2byte	0x118
+ 808 00ca AC000000 		.4byte	0xac
+ 809 00ce 09       		.uleb128 0x9
+ 810 00cf 22010000 		.4byte	.LASF16
+ 811 00d3 03       		.byte	0x3
+ 812 00d4 1801     		.2byte	0x118
+ 813 00d6 AC000000 		.4byte	0xac
+ 814 00da 06       		.uleb128 0x6
+ 815 00db 01       		.byte	0x1
+ 816 00dc 03       		.byte	0x3
+ 817 00dd 1A01     		.2byte	0x11a
+ 818 00df F0000000 		.4byte	0xf0
+ 819 00e3 07       		.uleb128 0x7
+ 820 00e4 DA000000 		.4byte	.LASF17
+ 821 00e8 00       		.sleb128 0
+ 822 00e9 07       		.uleb128 0x7
+ 823 00ea FF030000 		.4byte	.LASF18
+ 824 00ee 01       		.sleb128 1
+ 825 00ef 00       		.byte	0
+ 826 00f0 09       		.uleb128 0x9
+ 827 00f1 31030000 		.4byte	.LASF19
+ 828 00f5 03       		.byte	0x3
+ 829 00f6 1A01     		.2byte	0x11a
+ 830 00f8 DA000000 		.4byte	0xda
+ 831 00fc 0A       		.uleb128 0xa
+ 832 00fd 38       		.byte	0x38
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 28
+
+
+ 833 00fe 03       		.byte	0x3
+ 834 00ff 9D01     		.2byte	0x19d
+ 835 0101 D6010000 		.4byte	0x1d6
+ 836 0105 0B       		.uleb128 0xb
+ 837 0106 435200   		.ascii	"CR\000"
+ 838 0109 03       		.byte	0x3
+ 839 010a 9F01     		.2byte	0x19f
+ 840 010c A2000000 		.4byte	0xa2
+ 841 0110 02       		.byte	0x2
+ 842 0111 23       		.byte	0x23
+ 843 0112 00       		.uleb128 0
+ 844 0113 0C       		.uleb128 0xc
+ 845 0114 2B020000 		.4byte	.LASF20
+ 846 0118 03       		.byte	0x3
+ 847 0119 A001     		.2byte	0x1a0
+ 848 011b A2000000 		.4byte	0xa2
+ 849 011f 02       		.byte	0x2
+ 850 0120 23       		.byte	0x23
+ 851 0121 04       		.uleb128 0x4
+ 852 0122 0C       		.uleb128 0xc
+ 853 0123 9C020000 		.4byte	.LASF21
+ 854 0127 03       		.byte	0x3
+ 855 0128 A101     		.2byte	0x1a1
+ 856 012a A2000000 		.4byte	0xa2
+ 857 012e 02       		.byte	0x2
+ 858 012f 23       		.byte	0x23
+ 859 0130 08       		.uleb128 0x8
+ 860 0131 0C       		.uleb128 0xc
+ 861 0132 3D000000 		.4byte	.LASF22
+ 862 0136 03       		.byte	0x3
+ 863 0137 A201     		.2byte	0x1a2
+ 864 0139 A2000000 		.4byte	0xa2
+ 865 013d 02       		.byte	0x2
+ 866 013e 23       		.byte	0x23
+ 867 013f 0C       		.uleb128 0xc
+ 868 0140 0C       		.uleb128 0xc
+ 869 0141 D3030000 		.4byte	.LASF23
+ 870 0145 03       		.byte	0x3
+ 871 0146 A301     		.2byte	0x1a3
+ 872 0148 A2000000 		.4byte	0xa2
+ 873 014c 02       		.byte	0x2
+ 874 014d 23       		.byte	0x23
+ 875 014e 10       		.uleb128 0x10
+ 876 014f 0C       		.uleb128 0xc
+ 877 0150 A4020000 		.4byte	.LASF24
+ 878 0154 03       		.byte	0x3
+ 879 0155 A401     		.2byte	0x1a4
+ 880 0157 A2000000 		.4byte	0xa2
+ 881 015b 02       		.byte	0x2
+ 882 015c 23       		.byte	0x23
+ 883 015d 14       		.uleb128 0x14
+ 884 015e 0C       		.uleb128 0xc
+ 885 015f 45000000 		.4byte	.LASF25
+ 886 0163 03       		.byte	0x3
+ 887 0164 A501     		.2byte	0x1a5
+ 888 0166 A2000000 		.4byte	0xa2
+ 889 016a 02       		.byte	0x2
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 29
+
+
+ 890 016b 23       		.byte	0x23
+ 891 016c 18       		.uleb128 0x18
+ 892 016d 0C       		.uleb128 0xc
+ 893 016e DA030000 		.4byte	.LASF26
+ 894 0172 03       		.byte	0x3
+ 895 0173 A601     		.2byte	0x1a6
+ 896 0175 A2000000 		.4byte	0xa2
+ 897 0179 02       		.byte	0x2
+ 898 017a 23       		.byte	0x23
+ 899 017b 1C       		.uleb128 0x1c
+ 900 017c 0C       		.uleb128 0xc
+ 901 017d CE020000 		.4byte	.LASF27
+ 902 0181 03       		.byte	0x3
+ 903 0182 A701     		.2byte	0x1a7
+ 904 0184 A2000000 		.4byte	0xa2
+ 905 0188 02       		.byte	0x2
+ 906 0189 23       		.byte	0x23
+ 907 018a 20       		.uleb128 0x20
+ 908 018b 0C       		.uleb128 0xc
+ 909 018c 6C000000 		.4byte	.LASF28
+ 910 0190 03       		.byte	0x3
+ 911 0191 A801     		.2byte	0x1a8
+ 912 0193 A2000000 		.4byte	0xa2
+ 913 0197 02       		.byte	0x2
+ 914 0198 23       		.byte	0x23
+ 915 0199 24       		.uleb128 0x24
+ 916 019a 0C       		.uleb128 0xc
+ 917 019b 1F000000 		.4byte	.LASF29
+ 918 019f 03       		.byte	0x3
+ 919 01a0 A901     		.2byte	0x1a9
+ 920 01a2 A2000000 		.4byte	0xa2
+ 921 01a6 02       		.byte	0x2
+ 922 01a7 23       		.byte	0x23
+ 923 01a8 28       		.uleb128 0x28
+ 924 01a9 0C       		.uleb128 0xc
+ 925 01aa AA000000 		.4byte	.LASF30
+ 926 01ae 03       		.byte	0x3
+ 927 01af AA01     		.2byte	0x1aa
+ 928 01b1 A2000000 		.4byte	0xa2
+ 929 01b5 02       		.byte	0x2
+ 930 01b6 23       		.byte	0x23
+ 931 01b7 2C       		.uleb128 0x2c
+ 932 01b8 0C       		.uleb128 0xc
+ 933 01b9 AF000000 		.4byte	.LASF31
+ 934 01bd 03       		.byte	0x3
+ 935 01be AB01     		.2byte	0x1ab
+ 936 01c0 A2000000 		.4byte	0xa2
+ 937 01c4 02       		.byte	0x2
+ 938 01c5 23       		.byte	0x23
+ 939 01c6 30       		.uleb128 0x30
+ 940 01c7 0B       		.uleb128 0xb
+ 941 01c8 535200   		.ascii	"SR\000"
+ 942 01cb 03       		.byte	0x3
+ 943 01cc AC01     		.2byte	0x1ac
+ 944 01ce A2000000 		.4byte	0xa2
+ 945 01d2 02       		.byte	0x2
+ 946 01d3 23       		.byte	0x23
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 30
+
+
+ 947 01d4 34       		.uleb128 0x34
+ 948 01d5 00       		.byte	0
+ 949 01d6 09       		.uleb128 0x9
+ 950 01d7 AD030000 		.4byte	.LASF32
+ 951 01db 03       		.byte	0x3
+ 952 01dc AD01     		.2byte	0x1ad
+ 953 01de FC000000 		.4byte	0xfc
+ 954 01e2 0D       		.uleb128 0xd
+ 955 01e3 10       		.byte	0x10
+ 956 01e4 04       		.byte	0x4
+ 957 01e5 30       		.byte	0x30
+ 958 01e6 23020000 		.4byte	0x223
+ 959 01ea 0E       		.uleb128 0xe
+ 960 01eb CF010000 		.4byte	.LASF33
+ 961 01ef 04       		.byte	0x4
+ 962 01f0 32       		.byte	0x32
+ 963 01f1 6D000000 		.4byte	0x6d
+ 964 01f5 02       		.byte	0x2
+ 965 01f6 23       		.byte	0x23
+ 966 01f7 00       		.uleb128 0
+ 967 01f8 0E       		.uleb128 0xe
+ 968 01f9 E1030000 		.4byte	.LASF34
+ 969 01fd 04       		.byte	0x4
+ 970 01fe 35       		.byte	0x35
+ 971 01ff 6D000000 		.4byte	0x6d
+ 972 0203 02       		.byte	0x2
+ 973 0204 23       		.byte	0x23
+ 974 0205 04       		.uleb128 0x4
+ 975 0206 0E       		.uleb128 0xe
+ 976 0207 69020000 		.4byte	.LASF35
+ 977 020b 04       		.byte	0x4
+ 978 020c 39       		.byte	0x39
+ 979 020d 6D000000 		.4byte	0x6d
+ 980 0211 02       		.byte	0x2
+ 981 0212 23       		.byte	0x23
+ 982 0213 08       		.uleb128 0x8
+ 983 0214 0E       		.uleb128 0xe
+ 984 0215 8F000000 		.4byte	.LASF36
+ 985 0219 04       		.byte	0x4
+ 986 021a 3D       		.byte	0x3d
+ 987 021b 6D000000 		.4byte	0x6d
+ 988 021f 02       		.byte	0x2
+ 989 0220 23       		.byte	0x23
+ 990 0221 0C       		.uleb128 0xc
+ 991 0222 00       		.byte	0
+ 992 0223 03       		.uleb128 0x3
+ 993 0224 B3020000 		.4byte	.LASF37
+ 994 0228 04       		.byte	0x4
+ 995 0229 3F       		.byte	0x3f
+ 996 022a E2010000 		.4byte	0x1e2
+ 997 022e 0F       		.uleb128 0xf
+ 998 022f 01       		.byte	0x1
+ 999 0230 20020000 		.4byte	.LASF38
+ 1000 0234 01       		.byte	0x1
+ 1001 0235 AE       		.byte	0xae
+ 1002 0236 01       		.byte	0x1
+ 1003 0237 00000000 		.4byte	.LFB110
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 31
+
+
+ 1004 023b 1A000000 		.4byte	.LFE110
+ 1005 023f 00000000 		.4byte	.LLST0
+ 1006 0243 01       		.byte	0x1
+ 1007 0244 7A020000 		.4byte	0x27a
+ 1008 0248 10       		.uleb128 0x10
+ 1009 0249 0C000000 		.4byte	.LVL0
+ 1010 024d D6060000 		.4byte	0x6d6
+ 1011 0251 62020000 		.4byte	0x262
+ 1012 0255 11       		.uleb128 0x11
+ 1013 0256 01       		.byte	0x1
+ 1014 0257 51       		.byte	0x51
+ 1015 0258 01       		.byte	0x1
+ 1016 0259 31       		.byte	0x31
+ 1017 025a 11       		.uleb128 0x11
+ 1018 025b 01       		.byte	0x1
+ 1019 025c 50       		.byte	0x50
+ 1020 025d 03       		.byte	0x3
+ 1021 025e 40       		.byte	0x40
+ 1022 025f 49       		.byte	0x49
+ 1023 0260 24       		.byte	0x24
+ 1024 0261 00       		.byte	0
+ 1025 0262 12       		.uleb128 0x12
+ 1026 0263 1A000000 		.4byte	.LVL1
+ 1027 0267 01       		.byte	0x1
+ 1028 0268 D6060000 		.4byte	0x6d6
+ 1029 026c 11       		.uleb128 0x11
+ 1030 026d 01       		.byte	0x1
+ 1031 026e 51       		.byte	0x51
+ 1032 026f 01       		.byte	0x1
+ 1033 0270 30       		.byte	0x30
+ 1034 0271 11       		.uleb128 0x11
+ 1035 0272 01       		.byte	0x1
+ 1036 0273 50       		.byte	0x50
+ 1037 0274 03       		.byte	0x3
+ 1038 0275 40       		.byte	0x40
+ 1039 0276 49       		.byte	0x49
+ 1040 0277 24       		.byte	0x24
+ 1041 0278 00       		.byte	0
+ 1042 0279 00       		.byte	0
+ 1043 027a 0F       		.uleb128 0xf
+ 1044 027b 01       		.byte	0x1
+ 1045 027c 91030000 		.4byte	.LASF39
+ 1046 0280 01       		.byte	0x1
+ 1047 0281 C1       		.byte	0xc1
+ 1048 0282 01       		.byte	0x1
+ 1049 0283 00000000 		.4byte	.LFB111
+ 1050 0287 36000000 		.4byte	.LFE111
+ 1051 028b 20000000 		.4byte	.LLST1
+ 1052 028f 01       		.byte	0x1
+ 1053 0290 D1020000 		.4byte	0x2d1
+ 1054 0294 13       		.uleb128 0x13
+ 1055 0295 EF010000 		.4byte	.LASF40
+ 1056 0299 01       		.byte	0x1
+ 1057 029a C1       		.byte	0xc1
+ 1058 029b 6D000000 		.4byte	0x6d
+ 1059 029f 40000000 		.4byte	.LLST2
+ 1060 02a3 13       		.uleb128 0x13
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 32
+
+
+ 1061 02a4 77010000 		.4byte	.LASF41
+ 1062 02a8 01       		.byte	0x1
+ 1063 02a9 C1       		.byte	0xc1
+ 1064 02aa D1020000 		.4byte	0x2d1
+ 1065 02ae 61000000 		.4byte	.LLST3
+ 1066 02b2 14       		.uleb128 0x14
+ 1067 02b3 00000000 		.4byte	.LASF42
+ 1068 02b7 01       		.byte	0x1
+ 1069 02b8 C3       		.byte	0xc3
+ 1070 02b9 6D000000 		.4byte	0x6d
+ 1071 02bd 82000000 		.4byte	.LLST4
+ 1072 02c1 14       		.uleb128 0x14
+ 1073 02c2 61020000 		.4byte	.LASF43
+ 1074 02c6 01       		.byte	0x1
+ 1075 02c7 C3       		.byte	0xc3
+ 1076 02c8 6D000000 		.4byte	0x6d
+ 1077 02cc B7000000 		.4byte	.LLST5
+ 1078 02d0 00       		.byte	0
+ 1079 02d1 15       		.uleb128 0x15
+ 1080 02d2 04       		.byte	0x4
+ 1081 02d3 23020000 		.4byte	0x223
+ 1082 02d7 16       		.uleb128 0x16
+ 1083 02d8 01       		.byte	0x1
+ 1084 02d9 94010000 		.4byte	.LASF44
+ 1085 02dd 01       		.byte	0x1
+ 1086 02de E5       		.byte	0xe5
+ 1087 02df 01       		.byte	0x1
+ 1088 02e0 00000000 		.4byte	.LFB112
+ 1089 02e4 0C000000 		.4byte	.LFE112
+ 1090 02e8 02       		.byte	0x2
+ 1091 02e9 7D       		.byte	0x7d
+ 1092 02ea 00       		.sleb128 0
+ 1093 02eb 01       		.byte	0x1
+ 1094 02ec FE020000 		.4byte	0x2fe
+ 1095 02f0 17       		.uleb128 0x17
+ 1096 02f1 77010000 		.4byte	.LASF41
+ 1097 02f5 01       		.byte	0x1
+ 1098 02f6 E5       		.byte	0xe5
+ 1099 02f7 D1020000 		.4byte	0x2d1
+ 1100 02fb 01       		.byte	0x1
+ 1101 02fc 50       		.byte	0x50
+ 1102 02fd 00       		.byte	0
+ 1103 02fe 16       		.uleb128 0x16
+ 1104 02ff 01       		.byte	0x1
+ 1105 0300 65030000 		.4byte	.LASF45
+ 1106 0304 01       		.byte	0x1
+ 1107 0305 FD       		.byte	0xfd
+ 1108 0306 01       		.byte	0x1
+ 1109 0307 00000000 		.4byte	.LFB113
+ 1110 030b 26000000 		.4byte	.LFE113
+ 1111 030f 02       		.byte	0x2
+ 1112 0310 7D       		.byte	0x7d
+ 1113 0311 00       		.sleb128 0
+ 1114 0312 01       		.byte	0x1
+ 1115 0313 36030000 		.4byte	0x336
+ 1116 0317 13       		.uleb128 0x13
+ 1117 0318 EF010000 		.4byte	.LASF40
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 33
+
+
+ 1118 031c 01       		.byte	0x1
+ 1119 031d FD       		.byte	0xfd
+ 1120 031e 6D000000 		.4byte	0x6d
+ 1121 0322 EF000000 		.4byte	.LLST6
+ 1122 0326 13       		.uleb128 0x13
+ 1123 0327 D1000000 		.4byte	.LASF46
+ 1124 032b 01       		.byte	0x1
+ 1125 032c FD       		.byte	0xfd
+ 1126 032d F0000000 		.4byte	0xf0
+ 1127 0331 29010000 		.4byte	.LLST7
+ 1128 0335 00       		.byte	0
+ 1129 0336 18       		.uleb128 0x18
+ 1130 0337 01       		.byte	0x1
+ 1131 0338 26000000 		.4byte	.LASF47
+ 1132 033c 01       		.byte	0x1
+ 1133 033d 1901     		.2byte	0x119
+ 1134 033f 01       		.byte	0x1
+ 1135 0340 00000000 		.4byte	.LFB114
+ 1136 0344 28000000 		.4byte	.LFE114
+ 1137 0348 02       		.byte	0x2
+ 1138 0349 7D       		.byte	0x7d
+ 1139 034a 00       		.sleb128 0
+ 1140 034b 01       		.byte	0x1
+ 1141 034c 71030000 		.4byte	0x371
+ 1142 0350 19       		.uleb128 0x19
+ 1143 0351 EF010000 		.4byte	.LASF40
+ 1144 0355 01       		.byte	0x1
+ 1145 0356 1901     		.2byte	0x119
+ 1146 0358 6D000000 		.4byte	0x6d
+ 1147 035c 63010000 		.4byte	.LLST8
+ 1148 0360 19       		.uleb128 0x19
+ 1149 0361 D1000000 		.4byte	.LASF46
+ 1150 0365 01       		.byte	0x1
+ 1151 0366 1901     		.2byte	0x119
+ 1152 0368 F0000000 		.4byte	0xf0
+ 1153 036c 84010000 		.4byte	.LLST9
+ 1154 0370 00       		.byte	0
+ 1155 0371 18       		.uleb128 0x18
+ 1156 0372 01       		.byte	0x1
+ 1157 0373 46020000 		.4byte	.LASF48
+ 1158 0377 01       		.byte	0x1
+ 1159 0378 3101     		.2byte	0x131
+ 1160 037a 01       		.byte	0x1
+ 1161 037b 00000000 		.4byte	.LFB115
+ 1162 037f 1C000000 		.4byte	.LFE115
+ 1163 0383 02       		.byte	0x2
+ 1164 0384 7D       		.byte	0x7d
+ 1165 0385 00       		.sleb128 0
+ 1166 0386 01       		.byte	0x1
+ 1167 0387 9C030000 		.4byte	0x39c
+ 1168 038b 19       		.uleb128 0x19
+ 1169 038c D1000000 		.4byte	.LASF46
+ 1170 0390 01       		.byte	0x1
+ 1171 0391 3101     		.2byte	0x131
+ 1172 0393 F0000000 		.4byte	0xf0
+ 1173 0397 BE010000 		.4byte	.LLST10
+ 1174 039b 00       		.byte	0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 34
+
+
+ 1175 039c 18       		.uleb128 0x18
+ 1176 039d 01       		.byte	0x1
+ 1177 039e 4D000000 		.4byte	.LASF49
+ 1178 03a2 01       		.byte	0x1
+ 1179 03a3 5001     		.2byte	0x150
+ 1180 03a5 01       		.byte	0x1
+ 1181 03a6 00000000 		.4byte	.LFB116
+ 1182 03aa 20000000 		.4byte	.LFE116
+ 1183 03ae 02       		.byte	0x2
+ 1184 03af 7D       		.byte	0x7d
+ 1185 03b0 00       		.sleb128 0
+ 1186 03b1 01       		.byte	0x1
+ 1187 03b2 E7030000 		.4byte	0x3e7
+ 1188 03b6 19       		.uleb128 0x19
+ 1189 03b7 EF010000 		.4byte	.LASF40
+ 1190 03bb 01       		.byte	0x1
+ 1191 03bc 5001     		.2byte	0x150
+ 1192 03be 6D000000 		.4byte	0x6d
+ 1193 03c2 EA010000 		.4byte	.LLST11
+ 1194 03c6 19       		.uleb128 0x19
+ 1195 03c7 4B010000 		.4byte	.LASF50
+ 1196 03cb 01       		.byte	0x1
+ 1197 03cc 5001     		.2byte	0x150
+ 1198 03ce 6D000000 		.4byte	0x6d
+ 1199 03d2 0B020000 		.4byte	.LLST12
+ 1200 03d6 19       		.uleb128 0x19
+ 1201 03d7 D1000000 		.4byte	.LASF46
+ 1202 03db 01       		.byte	0x1
+ 1203 03dc 5001     		.2byte	0x150
+ 1204 03de F0000000 		.4byte	0xf0
+ 1205 03e2 2C020000 		.4byte	.LLST13
+ 1206 03e6 00       		.byte	0
+ 1207 03e7 1A       		.uleb128 0x1a
+ 1208 03e8 01       		.byte	0x1
+ 1209 03e9 59010000 		.4byte	.LASF51
+ 1210 03ed 01       		.byte	0x1
+ 1211 03ee 6D01     		.2byte	0x16d
+ 1212 03f0 01       		.byte	0x1
+ 1213 03f1 00000000 		.4byte	.LFB117
+ 1214 03f5 20000000 		.4byte	.LFE117
+ 1215 03f9 58020000 		.4byte	.LLST14
+ 1216 03fd 01       		.byte	0x1
+ 1217 03fe 31040000 		.4byte	0x431
+ 1218 0402 19       		.uleb128 0x19
+ 1219 0403 92020000 		.4byte	.LASF52
+ 1220 0407 01       		.byte	0x1
+ 1221 0408 6D01     		.2byte	0x16d
+ 1222 040a 6D000000 		.4byte	0x6d
+ 1223 040e 78020000 		.4byte	.LLST15
+ 1224 0412 1B       		.uleb128 0x1b
+ 1225 0413 54010000 		.4byte	.LASF53
+ 1226 0417 01       		.byte	0x1
+ 1227 0418 6D01     		.2byte	0x16d
+ 1228 041a 49000000 		.4byte	0x49
+ 1229 041e 01       		.byte	0x1
+ 1230 041f 51       		.byte	0x51
+ 1231 0420 1C       		.uleb128 0x1c
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 35
+
+
+ 1232 0421 746D7000 		.ascii	"tmp\000"
+ 1233 0425 01       		.byte	0x1
+ 1234 0426 6F01     		.2byte	0x16f
+ 1235 0428 A2000000 		.4byte	0xa2
+ 1236 042c 99020000 		.4byte	.LLST16
+ 1237 0430 00       		.byte	0
+ 1238 0431 1A       		.uleb128 0x1a
+ 1239 0432 01       		.byte	0x1
+ 1240 0433 51030000 		.4byte	.LASF54
+ 1241 0437 01       		.byte	0x1
+ 1242 0438 8601     		.2byte	0x186
+ 1243 043a 01       		.byte	0x1
+ 1244 043b 00000000 		.4byte	.LFB118
+ 1245 043f 20000000 		.4byte	.LFE118
+ 1246 0443 B8020000 		.4byte	.LLST17
+ 1247 0447 01       		.byte	0x1
+ 1248 0448 7B040000 		.4byte	0x47b
+ 1249 044c 19       		.uleb128 0x19
+ 1250 044d 92020000 		.4byte	.LASF52
+ 1251 0451 01       		.byte	0x1
+ 1252 0452 8601     		.2byte	0x186
+ 1253 0454 6D000000 		.4byte	0x6d
+ 1254 0458 D8020000 		.4byte	.LLST18
+ 1255 045c 1B       		.uleb128 0x1b
+ 1256 045d 54010000 		.4byte	.LASF53
+ 1257 0461 01       		.byte	0x1
+ 1258 0462 8601     		.2byte	0x186
+ 1259 0464 49000000 		.4byte	0x49
+ 1260 0468 01       		.byte	0x1
+ 1261 0469 51       		.byte	0x51
+ 1262 046a 1C       		.uleb128 0x1c
+ 1263 046b 746D7000 		.ascii	"tmp\000"
+ 1264 046f 01       		.byte	0x1
+ 1265 0470 8801     		.2byte	0x188
+ 1266 0472 A2000000 		.4byte	0xa2
+ 1267 0476 F9020000 		.4byte	.LLST19
+ 1268 047a 00       		.byte	0
+ 1269 047b 18       		.uleb128 0x18
+ 1270 047c 01       		.byte	0x1
+ 1271 047d 34010000 		.4byte	.LASF55
+ 1272 0481 01       		.byte	0x1
+ 1273 0482 A201     		.2byte	0x1a2
+ 1274 0484 01       		.byte	0x1
+ 1275 0485 00000000 		.4byte	.LFB119
+ 1276 0489 18000000 		.4byte	.LFE119
+ 1277 048d 02       		.byte	0x2
+ 1278 048e 7D       		.byte	0x7d
+ 1279 048f 00       		.sleb128 0
+ 1280 0490 01       		.byte	0x1
+ 1281 0491 E2040000 		.4byte	0x4e2
+ 1282 0495 1B       		.uleb128 0x1b
+ 1283 0496 92020000 		.4byte	.LASF52
+ 1284 049a 01       		.byte	0x1
+ 1285 049b A201     		.2byte	0x1a2
+ 1286 049d 6D000000 		.4byte	0x6d
+ 1287 04a1 01       		.byte	0x1
+ 1288 04a2 50       		.byte	0x50
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 36
+
+
+ 1289 04a3 19       		.uleb128 0x19
+ 1290 04a4 C3020000 		.4byte	.LASF56
+ 1291 04a8 01       		.byte	0x1
+ 1292 04a9 A201     		.2byte	0x1a2
+ 1293 04ab 49000000 		.4byte	0x49
+ 1294 04af 18030000 		.4byte	.LLST20
+ 1295 04b3 1B       		.uleb128 0x1b
+ 1296 04b4 9A030000 		.4byte	.LASF57
+ 1297 04b8 01       		.byte	0x1
+ 1298 04b9 A201     		.2byte	0x1a2
+ 1299 04bb 49000000 		.4byte	0x49
+ 1300 04bf 01       		.byte	0x1
+ 1301 04c0 52       		.byte	0x52
+ 1302 04c1 1D       		.uleb128 0x1d
+ 1303 04c2 C9020000 		.4byte	.LASF58
+ 1304 04c6 01       		.byte	0x1
+ 1305 04c7 A401     		.2byte	0x1a4
+ 1306 04c9 6D000000 		.4byte	0x6d
+ 1307 04cd 39030000 		.4byte	.LLST21
+ 1308 04d1 1C       		.uleb128 0x1c
+ 1309 04d2 746D7000 		.ascii	"tmp\000"
+ 1310 04d6 01       		.byte	0x1
+ 1311 04d7 A401     		.2byte	0x1a4
+ 1312 04d9 6D000000 		.4byte	0x6d
+ 1313 04dd 58030000 		.4byte	.LLST22
+ 1314 04e1 00       		.byte	0
+ 1315 04e2 1E       		.uleb128 0x1e
+ 1316 04e3 01       		.byte	0x1
+ 1317 04e4 08000000 		.4byte	.LASF62
+ 1318 04e8 01       		.byte	0x1
+ 1319 04e9 C401     		.2byte	0x1c4
+ 1320 04eb 01       		.byte	0x1
+ 1321 04ec 49000000 		.4byte	0x49
+ 1322 04f0 00000000 		.4byte	.LFB120
+ 1323 04f4 24000000 		.4byte	.LFE120
+ 1324 04f8 7D030000 		.4byte	.LLST23
+ 1325 04fc 01       		.byte	0x1
+ 1326 04fd 22050000 		.4byte	0x522
+ 1327 0501 19       		.uleb128 0x19
+ 1328 0502 EF010000 		.4byte	.LASF40
+ 1329 0506 01       		.byte	0x1
+ 1330 0507 C401     		.2byte	0x1c4
+ 1331 0509 6D000000 		.4byte	0x6d
+ 1332 050d 9D030000 		.4byte	.LLST24
+ 1333 0511 1C       		.uleb128 0x1c
+ 1334 0512 746D7000 		.ascii	"tmp\000"
+ 1335 0516 01       		.byte	0x1
+ 1336 0517 C601     		.2byte	0x1c6
+ 1337 0519 A2000000 		.4byte	0xa2
+ 1338 051d BE030000 		.4byte	.LLST25
+ 1339 0521 00       		.byte	0
+ 1340 0522 18       		.uleb128 0x18
+ 1341 0523 01       		.byte	0x1
+ 1342 0524 E4010000 		.4byte	.LASF59
+ 1343 0528 01       		.byte	0x1
+ 1344 0529 F101     		.2byte	0x1f1
+ 1345 052b 01       		.byte	0x1
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 37
+
+
+ 1346 052c 00000000 		.4byte	.LFB121
+ 1347 0530 2A000000 		.4byte	.LFE121
+ 1348 0534 02       		.byte	0x2
+ 1349 0535 7D       		.byte	0x7d
+ 1350 0536 00       		.sleb128 0
+ 1351 0537 01       		.byte	0x1
+ 1352 0538 5D050000 		.4byte	0x55d
+ 1353 053c 19       		.uleb128 0x19
+ 1354 053d EF010000 		.4byte	.LASF40
+ 1355 0541 01       		.byte	0x1
+ 1356 0542 F101     		.2byte	0x1f1
+ 1357 0544 6D000000 		.4byte	0x6d
+ 1358 0548 E9030000 		.4byte	.LLST26
+ 1359 054c 19       		.uleb128 0x19
+ 1360 054d D1000000 		.4byte	.LASF46
+ 1361 0551 01       		.byte	0x1
+ 1362 0552 F101     		.2byte	0x1f1
+ 1363 0554 F0000000 		.4byte	0xf0
+ 1364 0558 23040000 		.4byte	.LLST27
+ 1365 055c 00       		.byte	0
+ 1366 055d 18       		.uleb128 0x18
+ 1367 055e 01       		.byte	0x1
+ 1368 055f C6030000 		.4byte	.LASF60
+ 1369 0563 01       		.byte	0x1
+ 1370 0564 2102     		.2byte	0x221
+ 1371 0566 01       		.byte	0x1
+ 1372 0567 00000000 		.4byte	.LFB122
+ 1373 056b 20000000 		.4byte	.LFE122
+ 1374 056f 02       		.byte	0x2
+ 1375 0570 7D       		.byte	0x7d
+ 1376 0571 00       		.sleb128 0
+ 1377 0572 01       		.byte	0x1
+ 1378 0573 A8050000 		.4byte	0x5a8
+ 1379 0577 19       		.uleb128 0x19
+ 1380 0578 EF010000 		.4byte	.LASF40
+ 1381 057c 01       		.byte	0x1
+ 1382 057d 2102     		.2byte	0x221
+ 1383 057f 6D000000 		.4byte	0x6d
+ 1384 0583 5D040000 		.4byte	.LLST28
+ 1385 0587 19       		.uleb128 0x19
+ 1386 0588 AC020000 		.4byte	.LASF61
+ 1387 058c 01       		.byte	0x1
+ 1388 058d 2102     		.2byte	0x221
+ 1389 058f 6D000000 		.4byte	0x6d
+ 1390 0593 7E040000 		.4byte	.LLST29
+ 1391 0597 19       		.uleb128 0x19
+ 1392 0598 D1000000 		.4byte	.LASF46
+ 1393 059c 01       		.byte	0x1
+ 1394 059d 2102     		.2byte	0x221
+ 1395 059f F0000000 		.4byte	0xf0
+ 1396 05a3 9F040000 		.4byte	.LLST30
+ 1397 05a7 00       		.byte	0
+ 1398 05a8 1F       		.uleb128 0x1f
+ 1399 05a9 01       		.byte	0x1
+ 1400 05aa 7D000000 		.4byte	.LASF63
+ 1401 05ae 01       		.byte	0x1
+ 1402 05af 4102     		.2byte	0x241
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 38
+
+
+ 1403 05b1 01       		.byte	0x1
+ 1404 05b2 C2000000 		.4byte	0xc2
+ 1405 05b6 00000000 		.4byte	.LFB123
+ 1406 05ba 18000000 		.4byte	.LFE123
+ 1407 05be 02       		.byte	0x2
+ 1408 05bf 7D       		.byte	0x7d
+ 1409 05c0 00       		.sleb128 0
+ 1410 05c1 01       		.byte	0x1
+ 1411 05c2 F7050000 		.4byte	0x5f7
+ 1412 05c6 19       		.uleb128 0x19
+ 1413 05c7 EF010000 		.4byte	.LASF40
+ 1414 05cb 01       		.byte	0x1
+ 1415 05cc 4102     		.2byte	0x241
+ 1416 05ce 6D000000 		.4byte	0x6d
+ 1417 05d2 CB040000 		.4byte	.LLST31
+ 1418 05d6 19       		.uleb128 0x19
+ 1419 05d7 74000000 		.4byte	.LASF64
+ 1420 05db 01       		.byte	0x1
+ 1421 05dc 4102     		.2byte	0x241
+ 1422 05de 6D000000 		.4byte	0x6d
+ 1423 05e2 EC040000 		.4byte	.LLST32
+ 1424 05e6 1D       		.uleb128 0x1d
+ 1425 05e7 6D010000 		.4byte	.LASF65
+ 1426 05eb 01       		.byte	0x1
+ 1427 05ec 4302     		.2byte	0x243
+ 1428 05ee C2000000 		.4byte	0xc2
+ 1429 05f2 0D050000 		.4byte	.LLST33
+ 1430 05f6 00       		.byte	0
+ 1431 05f7 18       		.uleb128 0x18
+ 1432 05f8 01       		.byte	0x1
+ 1433 05f9 E2000000 		.4byte	.LASF66
+ 1434 05fd 01       		.byte	0x1
+ 1435 05fe 6402     		.2byte	0x264
+ 1436 0600 01       		.byte	0x1
+ 1437 0601 00000000 		.4byte	.LFB124
+ 1438 0605 10000000 		.4byte	.LFE124
+ 1439 0609 02       		.byte	0x2
+ 1440 060a 7D       		.byte	0x7d
+ 1441 060b 00       		.sleb128 0
+ 1442 060c 01       		.byte	0x1
+ 1443 060d 30060000 		.4byte	0x630
+ 1444 0611 1B       		.uleb128 0x1b
+ 1445 0612 EF010000 		.4byte	.LASF40
+ 1446 0616 01       		.byte	0x1
+ 1447 0617 6402     		.2byte	0x264
+ 1448 0619 6D000000 		.4byte	0x6d
+ 1449 061d 01       		.byte	0x1
+ 1450 061e 50       		.byte	0x50
+ 1451 061f 19       		.uleb128 0x19
+ 1452 0620 74000000 		.4byte	.LASF64
+ 1453 0624 01       		.byte	0x1
+ 1454 0625 6402     		.2byte	0x264
+ 1455 0627 6D000000 		.4byte	0x6d
+ 1456 062b 38050000 		.4byte	.LLST34
+ 1457 062f 00       		.byte	0
+ 1458 0630 1F       		.uleb128 0x1f
+ 1459 0631 01       		.byte	0x1
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 39
+
+
+ 1460 0632 41030000 		.4byte	.LASF67
+ 1461 0636 01       		.byte	0x1
+ 1462 0637 7B02     		.2byte	0x27b
+ 1463 0639 01       		.byte	0x1
+ 1464 063a CE000000 		.4byte	0xce
+ 1465 063e 00000000 		.4byte	.LFB125
+ 1466 0642 1E000000 		.4byte	.LFE125
+ 1467 0646 02       		.byte	0x2
+ 1468 0647 7D       		.byte	0x7d
+ 1469 0648 00       		.sleb128 0
+ 1470 0649 01       		.byte	0x1
+ 1471 064a 8F060000 		.4byte	0x68f
+ 1472 064e 19       		.uleb128 0x19
+ 1473 064f EF010000 		.4byte	.LASF40
+ 1474 0653 01       		.byte	0x1
+ 1475 0654 7B02     		.2byte	0x27b
+ 1476 0656 6D000000 		.4byte	0x6d
+ 1477 065a 59050000 		.4byte	.LLST35
+ 1478 065e 19       		.uleb128 0x19
+ 1479 065f AC020000 		.4byte	.LASF61
+ 1480 0663 01       		.byte	0x1
+ 1481 0664 7B02     		.2byte	0x27b
+ 1482 0666 6D000000 		.4byte	0x6d
+ 1483 066a 7A050000 		.4byte	.LLST36
+ 1484 066e 1D       		.uleb128 0x1d
+ 1485 066f 6D010000 		.4byte	.LASF65
+ 1486 0673 01       		.byte	0x1
+ 1487 0674 7D02     		.2byte	0x27d
+ 1488 0676 CE000000 		.4byte	0xce
+ 1489 067a 9B050000 		.4byte	.LLST37
+ 1490 067e 1D       		.uleb128 0x1d
+ 1491 067f F0000000 		.4byte	.LASF68
+ 1492 0683 01       		.byte	0x1
+ 1493 0684 7E02     		.2byte	0x27e
+ 1494 0686 6D000000 		.4byte	0x6d
+ 1495 068a BA050000 		.4byte	.LLST38
+ 1496 068e 00       		.byte	0
+ 1497 068f 18       		.uleb128 0x18
+ 1498 0690 01       		.byte	0x1
+ 1499 0691 6D030000 		.4byte	.LASF69
+ 1500 0695 01       		.byte	0x1
+ 1501 0696 A302     		.2byte	0x2a3
+ 1502 0698 01       		.byte	0x1
+ 1503 0699 00000000 		.4byte	.LFB126
+ 1504 069d 10000000 		.4byte	.LFE126
+ 1505 06a1 02       		.byte	0x2
+ 1506 06a2 7D       		.byte	0x7d
+ 1507 06a3 00       		.sleb128 0
+ 1508 06a4 01       		.byte	0x1
+ 1509 06a5 C8060000 		.4byte	0x6c8
+ 1510 06a9 1B       		.uleb128 0x1b
+ 1511 06aa EF010000 		.4byte	.LASF40
+ 1512 06ae 01       		.byte	0x1
+ 1513 06af A302     		.2byte	0x2a3
+ 1514 06b1 6D000000 		.4byte	0x6d
+ 1515 06b5 01       		.byte	0x1
+ 1516 06b6 50       		.byte	0x50
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 40
+
+
+ 1517 06b7 19       		.uleb128 0x19
+ 1518 06b8 AC020000 		.4byte	.LASF61
+ 1519 06bc 01       		.byte	0x1
+ 1520 06bd A302     		.2byte	0x2a3
+ 1521 06bf 6D000000 		.4byte	0x6d
+ 1522 06c3 DE050000 		.4byte	.LLST39
+ 1523 06c7 00       		.byte	0
+ 1524 06c8 20       		.uleb128 0x20
+ 1525 06c9 A0030000 		.4byte	.LASF73
+ 1526 06cd 05       		.byte	0x5
+ 1527 06ce 1A05     		.2byte	0x51a
+ 1528 06d0 A7000000 		.4byte	0xa7
+ 1529 06d4 01       		.byte	0x1
+ 1530 06d5 01       		.byte	0x1
+ 1531 06d6 21       		.uleb128 0x21
+ 1532 06d7 01       		.byte	0x1
+ 1533 06d8 0B010000 		.4byte	.LASF74
+ 1534 06dc 06       		.byte	0x6
+ 1535 06dd E001     		.2byte	0x1e0
+ 1536 06df 01       		.byte	0x1
+ 1537 06e0 01       		.byte	0x1
+ 1538 06e1 22       		.uleb128 0x22
+ 1539 06e2 6D000000 		.4byte	0x6d
+ 1540 06e6 22       		.uleb128 0x22
+ 1541 06e7 F0000000 		.4byte	0xf0
+ 1542 06eb 00       		.byte	0
+ 1543 06ec 00       		.byte	0
+ 1544              		.section	.debug_abbrev,"",%progbits
+ 1545              	.Ldebug_abbrev0:
+ 1546 0000 01       		.uleb128 0x1
+ 1547 0001 11       		.uleb128 0x11
+ 1548 0002 01       		.byte	0x1
+ 1549 0003 25       		.uleb128 0x25
+ 1550 0004 0E       		.uleb128 0xe
+ 1551 0005 13       		.uleb128 0x13
+ 1552 0006 0B       		.uleb128 0xb
+ 1553 0007 03       		.uleb128 0x3
+ 1554 0008 0E       		.uleb128 0xe
+ 1555 0009 1B       		.uleb128 0x1b
+ 1556 000a 0E       		.uleb128 0xe
+ 1557 000b 55       		.uleb128 0x55
+ 1558 000c 06       		.uleb128 0x6
+ 1559 000d 11       		.uleb128 0x11
+ 1560 000e 01       		.uleb128 0x1
+ 1561 000f 52       		.uleb128 0x52
+ 1562 0010 01       		.uleb128 0x1
+ 1563 0011 10       		.uleb128 0x10
+ 1564 0012 06       		.uleb128 0x6
+ 1565 0013 00       		.byte	0
+ 1566 0014 00       		.byte	0
+ 1567 0015 02       		.uleb128 0x2
+ 1568 0016 24       		.uleb128 0x24
+ 1569 0017 00       		.byte	0
+ 1570 0018 0B       		.uleb128 0xb
+ 1571 0019 0B       		.uleb128 0xb
+ 1572 001a 3E       		.uleb128 0x3e
+ 1573 001b 0B       		.uleb128 0xb
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 41
+
+
+ 1574 001c 03       		.uleb128 0x3
+ 1575 001d 0E       		.uleb128 0xe
+ 1576 001e 00       		.byte	0
+ 1577 001f 00       		.byte	0
+ 1578 0020 03       		.uleb128 0x3
+ 1579 0021 16       		.uleb128 0x16
+ 1580 0022 00       		.byte	0
+ 1581 0023 03       		.uleb128 0x3
+ 1582 0024 0E       		.uleb128 0xe
+ 1583 0025 3A       		.uleb128 0x3a
+ 1584 0026 0B       		.uleb128 0xb
+ 1585 0027 3B       		.uleb128 0x3b
+ 1586 0028 0B       		.uleb128 0xb
+ 1587 0029 49       		.uleb128 0x49
+ 1588 002a 13       		.uleb128 0x13
+ 1589 002b 00       		.byte	0
+ 1590 002c 00       		.byte	0
+ 1591 002d 04       		.uleb128 0x4
+ 1592 002e 24       		.uleb128 0x24
+ 1593 002f 00       		.byte	0
+ 1594 0030 0B       		.uleb128 0xb
+ 1595 0031 0B       		.uleb128 0xb
+ 1596 0032 3E       		.uleb128 0x3e
+ 1597 0033 0B       		.uleb128 0xb
+ 1598 0034 03       		.uleb128 0x3
+ 1599 0035 08       		.uleb128 0x8
+ 1600 0036 00       		.byte	0
+ 1601 0037 00       		.byte	0
+ 1602 0038 05       		.uleb128 0x5
+ 1603 0039 35       		.uleb128 0x35
+ 1604 003a 00       		.byte	0
+ 1605 003b 49       		.uleb128 0x49
+ 1606 003c 13       		.uleb128 0x13
+ 1607 003d 00       		.byte	0
+ 1608 003e 00       		.byte	0
+ 1609 003f 06       		.uleb128 0x6
+ 1610 0040 04       		.uleb128 0x4
+ 1611 0041 01       		.byte	0x1
+ 1612 0042 0B       		.uleb128 0xb
+ 1613 0043 0B       		.uleb128 0xb
+ 1614 0044 3A       		.uleb128 0x3a
+ 1615 0045 0B       		.uleb128 0xb
+ 1616 0046 3B       		.uleb128 0x3b
+ 1617 0047 05       		.uleb128 0x5
+ 1618 0048 01       		.uleb128 0x1
+ 1619 0049 13       		.uleb128 0x13
+ 1620 004a 00       		.byte	0
+ 1621 004b 00       		.byte	0
+ 1622 004c 07       		.uleb128 0x7
+ 1623 004d 28       		.uleb128 0x28
+ 1624 004e 00       		.byte	0
+ 1625 004f 03       		.uleb128 0x3
+ 1626 0050 0E       		.uleb128 0xe
+ 1627 0051 1C       		.uleb128 0x1c
+ 1628 0052 0D       		.uleb128 0xd
+ 1629 0053 00       		.byte	0
+ 1630 0054 00       		.byte	0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 42
+
+
+ 1631 0055 08       		.uleb128 0x8
+ 1632 0056 28       		.uleb128 0x28
+ 1633 0057 00       		.byte	0
+ 1634 0058 03       		.uleb128 0x3
+ 1635 0059 08       		.uleb128 0x8
+ 1636 005a 1C       		.uleb128 0x1c
+ 1637 005b 0D       		.uleb128 0xd
+ 1638 005c 00       		.byte	0
+ 1639 005d 00       		.byte	0
+ 1640 005e 09       		.uleb128 0x9
+ 1641 005f 16       		.uleb128 0x16
+ 1642 0060 00       		.byte	0
+ 1643 0061 03       		.uleb128 0x3
+ 1644 0062 0E       		.uleb128 0xe
+ 1645 0063 3A       		.uleb128 0x3a
+ 1646 0064 0B       		.uleb128 0xb
+ 1647 0065 3B       		.uleb128 0x3b
+ 1648 0066 05       		.uleb128 0x5
+ 1649 0067 49       		.uleb128 0x49
+ 1650 0068 13       		.uleb128 0x13
+ 1651 0069 00       		.byte	0
+ 1652 006a 00       		.byte	0
+ 1653 006b 0A       		.uleb128 0xa
+ 1654 006c 13       		.uleb128 0x13
+ 1655 006d 01       		.byte	0x1
+ 1656 006e 0B       		.uleb128 0xb
+ 1657 006f 0B       		.uleb128 0xb
+ 1658 0070 3A       		.uleb128 0x3a
+ 1659 0071 0B       		.uleb128 0xb
+ 1660 0072 3B       		.uleb128 0x3b
+ 1661 0073 05       		.uleb128 0x5
+ 1662 0074 01       		.uleb128 0x1
+ 1663 0075 13       		.uleb128 0x13
+ 1664 0076 00       		.byte	0
+ 1665 0077 00       		.byte	0
+ 1666 0078 0B       		.uleb128 0xb
+ 1667 0079 0D       		.uleb128 0xd
+ 1668 007a 00       		.byte	0
+ 1669 007b 03       		.uleb128 0x3
+ 1670 007c 08       		.uleb128 0x8
+ 1671 007d 3A       		.uleb128 0x3a
+ 1672 007e 0B       		.uleb128 0xb
+ 1673 007f 3B       		.uleb128 0x3b
+ 1674 0080 05       		.uleb128 0x5
+ 1675 0081 49       		.uleb128 0x49
+ 1676 0082 13       		.uleb128 0x13
+ 1677 0083 38       		.uleb128 0x38
+ 1678 0084 0A       		.uleb128 0xa
+ 1679 0085 00       		.byte	0
+ 1680 0086 00       		.byte	0
+ 1681 0087 0C       		.uleb128 0xc
+ 1682 0088 0D       		.uleb128 0xd
+ 1683 0089 00       		.byte	0
+ 1684 008a 03       		.uleb128 0x3
+ 1685 008b 0E       		.uleb128 0xe
+ 1686 008c 3A       		.uleb128 0x3a
+ 1687 008d 0B       		.uleb128 0xb
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 43
+
+
+ 1688 008e 3B       		.uleb128 0x3b
+ 1689 008f 05       		.uleb128 0x5
+ 1690 0090 49       		.uleb128 0x49
+ 1691 0091 13       		.uleb128 0x13
+ 1692 0092 38       		.uleb128 0x38
+ 1693 0093 0A       		.uleb128 0xa
+ 1694 0094 00       		.byte	0
+ 1695 0095 00       		.byte	0
+ 1696 0096 0D       		.uleb128 0xd
+ 1697 0097 13       		.uleb128 0x13
+ 1698 0098 01       		.byte	0x1
+ 1699 0099 0B       		.uleb128 0xb
+ 1700 009a 0B       		.uleb128 0xb
+ 1701 009b 3A       		.uleb128 0x3a
+ 1702 009c 0B       		.uleb128 0xb
+ 1703 009d 3B       		.uleb128 0x3b
+ 1704 009e 0B       		.uleb128 0xb
+ 1705 009f 01       		.uleb128 0x1
+ 1706 00a0 13       		.uleb128 0x13
+ 1707 00a1 00       		.byte	0
+ 1708 00a2 00       		.byte	0
+ 1709 00a3 0E       		.uleb128 0xe
+ 1710 00a4 0D       		.uleb128 0xd
+ 1711 00a5 00       		.byte	0
+ 1712 00a6 03       		.uleb128 0x3
+ 1713 00a7 0E       		.uleb128 0xe
+ 1714 00a8 3A       		.uleb128 0x3a
+ 1715 00a9 0B       		.uleb128 0xb
+ 1716 00aa 3B       		.uleb128 0x3b
+ 1717 00ab 0B       		.uleb128 0xb
+ 1718 00ac 49       		.uleb128 0x49
+ 1719 00ad 13       		.uleb128 0x13
+ 1720 00ae 38       		.uleb128 0x38
+ 1721 00af 0A       		.uleb128 0xa
+ 1722 00b0 00       		.byte	0
+ 1723 00b1 00       		.byte	0
+ 1724 00b2 0F       		.uleb128 0xf
+ 1725 00b3 2E       		.uleb128 0x2e
+ 1726 00b4 01       		.byte	0x1
+ 1727 00b5 3F       		.uleb128 0x3f
+ 1728 00b6 0C       		.uleb128 0xc
+ 1729 00b7 03       		.uleb128 0x3
+ 1730 00b8 0E       		.uleb128 0xe
+ 1731 00b9 3A       		.uleb128 0x3a
+ 1732 00ba 0B       		.uleb128 0xb
+ 1733 00bb 3B       		.uleb128 0x3b
+ 1734 00bc 0B       		.uleb128 0xb
+ 1735 00bd 27       		.uleb128 0x27
+ 1736 00be 0C       		.uleb128 0xc
+ 1737 00bf 11       		.uleb128 0x11
+ 1738 00c0 01       		.uleb128 0x1
+ 1739 00c1 12       		.uleb128 0x12
+ 1740 00c2 01       		.uleb128 0x1
+ 1741 00c3 40       		.uleb128 0x40
+ 1742 00c4 06       		.uleb128 0x6
+ 1743 00c5 9742     		.uleb128 0x2117
+ 1744 00c7 0C       		.uleb128 0xc
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 44
+
+
+ 1745 00c8 01       		.uleb128 0x1
+ 1746 00c9 13       		.uleb128 0x13
+ 1747 00ca 00       		.byte	0
+ 1748 00cb 00       		.byte	0
+ 1749 00cc 10       		.uleb128 0x10
+ 1750 00cd 898201   		.uleb128 0x4109
+ 1751 00d0 01       		.byte	0x1
+ 1752 00d1 11       		.uleb128 0x11
+ 1753 00d2 01       		.uleb128 0x1
+ 1754 00d3 31       		.uleb128 0x31
+ 1755 00d4 13       		.uleb128 0x13
+ 1756 00d5 01       		.uleb128 0x1
+ 1757 00d6 13       		.uleb128 0x13
+ 1758 00d7 00       		.byte	0
+ 1759 00d8 00       		.byte	0
+ 1760 00d9 11       		.uleb128 0x11
+ 1761 00da 8A8201   		.uleb128 0x410a
+ 1762 00dd 00       		.byte	0
+ 1763 00de 02       		.uleb128 0x2
+ 1764 00df 0A       		.uleb128 0xa
+ 1765 00e0 9142     		.uleb128 0x2111
+ 1766 00e2 0A       		.uleb128 0xa
+ 1767 00e3 00       		.byte	0
+ 1768 00e4 00       		.byte	0
+ 1769 00e5 12       		.uleb128 0x12
+ 1770 00e6 898201   		.uleb128 0x4109
+ 1771 00e9 01       		.byte	0x1
+ 1772 00ea 11       		.uleb128 0x11
+ 1773 00eb 01       		.uleb128 0x1
+ 1774 00ec 9542     		.uleb128 0x2115
+ 1775 00ee 0C       		.uleb128 0xc
+ 1776 00ef 31       		.uleb128 0x31
+ 1777 00f0 13       		.uleb128 0x13
+ 1778 00f1 00       		.byte	0
+ 1779 00f2 00       		.byte	0
+ 1780 00f3 13       		.uleb128 0x13
+ 1781 00f4 05       		.uleb128 0x5
+ 1782 00f5 00       		.byte	0
+ 1783 00f6 03       		.uleb128 0x3
+ 1784 00f7 0E       		.uleb128 0xe
+ 1785 00f8 3A       		.uleb128 0x3a
+ 1786 00f9 0B       		.uleb128 0xb
+ 1787 00fa 3B       		.uleb128 0x3b
+ 1788 00fb 0B       		.uleb128 0xb
+ 1789 00fc 49       		.uleb128 0x49
+ 1790 00fd 13       		.uleb128 0x13
+ 1791 00fe 02       		.uleb128 0x2
+ 1792 00ff 06       		.uleb128 0x6
+ 1793 0100 00       		.byte	0
+ 1794 0101 00       		.byte	0
+ 1795 0102 14       		.uleb128 0x14
+ 1796 0103 34       		.uleb128 0x34
+ 1797 0104 00       		.byte	0
+ 1798 0105 03       		.uleb128 0x3
+ 1799 0106 0E       		.uleb128 0xe
+ 1800 0107 3A       		.uleb128 0x3a
+ 1801 0108 0B       		.uleb128 0xb
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 45
+
+
+ 1802 0109 3B       		.uleb128 0x3b
+ 1803 010a 0B       		.uleb128 0xb
+ 1804 010b 49       		.uleb128 0x49
+ 1805 010c 13       		.uleb128 0x13
+ 1806 010d 02       		.uleb128 0x2
+ 1807 010e 06       		.uleb128 0x6
+ 1808 010f 00       		.byte	0
+ 1809 0110 00       		.byte	0
+ 1810 0111 15       		.uleb128 0x15
+ 1811 0112 0F       		.uleb128 0xf
+ 1812 0113 00       		.byte	0
+ 1813 0114 0B       		.uleb128 0xb
+ 1814 0115 0B       		.uleb128 0xb
+ 1815 0116 49       		.uleb128 0x49
+ 1816 0117 13       		.uleb128 0x13
+ 1817 0118 00       		.byte	0
+ 1818 0119 00       		.byte	0
+ 1819 011a 16       		.uleb128 0x16
+ 1820 011b 2E       		.uleb128 0x2e
+ 1821 011c 01       		.byte	0x1
+ 1822 011d 3F       		.uleb128 0x3f
+ 1823 011e 0C       		.uleb128 0xc
+ 1824 011f 03       		.uleb128 0x3
+ 1825 0120 0E       		.uleb128 0xe
+ 1826 0121 3A       		.uleb128 0x3a
+ 1827 0122 0B       		.uleb128 0xb
+ 1828 0123 3B       		.uleb128 0x3b
+ 1829 0124 0B       		.uleb128 0xb
+ 1830 0125 27       		.uleb128 0x27
+ 1831 0126 0C       		.uleb128 0xc
+ 1832 0127 11       		.uleb128 0x11
+ 1833 0128 01       		.uleb128 0x1
+ 1834 0129 12       		.uleb128 0x12
+ 1835 012a 01       		.uleb128 0x1
+ 1836 012b 40       		.uleb128 0x40
+ 1837 012c 0A       		.uleb128 0xa
+ 1838 012d 9742     		.uleb128 0x2117
+ 1839 012f 0C       		.uleb128 0xc
+ 1840 0130 01       		.uleb128 0x1
+ 1841 0131 13       		.uleb128 0x13
+ 1842 0132 00       		.byte	0
+ 1843 0133 00       		.byte	0
+ 1844 0134 17       		.uleb128 0x17
+ 1845 0135 05       		.uleb128 0x5
+ 1846 0136 00       		.byte	0
+ 1847 0137 03       		.uleb128 0x3
+ 1848 0138 0E       		.uleb128 0xe
+ 1849 0139 3A       		.uleb128 0x3a
+ 1850 013a 0B       		.uleb128 0xb
+ 1851 013b 3B       		.uleb128 0x3b
+ 1852 013c 0B       		.uleb128 0xb
+ 1853 013d 49       		.uleb128 0x49
+ 1854 013e 13       		.uleb128 0x13
+ 1855 013f 02       		.uleb128 0x2
+ 1856 0140 0A       		.uleb128 0xa
+ 1857 0141 00       		.byte	0
+ 1858 0142 00       		.byte	0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 46
+
+
+ 1859 0143 18       		.uleb128 0x18
+ 1860 0144 2E       		.uleb128 0x2e
+ 1861 0145 01       		.byte	0x1
+ 1862 0146 3F       		.uleb128 0x3f
+ 1863 0147 0C       		.uleb128 0xc
+ 1864 0148 03       		.uleb128 0x3
+ 1865 0149 0E       		.uleb128 0xe
+ 1866 014a 3A       		.uleb128 0x3a
+ 1867 014b 0B       		.uleb128 0xb
+ 1868 014c 3B       		.uleb128 0x3b
+ 1869 014d 05       		.uleb128 0x5
+ 1870 014e 27       		.uleb128 0x27
+ 1871 014f 0C       		.uleb128 0xc
+ 1872 0150 11       		.uleb128 0x11
+ 1873 0151 01       		.uleb128 0x1
+ 1874 0152 12       		.uleb128 0x12
+ 1875 0153 01       		.uleb128 0x1
+ 1876 0154 40       		.uleb128 0x40
+ 1877 0155 0A       		.uleb128 0xa
+ 1878 0156 9742     		.uleb128 0x2117
+ 1879 0158 0C       		.uleb128 0xc
+ 1880 0159 01       		.uleb128 0x1
+ 1881 015a 13       		.uleb128 0x13
+ 1882 015b 00       		.byte	0
+ 1883 015c 00       		.byte	0
+ 1884 015d 19       		.uleb128 0x19
+ 1885 015e 05       		.uleb128 0x5
+ 1886 015f 00       		.byte	0
+ 1887 0160 03       		.uleb128 0x3
+ 1888 0161 0E       		.uleb128 0xe
+ 1889 0162 3A       		.uleb128 0x3a
+ 1890 0163 0B       		.uleb128 0xb
+ 1891 0164 3B       		.uleb128 0x3b
+ 1892 0165 05       		.uleb128 0x5
+ 1893 0166 49       		.uleb128 0x49
+ 1894 0167 13       		.uleb128 0x13
+ 1895 0168 02       		.uleb128 0x2
+ 1896 0169 06       		.uleb128 0x6
+ 1897 016a 00       		.byte	0
+ 1898 016b 00       		.byte	0
+ 1899 016c 1A       		.uleb128 0x1a
+ 1900 016d 2E       		.uleb128 0x2e
+ 1901 016e 01       		.byte	0x1
+ 1902 016f 3F       		.uleb128 0x3f
+ 1903 0170 0C       		.uleb128 0xc
+ 1904 0171 03       		.uleb128 0x3
+ 1905 0172 0E       		.uleb128 0xe
+ 1906 0173 3A       		.uleb128 0x3a
+ 1907 0174 0B       		.uleb128 0xb
+ 1908 0175 3B       		.uleb128 0x3b
+ 1909 0176 05       		.uleb128 0x5
+ 1910 0177 27       		.uleb128 0x27
+ 1911 0178 0C       		.uleb128 0xc
+ 1912 0179 11       		.uleb128 0x11
+ 1913 017a 01       		.uleb128 0x1
+ 1914 017b 12       		.uleb128 0x12
+ 1915 017c 01       		.uleb128 0x1
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 47
+
+
+ 1916 017d 40       		.uleb128 0x40
+ 1917 017e 06       		.uleb128 0x6
+ 1918 017f 9742     		.uleb128 0x2117
+ 1919 0181 0C       		.uleb128 0xc
+ 1920 0182 01       		.uleb128 0x1
+ 1921 0183 13       		.uleb128 0x13
+ 1922 0184 00       		.byte	0
+ 1923 0185 00       		.byte	0
+ 1924 0186 1B       		.uleb128 0x1b
+ 1925 0187 05       		.uleb128 0x5
+ 1926 0188 00       		.byte	0
+ 1927 0189 03       		.uleb128 0x3
+ 1928 018a 0E       		.uleb128 0xe
+ 1929 018b 3A       		.uleb128 0x3a
+ 1930 018c 0B       		.uleb128 0xb
+ 1931 018d 3B       		.uleb128 0x3b
+ 1932 018e 05       		.uleb128 0x5
+ 1933 018f 49       		.uleb128 0x49
+ 1934 0190 13       		.uleb128 0x13
+ 1935 0191 02       		.uleb128 0x2
+ 1936 0192 0A       		.uleb128 0xa
+ 1937 0193 00       		.byte	0
+ 1938 0194 00       		.byte	0
+ 1939 0195 1C       		.uleb128 0x1c
+ 1940 0196 34       		.uleb128 0x34
+ 1941 0197 00       		.byte	0
+ 1942 0198 03       		.uleb128 0x3
+ 1943 0199 08       		.uleb128 0x8
+ 1944 019a 3A       		.uleb128 0x3a
+ 1945 019b 0B       		.uleb128 0xb
+ 1946 019c 3B       		.uleb128 0x3b
+ 1947 019d 05       		.uleb128 0x5
+ 1948 019e 49       		.uleb128 0x49
+ 1949 019f 13       		.uleb128 0x13
+ 1950 01a0 02       		.uleb128 0x2
+ 1951 01a1 06       		.uleb128 0x6
+ 1952 01a2 00       		.byte	0
+ 1953 01a3 00       		.byte	0
+ 1954 01a4 1D       		.uleb128 0x1d
+ 1955 01a5 34       		.uleb128 0x34
+ 1956 01a6 00       		.byte	0
+ 1957 01a7 03       		.uleb128 0x3
+ 1958 01a8 0E       		.uleb128 0xe
+ 1959 01a9 3A       		.uleb128 0x3a
+ 1960 01aa 0B       		.uleb128 0xb
+ 1961 01ab 3B       		.uleb128 0x3b
+ 1962 01ac 05       		.uleb128 0x5
+ 1963 01ad 49       		.uleb128 0x49
+ 1964 01ae 13       		.uleb128 0x13
+ 1965 01af 02       		.uleb128 0x2
+ 1966 01b0 06       		.uleb128 0x6
+ 1967 01b1 00       		.byte	0
+ 1968 01b2 00       		.byte	0
+ 1969 01b3 1E       		.uleb128 0x1e
+ 1970 01b4 2E       		.uleb128 0x2e
+ 1971 01b5 01       		.byte	0x1
+ 1972 01b6 3F       		.uleb128 0x3f
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 48
+
+
+ 1973 01b7 0C       		.uleb128 0xc
+ 1974 01b8 03       		.uleb128 0x3
+ 1975 01b9 0E       		.uleb128 0xe
+ 1976 01ba 3A       		.uleb128 0x3a
+ 1977 01bb 0B       		.uleb128 0xb
+ 1978 01bc 3B       		.uleb128 0x3b
+ 1979 01bd 05       		.uleb128 0x5
+ 1980 01be 27       		.uleb128 0x27
+ 1981 01bf 0C       		.uleb128 0xc
+ 1982 01c0 49       		.uleb128 0x49
+ 1983 01c1 13       		.uleb128 0x13
+ 1984 01c2 11       		.uleb128 0x11
+ 1985 01c3 01       		.uleb128 0x1
+ 1986 01c4 12       		.uleb128 0x12
+ 1987 01c5 01       		.uleb128 0x1
+ 1988 01c6 40       		.uleb128 0x40
+ 1989 01c7 06       		.uleb128 0x6
+ 1990 01c8 9742     		.uleb128 0x2117
+ 1991 01ca 0C       		.uleb128 0xc
+ 1992 01cb 01       		.uleb128 0x1
+ 1993 01cc 13       		.uleb128 0x13
+ 1994 01cd 00       		.byte	0
+ 1995 01ce 00       		.byte	0
+ 1996 01cf 1F       		.uleb128 0x1f
+ 1997 01d0 2E       		.uleb128 0x2e
+ 1998 01d1 01       		.byte	0x1
+ 1999 01d2 3F       		.uleb128 0x3f
+ 2000 01d3 0C       		.uleb128 0xc
+ 2001 01d4 03       		.uleb128 0x3
+ 2002 01d5 0E       		.uleb128 0xe
+ 2003 01d6 3A       		.uleb128 0x3a
+ 2004 01d7 0B       		.uleb128 0xb
+ 2005 01d8 3B       		.uleb128 0x3b
+ 2006 01d9 05       		.uleb128 0x5
+ 2007 01da 27       		.uleb128 0x27
+ 2008 01db 0C       		.uleb128 0xc
+ 2009 01dc 49       		.uleb128 0x49
+ 2010 01dd 13       		.uleb128 0x13
+ 2011 01de 11       		.uleb128 0x11
+ 2012 01df 01       		.uleb128 0x1
+ 2013 01e0 12       		.uleb128 0x12
+ 2014 01e1 01       		.uleb128 0x1
+ 2015 01e2 40       		.uleb128 0x40
+ 2016 01e3 0A       		.uleb128 0xa
+ 2017 01e4 9742     		.uleb128 0x2117
+ 2018 01e6 0C       		.uleb128 0xc
+ 2019 01e7 01       		.uleb128 0x1
+ 2020 01e8 13       		.uleb128 0x13
+ 2021 01e9 00       		.byte	0
+ 2022 01ea 00       		.byte	0
+ 2023 01eb 20       		.uleb128 0x20
+ 2024 01ec 34       		.uleb128 0x34
+ 2025 01ed 00       		.byte	0
+ 2026 01ee 03       		.uleb128 0x3
+ 2027 01ef 0E       		.uleb128 0xe
+ 2028 01f0 3A       		.uleb128 0x3a
+ 2029 01f1 0B       		.uleb128 0xb
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 49
+
+
+ 2030 01f2 3B       		.uleb128 0x3b
+ 2031 01f3 05       		.uleb128 0x5
+ 2032 01f4 49       		.uleb128 0x49
+ 2033 01f5 13       		.uleb128 0x13
+ 2034 01f6 3F       		.uleb128 0x3f
+ 2035 01f7 0C       		.uleb128 0xc
+ 2036 01f8 3C       		.uleb128 0x3c
+ 2037 01f9 0C       		.uleb128 0xc
+ 2038 01fa 00       		.byte	0
+ 2039 01fb 00       		.byte	0
+ 2040 01fc 21       		.uleb128 0x21
+ 2041 01fd 2E       		.uleb128 0x2e
+ 2042 01fe 01       		.byte	0x1
+ 2043 01ff 3F       		.uleb128 0x3f
+ 2044 0200 0C       		.uleb128 0xc
+ 2045 0201 03       		.uleb128 0x3
+ 2046 0202 0E       		.uleb128 0xe
+ 2047 0203 3A       		.uleb128 0x3a
+ 2048 0204 0B       		.uleb128 0xb
+ 2049 0205 3B       		.uleb128 0x3b
+ 2050 0206 05       		.uleb128 0x5
+ 2051 0207 27       		.uleb128 0x27
+ 2052 0208 0C       		.uleb128 0xc
+ 2053 0209 3C       		.uleb128 0x3c
+ 2054 020a 0C       		.uleb128 0xc
+ 2055 020b 00       		.byte	0
+ 2056 020c 00       		.byte	0
+ 2057 020d 22       		.uleb128 0x22
+ 2058 020e 05       		.uleb128 0x5
+ 2059 020f 00       		.byte	0
+ 2060 0210 49       		.uleb128 0x49
+ 2061 0211 13       		.uleb128 0x13
+ 2062 0212 00       		.byte	0
+ 2063 0213 00       		.byte	0
+ 2064 0214 00       		.byte	0
+ 2065              		.section	.debug_loc,"",%progbits
+ 2066              	.Ldebug_loc0:
+ 2067              	.LLST0:
+ 2068 0000 00000000 		.4byte	.LFB110
+ 2069 0004 02000000 		.4byte	.LCFI0
+ 2070 0008 0200     		.2byte	0x2
+ 2071 000a 7D       		.byte	0x7d
+ 2072 000b 00       		.sleb128 0
+ 2073 000c 02000000 		.4byte	.LCFI0
+ 2074 0010 1A000000 		.4byte	.LFE110
+ 2075 0014 0200     		.2byte	0x2
+ 2076 0016 7D       		.byte	0x7d
+ 2077 0017 08       		.sleb128 8
+ 2078 0018 00000000 		.4byte	0
+ 2079 001c 00000000 		.4byte	0
+ 2080              	.LLST1:
+ 2081 0020 00000000 		.4byte	.LFB111
+ 2082 0024 02000000 		.4byte	.LCFI1
+ 2083 0028 0200     		.2byte	0x2
+ 2084 002a 7D       		.byte	0x7d
+ 2085 002b 00       		.sleb128 0
+ 2086 002c 02000000 		.4byte	.LCFI1
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 50
+
+
+ 2087 0030 36000000 		.4byte	.LFE111
+ 2088 0034 0200     		.2byte	0x2
+ 2089 0036 7D       		.byte	0x7d
+ 2090 0037 0C       		.sleb128 12
+ 2091 0038 00000000 		.4byte	0
+ 2092 003c 00000000 		.4byte	0
+ 2093              	.LLST2:
+ 2094 0040 00000000 		.4byte	.LVL2
+ 2095 0044 2C000000 		.4byte	.LVL6
+ 2096 0048 0100     		.2byte	0x1
+ 2097 004a 50       		.byte	0x50
+ 2098 004b 2C000000 		.4byte	.LVL6
+ 2099 004f 36000000 		.4byte	.LFE111
+ 2100 0053 0400     		.2byte	0x4
+ 2101 0055 F3       		.byte	0xf3
+ 2102 0056 01       		.uleb128 0x1
+ 2103 0057 50       		.byte	0x50
+ 2104 0058 9F       		.byte	0x9f
+ 2105 0059 00000000 		.4byte	0
+ 2106 005d 00000000 		.4byte	0
+ 2107              	.LLST3:
+ 2108 0061 00000000 		.4byte	.LVL2
+ 2109 0065 16000000 		.4byte	.LVL3
+ 2110 0069 0100     		.2byte	0x1
+ 2111 006b 51       		.byte	0x51
+ 2112 006c 16000000 		.4byte	.LVL3
+ 2113 0070 36000000 		.4byte	.LFE111
+ 2114 0074 0400     		.2byte	0x4
+ 2115 0076 F3       		.byte	0xf3
+ 2116 0077 01       		.uleb128 0x1
+ 2117 0078 51       		.byte	0x51
+ 2118 0079 9F       		.byte	0x9f
+ 2119 007a 00000000 		.4byte	0
+ 2120 007e 00000000 		.4byte	0
+ 2121              	.LLST4:
+ 2122 0082 00000000 		.4byte	.LVL2
+ 2123 0086 1A000000 		.4byte	.LVL4
+ 2124 008a 0200     		.2byte	0x2
+ 2125 008c 30       		.byte	0x30
+ 2126 008d 9F       		.byte	0x9f
+ 2127 008e 1A000000 		.4byte	.LVL4
+ 2128 0092 28000000 		.4byte	.LVL5
+ 2129 0096 0100     		.2byte	0x1
+ 2130 0098 56       		.byte	0x56
+ 2131 0099 28000000 		.4byte	.LVL5
+ 2132 009d 30000000 		.4byte	.LVL7
+ 2133 00a1 0100     		.2byte	0x1
+ 2134 00a3 55       		.byte	0x55
+ 2135 00a4 30000000 		.4byte	.LVL7
+ 2136 00a8 36000000 		.4byte	.LFE111
+ 2137 00ac 0100     		.2byte	0x1
+ 2138 00ae 51       		.byte	0x51
+ 2139 00af 00000000 		.4byte	0
+ 2140 00b3 00000000 		.4byte	0
+ 2141              	.LLST5:
+ 2142 00b7 00000000 		.4byte	.LVL2
+ 2143 00bb 28000000 		.4byte	.LVL5
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 51
+
+
+ 2144 00bf 0200     		.2byte	0x2
+ 2145 00c1 30       		.byte	0x30
+ 2146 00c2 9F       		.byte	0x9f
+ 2147 00c3 28000000 		.4byte	.LVL5
+ 2148 00c7 36000000 		.4byte	.LFE111
+ 2149 00cb 1A00     		.2byte	0x1a
+ 2150 00cd F3       		.byte	0xf3
+ 2151 00ce 01       		.uleb128 0x1
+ 2152 00cf 51       		.byte	0x51
+ 2153 00d0 23       		.byte	0x23
+ 2154 00d1 04       		.uleb128 0x4
+ 2155 00d2 06       		.byte	0x6
+ 2156 00d3 F3       		.byte	0xf3
+ 2157 00d4 01       		.uleb128 0x1
+ 2158 00d5 51       		.byte	0x51
+ 2159 00d6 06       		.byte	0x6
+ 2160 00d7 21       		.byte	0x21
+ 2161 00d8 F3       		.byte	0xf3
+ 2162 00d9 01       		.uleb128 0x1
+ 2163 00da 51       		.byte	0x51
+ 2164 00db 23       		.byte	0x23
+ 2165 00dc 08       		.uleb128 0x8
+ 2166 00dd 06       		.byte	0x6
+ 2167 00de 21       		.byte	0x21
+ 2168 00df F3       		.byte	0xf3
+ 2169 00e0 01       		.uleb128 0x1
+ 2170 00e1 51       		.byte	0x51
+ 2171 00e2 23       		.byte	0x23
+ 2172 00e3 0C       		.uleb128 0xc
+ 2173 00e4 06       		.byte	0x6
+ 2174 00e5 21       		.byte	0x21
+ 2175 00e6 9F       		.byte	0x9f
+ 2176 00e7 00000000 		.4byte	0
+ 2177 00eb 00000000 		.4byte	0
+ 2178              	.LLST6:
+ 2179 00ef 00000000 		.4byte	.LVL9
+ 2180 00f3 12000000 		.4byte	.LVL11
+ 2181 00f7 0100     		.2byte	0x1
+ 2182 00f9 50       		.byte	0x50
+ 2183 00fa 12000000 		.4byte	.LVL11
+ 2184 00fe 1A000000 		.4byte	.LVL12
+ 2185 0102 0400     		.2byte	0x4
+ 2186 0104 F3       		.byte	0xf3
+ 2187 0105 01       		.uleb128 0x1
+ 2188 0106 50       		.byte	0x50
+ 2189 0107 9F       		.byte	0x9f
+ 2190 0108 1A000000 		.4byte	.LVL12
+ 2191 010c 20000000 		.4byte	.LVL14
+ 2192 0110 0100     		.2byte	0x1
+ 2193 0112 50       		.byte	0x50
+ 2194 0113 20000000 		.4byte	.LVL14
+ 2195 0117 26000000 		.4byte	.LFE113
+ 2196 011b 0400     		.2byte	0x4
+ 2197 011d F3       		.byte	0xf3
+ 2198 011e 01       		.uleb128 0x1
+ 2199 011f 50       		.byte	0x50
+ 2200 0120 9F       		.byte	0x9f
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 52
+
+
+ 2201 0121 00000000 		.4byte	0
+ 2202 0125 00000000 		.4byte	0
+ 2203              	.LLST7:
+ 2204 0129 00000000 		.4byte	.LVL9
+ 2205 012d 0E000000 		.4byte	.LVL10
+ 2206 0131 0100     		.2byte	0x1
+ 2207 0133 51       		.byte	0x51
+ 2208 0134 0E000000 		.4byte	.LVL10
+ 2209 0138 1A000000 		.4byte	.LVL12
+ 2210 013c 0400     		.2byte	0x4
+ 2211 013e F3       		.byte	0xf3
+ 2212 013f 01       		.uleb128 0x1
+ 2213 0140 51       		.byte	0x51
+ 2214 0141 9F       		.byte	0x9f
+ 2215 0142 1A000000 		.4byte	.LVL12
+ 2216 0146 1C000000 		.4byte	.LVL13
+ 2217 014a 0100     		.2byte	0x1
+ 2218 014c 51       		.byte	0x51
+ 2219 014d 1C000000 		.4byte	.LVL13
+ 2220 0151 26000000 		.4byte	.LFE113
+ 2221 0155 0400     		.2byte	0x4
+ 2222 0157 F3       		.byte	0xf3
+ 2223 0158 01       		.uleb128 0x1
+ 2224 0159 51       		.byte	0x51
+ 2225 015a 9F       		.byte	0x9f
+ 2226 015b 00000000 		.4byte	0
+ 2227 015f 00000000 		.4byte	0
+ 2228              	.LLST8:
+ 2229 0163 00000000 		.4byte	.LVL15
+ 2230 0167 0A000000 		.4byte	.LVL16
+ 2231 016b 0100     		.2byte	0x1
+ 2232 016d 50       		.byte	0x50
+ 2233 016e 0A000000 		.4byte	.LVL16
+ 2234 0172 28000000 		.4byte	.LFE114
+ 2235 0176 0400     		.2byte	0x4
+ 2236 0178 F3       		.byte	0xf3
+ 2237 0179 01       		.uleb128 0x1
+ 2238 017a 50       		.byte	0x50
+ 2239 017b 9F       		.byte	0x9f
+ 2240 017c 00000000 		.4byte	0
+ 2241 0180 00000000 		.4byte	0
+ 2242              	.LLST9:
+ 2243 0184 00000000 		.4byte	.LVL15
+ 2244 0188 10000000 		.4byte	.LVL17
+ 2245 018c 0100     		.2byte	0x1
+ 2246 018e 51       		.byte	0x51
+ 2247 018f 10000000 		.4byte	.LVL17
+ 2248 0193 1C000000 		.4byte	.LVL18
+ 2249 0197 0400     		.2byte	0x4
+ 2250 0199 F3       		.byte	0xf3
+ 2251 019a 01       		.uleb128 0x1
+ 2252 019b 51       		.byte	0x51
+ 2253 019c 9F       		.byte	0x9f
+ 2254 019d 1C000000 		.4byte	.LVL18
+ 2255 01a1 1E000000 		.4byte	.LVL19
+ 2256 01a5 0100     		.2byte	0x1
+ 2257 01a7 51       		.byte	0x51
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 53
+
+
+ 2258 01a8 1E000000 		.4byte	.LVL19
+ 2259 01ac 28000000 		.4byte	.LFE114
+ 2260 01b0 0400     		.2byte	0x4
+ 2261 01b2 F3       		.byte	0xf3
+ 2262 01b3 01       		.uleb128 0x1
+ 2263 01b4 51       		.byte	0x51
+ 2264 01b5 9F       		.byte	0x9f
+ 2265 01b6 00000000 		.4byte	0
+ 2266 01ba 00000000 		.4byte	0
+ 2267              	.LLST10:
+ 2268 01be 00000000 		.4byte	.LVL20
+ 2269 01c2 10000000 		.4byte	.LVL21
+ 2270 01c6 0100     		.2byte	0x1
+ 2271 01c8 50       		.byte	0x50
+ 2272 01c9 10000000 		.4byte	.LVL21
+ 2273 01cd 14000000 		.4byte	.LVL22
+ 2274 01d1 0400     		.2byte	0x4
+ 2275 01d3 F3       		.byte	0xf3
+ 2276 01d4 01       		.uleb128 0x1
+ 2277 01d5 50       		.byte	0x50
+ 2278 01d6 9F       		.byte	0x9f
+ 2279 01d7 14000000 		.4byte	.LVL22
+ 2280 01db 1C000000 		.4byte	.LFE115
+ 2281 01df 0100     		.2byte	0x1
+ 2282 01e1 50       		.byte	0x50
+ 2283 01e2 00000000 		.4byte	0
+ 2284 01e6 00000000 		.4byte	0
+ 2285              	.LLST11:
+ 2286 01ea 00000000 		.4byte	.LVL23
+ 2287 01ee 1A000000 		.4byte	.LVL27
+ 2288 01f2 0100     		.2byte	0x1
+ 2289 01f4 50       		.byte	0x50
+ 2290 01f5 1A000000 		.4byte	.LVL27
+ 2291 01f9 20000000 		.4byte	.LFE116
+ 2292 01fd 0400     		.2byte	0x4
+ 2293 01ff F3       		.byte	0xf3
+ 2294 0200 01       		.uleb128 0x1
+ 2295 0201 50       		.byte	0x50
+ 2296 0202 9F       		.byte	0x9f
+ 2297 0203 00000000 		.4byte	0
+ 2298 0207 00000000 		.4byte	0
+ 2299              	.LLST12:
+ 2300 020b 00000000 		.4byte	.LVL23
+ 2301 020f 0C000000 		.4byte	.LVL24
+ 2302 0213 0100     		.2byte	0x1
+ 2303 0215 51       		.byte	0x51
+ 2304 0216 0C000000 		.4byte	.LVL24
+ 2305 021a 20000000 		.4byte	.LFE116
+ 2306 021e 0400     		.2byte	0x4
+ 2307 0220 F3       		.byte	0xf3
+ 2308 0221 01       		.uleb128 0x1
+ 2309 0222 51       		.byte	0x51
+ 2310 0223 9F       		.byte	0x9f
+ 2311 0224 00000000 		.4byte	0
+ 2312 0228 00000000 		.4byte	0
+ 2313              	.LLST13:
+ 2314 022c 00000000 		.4byte	.LVL23
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 54
+
+
+ 2315 0230 10000000 		.4byte	.LVL25
+ 2316 0234 0100     		.2byte	0x1
+ 2317 0236 52       		.byte	0x52
+ 2318 0237 10000000 		.4byte	.LVL25
+ 2319 023b 18000000 		.4byte	.LVL26
+ 2320 023f 0400     		.2byte	0x4
+ 2321 0241 F3       		.byte	0xf3
+ 2322 0242 01       		.uleb128 0x1
+ 2323 0243 52       		.byte	0x52
+ 2324 0244 9F       		.byte	0x9f
+ 2325 0245 18000000 		.4byte	.LVL26
+ 2326 0249 20000000 		.4byte	.LFE116
+ 2327 024d 0100     		.2byte	0x1
+ 2328 024f 52       		.byte	0x52
+ 2329 0250 00000000 		.4byte	0
+ 2330 0254 00000000 		.4byte	0
+ 2331              	.LLST14:
+ 2332 0258 00000000 		.4byte	.LFB117
+ 2333 025c 02000000 		.4byte	.LCFI2
+ 2334 0260 0200     		.2byte	0x2
+ 2335 0262 7D       		.byte	0x7d
+ 2336 0263 00       		.sleb128 0
+ 2337 0264 02000000 		.4byte	.LCFI2
+ 2338 0268 20000000 		.4byte	.LFE117
+ 2339 026c 0200     		.2byte	0x2
+ 2340 026e 7D       		.byte	0x7d
+ 2341 026f 08       		.sleb128 8
+ 2342 0270 00000000 		.4byte	0
+ 2343 0274 00000000 		.4byte	0
+ 2344              	.LLST15:
+ 2345 0278 00000000 		.4byte	.LVL28
+ 2346 027c 16000000 		.4byte	.LVL30
+ 2347 0280 0100     		.2byte	0x1
+ 2348 0282 50       		.byte	0x50
+ 2349 0283 16000000 		.4byte	.LVL30
+ 2350 0287 20000000 		.4byte	.LFE117
+ 2351 028b 0400     		.2byte	0x4
+ 2352 028d F3       		.byte	0xf3
+ 2353 028e 01       		.uleb128 0x1
+ 2354 028f 50       		.byte	0x50
+ 2355 0290 9F       		.byte	0x9f
+ 2356 0291 00000000 		.4byte	0
+ 2357 0295 00000000 		.4byte	0
+ 2358              	.LLST16:
+ 2359 0299 0E000000 		.4byte	.LVL29
+ 2360 029d 16000000 		.4byte	.LVL30
+ 2361 02a1 0200     		.2byte	0x2
+ 2362 02a3 91       		.byte	0x91
+ 2363 02a4 7C       		.sleb128 -4
+ 2364 02a5 18000000 		.4byte	.LVL31
+ 2365 02a9 20000000 		.4byte	.LFE117
+ 2366 02ad 0100     		.2byte	0x1
+ 2367 02af 50       		.byte	0x50
+ 2368 02b0 00000000 		.4byte	0
+ 2369 02b4 00000000 		.4byte	0
+ 2370              	.LLST17:
+ 2371 02b8 00000000 		.4byte	.LFB118
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 55
+
+
+ 2372 02bc 02000000 		.4byte	.LCFI3
+ 2373 02c0 0200     		.2byte	0x2
+ 2374 02c2 7D       		.byte	0x7d
+ 2375 02c3 00       		.sleb128 0
+ 2376 02c4 02000000 		.4byte	.LCFI3
+ 2377 02c8 20000000 		.4byte	.LFE118
+ 2378 02cc 0200     		.2byte	0x2
+ 2379 02ce 7D       		.byte	0x7d
+ 2380 02cf 08       		.sleb128 8
+ 2381 02d0 00000000 		.4byte	0
+ 2382 02d4 00000000 		.4byte	0
+ 2383              	.LLST18:
+ 2384 02d8 00000000 		.4byte	.LVL32
+ 2385 02dc 16000000 		.4byte	.LVL34
+ 2386 02e0 0100     		.2byte	0x1
+ 2387 02e2 50       		.byte	0x50
+ 2388 02e3 16000000 		.4byte	.LVL34
+ 2389 02e7 20000000 		.4byte	.LFE118
+ 2390 02eb 0400     		.2byte	0x4
+ 2391 02ed F3       		.byte	0xf3
+ 2392 02ee 01       		.uleb128 0x1
+ 2393 02ef 50       		.byte	0x50
+ 2394 02f0 9F       		.byte	0x9f
+ 2395 02f1 00000000 		.4byte	0
+ 2396 02f5 00000000 		.4byte	0
+ 2397              	.LLST19:
+ 2398 02f9 0E000000 		.4byte	.LVL33
+ 2399 02fd 16000000 		.4byte	.LVL34
+ 2400 0301 0200     		.2byte	0x2
+ 2401 0303 91       		.byte	0x91
+ 2402 0304 7C       		.sleb128 -4
+ 2403 0305 18000000 		.4byte	.LVL35
+ 2404 0309 20000000 		.4byte	.LFE118
+ 2405 030d 0100     		.2byte	0x1
+ 2406 030f 50       		.byte	0x50
+ 2407 0310 00000000 		.4byte	0
+ 2408 0314 00000000 		.4byte	0
+ 2409              	.LLST20:
+ 2410 0318 00000000 		.4byte	.LVL36
+ 2411 031c 10000000 		.4byte	.LVL37
+ 2412 0320 0100     		.2byte	0x1
+ 2413 0322 51       		.byte	0x51
+ 2414 0323 10000000 		.4byte	.LVL37
+ 2415 0327 18000000 		.4byte	.LFE119
+ 2416 032b 0400     		.2byte	0x4
+ 2417 032d F3       		.byte	0xf3
+ 2418 032e 01       		.uleb128 0x1
+ 2419 032f 51       		.byte	0x51
+ 2420 0330 9F       		.byte	0x9f
+ 2421 0331 00000000 		.4byte	0
+ 2422 0335 00000000 		.4byte	0
+ 2423              	.LLST21:
+ 2424 0339 00000000 		.4byte	.LVL36
+ 2425 033d 10000000 		.4byte	.LVL37
+ 2426 0341 0200     		.2byte	0x2
+ 2427 0343 30       		.byte	0x30
+ 2428 0344 9F       		.byte	0x9f
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 56
+
+
+ 2429 0345 10000000 		.4byte	.LVL37
+ 2430 0349 18000000 		.4byte	.LFE119
+ 2431 034d 0100     		.2byte	0x1
+ 2432 034f 51       		.byte	0x51
+ 2433 0350 00000000 		.4byte	0
+ 2434 0354 00000000 		.4byte	0
+ 2435              	.LLST22:
+ 2436 0358 00000000 		.4byte	.LVL36
+ 2437 035c 14000000 		.4byte	.LVL38
+ 2438 0360 0200     		.2byte	0x2
+ 2439 0362 30       		.byte	0x30
+ 2440 0363 9F       		.byte	0x9f
+ 2441 0364 14000000 		.4byte	.LVL38
+ 2442 0368 18000000 		.4byte	.LFE119
+ 2443 036c 0700     		.2byte	0x7
+ 2444 036e 70       		.byte	0x70
+ 2445 036f A0E88180 		.sleb128 1073771552
+ 2445      04
+ 2446 0374 9F       		.byte	0x9f
+ 2447 0375 00000000 		.4byte	0
+ 2448 0379 00000000 		.4byte	0
+ 2449              	.LLST23:
+ 2450 037d 00000000 		.4byte	.LFB120
+ 2451 0381 02000000 		.4byte	.LCFI4
+ 2452 0385 0200     		.2byte	0x2
+ 2453 0387 7D       		.byte	0x7d
+ 2454 0388 00       		.sleb128 0
+ 2455 0389 02000000 		.4byte	.LCFI4
+ 2456 038d 24000000 		.4byte	.LFE120
+ 2457 0391 0200     		.2byte	0x2
+ 2458 0393 7D       		.byte	0x7d
+ 2459 0394 08       		.sleb128 8
+ 2460 0395 00000000 		.4byte	0
+ 2461 0399 00000000 		.4byte	0
+ 2462              	.LLST24:
+ 2463 039d 00000000 		.4byte	.LVL39
+ 2464 03a1 18000000 		.4byte	.LVL41
+ 2465 03a5 0100     		.2byte	0x1
+ 2466 03a7 50       		.byte	0x50
+ 2467 03a8 18000000 		.4byte	.LVL41
+ 2468 03ac 24000000 		.4byte	.LFE120
+ 2469 03b0 0400     		.2byte	0x4
+ 2470 03b2 F3       		.byte	0xf3
+ 2471 03b3 01       		.uleb128 0x1
+ 2472 03b4 50       		.byte	0x50
+ 2473 03b5 9F       		.byte	0x9f
+ 2474 03b6 00000000 		.4byte	0
+ 2475 03ba 00000000 		.4byte	0
+ 2476              	.LLST25:
+ 2477 03be 0E000000 		.4byte	.LVL40
+ 2478 03c2 18000000 		.4byte	.LVL41
+ 2479 03c6 0200     		.2byte	0x2
+ 2480 03c8 91       		.byte	0x91
+ 2481 03c9 7C       		.sleb128 -4
+ 2482 03ca 1A000000 		.4byte	.LVL42
+ 2483 03ce 20000000 		.4byte	.LVL43
+ 2484 03d2 0100     		.2byte	0x1
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 57
+
+
+ 2485 03d4 50       		.byte	0x50
+ 2486 03d5 20000000 		.4byte	.LVL43
+ 2487 03d9 24000000 		.4byte	.LFE120
+ 2488 03dd 0200     		.2byte	0x2
+ 2489 03df 91       		.byte	0x91
+ 2490 03e0 7C       		.sleb128 -4
+ 2491 03e1 00000000 		.4byte	0
+ 2492 03e5 00000000 		.4byte	0
+ 2493              	.LLST26:
+ 2494 03e9 00000000 		.4byte	.LVL44
+ 2495 03ed 14000000 		.4byte	.LVL46
+ 2496 03f1 0100     		.2byte	0x1
+ 2497 03f3 50       		.byte	0x50
+ 2498 03f4 14000000 		.4byte	.LVL46
+ 2499 03f8 1C000000 		.4byte	.LVL47
+ 2500 03fc 0400     		.2byte	0x4
+ 2501 03fe F3       		.byte	0xf3
+ 2502 03ff 01       		.uleb128 0x1
+ 2503 0400 50       		.byte	0x50
+ 2504 0401 9F       		.byte	0x9f
+ 2505 0402 1C000000 		.4byte	.LVL47
+ 2506 0406 24000000 		.4byte	.LVL49
+ 2507 040a 0100     		.2byte	0x1
+ 2508 040c 50       		.byte	0x50
+ 2509 040d 24000000 		.4byte	.LVL49
+ 2510 0411 2A000000 		.4byte	.LFE121
+ 2511 0415 0400     		.2byte	0x4
+ 2512 0417 F3       		.byte	0xf3
+ 2513 0418 01       		.uleb128 0x1
+ 2514 0419 50       		.byte	0x50
+ 2515 041a 9F       		.byte	0x9f
+ 2516 041b 00000000 		.4byte	0
+ 2517 041f 00000000 		.4byte	0
+ 2518              	.LLST27:
+ 2519 0423 00000000 		.4byte	.LVL44
+ 2520 0427 10000000 		.4byte	.LVL45
+ 2521 042b 0100     		.2byte	0x1
+ 2522 042d 51       		.byte	0x51
+ 2523 042e 10000000 		.4byte	.LVL45
+ 2524 0432 1C000000 		.4byte	.LVL47
+ 2525 0436 0400     		.2byte	0x4
+ 2526 0438 F3       		.byte	0xf3
+ 2527 0439 01       		.uleb128 0x1
+ 2528 043a 51       		.byte	0x51
+ 2529 043b 9F       		.byte	0x9f
+ 2530 043c 1C000000 		.4byte	.LVL47
+ 2531 0440 20000000 		.4byte	.LVL48
+ 2532 0444 0100     		.2byte	0x1
+ 2533 0446 51       		.byte	0x51
+ 2534 0447 20000000 		.4byte	.LVL48
+ 2535 044b 2A000000 		.4byte	.LFE121
+ 2536 044f 0400     		.2byte	0x4
+ 2537 0451 F3       		.byte	0xf3
+ 2538 0452 01       		.uleb128 0x1
+ 2539 0453 51       		.byte	0x51
+ 2540 0454 9F       		.byte	0x9f
+ 2541 0455 00000000 		.4byte	0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 58
+
+
+ 2542 0459 00000000 		.4byte	0
+ 2543              	.LLST28:
+ 2544 045d 00000000 		.4byte	.LVL50
+ 2545 0461 1A000000 		.4byte	.LVL54
+ 2546 0465 0100     		.2byte	0x1
+ 2547 0467 50       		.byte	0x50
+ 2548 0468 1A000000 		.4byte	.LVL54
+ 2549 046c 20000000 		.4byte	.LFE122
+ 2550 0470 0400     		.2byte	0x4
+ 2551 0472 F3       		.byte	0xf3
+ 2552 0473 01       		.uleb128 0x1
+ 2553 0474 50       		.byte	0x50
+ 2554 0475 9F       		.byte	0x9f
+ 2555 0476 00000000 		.4byte	0
+ 2556 047a 00000000 		.4byte	0
+ 2557              	.LLST29:
+ 2558 047e 00000000 		.4byte	.LVL50
+ 2559 0482 0C000000 		.4byte	.LVL51
+ 2560 0486 0100     		.2byte	0x1
+ 2561 0488 51       		.byte	0x51
+ 2562 0489 0C000000 		.4byte	.LVL51
+ 2563 048d 20000000 		.4byte	.LFE122
+ 2564 0491 0400     		.2byte	0x4
+ 2565 0493 F3       		.byte	0xf3
+ 2566 0494 01       		.uleb128 0x1
+ 2567 0495 51       		.byte	0x51
+ 2568 0496 9F       		.byte	0x9f
+ 2569 0497 00000000 		.4byte	0
+ 2570 049b 00000000 		.4byte	0
+ 2571              	.LLST30:
+ 2572 049f 00000000 		.4byte	.LVL50
+ 2573 04a3 10000000 		.4byte	.LVL52
+ 2574 04a7 0100     		.2byte	0x1
+ 2575 04a9 52       		.byte	0x52
+ 2576 04aa 10000000 		.4byte	.LVL52
+ 2577 04ae 18000000 		.4byte	.LVL53
+ 2578 04b2 0400     		.2byte	0x4
+ 2579 04b4 F3       		.byte	0xf3
+ 2580 04b5 01       		.uleb128 0x1
+ 2581 04b6 52       		.byte	0x52
+ 2582 04b7 9F       		.byte	0x9f
+ 2583 04b8 18000000 		.4byte	.LVL53
+ 2584 04bc 20000000 		.4byte	.LFE122
+ 2585 04c0 0100     		.2byte	0x1
+ 2586 04c2 52       		.byte	0x52
+ 2587 04c3 00000000 		.4byte	0
+ 2588 04c7 00000000 		.4byte	0
+ 2589              	.LLST31:
+ 2590 04cb 00000000 		.4byte	.LVL55
+ 2591 04cf 0E000000 		.4byte	.LVL57
+ 2592 04d3 0100     		.2byte	0x1
+ 2593 04d5 50       		.byte	0x50
+ 2594 04d6 0E000000 		.4byte	.LVL57
+ 2595 04da 18000000 		.4byte	.LFE123
+ 2596 04de 0400     		.2byte	0x4
+ 2597 04e0 F3       		.byte	0xf3
+ 2598 04e1 01       		.uleb128 0x1
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 59
+
+
+ 2599 04e2 50       		.byte	0x50
+ 2600 04e3 9F       		.byte	0x9f
+ 2601 04e4 00000000 		.4byte	0
+ 2602 04e8 00000000 		.4byte	0
+ 2603              	.LLST32:
+ 2604 04ec 00000000 		.4byte	.LVL55
+ 2605 04f0 0C000000 		.4byte	.LVL56
+ 2606 04f4 0100     		.2byte	0x1
+ 2607 04f6 51       		.byte	0x51
+ 2608 04f7 0C000000 		.4byte	.LVL56
+ 2609 04fb 18000000 		.4byte	.LFE123
+ 2610 04ff 0400     		.2byte	0x4
+ 2611 0501 F3       		.byte	0xf3
+ 2612 0502 01       		.uleb128 0x1
+ 2613 0503 51       		.byte	0x51
+ 2614 0504 9F       		.byte	0x9f
+ 2615 0505 00000000 		.4byte	0
+ 2616 0509 00000000 		.4byte	0
+ 2617              	.LLST33:
+ 2618 050d 00000000 		.4byte	.LVL55
+ 2619 0511 0E000000 		.4byte	.LVL57
+ 2620 0515 0200     		.2byte	0x2
+ 2621 0517 30       		.byte	0x30
+ 2622 0518 9F       		.byte	0x9f
+ 2623 0519 0E000000 		.4byte	.LVL57
+ 2624 051d 16000000 		.4byte	.LVL58
+ 2625 0521 0D00     		.2byte	0xd
+ 2626 0523 F3       		.byte	0xf3
+ 2627 0524 01       		.uleb128 0x1
+ 2628 0525 51       		.byte	0x51
+ 2629 0526 F3       		.byte	0xf3
+ 2630 0527 01       		.uleb128 0x1
+ 2631 0528 50       		.byte	0x50
+ 2632 0529 24       		.byte	0x24
+ 2633 052a 70       		.byte	0x70
+ 2634 052b 00       		.sleb128 0
+ 2635 052c 1A       		.byte	0x1a
+ 2636 052d 30       		.byte	0x30
+ 2637 052e 2E       		.byte	0x2e
+ 2638 052f 9F       		.byte	0x9f
+ 2639 0530 00000000 		.4byte	0
+ 2640 0534 00000000 		.4byte	0
+ 2641              	.LLST34:
+ 2642 0538 00000000 		.4byte	.LVL59
+ 2643 053c 0C000000 		.4byte	.LVL60
+ 2644 0540 0100     		.2byte	0x1
+ 2645 0542 51       		.byte	0x51
+ 2646 0543 0C000000 		.4byte	.LVL60
+ 2647 0547 10000000 		.4byte	.LFE124
+ 2648 054b 0400     		.2byte	0x4
+ 2649 054d F3       		.byte	0xf3
+ 2650 054e 01       		.uleb128 0x1
+ 2651 054f 51       		.byte	0x51
+ 2652 0550 9F       		.byte	0x9f
+ 2653 0551 00000000 		.4byte	0
+ 2654 0555 00000000 		.4byte	0
+ 2655              	.LLST35:
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 60
+
+
+ 2656 0559 00000000 		.4byte	.LVL61
+ 2657 055d 10000000 		.4byte	.LVL64
+ 2658 0561 0100     		.2byte	0x1
+ 2659 0563 50       		.byte	0x50
+ 2660 0564 10000000 		.4byte	.LVL64
+ 2661 0568 1E000000 		.4byte	.LFE125
+ 2662 056c 0400     		.2byte	0x4
+ 2663 056e F3       		.byte	0xf3
+ 2664 056f 01       		.uleb128 0x1
+ 2665 0570 50       		.byte	0x50
+ 2666 0571 9F       		.byte	0x9f
+ 2667 0572 00000000 		.4byte	0
+ 2668 0576 00000000 		.4byte	0
+ 2669              	.LLST36:
+ 2670 057a 00000000 		.4byte	.LVL61
+ 2671 057e 0C000000 		.4byte	.LVL62
+ 2672 0582 0100     		.2byte	0x1
+ 2673 0584 51       		.byte	0x51
+ 2674 0585 0C000000 		.4byte	.LVL62
+ 2675 0589 1E000000 		.4byte	.LFE125
+ 2676 058d 0400     		.2byte	0x4
+ 2677 058f F3       		.byte	0xf3
+ 2678 0590 01       		.uleb128 0x1
+ 2679 0591 51       		.byte	0x51
+ 2680 0592 9F       		.byte	0x9f
+ 2681 0593 00000000 		.4byte	0
+ 2682 0597 00000000 		.4byte	0
+ 2683              	.LLST37:
+ 2684 059b 00000000 		.4byte	.LVL61
+ 2685 059f 1C000000 		.4byte	.LVL65
+ 2686 05a3 0200     		.2byte	0x2
+ 2687 05a5 30       		.byte	0x30
+ 2688 05a6 9F       		.byte	0x9f
+ 2689 05a7 1C000000 		.4byte	.LVL65
+ 2690 05ab 1E000000 		.4byte	.LFE125
+ 2691 05af 0100     		.2byte	0x1
+ 2692 05b1 50       		.byte	0x50
+ 2693 05b2 00000000 		.4byte	0
+ 2694 05b6 00000000 		.4byte	0
+ 2695              	.LLST38:
+ 2696 05ba 00000000 		.4byte	.LVL61
+ 2697 05be 0E000000 		.4byte	.LVL63
+ 2698 05c2 0200     		.2byte	0x2
+ 2699 05c4 30       		.byte	0x30
+ 2700 05c5 9F       		.byte	0x9f
+ 2701 05c6 0E000000 		.4byte	.LVL63
+ 2702 05ca 1E000000 		.4byte	.LFE125
+ 2703 05ce 0600     		.2byte	0x6
+ 2704 05d0 71       		.byte	0x71
+ 2705 05d1 00       		.sleb128 0
+ 2706 05d2 72       		.byte	0x72
+ 2707 05d3 00       		.sleb128 0
+ 2708 05d4 1A       		.byte	0x1a
+ 2709 05d5 9F       		.byte	0x9f
+ 2710 05d6 00000000 		.4byte	0
+ 2711 05da 00000000 		.4byte	0
+ 2712              	.LLST39:
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 61
+
+
+ 2713 05de 00000000 		.4byte	.LVL66
+ 2714 05e2 0C000000 		.4byte	.LVL67
+ 2715 05e6 0100     		.2byte	0x1
+ 2716 05e8 51       		.byte	0x51
+ 2717 05e9 0C000000 		.4byte	.LVL67
+ 2718 05ed 10000000 		.4byte	.LFE126
+ 2719 05f1 0400     		.2byte	0x4
+ 2720 05f3 F3       		.byte	0xf3
+ 2721 05f4 01       		.uleb128 0x1
+ 2722 05f5 51       		.byte	0x51
+ 2723 05f6 9F       		.byte	0x9f
+ 2724 05f7 00000000 		.4byte	0
+ 2725 05fb 00000000 		.4byte	0
+ 2726              		.section	.debug_aranges,"",%progbits
+ 2727 0000 9C000000 		.4byte	0x9c
+ 2728 0004 0200     		.2byte	0x2
+ 2729 0006 00000000 		.4byte	.Ldebug_info0
+ 2730 000a 04       		.byte	0x4
+ 2731 000b 00       		.byte	0
+ 2732 000c 0000     		.2byte	0
+ 2733 000e 0000     		.2byte	0
+ 2734 0010 00000000 		.4byte	.LFB110
+ 2735 0014 1A000000 		.4byte	.LFE110-.LFB110
+ 2736 0018 00000000 		.4byte	.LFB111
+ 2737 001c 36000000 		.4byte	.LFE111-.LFB111
+ 2738 0020 00000000 		.4byte	.LFB112
+ 2739 0024 0C000000 		.4byte	.LFE112-.LFB112
+ 2740 0028 00000000 		.4byte	.LFB113
+ 2741 002c 26000000 		.4byte	.LFE113-.LFB113
+ 2742 0030 00000000 		.4byte	.LFB114
+ 2743 0034 28000000 		.4byte	.LFE114-.LFB114
+ 2744 0038 00000000 		.4byte	.LFB115
+ 2745 003c 1C000000 		.4byte	.LFE115-.LFB115
+ 2746 0040 00000000 		.4byte	.LFB116
+ 2747 0044 20000000 		.4byte	.LFE116-.LFB116
+ 2748 0048 00000000 		.4byte	.LFB117
+ 2749 004c 20000000 		.4byte	.LFE117-.LFB117
+ 2750 0050 00000000 		.4byte	.LFB118
+ 2751 0054 20000000 		.4byte	.LFE118-.LFB118
+ 2752 0058 00000000 		.4byte	.LFB119
+ 2753 005c 18000000 		.4byte	.LFE119-.LFB119
+ 2754 0060 00000000 		.4byte	.LFB120
+ 2755 0064 24000000 		.4byte	.LFE120-.LFB120
+ 2756 0068 00000000 		.4byte	.LFB121
+ 2757 006c 2A000000 		.4byte	.LFE121-.LFB121
+ 2758 0070 00000000 		.4byte	.LFB122
+ 2759 0074 20000000 		.4byte	.LFE122-.LFB122
+ 2760 0078 00000000 		.4byte	.LFB123
+ 2761 007c 18000000 		.4byte	.LFE123-.LFB123
+ 2762 0080 00000000 		.4byte	.LFB124
+ 2763 0084 10000000 		.4byte	.LFE124-.LFB124
+ 2764 0088 00000000 		.4byte	.LFB125
+ 2765 008c 1E000000 		.4byte	.LFE125-.LFB125
+ 2766 0090 00000000 		.4byte	.LFB126
+ 2767 0094 10000000 		.4byte	.LFE126-.LFB126
+ 2768 0098 00000000 		.4byte	0
+ 2769 009c 00000000 		.4byte	0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 62
+
+
+ 2770              		.section	.debug_ranges,"",%progbits
+ 2771              	.Ldebug_ranges0:
+ 2772 0000 00000000 		.4byte	.LFB110
+ 2773 0004 1A000000 		.4byte	.LFE110
+ 2774 0008 00000000 		.4byte	.LFB111
+ 2775 000c 36000000 		.4byte	.LFE111
+ 2776 0010 00000000 		.4byte	.LFB112
+ 2777 0014 0C000000 		.4byte	.LFE112
+ 2778 0018 00000000 		.4byte	.LFB113
+ 2779 001c 26000000 		.4byte	.LFE113
+ 2780 0020 00000000 		.4byte	.LFB114
+ 2781 0024 28000000 		.4byte	.LFE114
+ 2782 0028 00000000 		.4byte	.LFB115
+ 2783 002c 1C000000 		.4byte	.LFE115
+ 2784 0030 00000000 		.4byte	.LFB116
+ 2785 0034 20000000 		.4byte	.LFE116
+ 2786 0038 00000000 		.4byte	.LFB117
+ 2787 003c 20000000 		.4byte	.LFE117
+ 2788 0040 00000000 		.4byte	.LFB118
+ 2789 0044 20000000 		.4byte	.LFE118
+ 2790 0048 00000000 		.4byte	.LFB119
+ 2791 004c 18000000 		.4byte	.LFE119
+ 2792 0050 00000000 		.4byte	.LFB120
+ 2793 0054 24000000 		.4byte	.LFE120
+ 2794 0058 00000000 		.4byte	.LFB121
+ 2795 005c 2A000000 		.4byte	.LFE121
+ 2796 0060 00000000 		.4byte	.LFB122
+ 2797 0064 20000000 		.4byte	.LFE122
+ 2798 0068 00000000 		.4byte	.LFB123
+ 2799 006c 18000000 		.4byte	.LFE123
+ 2800 0070 00000000 		.4byte	.LFB124
+ 2801 0074 10000000 		.4byte	.LFE124
+ 2802 0078 00000000 		.4byte	.LFB125
+ 2803 007c 1E000000 		.4byte	.LFE125
+ 2804 0080 00000000 		.4byte	.LFB126
+ 2805 0084 10000000 		.4byte	.LFE126
+ 2806 0088 00000000 		.4byte	0
+ 2807 008c 00000000 		.4byte	0
+ 2808              		.section	.debug_line,"",%progbits
+ 2809              	.Ldebug_line0:
+ 2810 0000 9A020000 		.section	.debug_str,"MS",%progbits,1
+ 2810      02000501 
+ 2810      00000201 
+ 2810      FB0E0D00 
+ 2810      01010101 
+ 2811              	.LASF42:
+ 2812 0000 746D7072 		.ascii	"tmpreg1\000"
+ 2812      65673100 
+ 2813              	.LASF62:
+ 2814 0008 4441435F 		.ascii	"DAC_GetDataOutputValue\000"
+ 2814      47657444 
+ 2814      6174614F 
+ 2814      75747075 
+ 2814      7456616C 
+ 2815              	.LASF29:
+ 2816 001f 44485238 		.ascii	"DHR8RD\000"
+ 2816      524400
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 63
+
+
+ 2817              	.LASF47:
+ 2818 0026 4441435F 		.ascii	"DAC_SoftwareTriggerCmd\000"
+ 2818      536F6674 
+ 2818      77617265 
+ 2818      54726967 
+ 2818      67657243 
+ 2819              	.LASF22:
+ 2820 003d 44485231 		.ascii	"DHR12L1\000"
+ 2820      324C3100 
+ 2821              	.LASF25:
+ 2822 0045 44485231 		.ascii	"DHR12L2\000"
+ 2822      324C3200 
+ 2823              	.LASF49:
+ 2824 004d 4441435F 		.ascii	"DAC_WaveGenerationCmd\000"
+ 2824      57617665 
+ 2824      47656E65 
+ 2824      72617469 
+ 2824      6F6E436D 
+ 2825              	.LASF13:
+ 2826 0063 73697A65 		.ascii	"sizetype\000"
+ 2826      74797065 
+ 2826      00
+ 2827              	.LASF28:
+ 2828 006c 44485231 		.ascii	"DHR12LD\000"
+ 2828      324C4400 
+ 2829              	.LASF64:
+ 2830 0074 4441435F 		.ascii	"DAC_FLAG\000"
+ 2830      464C4147 
+ 2830      00
+ 2831              	.LASF63:
+ 2832 007d 4441435F 		.ascii	"DAC_GetFlagStatus\000"
+ 2832      47657446 
+ 2832      6C616753 
+ 2832      74617475 
+ 2832      7300
+ 2833              	.LASF36:
+ 2834 008f 4441435F 		.ascii	"DAC_OutputBuffer\000"
+ 2834      4F757470 
+ 2834      75744275 
+ 2834      66666572 
+ 2834      00
+ 2835              	.LASF2:
+ 2836 00a0 73686F72 		.ascii	"short int\000"
+ 2836      7420696E 
+ 2836      7400
+ 2837              	.LASF30:
+ 2838 00aa 444F5231 		.ascii	"DOR1\000"
+ 2838      00
+ 2839              	.LASF31:
+ 2840 00af 444F5232 		.ascii	"DOR2\000"
+ 2840      00
+ 2841              	.LASF71:
+ 2842 00b4 636D7369 		.ascii	"cmsis/device/stm32f4xx_dac.c\000"
+ 2842      732F6465 
+ 2842      76696365 
+ 2842      2F73746D 
+ 2842      33326634 
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 64
+
+
+ 2843              	.LASF46:
+ 2844 00d1 4E657753 		.ascii	"NewState\000"
+ 2844      74617465 
+ 2844      00
+ 2845              	.LASF17:
+ 2846 00da 44495341 		.ascii	"DISABLE\000"
+ 2846      424C4500 
+ 2847              	.LASF66:
+ 2848 00e2 4441435F 		.ascii	"DAC_ClearFlag\000"
+ 2848      436C6561 
+ 2848      72466C61 
+ 2848      6700
+ 2849              	.LASF68:
+ 2850 00f0 656E6162 		.ascii	"enablestatus\000"
+ 2850      6C657374 
+ 2850      61747573 
+ 2850      00
+ 2851              	.LASF10:
+ 2852 00fd 6C6F6E67 		.ascii	"long long int\000"
+ 2852      206C6F6E 
+ 2852      6720696E 
+ 2852      7400
+ 2853              	.LASF74:
+ 2854 010b 5243435F 		.ascii	"RCC_APB1PeriphResetCmd\000"
+ 2854      41504231 
+ 2854      50657269 
+ 2854      70685265 
+ 2854      73657443 
+ 2855              	.LASF16:
+ 2856 0122 49545374 		.ascii	"ITStatus\000"
+ 2856      61747573 
+ 2856      00
+ 2857              	.LASF7:
+ 2858 012b 6C6F6E67 		.ascii	"long int\000"
+ 2858      20696E74 
+ 2858      00
+ 2859              	.LASF55:
+ 2860 0134 4441435F 		.ascii	"DAC_SetDualChannelData\000"
+ 2860      53657444 
+ 2860      75616C43 
+ 2860      68616E6E 
+ 2860      656C4461 
+ 2861              	.LASF50:
+ 2862 014b 4441435F 		.ascii	"DAC_Wave\000"
+ 2862      57617665 
+ 2862      00
+ 2863              	.LASF53:
+ 2864 0154 44617461 		.ascii	"Data\000"
+ 2864      00
+ 2865              	.LASF51:
+ 2866 0159 4441435F 		.ascii	"DAC_SetChannel1Data\000"
+ 2866      53657443 
+ 2866      68616E6E 
+ 2866      656C3144 
+ 2866      61746100 
+ 2867              	.LASF65:
+ 2868 016d 62697473 		.ascii	"bitstatus\000"
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 65
+
+
+ 2868      74617475 
+ 2868      7300
+ 2869              	.LASF41:
+ 2870 0177 4441435F 		.ascii	"DAC_InitStruct\000"
+ 2870      496E6974 
+ 2870      53747275 
+ 2870      637400
+ 2871              	.LASF1:
+ 2872 0186 756E7369 		.ascii	"unsigned char\000"
+ 2872      676E6564 
+ 2872      20636861 
+ 2872      7200
+ 2873              	.LASF44:
+ 2874 0194 4441435F 		.ascii	"DAC_StructInit\000"
+ 2874      53747275 
+ 2874      6374496E 
+ 2874      697400
+ 2875              	.LASF0:
+ 2876 01a3 7369676E 		.ascii	"signed char\000"
+ 2876      65642063 
+ 2876      68617200 
+ 2877              	.LASF11:
+ 2878 01af 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2878      206C6F6E 
+ 2878      6720756E 
+ 2878      7369676E 
+ 2878      65642069 
+ 2879              	.LASF8:
+ 2880 01c6 75696E74 		.ascii	"uint32_t\000"
+ 2880      33325F74 
+ 2880      00
+ 2881              	.LASF33:
+ 2882 01cf 4441435F 		.ascii	"DAC_Trigger\000"
+ 2882      54726967 
+ 2882      67657200 
+ 2883              	.LASF4:
+ 2884 01db 75696E74 		.ascii	"uint16_t\000"
+ 2884      31365F74 
+ 2884      00
+ 2885              	.LASF59:
+ 2886 01e4 4441435F 		.ascii	"DAC_DMACmd\000"
+ 2886      444D4143 
+ 2886      6D6400
+ 2887              	.LASF40:
+ 2888 01ef 4441435F 		.ascii	"DAC_Channel\000"
+ 2888      4368616E 
+ 2888      6E656C00 
+ 2889              	.LASF72:
+ 2890 01fb 433A5C78 		.ascii	"C:\\xav_dev\\eclipse\\ambiantiseur-make\000"
+ 2890      61765F64 
+ 2890      65765C65 
+ 2890      636C6970 
+ 2890      73655C61 
+ 2891              	.LASF38:
+ 2892 0220 4441435F 		.ascii	"DAC_DeInit\000"
+ 2892      4465496E 
+ 2892      697400
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 66
+
+
+ 2893              	.LASF20:
+ 2894 022b 53575452 		.ascii	"SWTRIGR\000"
+ 2894      49475200 
+ 2895              	.LASF5:
+ 2896 0233 73686F72 		.ascii	"short unsigned int\000"
+ 2896      7420756E 
+ 2896      7369676E 
+ 2896      65642069 
+ 2896      6E7400
+ 2897              	.LASF48:
+ 2898 0246 4441435F 		.ascii	"DAC_DualSoftwareTriggerCmd\000"
+ 2898      4475616C 
+ 2898      536F6674 
+ 2898      77617265 
+ 2898      54726967 
+ 2899              	.LASF43:
+ 2900 0261 746D7072 		.ascii	"tmpreg2\000"
+ 2900      65673200 
+ 2901              	.LASF35:
+ 2902 0269 4441435F 		.ascii	"DAC_LFSRUnmask_TriangleAmplitude\000"
+ 2902      4C465352 
+ 2902      556E6D61 
+ 2902      736B5F54 
+ 2902      7269616E 
+ 2903              	.LASF6:
+ 2904 028a 696E7433 		.ascii	"int32_t\000"
+ 2904      325F7400 
+ 2905              	.LASF52:
+ 2906 0292 4441435F 		.ascii	"DAC_Align\000"
+ 2906      416C6967 
+ 2906      6E00
+ 2907              	.LASF21:
+ 2908 029c 44485231 		.ascii	"DHR12R1\000"
+ 2908      32523100 
+ 2909              	.LASF24:
+ 2910 02a4 44485231 		.ascii	"DHR12R2\000"
+ 2910      32523200 
+ 2911              	.LASF61:
+ 2912 02ac 4441435F 		.ascii	"DAC_IT\000"
+ 2912      495400
+ 2913              	.LASF37:
+ 2914 02b3 4441435F 		.ascii	"DAC_InitTypeDef\000"
+ 2914      496E6974 
+ 2914      54797065 
+ 2914      44656600 
+ 2915              	.LASF56:
+ 2916 02c3 44617461 		.ascii	"Data2\000"
+ 2916      3200
+ 2917              	.LASF58:
+ 2918 02c9 64617461 		.ascii	"data\000"
+ 2918      00
+ 2919              	.LASF27:
+ 2920 02ce 44485231 		.ascii	"DHR12RD\000"
+ 2920      32524400 
+ 2921              	.LASF9:
+ 2922 02d6 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2922      20756E73 
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 67
+
+
+ 2922      69676E65 
+ 2922      6420696E 
+ 2922      7400
+ 2923              	.LASF70:
+ 2924 02e8 474E5520 		.ascii	"GNU C 4.7.3 20121207 (release) [ARM/embedded-4_7-br"
+ 2924      4320342E 
+ 2924      372E3320 
+ 2924      32303132 
+ 2924      31323037 
+ 2925 031b 616E6368 		.ascii	"anch revision 194305]\000"
+ 2925      20726576 
+ 2925      6973696F 
+ 2925      6E203139 
+ 2925      34333035 
+ 2926              	.LASF19:
+ 2927 0331 46756E63 		.ascii	"FunctionalState\000"
+ 2927      74696F6E 
+ 2927      616C5374 
+ 2927      61746500 
+ 2928              	.LASF67:
+ 2929 0341 4441435F 		.ascii	"DAC_GetITStatus\000"
+ 2929      47657449 
+ 2929      54537461 
+ 2929      74757300 
+ 2930              	.LASF54:
+ 2931 0351 4441435F 		.ascii	"DAC_SetChannel2Data\000"
+ 2931      53657443 
+ 2931      68616E6E 
+ 2931      656C3244 
+ 2931      61746100 
+ 2932              	.LASF45:
+ 2933 0365 4441435F 		.ascii	"DAC_Cmd\000"
+ 2933      436D6400 
+ 2934              	.LASF69:
+ 2935 036d 4441435F 		.ascii	"DAC_ClearITPendingBit\000"
+ 2935      436C6561 
+ 2935      72495450 
+ 2935      656E6469 
+ 2935      6E674269 
+ 2936              	.LASF14:
+ 2937 0383 52455345 		.ascii	"RESET\000"
+ 2937      5400
+ 2938              	.LASF3:
+ 2939 0389 75696E74 		.ascii	"uint8_t\000"
+ 2939      385F7400 
+ 2940              	.LASF39:
+ 2941 0391 4441435F 		.ascii	"DAC_Init\000"
+ 2941      496E6974 
+ 2941      00
+ 2942              	.LASF57:
+ 2943 039a 44617461 		.ascii	"Data1\000"
+ 2943      3100
+ 2944              	.LASF73:
+ 2945 03a0 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 2945      52784275 
+ 2945      66666572 
+ 2945      00
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 68
+
+
+ 2946              	.LASF32:
+ 2947 03ad 4441435F 		.ascii	"DAC_TypeDef\000"
+ 2947      54797065 
+ 2947      44656600 
+ 2948              	.LASF12:
+ 2949 03b9 756E7369 		.ascii	"unsigned int\000"
+ 2949      676E6564 
+ 2949      20696E74 
+ 2949      00
+ 2950              	.LASF60:
+ 2951 03c6 4441435F 		.ascii	"DAC_ITConfig\000"
+ 2951      4954436F 
+ 2951      6E666967 
+ 2951      00
+ 2952              	.LASF23:
+ 2953 03d3 44485238 		.ascii	"DHR8R1\000"
+ 2953      523100
+ 2954              	.LASF26:
+ 2955 03da 44485238 		.ascii	"DHR8R2\000"
+ 2955      523200
+ 2956              	.LASF34:
+ 2957 03e1 4441435F 		.ascii	"DAC_WaveGeneration\000"
+ 2957      57617665 
+ 2957      47656E65 
+ 2957      72617469 
+ 2957      6F6E00
+ 2958              	.LASF15:
+ 2959 03f4 466C6167 		.ascii	"FlagStatus\000"
+ 2959      53746174 
+ 2959      757300
+ 2960              	.LASF18:
+ 2961 03ff 454E4142 		.ascii	"ENABLE\000"
+ 2961      4C4500
+ 2962              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20121207 (release) [ARM/embedded-4_7-br
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s 			page 69
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f4xx_dac.c
+C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s:71     .text.DAC_DeInit:00000000 $t
+C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s:76     .text.DAC_DeInit:00000000 DAC_DeInit
+C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s:105    .text.DAC_Init:00000000 $t
+C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s:110    .text.DAC_Init:00000000 DAC_Init
+C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s:162    .text.DAC_StructInit:00000000 $t
+C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s:167    .text.DAC_StructInit:00000000 DAC_StructInit
+C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s:189    .text.DAC_Cmd:00000000 $t
+C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s:194    .text.DAC_Cmd:00000000 DAC_Cmd
+C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s:230    .text.DAC_SoftwareTriggerCmd:00000000 $t
+C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s:235    .text.DAC_SoftwareTriggerCmd:00000000 DAC_SoftwareTriggerCmd
+C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s:271    .text.DAC_DualSoftwareTriggerCmd:00000000 $t
+C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s:276    .text.DAC_DualSoftwareTriggerCmd:00000000 DAC_DualSoftwareTriggerCmd
+C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s:305    .text.DAC_WaveGenerationCmd:00000000 $t
+C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s:310    .text.DAC_WaveGenerationCmd:00000000 DAC_WaveGenerationCmd
+C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s:343    .text.DAC_SetChannel1Data:00000000 $t
+C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s:348    .text.DAC_SetChannel1Data:00000000 DAC_SetChannel1Data
+C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s:385    .text.DAC_SetChannel2Data:00000000 $t
+C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s:390    .text.DAC_SetChannel2Data:00000000 DAC_SetChannel2Data
+C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s:427    .text.DAC_SetDualChannelData:00000000 $t
+C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s:432    .text.DAC_SetDualChannelData:00000000 DAC_SetDualChannelData
+C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s:460    .text.DAC_GetDataOutputValue:00000000 $t
+C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s:465    .text.DAC_GetDataOutputValue:00000000 DAC_GetDataOutputValue
+C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s:506    .text.DAC_DMACmd:00000000 $t
+C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s:511    .text.DAC_DMACmd:00000000 DAC_DMACmd
+C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s:547    .text.DAC_ITConfig:00000000 $t
+C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s:552    .text.DAC_ITConfig:00000000 DAC_ITConfig
+C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s:585    .text.DAC_GetFlagStatus:00000000 $t
+C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s:590    .text.DAC_GetFlagStatus:00000000 DAC_GetFlagStatus
+C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s:616    .text.DAC_ClearFlag:00000000 $t
+C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s:621    .text.DAC_ClearFlag:00000000 DAC_ClearFlag
+C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s:640    .text.DAC_GetITStatus:00000000 $t
+C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s:645    .text.DAC_GetITStatus:00000000 DAC_GetITStatus
+C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s:679    .text.DAC_ClearITPendingBit:00000000 $t
+C:\Users\CNous\AppData\Local\Temp\ccAbLTzy.s:684    .text.DAC_ClearITPendingBit:00000000 DAC_ClearITPendingBit
+                     .debug_frame:00000010 $d
+
+UNDEFINED SYMBOLS
+RCC_APB1PeriphResetCmd

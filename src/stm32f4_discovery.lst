@@ -1,0 +1,3998 @@
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 3	@ Tag_ABI_HardFP_use
+   4              		.eabi_attribute 28, 1	@ Tag_ABI_VFP_args
+   5              		.fpu fpv4-sp-d16
+   6              		.eabi_attribute 20, 1	@ Tag_ABI_FP_denormal
+   7              		.eabi_attribute 21, 1	@ Tag_ABI_FP_exceptions
+   8              		.eabi_attribute 23, 3	@ Tag_ABI_FP_number_model
+   9              		.eabi_attribute 24, 1	@ Tag_ABI_align8_needed
+  10              		.eabi_attribute 25, 1	@ Tag_ABI_align8_preserved
+  11              		.eabi_attribute 26, 1	@ Tag_ABI_enum_size
+  12              		.eabi_attribute 30, 2	@ Tag_ABI_optimization_goals
+  13              		.eabi_attribute 34, 1	@ Tag_CPU_unaligned_access
+  14              		.eabi_attribute 18, 4	@ Tag_ABI_PCS_wchar_t
+  15              		.file	"stm32f4_discovery.c"
+  16              	@ GNU C (GNU Tools for ARM Embedded Processors) version 4.7.3 20121207 (release) [ARM/embedded-4_7-
+  17              	@	compiled by GNU C version 4.2.1-sjlj (mingw32-2), GMP version 4.3.2, MPFR version 2.4.2, MPC vers
+  18              	@ GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+  19              	@ options passed:  -I . -I ./inc -I ./cmsis/core -I ./cmsis/device
+  20              	@ -imultilib armv7e-m/fpu
+  21              	@ -iprefix c:\gnutoolsarmembedded\4.7-2012q4\bin\../lib/gcc/arm-none-eabi/4.7.3/
+  22              	@ -isysroot c:\gnutoolsarmembedded\4.7-2012q4\bin\../arm-none-eabi
+  23              	@ -MD src/stm32f4_discovery.d -MF .dep/stm32f4_discovery.o.d -MP
+  24              	@ -MQ src/stm32f4_discovery.o -D__USES_INITFINI__ -D __FPU_USED=1
+  25              	@ -D __arm__ -D __ASSEMBLY__ -D USE_STDPERIPH_DRIVER -D STM32F4XX
+  26              	@ -D HSE_VALUE=8000000 -D __FPU_PRESENT=1 -D STM32F407VG
+  27              	@ -D RUN_FROM_FLASH=1 src/stm32f4_discovery.c -mthumb -mcpu=cortex-m4
+  28              	@ -mfloat-abi=hard -mfpu=fpv4-sp-d16 -auxbase-strip src/stm32f4_discovery.o
+  29              	@ -gdwarf-2 -O2 -Wall -Wstrict-prototypes -fverbose-asm -ffunction-sections
+  30              	@ -fdata-sections
+  31              	@ options enabled:  -fauto-inc-dec -fbranch-count-reg -fcaller-saves
+  32              	@ -fcombine-stack-adjustments -fcommon -fcompare-elim -fcprop-registers
+  33              	@ -fcrossjumping -fcse-follow-jumps -fdata-sections -fdebug-types-section
+  34              	@ -fdefer-pop -fdelete-null-pointer-checks -fdevirtualize -fdwarf2-cfi-asm
+  35              	@ -fearly-inlining -feliminate-unused-debug-types -fexpensive-optimizations
+  36              	@ -fforward-propagate -ffunction-cse -ffunction-sections -fgcse -fgcse-lm
+  37              	@ -fgnu-runtime -fguess-branch-probability -fident -fif-conversion
+  38              	@ -fif-conversion2 -findirect-inlining -finline -finline-atomics
+  39              	@ -finline-functions-called-once -finline-small-functions -fipa-cp
+  40              	@ -fipa-profile -fipa-pure-const -fipa-reference -fipa-sra
+  41              	@ -fira-share-save-slots -fira-share-spill-slots -fivopts
+  42              	@ -fkeep-static-consts -fleading-underscore -fmath-errno -fmerge-constants
+  43              	@ -fmerge-debug-strings -fmove-loop-invariants -fomit-frame-pointer
+  44              	@ -foptimize-register-move -foptimize-sibling-calls -foptimize-strlen
+  45              	@ -fpartial-inlining -fpeephole -fpeephole2 -fprefetch-loop-arrays
+  46              	@ -freg-struct-return -fregmove -frename-registers -freorder-blocks
+  47              	@ -freorder-functions -frerun-cse-after-loop
+  48              	@ -fsched-critical-path-heuristic -fsched-dep-count-heuristic
+  49              	@ -fsched-group-heuristic -fsched-interblock -fsched-last-insn-heuristic
+  50              	@ -fsched-rank-heuristic -fsched-spec -fsched-spec-insn-heuristic
+  51              	@ -fsched-stalled-insns-dep -fschedule-insns -fschedule-insns2
+  52              	@ -fsection-anchors -fshow-column -fshrink-wrap -fsigned-zeros
+  53              	@ -fsplit-ivs-in-unroller -fsplit-wide-types -fstrict-aliasing
+  54              	@ -fstrict-overflow -fstrict-volatile-bitfields -fthread-jumps
+  55              	@ -ftoplevel-reorder -ftrapping-math -ftree-bit-ccp -ftree-builtin-call-dce
+  56              	@ -ftree-ccp -ftree-ch -ftree-copy-prop -ftree-copyrename -ftree-cselim
+  57              	@ -ftree-dce -ftree-dominator-opts -ftree-dse -ftree-forwprop -ftree-fre
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 2
+
+
+  58              	@ -ftree-loop-if-convert -ftree-loop-im -ftree-loop-ivcanon
+  59              	@ -ftree-loop-optimize -ftree-parallelize-loops= -ftree-phiprop -ftree-pre
+  60              	@ -ftree-pta -ftree-reassoc -ftree-scev-cprop -ftree-sink
+  61              	@ -ftree-slp-vectorize -ftree-sra -ftree-switch-conversion
+  62              	@ -ftree-tail-merge -ftree-ter -ftree-vect-loop-version -ftree-vrp
+  63              	@ -funit-at-a-time -funroll-loops -fvar-tracking -fvar-tracking-assignments
+  64              	@ -fverbose-asm -fweb -fzero-initialized-in-bss -mlittle-endian
+  65              	@ -msched-prolog -mthumb -munaligned-access -mvectorize-with-neon-quad
+  66              	
+  67              		.text
+  68              	.Ltext0:
+  69              		.cfi_sections	.debug_frame
+  70              		.section	.text.STM_EVAL_LEDInit,"ax",%progbits
+  71              		.align	2
+  72              		.global	STM_EVAL_LEDInit
+  73              		.thumb
+  74              		.thumb_func
+  75              		.type	STM_EVAL_LEDInit, %function
+  76              	STM_EVAL_LEDInit:
+  77              	.LFB110:
+  78              		.file 1 "src/stm32f4_discovery.c"
+   1:src/stm32f4_discovery.c **** /**
+   2:src/stm32f4_discovery.c ****   ******************************************************************************
+   3:src/stm32f4_discovery.c ****   * @file    stm32f4_discovery.c
+   4:src/stm32f4_discovery.c ****   * @author  MCD Application Team
+   5:src/stm32f4_discovery.c ****   * @version V1.1.0
+   6:src/stm32f4_discovery.c ****   * @date    28-October-2011
+   7:src/stm32f4_discovery.c ****   * @brief   This file provides set of firmware functions to manage Leds and
+   8:src/stm32f4_discovery.c ****   *          push-button available on STM32F4-Discovery Kit from STMicroelectronics.
+   9:src/stm32f4_discovery.c ****   ******************************************************************************
+  10:src/stm32f4_discovery.c ****   * @attention
+  11:src/stm32f4_discovery.c ****   *
+  12:src/stm32f4_discovery.c ****   * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
+  13:src/stm32f4_discovery.c ****   * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE
+  14:src/stm32f4_discovery.c ****   * TIME. AS A RESULT, STMICROELECTRONICS SHALL NOT BE HELD LIABLE FOR ANY
+  15:src/stm32f4_discovery.c ****   * DIRECT, INDIRECT OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING
+  16:src/stm32f4_discovery.c ****   * FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE
+  17:src/stm32f4_discovery.c ****   * CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+  18:src/stm32f4_discovery.c ****   *
+  19:src/stm32f4_discovery.c ****   * <h2><center>&copy; COPYRIGHT 2011 STMicroelectronics</center></h2>
+  20:src/stm32f4_discovery.c ****   ******************************************************************************
+  21:src/stm32f4_discovery.c ****   */ 
+  22:src/stm32f4_discovery.c ****   
+  23:src/stm32f4_discovery.c **** /* Includes ------------------------------------------------------------------*/
+  24:src/stm32f4_discovery.c **** 
+  25:src/stm32f4_discovery.c **** #include "stm32f4_discovery.h"
+  26:src/stm32f4_discovery.c **** #include "main.h"
+  27:src/stm32f4_discovery.c **** 
+  28:src/stm32f4_discovery.c **** /** @addtogroup Utilities
+  29:src/stm32f4_discovery.c ****   * @{
+  30:src/stm32f4_discovery.c ****   */ 
+  31:src/stm32f4_discovery.c **** 
+  32:src/stm32f4_discovery.c **** /** @addtogroup STM32F4_DISCOVERY
+  33:src/stm32f4_discovery.c ****   * @{
+  34:src/stm32f4_discovery.c ****   */   
+  35:src/stm32f4_discovery.c ****     
+  36:src/stm32f4_discovery.c **** /** @defgroup STM32F4_DISCOVERY_LOW_LEVEL 
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 3
+
+
+  37:src/stm32f4_discovery.c ****   * @brief This file provides set of firmware functions to manage Leds and push-button
+  38:src/stm32f4_discovery.c ****   *        available on STM32F4-Discovery Kit from STMicroelectronics.
+  39:src/stm32f4_discovery.c ****   * @{
+  40:src/stm32f4_discovery.c ****   */ 
+  41:src/stm32f4_discovery.c **** 
+  42:src/stm32f4_discovery.c **** /** @defgroup STM32F4_DISCOVERY_LOW_LEVEL_Private_TypesDefinitions
+  43:src/stm32f4_discovery.c ****   * @{
+  44:src/stm32f4_discovery.c ****   */ 
+  45:src/stm32f4_discovery.c **** /**
+  46:src/stm32f4_discovery.c ****   * @}
+  47:src/stm32f4_discovery.c ****   */ 
+  48:src/stm32f4_discovery.c **** 
+  49:src/stm32f4_discovery.c **** 
+  50:src/stm32f4_discovery.c **** /** @defgroup STM32F4_DISCOVERY_LOW_LEVEL_Private_Defines
+  51:src/stm32f4_discovery.c ****   * @{
+  52:src/stm32f4_discovery.c ****   */ 
+  53:src/stm32f4_discovery.c **** /**
+  54:src/stm32f4_discovery.c ****   * @}
+  55:src/stm32f4_discovery.c ****   */ 
+  56:src/stm32f4_discovery.c **** 
+  57:src/stm32f4_discovery.c **** 
+  58:src/stm32f4_discovery.c **** /** @defgroup STM32F4_DISCOVERY_LOW_LEVEL_Private_Macros
+  59:src/stm32f4_discovery.c ****   * @{
+  60:src/stm32f4_discovery.c ****   */ 
+  61:src/stm32f4_discovery.c **** /**
+  62:src/stm32f4_discovery.c ****   * @}
+  63:src/stm32f4_discovery.c ****   */ 
+  64:src/stm32f4_discovery.c **** 
+  65:src/stm32f4_discovery.c **** 
+  66:src/stm32f4_discovery.c **** /** @defgroup STM32F4_DISCOVERY_LOW_LEVEL_Private_Variables
+  67:src/stm32f4_discovery.c ****   * @{
+  68:src/stm32f4_discovery.c ****   */ 
+  69:src/stm32f4_discovery.c **** GPIO_TypeDef* GPIO_PORT[LEDn] = {LED4_GPIO_PORT, LED3_GPIO_PORT, LED5_GPIO_PORT,
+  70:src/stm32f4_discovery.c ****                                  LED6_GPIO_PORT};
+  71:src/stm32f4_discovery.c **** const uint16_t GPIO_PIN[LEDn] = {LED4_PIN, LED3_PIN, LED5_PIN,
+  72:src/stm32f4_discovery.c ****                                  LED6_PIN};
+  73:src/stm32f4_discovery.c **** const uint32_t GPIO_CLK[LEDn] = {LED4_GPIO_CLK, LED3_GPIO_CLK, LED5_GPIO_CLK,
+  74:src/stm32f4_discovery.c ****                                  LED6_GPIO_CLK};
+  75:src/stm32f4_discovery.c **** 
+  76:src/stm32f4_discovery.c **** GPIO_TypeDef* BUTTON_PORT[BUTTONn] = {USER_BUTTON_GPIO_PORT }; 
+  77:src/stm32f4_discovery.c **** 
+  78:src/stm32f4_discovery.c **** const uint16_t BUTTON_PIN[BUTTONn] = {USER_BUTTON_PIN }; 
+  79:src/stm32f4_discovery.c **** 
+  80:src/stm32f4_discovery.c **** const uint32_t BUTTON_CLK[BUTTONn] = {USER_BUTTON_GPIO_CLK };
+  81:src/stm32f4_discovery.c **** 
+  82:src/stm32f4_discovery.c **** const uint16_t BUTTON_EXTI_LINE[BUTTONn] = {USER_BUTTON_EXTI_LINE };
+  83:src/stm32f4_discovery.c **** 
+  84:src/stm32f4_discovery.c **** const uint8_t BUTTON_PORT_SOURCE[BUTTONn] = {USER_BUTTON_EXTI_PORT_SOURCE};
+  85:src/stm32f4_discovery.c **** 								 
+  86:src/stm32f4_discovery.c **** const uint8_t BUTTON_PIN_SOURCE[BUTTONn] = {USER_BUTTON_EXTI_PIN_SOURCE }; 
+  87:src/stm32f4_discovery.c **** const uint8_t BUTTON_IRQn[BUTTONn] = {USER_BUTTON_EXTI_IRQn };
+  88:src/stm32f4_discovery.c **** 
+  89:src/stm32f4_discovery.c **** NVIC_InitTypeDef   NVIC_InitStructure;
+  90:src/stm32f4_discovery.c **** 
+  91:src/stm32f4_discovery.c **** /**
+  92:src/stm32f4_discovery.c ****   * @}
+  93:src/stm32f4_discovery.c ****   */ 
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 4
+
+
+  94:src/stm32f4_discovery.c **** 
+  95:src/stm32f4_discovery.c **** 
+  96:src/stm32f4_discovery.c **** /** @defgroup STM32F4_DISCOVERY_LOW_LEVEL_Private_FunctionPrototypes
+  97:src/stm32f4_discovery.c ****   * @{
+  98:src/stm32f4_discovery.c ****   */ 
+  99:src/stm32f4_discovery.c **** 
+ 100:src/stm32f4_discovery.c **** /**
+ 101:src/stm32f4_discovery.c ****   * @}
+ 102:src/stm32f4_discovery.c ****   */ 
+ 103:src/stm32f4_discovery.c **** 
+ 104:src/stm32f4_discovery.c **** /** @defgroup STM32F4_DISCOVERY_LOW_LEVEL_Private_Functions
+ 105:src/stm32f4_discovery.c ****   * @{
+ 106:src/stm32f4_discovery.c ****   */ 
+ 107:src/stm32f4_discovery.c **** 
+ 108:src/stm32f4_discovery.c **** /**
+ 109:src/stm32f4_discovery.c ****   * @brief  Configures LED GPIO.
+ 110:src/stm32f4_discovery.c ****   * @param  Led: Specifies the Led to be configured. 
+ 111:src/stm32f4_discovery.c ****   *   This parameter can be one of following parameters:
+ 112:src/stm32f4_discovery.c ****   *     @arg LED4
+ 113:src/stm32f4_discovery.c ****   *     @arg LED3
+ 114:src/stm32f4_discovery.c ****   *     @arg LED5
+ 115:src/stm32f4_discovery.c ****   *     @arg LED6
+ 116:src/stm32f4_discovery.c ****   * @retval None
+ 117:src/stm32f4_discovery.c ****   */
+ 118:src/stm32f4_discovery.c **** void STM_EVAL_LEDInit(Led_TypeDef Led)
+ 119:src/stm32f4_discovery.c **** {
+  79              		.loc 1 119 0
+  80              		.cfi_startproc
+  81              		@ args = 0, pretend = 0, frame = 8
+  82              		@ frame_needed = 0, uses_anonymous_args = 0
+  83              	.LVL0:
+  84 0000 10B5     		push	{r4, lr}	@
+  85              	.LCFI0:
+  86              		.cfi_def_cfa_offset 8
+  87              		.cfi_offset 4, -8
+  88              		.cfi_offset 14, -4
+ 120:src/stm32f4_discovery.c ****   GPIO_InitTypeDef  GPIO_InitStructure;
+ 121:src/stm32f4_discovery.c ****   
+ 122:src/stm32f4_discovery.c ****   /* Enable the GPIO_LED Clock */
+ 123:src/stm32f4_discovery.c ****   RCC_AHB1PeriphClockCmd(GPIO_CLK[Led], ENABLE);
+  89              		.loc 1 123 0
+  90 0002 40F20003 		movw	r3, #:lower16:.LANCHOR0	@ tmp155,
+  91 0006 C0F20003 		movt	r3, #:upper16:.LANCHOR0	@ tmp155,
+ 119:src/stm32f4_discovery.c **** {
+  92              		.loc 1 119 0
+  93 000a 82B0     		sub	sp, sp, #8	@,,
+  94              	.LCFI1:
+  95              		.cfi_def_cfa_offset 16
+ 119:src/stm32f4_discovery.c **** {
+  96              		.loc 1 119 0
+  97 000c 0446     		mov	r4, r0	@ Led, Led
+  98              		.loc 1 123 0
+  99 000e 0121     		movs	r1, #1	@,
+ 100 0010 53F82000 		ldr	r0, [r3, r0, lsl #2]	@, GPIO_CLK
+ 101              	.LVL1:
+ 102 0014 FFF7FEFF 		bl	RCC_AHB1PeriphClockCmd	@
+ 103              	.LVL2:
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 5
+
+
+ 124:src/stm32f4_discovery.c **** 
+ 125:src/stm32f4_discovery.c ****   /* Configure the GPIO_LED pin */
+ 126:src/stm32f4_discovery.c ****   GPIO_InitStructure.GPIO_Pin = GPIO_PIN[Led];
+ 104              		.loc 1 126 0
+ 105 0018 40F20002 		movw	r2, #:lower16:.LANCHOR1	@ tmp156,
+ 106 001c C0F20002 		movt	r2, #:upper16:.LANCHOR1	@ tmp156,
+ 127:src/stm32f4_discovery.c ****   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
+ 128:src/stm32f4_discovery.c ****   GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+ 129:src/stm32f4_discovery.c ****   GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
+ 130:src/stm32f4_discovery.c ****   GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+ 131:src/stm32f4_discovery.c ****   GPIO_Init(GPIO_PORT[Led], &GPIO_InitStructure);
+ 107              		.loc 1 131 0
+ 108 0020 40F20000 		movw	r0, #:lower16:.LANCHOR2	@ tmp157,
+ 126:src/stm32f4_discovery.c ****   GPIO_InitStructure.GPIO_Pin = GPIO_PIN[Led];
+ 109              		.loc 1 126 0
+ 110 0024 32F81410 		ldrh	r1, [r2, r4, lsl #1]	@ tmp143, GPIO_PIN
+ 111              		.loc 1 131 0
+ 112 0028 C0F20000 		movt	r0, #:upper16:.LANCHOR2	@ tmp157,
+ 127:src/stm32f4_discovery.c ****   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
+ 113              		.loc 1 127 0
+ 114 002c 0123     		movs	r3, #1	@ tmp144,
+ 126:src/stm32f4_discovery.c ****   GPIO_InitStructure.GPIO_Pin = GPIO_PIN[Led];
+ 115              		.loc 1 126 0
+ 116 002e 0091     		str	r1, [sp, #0]	@ tmp143, GPIO_InitStructure.GPIO_Pin
+ 127:src/stm32f4_discovery.c ****   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
+ 117              		.loc 1 127 0
+ 118 0030 8DF80430 		strb	r3, [sp, #4]	@ tmp144, GPIO_InitStructure.GPIO_Mode
+ 128:src/stm32f4_discovery.c ****   GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+ 119              		.loc 1 128 0
+ 120 0034 0022     		movs	r2, #0	@ tmp146,
+ 129:src/stm32f4_discovery.c ****   GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
+ 121              		.loc 1 129 0
+ 122 0036 8DF80730 		strb	r3, [sp, #7]	@ tmp144, GPIO_InitStructure.GPIO_PuPd
+ 123              		.loc 1 131 0
+ 124 003a 50F82400 		ldr	r0, [r0, r4, lsl #2]	@, GPIO_PORT
+ 128:src/stm32f4_discovery.c ****   GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+ 125              		.loc 1 128 0
+ 126 003e 8DF80620 		strb	r2, [sp, #6]	@ tmp146, GPIO_InitStructure.GPIO_OType
+ 130:src/stm32f4_discovery.c ****   GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+ 127              		.loc 1 130 0
+ 128 0042 0223     		movs	r3, #2	@ tmp150,
+ 129              		.loc 1 131 0
+ 130 0044 6946     		mov	r1, sp	@,
+ 130:src/stm32f4_discovery.c ****   GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+ 131              		.loc 1 130 0
+ 132 0046 8DF80530 		strb	r3, [sp, #5]	@ tmp150, GPIO_InitStructure.GPIO_Speed
+ 133              		.loc 1 131 0
+ 134 004a FFF7FEFF 		bl	GPIO_Init	@
+ 135              	.LVL3:
+ 132:src/stm32f4_discovery.c **** }
+ 136              		.loc 1 132 0
+ 137 004e 02B0     		add	sp, sp, #8	@,,
+ 138 0050 10BD     		pop	{r4, pc}
+ 139              		.cfi_endproc
+ 140              	.LFE110:
+ 141              		.size	STM_EVAL_LEDInit, .-STM_EVAL_LEDInit
+ 142 0052 00BF     		.section	.text.STM_EVAL_LEDOn,"ax",%progbits
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 6
+
+
+ 143              		.align	2
+ 144              		.global	STM_EVAL_LEDOn
+ 145              		.thumb
+ 146              		.thumb_func
+ 147              		.type	STM_EVAL_LEDOn, %function
+ 148              	STM_EVAL_LEDOn:
+ 149              	.LFB111:
+ 133:src/stm32f4_discovery.c **** 
+ 134:src/stm32f4_discovery.c **** /**
+ 135:src/stm32f4_discovery.c ****   * @brief  Turns selected LED On.
+ 136:src/stm32f4_discovery.c ****   * @param  Led: Specifies the Led to be set on. 
+ 137:src/stm32f4_discovery.c ****   *   This parameter can be one of following parameters:
+ 138:src/stm32f4_discovery.c ****   *     @arg LED4
+ 139:src/stm32f4_discovery.c ****   *     @arg LED3
+ 140:src/stm32f4_discovery.c ****   *     @arg LED5
+ 141:src/stm32f4_discovery.c ****   *     @arg LED6  
+ 142:src/stm32f4_discovery.c ****   * @retval None
+ 143:src/stm32f4_discovery.c ****   */
+ 144:src/stm32f4_discovery.c **** void STM_EVAL_LEDOn(Led_TypeDef Led)
+ 145:src/stm32f4_discovery.c **** {
+ 150              		.loc 1 145 0
+ 151              		.cfi_startproc
+ 152              		@ args = 0, pretend = 0, frame = 0
+ 153              		@ frame_needed = 0, uses_anonymous_args = 0
+ 154              		@ link register save eliminated.
+ 155              	.LVL4:
+ 146:src/stm32f4_discovery.c ****   GPIO_PORT[Led]->BSRRL = GPIO_PIN[Led];
+ 156              		.loc 1 146 0
+ 157 0000 40F20002 		movw	r2, #:lower16:.LANCHOR2	@ tmp141,
+ 158 0004 40F20003 		movw	r3, #:lower16:.LANCHOR1	@ tmp142,
+ 159 0008 C0F20002 		movt	r2, #:upper16:.LANCHOR2	@ tmp141,
+ 160 000c C0F20003 		movt	r3, #:upper16:.LANCHOR1	@ tmp142,
+ 161 0010 52F82010 		ldr	r1, [r2, r0, lsl #2]	@ D.8473, GPIO_PORT
+ 162 0014 33F81000 		ldrh	r0, [r3, r0, lsl #1]	@ D.8474, GPIO_PIN
+ 163              	.LVL5:
+ 164 0018 0883     		strh	r0, [r1, #24]	@ movhi	@ D.8474, D.8473_3->BSRRL
+ 165 001a 7047     		bx	lr	@
+ 166              		.cfi_endproc
+ 167              	.LFE111:
+ 168              		.size	STM_EVAL_LEDOn, .-STM_EVAL_LEDOn
+ 169              		.section	.text.STM_EVAL_LEDOff,"ax",%progbits
+ 170              		.align	2
+ 171              		.global	STM_EVAL_LEDOff
+ 172              		.thumb
+ 173              		.thumb_func
+ 174              		.type	STM_EVAL_LEDOff, %function
+ 175              	STM_EVAL_LEDOff:
+ 176              	.LFB112:
+ 147:src/stm32f4_discovery.c **** }
+ 148:src/stm32f4_discovery.c **** 
+ 149:src/stm32f4_discovery.c **** /**
+ 150:src/stm32f4_discovery.c ****   * @brief  Turns selected LED Off.
+ 151:src/stm32f4_discovery.c ****   * @param  Led: Specifies the Led to be set off. 
+ 152:src/stm32f4_discovery.c ****   *   This parameter can be one of following parameters:
+ 153:src/stm32f4_discovery.c ****   *     @arg LED4
+ 154:src/stm32f4_discovery.c ****   *     @arg LED3
+ 155:src/stm32f4_discovery.c ****   *     @arg LED5
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 7
+
+
+ 156:src/stm32f4_discovery.c ****   *     @arg LED6 
+ 157:src/stm32f4_discovery.c ****   * @retval None
+ 158:src/stm32f4_discovery.c ****   */
+ 159:src/stm32f4_discovery.c **** void STM_EVAL_LEDOff(Led_TypeDef Led)
+ 160:src/stm32f4_discovery.c **** {
+ 177              		.loc 1 160 0
+ 178              		.cfi_startproc
+ 179              		@ args = 0, pretend = 0, frame = 0
+ 180              		@ frame_needed = 0, uses_anonymous_args = 0
+ 181              		@ link register save eliminated.
+ 182              	.LVL6:
+ 161:src/stm32f4_discovery.c ****   GPIO_PORT[Led]->BSRRH = GPIO_PIN[Led];  
+ 183              		.loc 1 161 0
+ 184 0000 40F20002 		movw	r2, #:lower16:.LANCHOR2	@ tmp141,
+ 185 0004 40F20003 		movw	r3, #:lower16:.LANCHOR1	@ tmp142,
+ 186 0008 C0F20002 		movt	r2, #:upper16:.LANCHOR2	@ tmp141,
+ 187 000c C0F20003 		movt	r3, #:upper16:.LANCHOR1	@ tmp142,
+ 188 0010 52F82010 		ldr	r1, [r2, r0, lsl #2]	@ D.8470, GPIO_PORT
+ 189 0014 33F81000 		ldrh	r0, [r3, r0, lsl #1]	@ D.8471, GPIO_PIN
+ 190              	.LVL7:
+ 191 0018 4883     		strh	r0, [r1, #26]	@ movhi	@ D.8471, D.8470_3->BSRRH
+ 192 001a 7047     		bx	lr	@
+ 193              		.cfi_endproc
+ 194              	.LFE112:
+ 195              		.size	STM_EVAL_LEDOff, .-STM_EVAL_LEDOff
+ 196              		.section	.text.STM_EVAL_LEDToggle,"ax",%progbits
+ 197              		.align	2
+ 198              		.global	STM_EVAL_LEDToggle
+ 199              		.thumb
+ 200              		.thumb_func
+ 201              		.type	STM_EVAL_LEDToggle, %function
+ 202              	STM_EVAL_LEDToggle:
+ 203              	.LFB113:
+ 162:src/stm32f4_discovery.c **** }
+ 163:src/stm32f4_discovery.c **** 
+ 164:src/stm32f4_discovery.c **** /**
+ 165:src/stm32f4_discovery.c ****   * @brief  Toggles the selected LED.
+ 166:src/stm32f4_discovery.c ****   * @param  Led: Specifies the Led to be toggled. 
+ 167:src/stm32f4_discovery.c ****   *   This parameter can be one of following parameters:
+ 168:src/stm32f4_discovery.c ****   *     @arg LED4
+ 169:src/stm32f4_discovery.c ****   *     @arg LED3
+ 170:src/stm32f4_discovery.c ****   *     @arg LED5
+ 171:src/stm32f4_discovery.c ****   *     @arg LED6  
+ 172:src/stm32f4_discovery.c ****   * @retval None
+ 173:src/stm32f4_discovery.c ****   */
+ 174:src/stm32f4_discovery.c **** void STM_EVAL_LEDToggle(Led_TypeDef Led)
+ 175:src/stm32f4_discovery.c **** {
+ 204              		.loc 1 175 0
+ 205              		.cfi_startproc
+ 206              		@ args = 0, pretend = 0, frame = 0
+ 207              		@ frame_needed = 0, uses_anonymous_args = 0
+ 208              		@ link register save eliminated.
+ 209              	.LVL8:
+ 176:src/stm32f4_discovery.c ****   GPIO_PORT[Led]->ODR ^= GPIO_PIN[Led];
+ 210              		.loc 1 176 0
+ 211 0000 40F20003 		movw	r3, #:lower16:.LANCHOR2	@ tmp144,
+ 212 0004 C0F20003 		movt	r3, #:upper16:.LANCHOR2	@ tmp144,
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 8
+
+
+ 213 0008 40F20002 		movw	r2, #:lower16:.LANCHOR1	@ tmp145,
+ 214 000c 53F82030 		ldr	r3, [r3, r0, lsl #2]	@ D.8464, GPIO_PORT
+ 215 0010 C0F20002 		movt	r2, #:upper16:.LANCHOR1	@ tmp145,
+ 216 0014 5969     		ldr	r1, [r3, #20]	@ D.8465, D.8464_5->ODR
+ 217 0016 32F81000 		ldrh	r0, [r2, r0, lsl #1]	@ tmp143, GPIO_PIN
+ 218              	.LVL9:
+ 219 001a 4840     		eors	r0, r0, r1	@, D.8468, tmp143, D.8465
+ 220 001c 5861     		str	r0, [r3, #20]	@ D.8468, D.8464_5->ODR
+ 221 001e 7047     		bx	lr	@
+ 222              		.cfi_endproc
+ 223              	.LFE113:
+ 224              		.size	STM_EVAL_LEDToggle, .-STM_EVAL_LEDToggle
+ 225              		.section	.text.STM_EVAL_PBInit,"ax",%progbits
+ 226              		.align	2
+ 227              		.global	STM_EVAL_PBInit
+ 228              		.thumb
+ 229              		.thumb_func
+ 230              		.type	STM_EVAL_PBInit, %function
+ 231              	STM_EVAL_PBInit:
+ 232              	.LFB114:
+ 177:src/stm32f4_discovery.c **** }
+ 178:src/stm32f4_discovery.c **** 
+ 179:src/stm32f4_discovery.c **** /**
+ 180:src/stm32f4_discovery.c ****   * @brief  Configures Button GPIO and EXTI Line.
+ 181:src/stm32f4_discovery.c ****   * @param  Button: Specifies the Button to be configured.
+ 182:src/stm32f4_discovery.c ****   *   This parameter should be: BUTTON_USER
+ 183:src/stm32f4_discovery.c ****   * @param  Button_Mode: Specifies Button mode.
+ 184:src/stm32f4_discovery.c ****   *   This parameter can be one of following parameters:   
+ 185:src/stm32f4_discovery.c ****   *     @arg BUTTON_MODE_GPIO: Button will be used as simple IO 
+ 186:src/stm32f4_discovery.c ****   *     @arg BUTTON_MODE_EXTI: Button will be connected to EXTI line with interrupt
+ 187:src/stm32f4_discovery.c ****   *                            generation capability  
+ 188:src/stm32f4_discovery.c ****   * @retval None
+ 189:src/stm32f4_discovery.c ****   */
+ 190:src/stm32f4_discovery.c **** void STM_EVAL_PBInit(Button_TypeDef Button, ButtonMode_TypeDef Button_Mode)
+ 191:src/stm32f4_discovery.c **** {
+ 233              		.loc 1 191 0
+ 234              		.cfi_startproc
+ 235              		@ args = 0, pretend = 0, frame = 24
+ 236              		@ frame_needed = 0, uses_anonymous_args = 0
+ 237              	.LVL10:
+ 238 0000 70B5     		push	{r4, r5, r6, lr}	@
+ 239              	.LCFI2:
+ 240              		.cfi_def_cfa_offset 16
+ 241              		.cfi_offset 4, -16
+ 242              		.cfi_offset 5, -12
+ 243              		.cfi_offset 6, -8
+ 244              		.cfi_offset 14, -4
+ 245 0002 0646     		mov	r6, r0	@ Button, Button
+ 192:src/stm32f4_discovery.c ****   GPIO_InitTypeDef GPIO_InitStructure;
+ 193:src/stm32f4_discovery.c ****   EXTI_InitTypeDef EXTI_InitStructure;
+ 194:src/stm32f4_discovery.c ****   NVIC_InitTypeDef NVIC_InitStructure;
+ 195:src/stm32f4_discovery.c **** 
+ 196:src/stm32f4_discovery.c ****   /* Enable the BUTTON Clock */
+ 197:src/stm32f4_discovery.c ****   RCC_AHB1PeriphClockCmd(BUTTON_CLK[Button], ENABLE);
+ 246              		.loc 1 197 0
+ 247 0004 0120     		movs	r0, #1	@,
+ 248              	.LVL11:
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 9
+
+
+ 191:src/stm32f4_discovery.c **** {
+ 249              		.loc 1 191 0
+ 250 0006 86B0     		sub	sp, sp, #24	@,,
+ 251              	.LCFI3:
+ 252              		.cfi_def_cfa_offset 40
+ 191:src/stm32f4_discovery.c **** {
+ 253              		.loc 1 191 0
+ 254 0008 0D46     		mov	r5, r1	@ Button_Mode, Button_Mode
+ 255              		.loc 1 197 0
+ 256 000a 0146     		mov	r1, r0	@,
+ 257              	.LVL12:
+ 258 000c FFF7FEFF 		bl	RCC_AHB1PeriphClockCmd	@
+ 259              	.LVL13:
+ 198:src/stm32f4_discovery.c ****   RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
+ 260              		.loc 1 198 0
+ 261 0010 0121     		movs	r1, #1	@,
+ 262 0012 4FF48040 		mov	r0, #16384	@,
+ 263 0016 FFF7FEFF 		bl	RCC_APB2PeriphClockCmd	@
+ 264              	.LVL14:
+ 199:src/stm32f4_discovery.c **** 
+ 200:src/stm32f4_discovery.c ****   /* Configure Button pin as input */
+ 201:src/stm32f4_discovery.c ****   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
+ 202:src/stm32f4_discovery.c ****   GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+ 203:src/stm32f4_discovery.c ****   GPIO_InitStructure.GPIO_Pin = BUTTON_PIN[Button];
+ 265              		.loc 1 203 0
+ 266 001a 06A9     		add	r1, sp, #24	@ tmp145,,
+ 204:src/stm32f4_discovery.c ****   GPIO_Init(BUTTON_PORT[Button], &GPIO_InitStructure);
+ 267              		.loc 1 204 0
+ 268 001c 1648     		ldr	r0, .L9	@ tmp143,
+ 203:src/stm32f4_discovery.c ****   GPIO_InitStructure.GPIO_Pin = BUTTON_PIN[Button];
+ 269              		.loc 1 203 0
+ 270 001e 0122     		movs	r2, #1	@ tmp142,
+ 201:src/stm32f4_discovery.c ****   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
+ 271              		.loc 1 201 0
+ 272 0020 0024     		movs	r4, #0	@ tmp138,
+ 203:src/stm32f4_discovery.c ****   GPIO_InitStructure.GPIO_Pin = BUTTON_PIN[Button];
+ 273              		.loc 1 203 0
+ 274 0022 41F8102D 		str	r2, [r1, #-16]!	@ tmp142, GPIO_InitStructure.GPIO_Pin
+ 275              		.loc 1 204 0
+ 276 0026 50F82600 		ldr	r0, [r0, r6, lsl #2]	@, BUTTON_PORT
+ 201:src/stm32f4_discovery.c ****   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
+ 277              		.loc 1 201 0
+ 278 002a 8DF80C40 		strb	r4, [sp, #12]	@ tmp138, GPIO_InitStructure.GPIO_Mode
+ 202:src/stm32f4_discovery.c ****   GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+ 279              		.loc 1 202 0
+ 280 002e 8DF80F40 		strb	r4, [sp, #15]	@ tmp138, GPIO_InitStructure.GPIO_PuPd
+ 281              		.loc 1 204 0
+ 282 0032 FFF7FEFF 		bl	GPIO_Init	@
+ 283              	.LVL15:
+ 205:src/stm32f4_discovery.c **** 
+ 206:src/stm32f4_discovery.c ****   if (Button_Mode == BUTTON_MODE_EXTI)
+ 284              		.loc 1 206 0
+ 285 0036 012D     		cmp	r5, #1	@ Button_Mode,
+ 286 0038 01D0     		beq	.L8	@,
+ 287              	.L5:
+ 207:src/stm32f4_discovery.c ****   {
+ 208:src/stm32f4_discovery.c ****     /* Connect Button EXTI Line to Button GPIO Pin */
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 10
+
+
+ 209:src/stm32f4_discovery.c ****     SYSCFG_EXTILineConfig(BUTTON_PORT_SOURCE[Button], BUTTON_PIN_SOURCE[Button]);
+ 210:src/stm32f4_discovery.c **** 
+ 211:src/stm32f4_discovery.c ****     /* Configure Button EXTI line */
+ 212:src/stm32f4_discovery.c ****     EXTI_InitStructure.EXTI_Line = BUTTON_EXTI_LINE[Button];
+ 213:src/stm32f4_discovery.c ****     EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+ 214:src/stm32f4_discovery.c ****     EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;  
+ 215:src/stm32f4_discovery.c ****     EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+ 216:src/stm32f4_discovery.c ****     EXTI_Init(&EXTI_InitStructure);
+ 217:src/stm32f4_discovery.c **** 
+ 218:src/stm32f4_discovery.c ****     /* Enable and set Button EXTI Interrupt to the lowest priority */
+ 219:src/stm32f4_discovery.c ****     NVIC_InitStructure.NVIC_IRQChannel = BUTTON_IRQn[Button];
+ 220:src/stm32f4_discovery.c ****     NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x0F;
+ 221:src/stm32f4_discovery.c ****     NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x0F;
+ 222:src/stm32f4_discovery.c ****     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+ 223:src/stm32f4_discovery.c **** 
+ 224:src/stm32f4_discovery.c ****     NVIC_Init(&NVIC_InitStructure); 
+ 225:src/stm32f4_discovery.c ****   }
+ 226:src/stm32f4_discovery.c **** }
+ 288              		.loc 1 226 0
+ 289 003a 06B0     		add	sp, sp, #24	@,,
+ 290 003c 70BD     		pop	{r4, r5, r6, pc}
+ 291              	.L8:
+ 209:src/stm32f4_discovery.c ****     SYSCFG_EXTILineConfig(BUTTON_PORT_SOURCE[Button], BUTTON_PIN_SOURCE[Button]);
+ 292              		.loc 1 209 0
+ 293 003e 2146     		mov	r1, r4	@, tmp138
+ 294 0040 2046     		mov	r0, r4	@, tmp138
+ 295 0042 FFF7FEFF 		bl	SYSCFG_EXTILineConfig	@
+ 296              	.LVL16:
+ 216:src/stm32f4_discovery.c ****     EXTI_Init(&EXTI_InitStructure);
+ 297              		.loc 1 216 0
+ 298 0046 04A8     		add	r0, sp, #16	@,,
+ 214:src/stm32f4_discovery.c ****     EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;  
+ 299              		.loc 1 214 0
+ 300 0048 0823     		movs	r3, #8	@ tmp149,
+ 212:src/stm32f4_discovery.c ****     EXTI_InitStructure.EXTI_Line = BUTTON_EXTI_LINE[Button];
+ 301              		.loc 1 212 0
+ 302 004a 0495     		str	r5, [sp, #16]	@ Button_Mode, EXTI_InitStructure.EXTI_Line
+ 213:src/stm32f4_discovery.c ****     EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+ 303              		.loc 1 213 0
+ 304 004c 8DF81440 		strb	r4, [sp, #20]	@ tmp138, EXTI_InitStructure.EXTI_Mode
+ 214:src/stm32f4_discovery.c ****     EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;  
+ 305              		.loc 1 214 0
+ 306 0050 8DF81530 		strb	r3, [sp, #21]	@ tmp149, EXTI_InitStructure.EXTI_Trigger
+ 215:src/stm32f4_discovery.c ****     EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+ 307              		.loc 1 215 0
+ 308 0054 8DF81650 		strb	r5, [sp, #22]	@ Button_Mode, EXTI_InitStructure.EXTI_LineCmd
+ 216:src/stm32f4_discovery.c ****     EXTI_Init(&EXTI_InitStructure);
+ 309              		.loc 1 216 0
+ 310 0058 FFF7FEFF 		bl	EXTI_Init	@
+ 311              	.LVL17:
+ 220:src/stm32f4_discovery.c ****     NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x0F;
+ 312              		.loc 1 220 0
+ 313 005c 0F21     		movs	r1, #15	@ tmp156,
+ 219:src/stm32f4_discovery.c ****     NVIC_InitStructure.NVIC_IRQChannel = BUTTON_IRQn[Button];
+ 314              		.loc 1 219 0
+ 315 005e 0622     		movs	r2, #6	@ tmp154,
+ 224:src/stm32f4_discovery.c ****     NVIC_Init(&NVIC_InitStructure); 
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 11
+
+
+ 316              		.loc 1 224 0
+ 317 0060 01A8     		add	r0, sp, #4	@,,
+ 219:src/stm32f4_discovery.c ****     NVIC_InitStructure.NVIC_IRQChannel = BUTTON_IRQn[Button];
+ 318              		.loc 1 219 0
+ 319 0062 8DF80420 		strb	r2, [sp, #4]	@ tmp154, NVIC_InitStructure.NVIC_IRQChannel
+ 220:src/stm32f4_discovery.c ****     NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x0F;
+ 320              		.loc 1 220 0
+ 321 0066 8DF80510 		strb	r1, [sp, #5]	@ tmp156, NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority
+ 221:src/stm32f4_discovery.c ****     NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x0F;
+ 322              		.loc 1 221 0
+ 323 006a 8DF80610 		strb	r1, [sp, #6]	@ tmp156, NVIC_InitStructure.NVIC_IRQChannelSubPriority
+ 222:src/stm32f4_discovery.c ****     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+ 324              		.loc 1 222 0
+ 325 006e 8DF80750 		strb	r5, [sp, #7]	@ Button_Mode, NVIC_InitStructure.NVIC_IRQChannelCmd
+ 224:src/stm32f4_discovery.c ****     NVIC_Init(&NVIC_InitStructure); 
+ 326              		.loc 1 224 0
+ 327 0072 FFF7FEFF 		bl	NVIC_Init	@
+ 328              	.LVL18:
+ 329 0076 E0E7     		b	.L5	@
+ 330              	.L10:
+ 331              		.align	2
+ 332              	.L9:
+ 333 0078 00000000 		.word	.LANCHOR3
+ 334              		.cfi_endproc
+ 335              	.LFE114:
+ 336              		.size	STM_EVAL_PBInit, .-STM_EVAL_PBInit
+ 337              		.section	.text.STM_EVAL_PBGetState,"ax",%progbits
+ 338              		.align	2
+ 339              		.global	STM_EVAL_PBGetState
+ 340              		.thumb
+ 341              		.thumb_func
+ 342              		.type	STM_EVAL_PBGetState, %function
+ 343              	STM_EVAL_PBGetState:
+ 344              	.LFB115:
+ 227:src/stm32f4_discovery.c **** 
+ 228:src/stm32f4_discovery.c **** /**
+ 229:src/stm32f4_discovery.c ****   * @brief  Returns the selected Button state.
+ 230:src/stm32f4_discovery.c ****   * @param  Button: Specifies the Button to be checked.
+ 231:src/stm32f4_discovery.c ****   *   This parameter should be: BUTTON_USER  
+ 232:src/stm32f4_discovery.c ****   * @retval The Button GPIO pin value.
+ 233:src/stm32f4_discovery.c ****   */
+ 234:src/stm32f4_discovery.c **** uint32_t STM_EVAL_PBGetState(Button_TypeDef Button)
+ 235:src/stm32f4_discovery.c **** {
+ 345              		.loc 1 235 0
+ 346              		.cfi_startproc
+ 347              		@ args = 0, pretend = 0, frame = 0
+ 348              		@ frame_needed = 0, uses_anonymous_args = 0
+ 349              	.LVL19:
+ 350 0000 08B5     		push	{r3, lr}	@
+ 351              	.LCFI4:
+ 352              		.cfi_def_cfa_offset 8
+ 353              		.cfi_offset 3, -8
+ 354              		.cfi_offset 14, -4
+ 236:src/stm32f4_discovery.c ****   return GPIO_ReadInputDataBit(BUTTON_PORT[Button], BUTTON_PIN[Button]);
+ 355              		.loc 1 236 0
+ 356 0002 40F20003 		movw	r3, #:lower16:.LANCHOR3	@ tmp144,
+ 357 0006 C0F20003 		movt	r3, #:upper16:.LANCHOR3	@ tmp144,
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 12
+
+
+ 358 000a 0121     		movs	r1, #1	@,
+ 359 000c 53F82000 		ldr	r0, [r3, r0, lsl #2]	@, BUTTON_PORT
+ 360              	.LVL20:
+ 361 0010 FFF7FEFF 		bl	GPIO_ReadInputDataBit	@
+ 362              	.LVL21:
+ 237:src/stm32f4_discovery.c **** }
+ 363              		.loc 1 237 0
+ 364 0014 08BD     		pop	{r3, pc}	@
+ 365              		.cfi_endproc
+ 366              	.LFE115:
+ 367              		.size	STM_EVAL_PBGetState, .-STM_EVAL_PBGetState
+ 368              		.comm	NVIC_InitStructure,4,4
+ 369              		.global	BUTTON_IRQn
+ 370              		.global	BUTTON_PIN_SOURCE
+ 371              		.global	BUTTON_PORT_SOURCE
+ 372              		.global	BUTTON_EXTI_LINE
+ 373              		.global	BUTTON_CLK
+ 374              		.global	BUTTON_PIN
+ 375              		.global	BUTTON_PORT
+ 376              		.global	GPIO_CLK
+ 377              		.global	GPIO_PIN
+ 378              		.global	GPIO_PORT
+ 379 0016 00BF     		.section	.rodata.BUTTON_IRQn,"a",%progbits
+ 380              		.align	2
+ 381              		.type	BUTTON_IRQn, %object
+ 382              		.size	BUTTON_IRQn, 1
+ 383              	BUTTON_IRQn:
+ 384 0000 06       		.byte	6
+ 385 0001 000000   		.section	.data.GPIO_PORT,"aw",%progbits
+ 386              		.align	2
+ 387              		.set	.LANCHOR2,. + 0
+ 388              		.type	GPIO_PORT, %object
+ 389              		.size	GPIO_PORT, 16
+ 390              	GPIO_PORT:
+ 391 0000 000C0240 		.word	1073875968
+ 392 0004 000C0240 		.word	1073875968
+ 393 0008 000C0240 		.word	1073875968
+ 394 000c 000C0240 		.word	1073875968
+ 395              		.section	.rodata.BUTTON_PIN,"a",%progbits
+ 396              		.align	2
+ 397              		.type	BUTTON_PIN, %object
+ 398              		.size	BUTTON_PIN, 2
+ 399              	BUTTON_PIN:
+ 400 0000 0100     		.short	1
+ 401 0002 0000     		.section	.rodata.GPIO_CLK,"a",%progbits
+ 402              		.align	2
+ 403              		.set	.LANCHOR0,. + 0
+ 404              		.type	GPIO_CLK, %object
+ 405              		.size	GPIO_CLK, 16
+ 406              	GPIO_CLK:
+ 407 0000 08000000 		.word	8
+ 408 0004 08000000 		.word	8
+ 409 0008 08000000 		.word	8
+ 410 000c 08000000 		.word	8
+ 411              		.section	.rodata.GPIO_PIN,"a",%progbits
+ 412              		.align	2
+ 413              		.set	.LANCHOR1,. + 0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 13
+
+
+ 414              		.type	GPIO_PIN, %object
+ 415              		.size	GPIO_PIN, 8
+ 416              	GPIO_PIN:
+ 417 0000 0010     		.short	4096
+ 418 0002 0020     		.short	8192
+ 419 0004 0040     		.short	16384
+ 420 0006 0080     		.short	-32768
+ 421              		.section	.rodata.BUTTON_CLK,"a",%progbits
+ 422              		.align	2
+ 423              		.type	BUTTON_CLK, %object
+ 424              		.size	BUTTON_CLK, 4
+ 425              	BUTTON_CLK:
+ 426 0000 01000000 		.word	1
+ 427              		.section	.rodata.BUTTON_PORT_SOURCE,"a",%progbits
+ 428              		.align	2
+ 429              		.type	BUTTON_PORT_SOURCE, %object
+ 430              		.size	BUTTON_PORT_SOURCE, 1
+ 431              	BUTTON_PORT_SOURCE:
+ 432 0000 00       		.space	1
+ 433 0001 000000   		.section	.data.BUTTON_PORT,"aw",%progbits
+ 434              		.align	2
+ 435              		.set	.LANCHOR3,. + 0
+ 436              		.type	BUTTON_PORT, %object
+ 437              		.size	BUTTON_PORT, 4
+ 438              	BUTTON_PORT:
+ 439 0000 00000240 		.word	1073872896
+ 440              		.section	.rodata.BUTTON_PIN_SOURCE,"a",%progbits
+ 441              		.align	2
+ 442              		.type	BUTTON_PIN_SOURCE, %object
+ 443              		.size	BUTTON_PIN_SOURCE, 1
+ 444              	BUTTON_PIN_SOURCE:
+ 445 0000 00       		.space	1
+ 446 0001 000000   		.section	.rodata.BUTTON_EXTI_LINE,"a",%progbits
+ 447              		.align	2
+ 448              		.type	BUTTON_EXTI_LINE, %object
+ 449              		.size	BUTTON_EXTI_LINE, 2
+ 450              	BUTTON_EXTI_LINE:
+ 451 0000 0100     		.short	1
+ 452 0002 0000     		.text
+ 453              	.Letext0:
+ 454              		.file 2 "c:\\gnutoolsarmembedded\\4.7-2012q4\\bin\\../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-
+ 455              		.file 3 "./cmsis/device/stm32f4xx.h"
+ 456              		.file 4 "./cmsis/device/stm32f4xx_exti.h"
+ 457              		.file 5 "./cmsis/device/stm32f4xx_gpio.h"
+ 458              		.file 6 "./cmsis/device/misc.h"
+ 459              		.file 7 "./inc/stm32f4_discovery.h"
+ 460              		.file 8 "./cmsis/core/core_cm4.h"
+ 461              		.file 9 "./cmsis/device/stm32f4xx_rcc.h"
+ 462              		.file 10 "./cmsis/device/stm32f4xx_syscfg.h"
+ 463              		.section	.debug_info,"",%progbits
+ 464              	.Ldebug_info0:
+ 465 0000 5A0A0000 		.4byte	0xa5a
+ 466 0004 0200     		.2byte	0x2
+ 467 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 468 000a 04       		.byte	0x4
+ 469 000b 01       		.uleb128 0x1
+ 470 000c 6E090000 		.4byte	.LASF197
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 14
+
+
+ 471 0010 01       		.byte	0x1
+ 472 0011 C4070000 		.4byte	.LASF198
+ 473 0015 BA080000 		.4byte	.LASF199
+ 474 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 475 001d 00000000 		.4byte	0
+ 476 0021 00000000 		.4byte	0
+ 477 0025 00000000 		.4byte	.Ldebug_line0
+ 478 0029 02       		.uleb128 0x2
+ 479 002a 57050000 		.4byte	.LASF200
+ 480 002e 01       		.byte	0x1
+ 481 002f 03       		.byte	0x3
+ 482 0030 8C       		.byte	0x8c
+ 483 0031 64020000 		.4byte	0x264
+ 484 0035 03       		.uleb128 0x3
+ 485 0036 F2080000 		.4byte	.LASF0
+ 486 003a 72       		.sleb128 -14
+ 487 003b 03       		.uleb128 0x3
+ 488 003c D1030000 		.4byte	.LASF1
+ 489 0040 74       		.sleb128 -12
+ 490 0041 03       		.uleb128 0x3
+ 491 0042 37030000 		.4byte	.LASF2
+ 492 0046 75       		.sleb128 -11
+ 493 0047 03       		.uleb128 0x3
+ 494 0048 41080000 		.4byte	.LASF3
+ 495 004c 76       		.sleb128 -10
+ 496 004d 03       		.uleb128 0x3
+ 497 004e 92050000 		.4byte	.LASF4
+ 498 0052 7B       		.sleb128 -5
+ 499 0053 03       		.uleb128 0x3
+ 500 0054 AD0A0000 		.4byte	.LASF5
+ 501 0058 7C       		.sleb128 -4
+ 502 0059 03       		.uleb128 0x3
+ 503 005a F6020000 		.4byte	.LASF6
+ 504 005e 7E       		.sleb128 -2
+ 505 005f 03       		.uleb128 0x3
+ 506 0060 14050000 		.4byte	.LASF7
+ 507 0064 7F       		.sleb128 -1
+ 508 0065 03       		.uleb128 0x3
+ 509 0066 95010000 		.4byte	.LASF8
+ 510 006a 00       		.sleb128 0
+ 511 006b 03       		.uleb128 0x3
+ 512 006c 49000000 		.4byte	.LASF9
+ 513 0070 01       		.sleb128 1
+ 514 0071 03       		.uleb128 0x3
+ 515 0072 49090000 		.4byte	.LASF10
+ 516 0076 02       		.sleb128 2
+ 517 0077 03       		.uleb128 0x3
+ 518 0078 87010000 		.4byte	.LASF11
+ 519 007c 03       		.sleb128 3
+ 520 007d 03       		.uleb128 0x3
+ 521 007e FA070000 		.4byte	.LASF12
+ 522 0082 04       		.sleb128 4
+ 523 0083 03       		.uleb128 0x3
+ 524 0084 1E0B0000 		.4byte	.LASF13
+ 525 0088 05       		.sleb128 5
+ 526 0089 03       		.uleb128 0x3
+ 527 008a F7090000 		.4byte	.LASF14
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 15
+
+
+ 528 008e 06       		.sleb128 6
+ 529 008f 03       		.uleb128 0x3
+ 530 0090 420B0000 		.4byte	.LASF15
+ 531 0094 07       		.sleb128 7
+ 532 0095 03       		.uleb128 0x3
+ 533 0096 DC070000 		.4byte	.LASF16
+ 534 009a 08       		.sleb128 8
+ 535 009b 03       		.uleb128 0x3
+ 536 009c 2C0A0000 		.4byte	.LASF17
+ 537 00a0 09       		.sleb128 9
+ 538 00a1 03       		.uleb128 0x3
+ 539 00a2 6E070000 		.4byte	.LASF18
+ 540 00a6 0A       		.sleb128 10
+ 541 00a7 03       		.uleb128 0x3
+ 542 00a8 4D0B0000 		.4byte	.LASF19
+ 543 00ac 0B       		.sleb128 11
+ 544 00ad 03       		.uleb128 0x3
+ 545 00ae BC040000 		.4byte	.LASF20
+ 546 00b2 0C       		.sleb128 12
+ 547 00b3 03       		.uleb128 0x3
+ 548 00b4 3A060000 		.4byte	.LASF21
+ 549 00b8 0D       		.sleb128 13
+ 550 00b9 03       		.uleb128 0x3
+ 551 00ba A3030000 		.4byte	.LASF22
+ 552 00be 0E       		.sleb128 14
+ 553 00bf 03       		.uleb128 0x3
+ 554 00c0 C1050000 		.4byte	.LASF23
+ 555 00c4 0F       		.sleb128 15
+ 556 00c5 03       		.uleb128 0x3
+ 557 00c6 64020000 		.4byte	.LASF24
+ 558 00ca 10       		.sleb128 16
+ 559 00cb 03       		.uleb128 0x3
+ 560 00cc B5030000 		.4byte	.LASF25
+ 561 00d0 11       		.sleb128 17
+ 562 00d1 03       		.uleb128 0x3
+ 563 00d2 DD0A0000 		.4byte	.LASF26
+ 564 00d6 12       		.sleb128 18
+ 565 00d7 03       		.uleb128 0x3
+ 566 00d8 73040000 		.4byte	.LASF27
+ 567 00dc 13       		.sleb128 19
+ 568 00dd 03       		.uleb128 0x3
+ 569 00de 3B000000 		.4byte	.LASF28
+ 570 00e2 14       		.sleb128 20
+ 571 00e3 03       		.uleb128 0x3
+ 572 00e4 60000000 		.4byte	.LASF29
+ 573 00e8 15       		.sleb128 21
+ 574 00e9 03       		.uleb128 0x3
+ 575 00ea 020B0000 		.4byte	.LASF30
+ 576 00ee 16       		.sleb128 22
+ 577 00ef 03       		.uleb128 0x3
+ 578 00f0 76020000 		.4byte	.LASF31
+ 579 00f4 17       		.sleb128 23
+ 580 00f5 03       		.uleb128 0x3
+ 581 00f6 3B070000 		.4byte	.LASF32
+ 582 00fa 18       		.sleb128 24
+ 583 00fb 03       		.uleb128 0x3
+ 584 00fc 5B070000 		.4byte	.LASF33
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 16
+
+
+ 585 0100 19       		.sleb128 25
+ 586 0101 03       		.uleb128 0x3
+ 587 0102 AC070000 		.4byte	.LASF34
+ 588 0106 1A       		.sleb128 26
+ 589 0107 03       		.uleb128 0x3
+ 590 0108 21050000 		.4byte	.LASF35
+ 591 010c 1B       		.sleb128 27
+ 592 010d 03       		.uleb128 0x3
+ 593 010e ED090000 		.4byte	.LASF36
+ 594 0112 1C       		.sleb128 28
+ 595 0113 03       		.uleb128 0x3
+ 596 0114 380B0000 		.4byte	.LASF37
+ 597 0118 1D       		.sleb128 29
+ 598 0119 03       		.uleb128 0x3
+ 599 011a 63080000 		.4byte	.LASF38
+ 600 011e 1E       		.sleb128 30
+ 601 011f 03       		.uleb128 0x3
+ 602 0120 91000000 		.4byte	.LASF39
+ 603 0124 1F       		.sleb128 31
+ 604 0125 03       		.uleb128 0x3
+ 605 0126 D00A0000 		.4byte	.LASF40
+ 606 012a 20       		.sleb128 32
+ 607 012b 03       		.uleb128 0x3
+ 608 012c 46020000 		.4byte	.LASF41
+ 609 0130 21       		.sleb128 33
+ 610 0131 03       		.uleb128 0x3
+ 611 0132 66010000 		.4byte	.LASF42
+ 612 0136 22       		.sleb128 34
+ 613 0137 03       		.uleb128 0x3
+ 614 0138 B2040000 		.4byte	.LASF43
+ 615 013c 23       		.sleb128 35
+ 616 013d 03       		.uleb128 0x3
+ 617 013e 30060000 		.4byte	.LASF44
+ 618 0142 24       		.sleb128 36
+ 619 0143 03       		.uleb128 0x3
+ 620 0144 F3060000 		.4byte	.LASF45
+ 621 0148 25       		.sleb128 37
+ 622 0149 03       		.uleb128 0x3
+ 623 014a 35080000 		.4byte	.LASF46
+ 624 014e 26       		.sleb128 38
+ 625 014f 03       		.uleb128 0x3
+ 626 0150 D3090000 		.4byte	.LASF47
+ 627 0154 27       		.sleb128 39
+ 628 0155 03       		.uleb128 0x3
+ 629 0156 80040000 		.4byte	.LASF48
+ 630 015a 28       		.sleb128 40
+ 631 015b 03       		.uleb128 0x3
+ 632 015c 4C010000 		.4byte	.LASF49
+ 633 0160 29       		.sleb128 41
+ 634 0161 03       		.uleb128 0x3
+ 635 0162 E5020000 		.4byte	.LASF50
+ 636 0166 2A       		.sleb128 42
+ 637 0167 03       		.uleb128 0x3
+ 638 0168 DE040000 		.4byte	.LASF51
+ 639 016c 2B       		.sleb128 43
+ 640 016d 03       		.uleb128 0x3
+ 641 016e 02030000 		.4byte	.LASF52
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 17
+
+
+ 642 0172 2C       		.sleb128 44
+ 643 0173 03       		.uleb128 0x3
+ 644 0174 3F050000 		.4byte	.LASF53
+ 645 0178 2D       		.sleb128 45
+ 646 0179 03       		.uleb128 0x3
+ 647 017a CC010000 		.4byte	.LASF54
+ 648 017e 2E       		.sleb128 46
+ 649 017f 03       		.uleb128 0x3
+ 650 0180 51080000 		.4byte	.LASF55
+ 651 0184 2F       		.sleb128 47
+ 652 0185 03       		.uleb128 0x3
+ 653 0186 1B070000 		.4byte	.LASF56
+ 654 018a 30       		.sleb128 48
+ 655 018b 03       		.uleb128 0x3
+ 656 018c 9F010000 		.4byte	.LASF57
+ 657 0190 31       		.sleb128 49
+ 658 0191 03       		.uleb128 0x3
+ 659 0192 06060000 		.4byte	.LASF58
+ 660 0196 32       		.sleb128 50
+ 661 0197 03       		.uleb128 0x3
+ 662 0198 FF060000 		.4byte	.LASF59
+ 663 019c 33       		.sleb128 51
+ 664 019d 03       		.uleb128 0x3
+ 665 019e DA020000 		.4byte	.LASF60
+ 666 01a2 34       		.sleb128 52
+ 667 01a3 03       		.uleb128 0x3
+ 668 01a4 A1070000 		.4byte	.LASF61
+ 669 01a8 35       		.sleb128 53
+ 670 01a9 03       		.uleb128 0x3
+ 671 01aa CC020000 		.4byte	.LASF62
+ 672 01ae 36       		.sleb128 54
+ 673 01af 03       		.uleb128 0x3
+ 674 01b0 B0080000 		.4byte	.LASF63
+ 675 01b4 37       		.sleb128 55
+ 676 01b5 03       		.uleb128 0x3
+ 677 01b6 B7090000 		.4byte	.LASF64
+ 678 01ba 38       		.sleb128 56
+ 679 01bb 03       		.uleb128 0x3
+ 680 01bc E60A0000 		.4byte	.LASF65
+ 681 01c0 39       		.sleb128 57
+ 682 01c1 03       		.uleb128 0x3
+ 683 01c2 61040000 		.4byte	.LASF66
+ 684 01c6 3A       		.sleb128 58
+ 685 01c7 03       		.uleb128 0x3
+ 686 01c8 9E050000 		.4byte	.LASF67
+ 687 01cc 3B       		.sleb128 59
+ 688 01cd 03       		.uleb128 0x3
+ 689 01ce 09070000 		.4byte	.LASF68
+ 690 01d2 3C       		.sleb128 60
+ 691 01d3 03       		.uleb128 0x3
+ 692 01d4 7F050000 		.4byte	.LASF69
+ 693 01d8 3D       		.sleb128 61
+ 694 01d9 03       		.uleb128 0x3
+ 695 01da 6A0A0000 		.4byte	.LASF70
+ 696 01de 3E       		.sleb128 62
+ 697 01df 03       		.uleb128 0x3
+ 698 01e0 4C060000 		.4byte	.LASF71
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 18
+
+
+ 699 01e4 3F       		.sleb128 63
+ 700 01e5 03       		.uleb128 0x3
+ 701 01e6 52000000 		.4byte	.LASF72
+ 702 01ea C000     		.sleb128 64
+ 703 01ec 03       		.uleb128 0x3
+ 704 01ed F3010000 		.4byte	.LASF73
+ 705 01f1 C100     		.sleb128 65
+ 706 01f3 03       		.uleb128 0x3
+ 707 01f4 100B0000 		.4byte	.LASF74
+ 708 01f8 C200     		.sleb128 66
+ 709 01fa 03       		.uleb128 0x3
+ 710 01fb 05080000 		.4byte	.LASF75
+ 711 01ff C300     		.sleb128 67
+ 712 0201 03       		.uleb128 0x3
+ 713 0202 B3000000 		.4byte	.LASF76
+ 714 0206 C400     		.sleb128 68
+ 715 0208 03       		.uleb128 0x3
+ 716 0209 18020000 		.4byte	.LASF77
+ 717 020d C500     		.sleb128 69
+ 718 020f 03       		.uleb128 0x3
+ 719 0210 45030000 		.4byte	.LASF78
+ 720 0214 C600     		.sleb128 70
+ 721 0216 03       		.uleb128 0x3
+ 722 0217 F0050000 		.4byte	.LASF79
+ 723 021b C700     		.sleb128 71
+ 724 021d 03       		.uleb128 0x3
+ 725 021e E7030000 		.4byte	.LASF80
+ 726 0222 C800     		.sleb128 72
+ 727 0224 03       		.uleb128 0x3
+ 728 0225 77000000 		.4byte	.LASF81
+ 729 0229 C900     		.sleb128 73
+ 730 022b 03       		.uleb128 0x3
+ 731 022c 18040000 		.4byte	.LASF82
+ 732 0230 CA00     		.sleb128 74
+ 733 0232 03       		.uleb128 0x3
+ 734 0233 DF080000 		.4byte	.LASF83
+ 735 0237 CB00     		.sleb128 75
+ 736 0239 03       		.uleb128 0x3
+ 737 023a 270B0000 		.4byte	.LASF84
+ 738 023e CC00     		.sleb128 76
+ 739 0240 03       		.uleb128 0x3
+ 740 0241 9F060000 		.4byte	.LASF85
+ 741 0245 CD00     		.sleb128 77
+ 742 0247 03       		.uleb128 0x3
+ 743 0248 600A0000 		.4byte	.LASF86
+ 744 024c CE00     		.sleb128 78
+ 745 024e 03       		.uleb128 0x3
+ 746 024f 01020000 		.4byte	.LASF87
+ 747 0253 CF00     		.sleb128 79
+ 748 0255 03       		.uleb128 0x3
+ 749 0256 79070000 		.4byte	.LASF88
+ 750 025a D000     		.sleb128 80
+ 751 025c 03       		.uleb128 0x3
+ 752 025d A40A0000 		.4byte	.LASF89
+ 753 0261 D100     		.sleb128 81
+ 754 0263 00       		.byte	0
+ 755 0264 04       		.uleb128 0x4
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 19
+
+
+ 756 0265 01       		.byte	0x1
+ 757 0266 06       		.byte	0x6
+ 758 0267 E7010000 		.4byte	.LASF90
+ 759 026b 05       		.uleb128 0x5
+ 760 026c 3D0A0000 		.4byte	.LASF93
+ 761 0270 02       		.byte	0x2
+ 762 0271 2A       		.byte	0x2a
+ 763 0272 76020000 		.4byte	0x276
+ 764 0276 04       		.uleb128 0x4
+ 765 0277 01       		.byte	0x1
+ 766 0278 08       		.byte	0x8
+ 767 0279 2D070000 		.4byte	.LASF91
+ 768 027d 04       		.uleb128 0x4
+ 769 027e 02       		.byte	0x2
+ 770 027f 05       		.byte	0x5
+ 771 0280 8A020000 		.4byte	.LASF92
+ 772 0284 05       		.uleb128 0x5
+ 773 0285 94020000 		.4byte	.LASF94
+ 774 0289 02       		.byte	0x2
+ 775 028a 36       		.byte	0x36
+ 776 028b 8F020000 		.4byte	0x28f
+ 777 028f 04       		.uleb128 0x4
+ 778 0290 02       		.byte	0x2
+ 779 0291 07       		.byte	0x7
+ 780 0292 4E040000 		.4byte	.LASF95
+ 781 0296 05       		.uleb128 0x5
+ 782 0297 25070000 		.4byte	.LASF96
+ 783 029b 02       		.byte	0x2
+ 784 029c 4F       		.byte	0x4f
+ 785 029d A1020000 		.4byte	0x2a1
+ 786 02a1 04       		.uleb128 0x4
+ 787 02a2 04       		.byte	0x4
+ 788 02a3 05       		.byte	0x5
+ 789 02a4 3D020000 		.4byte	.LASF97
+ 790 02a8 05       		.uleb128 0x5
+ 791 02a9 11080000 		.4byte	.LASF98
+ 792 02ad 02       		.byte	0x2
+ 793 02ae 50       		.byte	0x50
+ 794 02af B3020000 		.4byte	0x2b3
+ 795 02b3 04       		.uleb128 0x4
+ 796 02b4 04       		.byte	0x4
+ 797 02b5 07       		.byte	0x7
+ 798 02b6 F4030000 		.4byte	.LASF99
+ 799 02ba 04       		.uleb128 0x4
+ 800 02bb 08       		.byte	0x8
+ 801 02bc 05       		.byte	0x5
+ 802 02bd D9010000 		.4byte	.LASF100
+ 803 02c1 04       		.uleb128 0x4
+ 804 02c2 08       		.byte	0x8
+ 805 02c3 07       		.byte	0x7
+ 806 02c4 17010000 		.4byte	.LASF101
+ 807 02c8 06       		.uleb128 0x6
+ 808 02c9 04       		.byte	0x4
+ 809 02ca 05       		.byte	0x5
+ 810 02cb 696E7400 		.ascii	"int\000"
+ 811 02cf 04       		.uleb128 0x4
+ 812 02d0 04       		.byte	0x4
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 20
+
+
+ 813 02d1 07       		.byte	0x7
+ 814 02d2 8C030000 		.4byte	.LASF102
+ 815 02d6 04       		.uleb128 0x4
+ 816 02d7 04       		.byte	0x4
+ 817 02d8 07       		.byte	0x7
+ 818 02d9 6B050000 		.4byte	.LASF103
+ 819 02dd 07       		.uleb128 0x7
+ 820 02de A8020000 		.4byte	0x2a8
+ 821 02e2 08       		.uleb128 0x8
+ 822 02e3 A8020000 		.4byte	0x2a8
+ 823 02e7 F2020000 		.4byte	0x2f2
+ 824 02eb 09       		.uleb128 0x9
+ 825 02ec D6020000 		.4byte	0x2d6
+ 826 02f0 01       		.byte	0x1
+ 827 02f1 00       		.byte	0
+ 828 02f2 08       		.uleb128 0x8
+ 829 02f3 A8020000 		.4byte	0x2a8
+ 830 02f7 02030000 		.4byte	0x302
+ 831 02fb 09       		.uleb128 0x9
+ 832 02fc D6020000 		.4byte	0x2d6
+ 833 0300 03       		.byte	0x3
+ 834 0301 00       		.byte	0
+ 835 0302 08       		.uleb128 0x8
+ 836 0303 A8020000 		.4byte	0x2a8
+ 837 0307 12030000 		.4byte	0x312
+ 838 030b 09       		.uleb128 0x9
+ 839 030c D6020000 		.4byte	0x2d6
+ 840 0310 00       		.byte	0
+ 841 0311 00       		.byte	0
+ 842 0312 07       		.uleb128 0x7
+ 843 0313 84020000 		.4byte	0x284
+ 844 0317 07       		.uleb128 0x7
+ 845 0318 96020000 		.4byte	0x296
+ 846 031c 0A       		.uleb128 0xa
+ 847 031d 01       		.byte	0x1
+ 848 031e 03       		.byte	0x3
+ 849 031f 1A01     		.2byte	0x11a
+ 850 0321 32030000 		.4byte	0x332
+ 851 0325 03       		.uleb128 0x3
+ 852 0326 09010000 		.4byte	.LASF104
+ 853 032a 00       		.sleb128 0
+ 854 032b 03       		.uleb128 0x3
+ 855 032c 83020000 		.4byte	.LASF105
+ 856 0330 01       		.sleb128 1
+ 857 0331 00       		.byte	0
+ 858 0332 0B       		.uleb128 0xb
+ 859 0333 C5000000 		.4byte	.LASF106
+ 860 0337 03       		.byte	0x3
+ 861 0338 1A01     		.2byte	0x11a
+ 862 033a 1C030000 		.4byte	0x31c
+ 863 033e 0C       		.uleb128 0xc
+ 864 033f 28       		.byte	0x28
+ 865 0340 03       		.byte	0x3
+ 866 0341 8902     		.2byte	0x289
+ 867 0343 DE030000 		.4byte	0x3de
+ 868 0347 0D       		.uleb128 0xd
+ 869 0348 11010000 		.4byte	.LASF107
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 21
+
+
+ 870 034c 03       		.byte	0x3
+ 871 034d 8B02     		.2byte	0x28b
+ 872 034f DD020000 		.4byte	0x2dd
+ 873 0353 02       		.byte	0x2
+ 874 0354 23       		.byte	0x23
+ 875 0355 00       		.uleb128 0
+ 876 0356 0D       		.uleb128 0xd
+ 877 0357 AC000000 		.4byte	.LASF108
+ 878 035b 03       		.byte	0x3
+ 879 035c 8C02     		.2byte	0x28c
+ 880 035e DD020000 		.4byte	0x2dd
+ 881 0362 02       		.byte	0x2
+ 882 0363 23       		.byte	0x23
+ 883 0364 04       		.uleb128 0x4
+ 884 0365 0D       		.uleb128 0xd
+ 885 0366 6A060000 		.4byte	.LASF109
+ 886 036a 03       		.byte	0x3
+ 887 036b 8D02     		.2byte	0x28d
+ 888 036d DD020000 		.4byte	0x2dd
+ 889 0371 02       		.byte	0x2
+ 890 0372 23       		.byte	0x23
+ 891 0373 08       		.uleb128 0x8
+ 892 0374 0D       		.uleb128 0xd
+ 893 0375 17000000 		.4byte	.LASF110
+ 894 0379 03       		.byte	0x3
+ 895 037a 8E02     		.2byte	0x28e
+ 896 037c DD020000 		.4byte	0x2dd
+ 897 0380 02       		.byte	0x2
+ 898 0381 23       		.byte	0x23
+ 899 0382 0C       		.uleb128 0xc
+ 900 0383 0E       		.uleb128 0xe
+ 901 0384 49445200 		.ascii	"IDR\000"
+ 902 0388 03       		.byte	0x3
+ 903 0389 8F02     		.2byte	0x28f
+ 904 038b DD020000 		.4byte	0x2dd
+ 905 038f 02       		.byte	0x2
+ 906 0390 23       		.byte	0x23
+ 907 0391 10       		.uleb128 0x10
+ 908 0392 0E       		.uleb128 0xe
+ 909 0393 4F445200 		.ascii	"ODR\000"
+ 910 0397 03       		.byte	0x3
+ 911 0398 9002     		.2byte	0x290
+ 912 039a DD020000 		.4byte	0x2dd
+ 913 039e 02       		.byte	0x2
+ 914 039f 23       		.byte	0x23
+ 915 03a0 14       		.uleb128 0x14
+ 916 03a1 0D       		.uleb128 0xd
+ 917 03a2 150A0000 		.4byte	.LASF111
+ 918 03a6 03       		.byte	0x3
+ 919 03a7 9102     		.2byte	0x291
+ 920 03a9 12030000 		.4byte	0x312
+ 921 03ad 02       		.byte	0x2
+ 922 03ae 23       		.byte	0x23
+ 923 03af 18       		.uleb128 0x18
+ 924 03b0 0D       		.uleb128 0xd
+ 925 03b1 370A0000 		.4byte	.LASF112
+ 926 03b5 03       		.byte	0x3
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 22
+
+
+ 927 03b6 9202     		.2byte	0x292
+ 928 03b8 12030000 		.4byte	0x312
+ 929 03bc 02       		.byte	0x2
+ 930 03bd 23       		.byte	0x23
+ 931 03be 1A       		.uleb128 0x1a
+ 932 03bf 0D       		.uleb128 0xd
+ 933 03c0 13040000 		.4byte	.LASF113
+ 934 03c4 03       		.byte	0x3
+ 935 03c5 9302     		.2byte	0x293
+ 936 03c7 DD020000 		.4byte	0x2dd
+ 937 03cb 02       		.byte	0x2
+ 938 03cc 23       		.byte	0x23
+ 939 03cd 1C       		.uleb128 0x1c
+ 940 03ce 0E       		.uleb128 0xe
+ 941 03cf 41465200 		.ascii	"AFR\000"
+ 942 03d3 03       		.byte	0x3
+ 943 03d4 9402     		.2byte	0x294
+ 944 03d6 DE030000 		.4byte	0x3de
+ 945 03da 02       		.byte	0x2
+ 946 03db 23       		.byte	0x23
+ 947 03dc 20       		.uleb128 0x20
+ 948 03dd 00       		.byte	0
+ 949 03de 07       		.uleb128 0x7
+ 950 03df E2020000 		.4byte	0x2e2
+ 951 03e3 0B       		.uleb128 0xb
+ 952 03e4 06040000 		.4byte	.LASF114
+ 953 03e8 03       		.byte	0x3
+ 954 03e9 9502     		.2byte	0x295
+ 955 03eb 3E030000 		.4byte	0x33e
+ 956 03ef 0F       		.uleb128 0xf
+ 957 03f0 01       		.byte	0x1
+ 958 03f1 04       		.byte	0x4
+ 959 03f2 31       		.byte	0x31
+ 960 03f3 04040000 		.4byte	0x404
+ 961 03f7 03       		.uleb128 0x3
+ 962 03f8 DF060000 		.4byte	.LASF115
+ 963 03fc 00       		.sleb128 0
+ 964 03fd 03       		.uleb128 0x3
+ 965 03fe 870A0000 		.4byte	.LASF116
+ 966 0402 04       		.sleb128 4
+ 967 0403 00       		.byte	0
+ 968 0404 05       		.uleb128 0x5
+ 969 0405 53020000 		.4byte	.LASF117
+ 970 0409 04       		.byte	0x4
+ 971 040a 34       		.byte	0x34
+ 972 040b EF030000 		.4byte	0x3ef
+ 973 040f 0F       		.uleb128 0xf
+ 974 0410 01       		.byte	0x1
+ 975 0411 04       		.byte	0x4
+ 976 0412 3D       		.byte	0x3d
+ 977 0413 2A040000 		.4byte	0x42a
+ 978 0417 03       		.uleb128 0x3
+ 979 0418 35090000 		.4byte	.LASF118
+ 980 041c 08       		.sleb128 8
+ 981 041d 03       		.uleb128 0x3
+ 982 041e A4020000 		.4byte	.LASF119
+ 983 0422 0C       		.sleb128 12
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 23
+
+
+ 984 0423 03       		.uleb128 0x3
+ 985 0424 E1000000 		.4byte	.LASF120
+ 986 0428 10       		.sleb128 16
+ 987 0429 00       		.byte	0
+ 988 042a 05       		.uleb128 0x5
+ 989 042b 06090000 		.4byte	.LASF121
+ 990 042f 04       		.byte	0x4
+ 991 0430 41       		.byte	0x41
+ 992 0431 0F040000 		.4byte	0x40f
+ 993 0435 10       		.uleb128 0x10
+ 994 0436 08       		.byte	0x8
+ 995 0437 04       		.byte	0x4
+ 996 0438 4A       		.byte	0x4a
+ 997 0439 76040000 		.4byte	0x476
+ 998 043d 11       		.uleb128 0x11
+ 999 043e FC050000 		.4byte	.LASF122
+ 1000 0442 04       		.byte	0x4
+ 1001 0443 4C       		.byte	0x4c
+ 1002 0444 A8020000 		.4byte	0x2a8
+ 1003 0448 02       		.byte	0x2
+ 1004 0449 23       		.byte	0x23
+ 1005 044a 00       		.uleb128 0
+ 1006 044b 11       		.uleb128 0x11
+ 1007 044c D5060000 		.4byte	.LASF123
+ 1008 0450 04       		.byte	0x4
+ 1009 0451 4F       		.byte	0x4f
+ 1010 0452 04040000 		.4byte	0x404
+ 1011 0456 02       		.byte	0x2
+ 1012 0457 23       		.byte	0x23
+ 1013 0458 04       		.uleb128 0x4
+ 1014 0459 11       		.uleb128 0x11
+ 1015 045a 83060000 		.4byte	.LASF124
+ 1016 045e 04       		.byte	0x4
+ 1017 045f 52       		.byte	0x52
+ 1018 0460 2A040000 		.4byte	0x42a
+ 1019 0464 02       		.byte	0x2
+ 1020 0465 23       		.byte	0x23
+ 1021 0466 05       		.uleb128 0x5
+ 1022 0467 11       		.uleb128 0x11
+ 1023 0468 84000000 		.4byte	.LASF125
+ 1024 046c 04       		.byte	0x4
+ 1025 046d 55       		.byte	0x55
+ 1026 046e 32030000 		.4byte	0x332
+ 1027 0472 02       		.byte	0x2
+ 1028 0473 23       		.byte	0x23
+ 1029 0474 06       		.uleb128 0x6
+ 1030 0475 00       		.byte	0
+ 1031 0476 05       		.uleb128 0x5
+ 1032 0477 24090000 		.4byte	.LASF126
+ 1033 047b 04       		.byte	0x4
+ 1034 047c 57       		.byte	0x57
+ 1035 047d 35040000 		.4byte	0x435
+ 1036 0481 0F       		.uleb128 0xf
+ 1037 0482 01       		.byte	0x1
+ 1038 0483 05       		.byte	0x5
+ 1039 0484 3A       		.byte	0x3a
+ 1040 0485 A2040000 		.4byte	0x4a2
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 24
+
+
+ 1041 0489 03       		.uleb128 0x3
+ 1042 048a 0B020000 		.4byte	.LASF127
+ 1043 048e 00       		.sleb128 0
+ 1044 048f 03       		.uleb128 0x3
+ 1045 0490 78080000 		.4byte	.LASF128
+ 1046 0494 01       		.sleb128 1
+ 1047 0495 03       		.uleb128 0x3
+ 1048 0496 3F010000 		.4byte	.LASF129
+ 1049 049a 02       		.sleb128 2
+ 1050 049b 03       		.uleb128 0x3
+ 1051 049c 7A010000 		.4byte	.LASF130
+ 1052 04a0 03       		.sleb128 3
+ 1053 04a1 00       		.byte	0
+ 1054 04a2 05       		.uleb128 0x5
+ 1055 04a3 C4060000 		.4byte	.LASF131
+ 1056 04a7 05       		.byte	0x5
+ 1057 04a8 3F       		.byte	0x3f
+ 1058 04a9 81040000 		.4byte	0x481
+ 1059 04ad 0F       		.uleb128 0xf
+ 1060 04ae 01       		.byte	0x1
+ 1061 04af 05       		.byte	0x5
+ 1062 04b0 47       		.byte	0x47
+ 1063 04b1 C2040000 		.4byte	0x4c2
+ 1064 04b5 03       		.uleb128 0x3
+ 1065 04b6 9E000000 		.4byte	.LASF132
+ 1066 04ba 00       		.sleb128 0
+ 1067 04bb 03       		.uleb128 0x3
+ 1068 04bc DF090000 		.4byte	.LASF133
+ 1069 04c0 01       		.sleb128 1
+ 1070 04c1 00       		.byte	0
+ 1071 04c2 05       		.uleb128 0x5
+ 1072 04c3 A9010000 		.4byte	.LASF134
+ 1073 04c7 05       		.byte	0x5
+ 1074 04c8 4A       		.byte	0x4a
+ 1075 04c9 AD040000 		.4byte	0x4ad
+ 1076 04cd 0F       		.uleb128 0xf
+ 1077 04ce 01       		.byte	0x1
+ 1078 04cf 05       		.byte	0x5
+ 1079 04d0 52       		.byte	0x52
+ 1080 04d1 EE040000 		.4byte	0x4ee
+ 1081 04d5 03       		.uleb128 0x3
+ 1082 04d6 87070000 		.4byte	.LASF135
+ 1083 04da 00       		.sleb128 0
+ 1084 04db 03       		.uleb128 0x3
+ 1085 04dc BB010000 		.4byte	.LASF136
+ 1086 04e0 01       		.sleb128 1
+ 1087 04e1 03       		.uleb128 0x3
+ 1088 04e2 72060000 		.4byte	.LASF137
+ 1089 04e6 02       		.sleb128 2
+ 1090 04e7 03       		.uleb128 0x3
+ 1091 04e8 4E0A0000 		.4byte	.LASF138
+ 1092 04ec 03       		.sleb128 3
+ 1093 04ed 00       		.byte	0
+ 1094 04ee 05       		.uleb128 0x5
+ 1095 04ef 57030000 		.4byte	.LASF139
+ 1096 04f3 05       		.byte	0x5
+ 1097 04f4 57       		.byte	0x57
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 25
+
+
+ 1098 04f5 CD040000 		.4byte	0x4cd
+ 1099 04f9 0F       		.uleb128 0xf
+ 1100 04fa 01       		.byte	0x1
+ 1101 04fb 05       		.byte	0x5
+ 1102 04fc 5F       		.byte	0x5f
+ 1103 04fd 14050000 		.4byte	0x514
+ 1104 0501 03       		.uleb128 0x3
+ 1105 0502 2E050000 		.4byte	.LASF140
+ 1106 0506 00       		.sleb128 0
+ 1107 0507 03       		.uleb128 0x3
+ 1108 0508 970A0000 		.4byte	.LASF141
+ 1109 050c 01       		.sleb128 1
+ 1110 050d 03       		.uleb128 0x3
+ 1111 050e 5C050000 		.4byte	.LASF142
+ 1112 0512 02       		.sleb128 2
+ 1113 0513 00       		.byte	0
+ 1114 0514 05       		.uleb128 0x5
+ 1115 0515 8F040000 		.4byte	.LASF143
+ 1116 0519 05       		.byte	0x5
+ 1117 051a 63       		.byte	0x63
+ 1118 051b F9040000 		.4byte	0x4f9
+ 1119 051f 10       		.uleb128 0x10
+ 1120 0520 08       		.byte	0x8
+ 1121 0521 05       		.byte	0x5
+ 1122 0522 75       		.byte	0x75
+ 1123 0523 6E050000 		.4byte	0x56e
+ 1124 0527 11       		.uleb128 0x11
+ 1125 0528 450A0000 		.4byte	.LASF144
+ 1126 052c 05       		.byte	0x5
+ 1127 052d 77       		.byte	0x77
+ 1128 052e A8020000 		.4byte	0x2a8
+ 1129 0532 02       		.byte	0x2
+ 1130 0533 23       		.byte	0x23
+ 1131 0534 00       		.uleb128 0
+ 1132 0535 11       		.uleb128 0x11
+ 1133 0536 1A090000 		.4byte	.LASF145
+ 1134 053a 05       		.byte	0x5
+ 1135 053b 7A       		.byte	0x7a
+ 1136 053c A2040000 		.4byte	0x4a2
+ 1137 0540 02       		.byte	0x2
+ 1138 0541 23       		.byte	0x23
+ 1139 0542 04       		.uleb128 0x4
+ 1140 0543 11       		.uleb128 0x11
+ 1141 0544 5B010000 		.4byte	.LASF146
+ 1142 0548 05       		.byte	0x5
+ 1143 0549 7D       		.byte	0x7d
+ 1144 054a EE040000 		.4byte	0x4ee
+ 1145 054e 02       		.byte	0x2
+ 1146 054f 23       		.byte	0x23
+ 1147 0550 05       		.uleb128 0x5
+ 1148 0551 11       		.uleb128 0x11
+ 1149 0552 74050000 		.4byte	.LASF147
+ 1150 0556 05       		.byte	0x5
+ 1151 0557 80       		.byte	0x80
+ 1152 0558 C2040000 		.4byte	0x4c2
+ 1153 055c 02       		.byte	0x2
+ 1154 055d 23       		.byte	0x23
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 26
+
+
+ 1155 055e 06       		.uleb128 0x6
+ 1156 055f 11       		.uleb128 0x11
+ 1157 0560 C7030000 		.4byte	.LASF148
+ 1158 0564 05       		.byte	0x5
+ 1159 0565 83       		.byte	0x83
+ 1160 0566 14050000 		.4byte	0x514
+ 1161 056a 02       		.byte	0x2
+ 1162 056b 23       		.byte	0x23
+ 1163 056c 07       		.uleb128 0x7
+ 1164 056d 00       		.byte	0
+ 1165 056e 05       		.uleb128 0x5
+ 1166 056f 59060000 		.4byte	.LASF149
+ 1167 0573 05       		.byte	0x5
+ 1168 0574 85       		.byte	0x85
+ 1169 0575 1F050000 		.4byte	0x51f
+ 1170 0579 10       		.uleb128 0x10
+ 1171 057a 04       		.byte	0x4
+ 1172 057b 06       		.byte	0x6
+ 1173 057c 30       		.byte	0x30
+ 1174 057d BA050000 		.4byte	0x5ba
+ 1175 0581 11       		.uleb128 0x11
+ 1176 0582 CE040000 		.4byte	.LASF150
+ 1177 0586 06       		.byte	0x6
+ 1178 0587 32       		.byte	0x32
+ 1179 0588 6B020000 		.4byte	0x26b
+ 1180 058c 02       		.byte	0x2
+ 1181 058d 23       		.byte	0x23
+ 1182 058e 00       		.uleb128 0
+ 1183 058f 11       		.uleb128 0x11
+ 1184 0590 F2040000 		.4byte	.LASF151
+ 1185 0594 06       		.byte	0x6
+ 1186 0595 37       		.byte	0x37
+ 1187 0596 6B020000 		.4byte	0x26b
+ 1188 059a 02       		.byte	0x2
+ 1189 059b 23       		.byte	0x23
+ 1190 059c 01       		.uleb128 0x1
+ 1191 059d 11       		.uleb128 0x11
+ 1192 059e 1A080000 		.4byte	.LASF152
+ 1193 05a2 06       		.byte	0x6
+ 1194 05a3 3C       		.byte	0x3c
+ 1195 05a4 6B020000 		.4byte	0x26b
+ 1196 05a8 02       		.byte	0x2
+ 1197 05a9 23       		.byte	0x23
+ 1198 05aa 02       		.uleb128 0x2
+ 1199 05ab 11       		.uleb128 0x11
+ 1200 05ac 28000000 		.4byte	.LASF153
+ 1201 05b0 06       		.byte	0x6
+ 1202 05b1 41       		.byte	0x41
+ 1203 05b2 32030000 		.4byte	0x332
+ 1204 05b6 02       		.byte	0x2
+ 1205 05b7 23       		.byte	0x23
+ 1206 05b8 03       		.uleb128 0x3
+ 1207 05b9 00       		.byte	0
+ 1208 05ba 05       		.uleb128 0x5
+ 1209 05bb B0050000 		.4byte	.LASF154
+ 1210 05bf 06       		.byte	0x6
+ 1211 05c0 44       		.byte	0x44
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 27
+
+
+ 1212 05c1 79050000 		.4byte	0x579
+ 1213 05c5 0F       		.uleb128 0xf
+ 1214 05c6 01       		.byte	0x1
+ 1215 05c7 07       		.byte	0x7
+ 1216 05c8 33       		.byte	0x33
+ 1217 05c9 E6050000 		.4byte	0x5e6
+ 1218 05cd 03       		.uleb128 0x3
+ 1219 05ce 9C070000 		.4byte	.LASF155
+ 1220 05d2 00       		.sleb128 0
+ 1221 05d3 03       		.uleb128 0x3
+ 1222 05d4 97070000 		.4byte	.LASF156
+ 1223 05d8 01       		.sleb128 1
+ 1224 05d9 03       		.uleb128 0x3
+ 1225 05da 59090000 		.4byte	.LASF157
+ 1226 05de 02       		.sleb128 2
+ 1227 05df 03       		.uleb128 0x3
+ 1228 05e0 86080000 		.4byte	.LASF158
+ 1229 05e4 03       		.sleb128 3
+ 1230 05e5 00       		.byte	0
+ 1231 05e6 05       		.uleb128 0x5
+ 1232 05e7 E4050000 		.4byte	.LASF159
+ 1233 05eb 07       		.byte	0x7
+ 1234 05ec 38       		.byte	0x38
+ 1235 05ed C5050000 		.4byte	0x5c5
+ 1236 05f1 0F       		.uleb128 0xf
+ 1237 05f2 01       		.byte	0x1
+ 1238 05f3 07       		.byte	0x7
+ 1239 05f4 3B       		.byte	0x3b
+ 1240 05f5 00060000 		.4byte	0x600
+ 1241 05f9 03       		.uleb128 0x3
+ 1242 05fa FD000000 		.4byte	.LASF160
+ 1243 05fe 00       		.sleb128 0
+ 1244 05ff 00       		.byte	0
+ 1245 0600 05       		.uleb128 0x5
+ 1246 0601 780A0000 		.4byte	.LASF161
+ 1247 0605 07       		.byte	0x7
+ 1248 0606 3D       		.byte	0x3d
+ 1249 0607 F1050000 		.4byte	0x5f1
+ 1250 060b 0F       		.uleb128 0xf
+ 1251 060c 01       		.byte	0x1
+ 1252 060d 07       		.byte	0x7
+ 1253 060e 40       		.byte	0x40
+ 1254 060f 20060000 		.4byte	0x620
+ 1255 0613 03       		.uleb128 0x3
+ 1256 0614 1B0A0000 		.4byte	.LASF162
+ 1257 0618 00       		.sleb128 0
+ 1258 0619 03       		.uleb128 0x3
+ 1259 061a 2E010000 		.4byte	.LASF163
+ 1260 061e 01       		.sleb128 1
+ 1261 061f 00       		.byte	0
+ 1262 0620 05       		.uleb128 0x5
+ 1263 0621 B9020000 		.4byte	.LASF164
+ 1264 0625 07       		.byte	0x7
+ 1265 0626 43       		.byte	0x43
+ 1266 0627 0B060000 		.4byte	0x60b
+ 1267 062b 04       		.uleb128 0x4
+ 1268 062c 01       		.byte	0x1
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 28
+
+
+ 1269 062d 08       		.byte	0x8
+ 1270 062e 8B080000 		.4byte	.LASF165
+ 1271 0632 04       		.uleb128 0x4
+ 1272 0633 08       		.byte	0x8
+ 1273 0634 04       		.byte	0x4
+ 1274 0635 9D020000 		.4byte	.LASF166
+ 1275 0639 04       		.uleb128 0x4
+ 1276 063a 04       		.byte	0x4
+ 1277 063b 04       		.byte	0x4
+ 1278 063c AB060000 		.4byte	.LASF167
+ 1279 0640 04       		.uleb128 0x4
+ 1280 0641 08       		.byte	0x8
+ 1281 0642 04       		.byte	0x4
+ 1282 0643 15030000 		.4byte	.LASF168
+ 1283 0647 12       		.uleb128 0x12
+ 1284 0648 01       		.byte	0x1
+ 1285 0649 D3050000 		.4byte	.LASF169
+ 1286 064d 01       		.byte	0x1
+ 1287 064e 76       		.byte	0x76
+ 1288 064f 01       		.byte	0x1
+ 1289 0650 00000000 		.4byte	.LFB110
+ 1290 0654 52000000 		.4byte	.LFE110
+ 1291 0658 00000000 		.4byte	.LLST0
+ 1292 065c 01       		.byte	0x1
+ 1293 065d B1060000 		.4byte	0x6b1
+ 1294 0661 13       		.uleb128 0x13
+ 1295 0662 4C656400 		.ascii	"Led\000"
+ 1296 0666 01       		.byte	0x1
+ 1297 0667 76       		.byte	0x76
+ 1298 0668 E6050000 		.4byte	0x5e6
+ 1299 066c 2C000000 		.4byte	.LLST1
+ 1300 0670 14       		.uleb128 0x14
+ 1301 0671 2A020000 		.4byte	.LASF176
+ 1302 0675 01       		.byte	0x1
+ 1303 0676 78       		.byte	0x78
+ 1304 0677 6E050000 		.4byte	0x56e
+ 1305 067b 02       		.byte	0x2
+ 1306 067c 91       		.byte	0x91
+ 1307 067d 70       		.sleb128 -16
+ 1308 067e 15       		.uleb128 0x15
+ 1309 067f 18000000 		.4byte	.LVL2
+ 1310 0683 A2090000 		.4byte	0x9a2
+ 1311 0687 A0060000 		.4byte	0x6a0
+ 1312 068b 16       		.uleb128 0x16
+ 1313 068c 01       		.byte	0x1
+ 1314 068d 51       		.byte	0x51
+ 1315 068e 01       		.byte	0x1
+ 1316 068f 31       		.byte	0x31
+ 1317 0690 16       		.uleb128 0x16
+ 1318 0691 01       		.byte	0x1
+ 1319 0692 50       		.byte	0x50
+ 1320 0693 0B       		.byte	0xb
+ 1321 0694 74       		.byte	0x74
+ 1322 0695 00       		.sleb128 0
+ 1323 0696 32       		.byte	0x32
+ 1324 0697 24       		.byte	0x24
+ 1325 0698 03       		.byte	0x3
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 29
+
+
+ 1326 0699 00000000 		.4byte	.LANCHOR0
+ 1327 069d 22       		.byte	0x22
+ 1328 069e 06       		.byte	0x6
+ 1329 069f 00       		.byte	0
+ 1330 06a0 17       		.uleb128 0x17
+ 1331 06a1 4E000000 		.4byte	.LVL3
+ 1332 06a5 BC090000 		.4byte	0x9bc
+ 1333 06a9 16       		.uleb128 0x16
+ 1334 06aa 01       		.byte	0x1
+ 1335 06ab 51       		.byte	0x51
+ 1336 06ac 02       		.byte	0x2
+ 1337 06ad 7D       		.byte	0x7d
+ 1338 06ae 00       		.sleb128 0
+ 1339 06af 00       		.byte	0
+ 1340 06b0 00       		.byte	0
+ 1341 06b1 18       		.uleb128 0x18
+ 1342 06b2 01       		.byte	0x1
+ 1343 06b3 90060000 		.4byte	.LASF170
+ 1344 06b7 01       		.byte	0x1
+ 1345 06b8 90       		.byte	0x90
+ 1346 06b9 01       		.byte	0x1
+ 1347 06ba 00000000 		.4byte	.LFB111
+ 1348 06be 1C000000 		.4byte	.LFE111
+ 1349 06c2 02       		.byte	0x2
+ 1350 06c3 7D       		.byte	0x7d
+ 1351 06c4 00       		.sleb128 0
+ 1352 06c5 01       		.byte	0x1
+ 1353 06c6 DA060000 		.4byte	0x6da
+ 1354 06ca 13       		.uleb128 0x13
+ 1355 06cb 4C656400 		.ascii	"Led\000"
+ 1356 06cf 01       		.byte	0x1
+ 1357 06d0 90       		.byte	0x90
+ 1358 06d1 E6050000 		.4byte	0x5e6
+ 1359 06d5 4D000000 		.4byte	.LLST2
+ 1360 06d9 00       		.byte	0
+ 1361 06da 18       		.uleb128 0x18
+ 1362 06db 01       		.byte	0x1
+ 1363 06dc 5E090000 		.4byte	.LASF171
+ 1364 06e0 01       		.byte	0x1
+ 1365 06e1 9F       		.byte	0x9f
+ 1366 06e2 01       		.byte	0x1
+ 1367 06e3 00000000 		.4byte	.LFB112
+ 1368 06e7 1C000000 		.4byte	.LFE112
+ 1369 06eb 02       		.byte	0x2
+ 1370 06ec 7D       		.byte	0x7d
+ 1371 06ed 00       		.sleb128 0
+ 1372 06ee 01       		.byte	0x1
+ 1373 06ef 03070000 		.4byte	0x703
+ 1374 06f3 13       		.uleb128 0x13
+ 1375 06f4 4C656400 		.ascii	"Led\000"
+ 1376 06f8 01       		.byte	0x1
+ 1377 06f9 9F       		.byte	0x9f
+ 1378 06fa E6050000 		.4byte	0x5e6
+ 1379 06fe 6E000000 		.4byte	.LLST3
+ 1380 0702 00       		.byte	0
+ 1381 0703 18       		.uleb128 0x18
+ 1382 0704 01       		.byte	0x1
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 30
+
+
+ 1383 0705 020A0000 		.4byte	.LASF172
+ 1384 0709 01       		.byte	0x1
+ 1385 070a AE       		.byte	0xae
+ 1386 070b 01       		.byte	0x1
+ 1387 070c 00000000 		.4byte	.LFB113
+ 1388 0710 20000000 		.4byte	.LFE113
+ 1389 0714 02       		.byte	0x2
+ 1390 0715 7D       		.byte	0x7d
+ 1391 0716 00       		.sleb128 0
+ 1392 0717 01       		.byte	0x1
+ 1393 0718 2C070000 		.4byte	0x72c
+ 1394 071c 13       		.uleb128 0x13
+ 1395 071d 4C656400 		.ascii	"Led\000"
+ 1396 0721 01       		.byte	0x1
+ 1397 0722 AE       		.byte	0xae
+ 1398 0723 E6050000 		.4byte	0x5e6
+ 1399 0727 8F000000 		.4byte	.LLST4
+ 1400 072b 00       		.byte	0
+ 1401 072c 12       		.uleb128 0x12
+ 1402 072d 01       		.byte	0x1
+ 1403 072e 69030000 		.4byte	.LASF173
+ 1404 0732 01       		.byte	0x1
+ 1405 0733 BE       		.byte	0xbe
+ 1406 0734 01       		.byte	0x1
+ 1407 0735 00000000 		.4byte	.LFB114
+ 1408 0739 7C000000 		.4byte	.LFE114
+ 1409 073d B0000000 		.4byte	.LLST5
+ 1410 0741 01       		.byte	0x1
+ 1411 0742 13080000 		.4byte	0x813
+ 1412 0746 19       		.uleb128 0x19
+ 1413 0747 73010000 		.4byte	.LASF174
+ 1414 074b 01       		.byte	0x1
+ 1415 074c BE       		.byte	0xbe
+ 1416 074d 00060000 		.4byte	0x600
+ 1417 0751 DC000000 		.4byte	.LLST6
+ 1418 0755 19       		.uleb128 0x19
+ 1419 0756 10060000 		.4byte	.LASF175
+ 1420 075a 01       		.byte	0x1
+ 1421 075b BE       		.byte	0xbe
+ 1422 075c 20060000 		.4byte	0x620
+ 1423 0760 FD000000 		.4byte	.LLST7
+ 1424 0764 14       		.uleb128 0x14
+ 1425 0765 2A020000 		.4byte	.LASF176
+ 1426 0769 01       		.byte	0x1
+ 1427 076a C0       		.byte	0xc0
+ 1428 076b 6E050000 		.4byte	0x56e
+ 1429 076f 02       		.byte	0x2
+ 1430 0770 91       		.byte	0x91
+ 1431 0771 60       		.sleb128 -32
+ 1432 0772 14       		.uleb128 0x14
+ 1433 0773 B1060000 		.4byte	.LASF177
+ 1434 0777 01       		.byte	0x1
+ 1435 0778 C1       		.byte	0xc1
+ 1436 0779 76040000 		.4byte	0x476
+ 1437 077d 02       		.byte	0x2
+ 1438 077e 91       		.byte	0x91
+ 1439 077f 68       		.sleb128 -24
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 31
+
+
+ 1440 0780 14       		.uleb128 0x14
+ 1441 0781 79030000 		.4byte	.LASF178
+ 1442 0785 01       		.byte	0x1
+ 1443 0786 C2       		.byte	0xc2
+ 1444 0787 BA050000 		.4byte	0x5ba
+ 1445 078b 02       		.byte	0x2
+ 1446 078c 91       		.byte	0x91
+ 1447 078d 5C       		.sleb128 -36
+ 1448 078e 15       		.uleb128 0x15
+ 1449 078f 10000000 		.4byte	.LVL13
+ 1450 0793 A2090000 		.4byte	0x9a2
+ 1451 0797 A6070000 		.4byte	0x7a6
+ 1452 079b 16       		.uleb128 0x16
+ 1453 079c 01       		.byte	0x1
+ 1454 079d 51       		.byte	0x51
+ 1455 079e 01       		.byte	0x1
+ 1456 079f 31       		.byte	0x31
+ 1457 07a0 16       		.uleb128 0x16
+ 1458 07a1 01       		.byte	0x1
+ 1459 07a2 50       		.byte	0x50
+ 1460 07a3 01       		.byte	0x1
+ 1461 07a4 31       		.byte	0x31
+ 1462 07a5 00       		.byte	0
+ 1463 07a6 15       		.uleb128 0x15
+ 1464 07a7 1A000000 		.4byte	.LVL14
+ 1465 07ab DC090000 		.4byte	0x9dc
+ 1466 07af C0070000 		.4byte	0x7c0
+ 1467 07b3 16       		.uleb128 0x16
+ 1468 07b4 01       		.byte	0x1
+ 1469 07b5 51       		.byte	0x51
+ 1470 07b6 01       		.byte	0x1
+ 1471 07b7 31       		.byte	0x31
+ 1472 07b8 16       		.uleb128 0x16
+ 1473 07b9 01       		.byte	0x1
+ 1474 07ba 50       		.byte	0x50
+ 1475 07bb 03       		.byte	0x3
+ 1476 07bc 0A       		.byte	0xa
+ 1477 07bd 0040     		.2byte	0x4000
+ 1478 07bf 00       		.byte	0
+ 1479 07c0 15       		.uleb128 0x15
+ 1480 07c1 36000000 		.4byte	.LVL15
+ 1481 07c5 BC090000 		.4byte	0x9bc
+ 1482 07c9 D4070000 		.4byte	0x7d4
+ 1483 07cd 16       		.uleb128 0x16
+ 1484 07ce 01       		.byte	0x1
+ 1485 07cf 51       		.byte	0x51
+ 1486 07d0 02       		.byte	0x2
+ 1487 07d1 91       		.byte	0x91
+ 1488 07d2 60       		.sleb128 -32
+ 1489 07d3 00       		.byte	0
+ 1490 07d4 15       		.uleb128 0x15
+ 1491 07d5 46000000 		.4byte	.LVL16
+ 1492 07d9 F6090000 		.4byte	0x9f6
+ 1493 07dd EE070000 		.4byte	0x7ee
+ 1494 07e1 16       		.uleb128 0x16
+ 1495 07e2 01       		.byte	0x1
+ 1496 07e3 51       		.byte	0x51
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 32
+
+
+ 1497 07e4 02       		.byte	0x2
+ 1498 07e5 74       		.byte	0x74
+ 1499 07e6 00       		.sleb128 0
+ 1500 07e7 16       		.uleb128 0x16
+ 1501 07e8 01       		.byte	0x1
+ 1502 07e9 50       		.byte	0x50
+ 1503 07ea 02       		.byte	0x2
+ 1504 07eb 74       		.byte	0x74
+ 1505 07ec 00       		.sleb128 0
+ 1506 07ed 00       		.byte	0
+ 1507 07ee 15       		.uleb128 0x15
+ 1508 07ef 5C000000 		.4byte	.LVL17
+ 1509 07f3 0F0A0000 		.4byte	0xa0f
+ 1510 07f7 02080000 		.4byte	0x802
+ 1511 07fb 16       		.uleb128 0x16
+ 1512 07fc 01       		.byte	0x1
+ 1513 07fd 50       		.byte	0x50
+ 1514 07fe 02       		.byte	0x2
+ 1515 07ff 91       		.byte	0x91
+ 1516 0800 68       		.sleb128 -24
+ 1517 0801 00       		.byte	0
+ 1518 0802 17       		.uleb128 0x17
+ 1519 0803 76000000 		.4byte	.LVL18
+ 1520 0807 290A0000 		.4byte	0xa29
+ 1521 080b 16       		.uleb128 0x16
+ 1522 080c 01       		.byte	0x1
+ 1523 080d 50       		.byte	0x50
+ 1524 080e 02       		.byte	0x2
+ 1525 080f 91       		.byte	0x91
+ 1526 0810 5C       		.sleb128 -36
+ 1527 0811 00       		.byte	0
+ 1528 0812 00       		.byte	0
+ 1529 0813 1A       		.uleb128 0x1a
+ 1530 0814 01       		.byte	0x1
+ 1531 0815 1C060000 		.4byte	.LASF201
+ 1532 0819 01       		.byte	0x1
+ 1533 081a EA       		.byte	0xea
+ 1534 081b 01       		.byte	0x1
+ 1535 081c A8020000 		.4byte	0x2a8
+ 1536 0820 00000000 		.4byte	.LFB115
+ 1537 0824 16000000 		.4byte	.LFE115
+ 1538 0828 1E010000 		.4byte	.LLST8
+ 1539 082c 01       		.byte	0x1
+ 1540 082d 50080000 		.4byte	0x850
+ 1541 0831 19       		.uleb128 0x19
+ 1542 0832 73010000 		.4byte	.LASF174
+ 1543 0836 01       		.byte	0x1
+ 1544 0837 EA       		.byte	0xea
+ 1545 0838 00060000 		.4byte	0x600
+ 1546 083c 3E010000 		.4byte	.LLST9
+ 1547 0840 17       		.uleb128 0x17
+ 1548 0841 14000000 		.4byte	.LVL21
+ 1549 0845 430A0000 		.4byte	0xa43
+ 1550 0849 16       		.uleb128 0x16
+ 1551 084a 01       		.byte	0x1
+ 1552 084b 51       		.byte	0x51
+ 1553 084c 01       		.byte	0x1
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 33
+
+
+ 1554 084d 31       		.byte	0x31
+ 1555 084e 00       		.byte	0
+ 1556 084f 00       		.byte	0
+ 1557 0850 1B       		.uleb128 0x1b
+ 1558 0851 4E070000 		.4byte	.LASF179
+ 1559 0855 08       		.byte	0x8
+ 1560 0856 1A05     		.2byte	0x51a
+ 1561 0858 17030000 		.4byte	0x317
+ 1562 085c 01       		.byte	0x1
+ 1563 085d 01       		.byte	0x1
+ 1564 085e 08       		.uleb128 0x8
+ 1565 085f 6E080000 		.4byte	0x86e
+ 1566 0863 6E080000 		.4byte	0x86e
+ 1567 0867 09       		.uleb128 0x9
+ 1568 0868 D6020000 		.4byte	0x2d6
+ 1569 086c 03       		.byte	0x3
+ 1570 086d 00       		.byte	0
+ 1571 086e 1C       		.uleb128 0x1c
+ 1572 086f 04       		.byte	0x4
+ 1573 0870 E3030000 		.4byte	0x3e3
+ 1574 0874 1D       		.uleb128 0x1d
+ 1575 0875 C9090000 		.4byte	.LASF180
+ 1576 0879 01       		.byte	0x1
+ 1577 087a 45       		.byte	0x45
+ 1578 087b 5E080000 		.4byte	0x85e
+ 1579 087f 01       		.byte	0x1
+ 1580 0880 05       		.byte	0x5
+ 1581 0881 03       		.byte	0x3
+ 1582 0882 00000000 		.4byte	GPIO_PORT
+ 1583 0886 08       		.uleb128 0x8
+ 1584 0887 84020000 		.4byte	0x284
+ 1585 088b 96080000 		.4byte	0x896
+ 1586 088f 09       		.uleb128 0x9
+ 1587 0890 D6020000 		.4byte	0x2d6
+ 1588 0894 03       		.byte	0x3
+ 1589 0895 00       		.byte	0
+ 1590 0896 1D       		.uleb128 0x1d
+ 1591 0897 6E000000 		.4byte	.LASF181
+ 1592 089b 01       		.byte	0x1
+ 1593 089c 47       		.byte	0x47
+ 1594 089d A8080000 		.4byte	0x8a8
+ 1595 08a1 01       		.byte	0x1
+ 1596 08a2 05       		.byte	0x5
+ 1597 08a3 03       		.byte	0x3
+ 1598 08a4 00000000 		.4byte	GPIO_PIN
+ 1599 08a8 1E       		.uleb128 0x1e
+ 1600 08a9 86080000 		.4byte	0x886
+ 1601 08ad 1D       		.uleb128 0x1d
+ 1602 08ae A7080000 		.4byte	.LASF182
+ 1603 08b2 01       		.byte	0x1
+ 1604 08b3 49       		.byte	0x49
+ 1605 08b4 BF080000 		.4byte	0x8bf
+ 1606 08b8 01       		.byte	0x1
+ 1607 08b9 05       		.byte	0x5
+ 1608 08ba 03       		.byte	0x3
+ 1609 08bb 00000000 		.4byte	GPIO_CLK
+ 1610 08bf 1E       		.uleb128 0x1e
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 34
+
+
+ 1611 08c0 F2020000 		.4byte	0x2f2
+ 1612 08c4 08       		.uleb128 0x8
+ 1613 08c5 6E080000 		.4byte	0x86e
+ 1614 08c9 D4080000 		.4byte	0x8d4
+ 1615 08cd 09       		.uleb128 0x9
+ 1616 08ce D6020000 		.4byte	0x2d6
+ 1617 08d2 00       		.byte	0
+ 1618 08d3 00       		.byte	0
+ 1619 08d4 1D       		.uleb128 0x1d
+ 1620 08d5 D5000000 		.4byte	.LASF183
+ 1621 08d9 01       		.byte	0x1
+ 1622 08da 4C       		.byte	0x4c
+ 1623 08db C4080000 		.4byte	0x8c4
+ 1624 08df 01       		.byte	0x1
+ 1625 08e0 05       		.byte	0x5
+ 1626 08e1 03       		.byte	0x3
+ 1627 08e2 00000000 		.4byte	BUTTON_PORT
+ 1628 08e6 08       		.uleb128 0x8
+ 1629 08e7 84020000 		.4byte	0x284
+ 1630 08eb F6080000 		.4byte	0x8f6
+ 1631 08ef 09       		.uleb128 0x9
+ 1632 08f0 D6020000 		.4byte	0x2d6
+ 1633 08f4 00       		.byte	0
+ 1634 08f5 00       		.byte	0
+ 1635 08f6 1D       		.uleb128 0x1d
+ 1636 08f7 1D000000 		.4byte	.LASF184
+ 1637 08fb 01       		.byte	0x1
+ 1638 08fc 4E       		.byte	0x4e
+ 1639 08fd 08090000 		.4byte	0x908
+ 1640 0901 01       		.byte	0x1
+ 1641 0902 05       		.byte	0x5
+ 1642 0903 03       		.byte	0x3
+ 1643 0904 00000000 		.4byte	BUTTON_PIN
+ 1644 0908 1E       		.uleb128 0x1e
+ 1645 0909 E6080000 		.4byte	0x8e6
+ 1646 090d 1D       		.uleb128 0x1d
+ 1647 090e 6D080000 		.4byte	.LASF185
+ 1648 0912 01       		.byte	0x1
+ 1649 0913 50       		.byte	0x50
+ 1650 0914 1F090000 		.4byte	0x91f
+ 1651 0918 01       		.byte	0x1
+ 1652 0919 05       		.byte	0x5
+ 1653 091a 03       		.byte	0x3
+ 1654 091b 00000000 		.4byte	BUTTON_CLK
+ 1655 091f 1E       		.uleb128 0x1e
+ 1656 0920 02030000 		.4byte	0x302
+ 1657 0924 1D       		.uleb128 0x1d
+ 1658 0925 BF0A0000 		.4byte	.LASF186
+ 1659 0929 01       		.byte	0x1
+ 1660 092a 52       		.byte	0x52
+ 1661 092b 36090000 		.4byte	0x936
+ 1662 092f 01       		.byte	0x1
+ 1663 0930 05       		.byte	0x5
+ 1664 0931 03       		.byte	0x3
+ 1665 0932 00000000 		.4byte	BUTTON_EXTI_LINE
+ 1666 0936 1E       		.uleb128 0x1e
+ 1667 0937 E6080000 		.4byte	0x8e6
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 35
+
+
+ 1668 093b 08       		.uleb128 0x8
+ 1669 093c 6B020000 		.4byte	0x26b
+ 1670 0940 4B090000 		.4byte	0x94b
+ 1671 0944 09       		.uleb128 0x9
+ 1672 0945 D6020000 		.4byte	0x2d6
+ 1673 0949 00       		.byte	0
+ 1674 094a 00       		.byte	0
+ 1675 094b 1D       		.uleb128 0x1d
+ 1676 094c E7070000 		.4byte	.LASF187
+ 1677 0950 01       		.byte	0x1
+ 1678 0951 54       		.byte	0x54
+ 1679 0952 5D090000 		.4byte	0x95d
+ 1680 0956 01       		.byte	0x1
+ 1681 0957 05       		.byte	0x5
+ 1682 0958 03       		.byte	0x3
+ 1683 0959 00000000 		.4byte	BUTTON_PORT_SOURCE
+ 1684 095d 1E       		.uleb128 0x1e
+ 1685 095e 3B090000 		.4byte	0x93b
+ 1686 0962 1D       		.uleb128 0x1d
+ 1687 0963 A0040000 		.4byte	.LASF188
+ 1688 0967 01       		.byte	0x1
+ 1689 0968 56       		.byte	0x56
+ 1690 0969 74090000 		.4byte	0x974
+ 1691 096d 01       		.byte	0x1
+ 1692 096e 05       		.byte	0x5
+ 1693 096f 03       		.byte	0x3
+ 1694 0970 00000000 		.4byte	BUTTON_PIN_SOURCE
+ 1695 0974 1E       		.uleb128 0x1e
+ 1696 0975 3B090000 		.4byte	0x93b
+ 1697 0979 1D       		.uleb128 0x1d
+ 1698 097a 2C040000 		.4byte	.LASF189
+ 1699 097e 01       		.byte	0x1
+ 1700 097f 57       		.byte	0x57
+ 1701 0980 8B090000 		.4byte	0x98b
+ 1702 0984 01       		.byte	0x1
+ 1703 0985 05       		.byte	0x5
+ 1704 0986 03       		.byte	0x3
+ 1705 0987 00000000 		.4byte	BUTTON_IRQn
+ 1706 098b 1E       		.uleb128 0x1e
+ 1707 098c 3B090000 		.4byte	0x93b
+ 1708 0990 1D       		.uleb128 0x1d
+ 1709 0991 79030000 		.4byte	.LASF178
+ 1710 0995 01       		.byte	0x1
+ 1711 0996 59       		.byte	0x59
+ 1712 0997 BA050000 		.4byte	0x5ba
+ 1713 099b 01       		.byte	0x1
+ 1714 099c 05       		.byte	0x5
+ 1715 099d 03       		.byte	0x3
+ 1716 099e 00000000 		.4byte	NVIC_InitStructure
+ 1717 09a2 1F       		.uleb128 0x1f
+ 1718 09a3 01       		.byte	0x1
+ 1719 09a4 00000000 		.4byte	.LASF190
+ 1720 09a8 09       		.byte	0x9
+ 1721 09a9 D701     		.2byte	0x1d7
+ 1722 09ab 01       		.byte	0x1
+ 1723 09ac 01       		.byte	0x1
+ 1724 09ad BC090000 		.4byte	0x9bc
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 36
+
+
+ 1725 09b1 20       		.uleb128 0x20
+ 1726 09b2 A8020000 		.4byte	0x2a8
+ 1727 09b6 20       		.uleb128 0x20
+ 1728 09b7 32030000 		.4byte	0x332
+ 1729 09bb 00       		.byte	0
+ 1730 09bc 1F       		.uleb128 0x1f
+ 1731 09bd 01       		.byte	0x1
+ 1732 09be 88050000 		.4byte	.LASF191
+ 1733 09c2 05       		.byte	0x5
+ 1734 09c3 7601     		.2byte	0x176
+ 1735 09c5 01       		.byte	0x1
+ 1736 09c6 01       		.byte	0x1
+ 1737 09c7 D6090000 		.4byte	0x9d6
+ 1738 09cb 20       		.uleb128 0x20
+ 1739 09cc 6E080000 		.4byte	0x86e
+ 1740 09d0 20       		.uleb128 0x20
+ 1741 09d1 D6090000 		.4byte	0x9d6
+ 1742 09d5 00       		.byte	0
+ 1743 09d6 1C       		.uleb128 0x1c
+ 1744 09d7 04       		.byte	0x4
+ 1745 09d8 6E050000 		.4byte	0x56e
+ 1746 09dc 1F       		.uleb128 0x1f
+ 1747 09dd 01       		.byte	0x1
+ 1748 09de 90080000 		.4byte	.LASF192
+ 1749 09e2 09       		.byte	0x9
+ 1750 09e3 DB01     		.2byte	0x1db
+ 1751 09e5 01       		.byte	0x1
+ 1752 09e6 01       		.byte	0x1
+ 1753 09e7 F6090000 		.4byte	0x9f6
+ 1754 09eb 20       		.uleb128 0x20
+ 1755 09ec A8020000 		.4byte	0x2a8
+ 1756 09f0 20       		.uleb128 0x20
+ 1757 09f1 32030000 		.4byte	0x332
+ 1758 09f5 00       		.byte	0
+ 1759 09f6 21       		.uleb128 0x21
+ 1760 09f7 01       		.byte	0x1
+ 1761 09f8 38040000 		.4byte	.LASF193
+ 1762 09fc 0A       		.byte	0xa
+ 1763 09fd 9A       		.byte	0x9a
+ 1764 09fe 01       		.byte	0x1
+ 1765 09ff 01       		.byte	0x1
+ 1766 0a00 0F0A0000 		.4byte	0xa0f
+ 1767 0a04 20       		.uleb128 0x20
+ 1768 0a05 6B020000 		.4byte	0x26b
+ 1769 0a09 20       		.uleb128 0x20
+ 1770 0a0a 6B020000 		.4byte	0x26b
+ 1771 0a0e 00       		.byte	0
+ 1772 0a0f 21       		.uleb128 0x21
+ 1773 0a10 01       		.byte	0x1
+ 1774 0a11 99030000 		.4byte	.LASF194
+ 1775 0a15 04       		.byte	0x4
+ 1776 0a16 99       		.byte	0x99
+ 1777 0a17 01       		.byte	0x1
+ 1778 0a18 01       		.byte	0x1
+ 1779 0a19 230A0000 		.4byte	0xa23
+ 1780 0a1d 20       		.uleb128 0x20
+ 1781 0a1e 230A0000 		.4byte	0xa23
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 37
+
+
+ 1782 0a22 00       		.byte	0
+ 1783 0a23 1C       		.uleb128 0x1c
+ 1784 0a24 04       		.byte	0x4
+ 1785 0a25 76040000 		.4byte	0x476
+ 1786 0a29 21       		.uleb128 0x21
+ 1787 0a2a 01       		.byte	0x1
+ 1788 0a2b F80A0000 		.4byte	.LASF195
+ 1789 0a2f 06       		.byte	0x6
+ 1790 0a30 99       		.byte	0x99
+ 1791 0a31 01       		.byte	0x1
+ 1792 0a32 01       		.byte	0x1
+ 1793 0a33 3D0A0000 		.4byte	0xa3d
+ 1794 0a37 20       		.uleb128 0x20
+ 1795 0a38 3D0A0000 		.4byte	0xa3d
+ 1796 0a3c 00       		.byte	0
+ 1797 0a3d 1C       		.uleb128 0x1c
+ 1798 0a3e 04       		.byte	0x4
+ 1799 0a3f BA050000 		.4byte	0x5ba
+ 1800 0a43 22       		.uleb128 0x22
+ 1801 0a44 01       		.byte	0x1
+ 1802 0a45 21030000 		.4byte	.LASF196
+ 1803 0a49 05       		.byte	0x5
+ 1804 0a4a 7B01     		.2byte	0x17b
+ 1805 0a4c 01       		.byte	0x1
+ 1806 0a4d 6B020000 		.4byte	0x26b
+ 1807 0a51 01       		.byte	0x1
+ 1808 0a52 20       		.uleb128 0x20
+ 1809 0a53 6E080000 		.4byte	0x86e
+ 1810 0a57 20       		.uleb128 0x20
+ 1811 0a58 84020000 		.4byte	0x284
+ 1812 0a5c 00       		.byte	0
+ 1813 0a5d 00       		.byte	0
+ 1814              		.section	.debug_abbrev,"",%progbits
+ 1815              	.Ldebug_abbrev0:
+ 1816 0000 01       		.uleb128 0x1
+ 1817 0001 11       		.uleb128 0x11
+ 1818 0002 01       		.byte	0x1
+ 1819 0003 25       		.uleb128 0x25
+ 1820 0004 0E       		.uleb128 0xe
+ 1821 0005 13       		.uleb128 0x13
+ 1822 0006 0B       		.uleb128 0xb
+ 1823 0007 03       		.uleb128 0x3
+ 1824 0008 0E       		.uleb128 0xe
+ 1825 0009 1B       		.uleb128 0x1b
+ 1826 000a 0E       		.uleb128 0xe
+ 1827 000b 55       		.uleb128 0x55
+ 1828 000c 06       		.uleb128 0x6
+ 1829 000d 11       		.uleb128 0x11
+ 1830 000e 01       		.uleb128 0x1
+ 1831 000f 52       		.uleb128 0x52
+ 1832 0010 01       		.uleb128 0x1
+ 1833 0011 10       		.uleb128 0x10
+ 1834 0012 06       		.uleb128 0x6
+ 1835 0013 00       		.byte	0
+ 1836 0014 00       		.byte	0
+ 1837 0015 02       		.uleb128 0x2
+ 1838 0016 04       		.uleb128 0x4
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 38
+
+
+ 1839 0017 01       		.byte	0x1
+ 1840 0018 03       		.uleb128 0x3
+ 1841 0019 0E       		.uleb128 0xe
+ 1842 001a 0B       		.uleb128 0xb
+ 1843 001b 0B       		.uleb128 0xb
+ 1844 001c 3A       		.uleb128 0x3a
+ 1845 001d 0B       		.uleb128 0xb
+ 1846 001e 3B       		.uleb128 0x3b
+ 1847 001f 0B       		.uleb128 0xb
+ 1848 0020 01       		.uleb128 0x1
+ 1849 0021 13       		.uleb128 0x13
+ 1850 0022 00       		.byte	0
+ 1851 0023 00       		.byte	0
+ 1852 0024 03       		.uleb128 0x3
+ 1853 0025 28       		.uleb128 0x28
+ 1854 0026 00       		.byte	0
+ 1855 0027 03       		.uleb128 0x3
+ 1856 0028 0E       		.uleb128 0xe
+ 1857 0029 1C       		.uleb128 0x1c
+ 1858 002a 0D       		.uleb128 0xd
+ 1859 002b 00       		.byte	0
+ 1860 002c 00       		.byte	0
+ 1861 002d 04       		.uleb128 0x4
+ 1862 002e 24       		.uleb128 0x24
+ 1863 002f 00       		.byte	0
+ 1864 0030 0B       		.uleb128 0xb
+ 1865 0031 0B       		.uleb128 0xb
+ 1866 0032 3E       		.uleb128 0x3e
+ 1867 0033 0B       		.uleb128 0xb
+ 1868 0034 03       		.uleb128 0x3
+ 1869 0035 0E       		.uleb128 0xe
+ 1870 0036 00       		.byte	0
+ 1871 0037 00       		.byte	0
+ 1872 0038 05       		.uleb128 0x5
+ 1873 0039 16       		.uleb128 0x16
+ 1874 003a 00       		.byte	0
+ 1875 003b 03       		.uleb128 0x3
+ 1876 003c 0E       		.uleb128 0xe
+ 1877 003d 3A       		.uleb128 0x3a
+ 1878 003e 0B       		.uleb128 0xb
+ 1879 003f 3B       		.uleb128 0x3b
+ 1880 0040 0B       		.uleb128 0xb
+ 1881 0041 49       		.uleb128 0x49
+ 1882 0042 13       		.uleb128 0x13
+ 1883 0043 00       		.byte	0
+ 1884 0044 00       		.byte	0
+ 1885 0045 06       		.uleb128 0x6
+ 1886 0046 24       		.uleb128 0x24
+ 1887 0047 00       		.byte	0
+ 1888 0048 0B       		.uleb128 0xb
+ 1889 0049 0B       		.uleb128 0xb
+ 1890 004a 3E       		.uleb128 0x3e
+ 1891 004b 0B       		.uleb128 0xb
+ 1892 004c 03       		.uleb128 0x3
+ 1893 004d 08       		.uleb128 0x8
+ 1894 004e 00       		.byte	0
+ 1895 004f 00       		.byte	0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 39
+
+
+ 1896 0050 07       		.uleb128 0x7
+ 1897 0051 35       		.uleb128 0x35
+ 1898 0052 00       		.byte	0
+ 1899 0053 49       		.uleb128 0x49
+ 1900 0054 13       		.uleb128 0x13
+ 1901 0055 00       		.byte	0
+ 1902 0056 00       		.byte	0
+ 1903 0057 08       		.uleb128 0x8
+ 1904 0058 01       		.uleb128 0x1
+ 1905 0059 01       		.byte	0x1
+ 1906 005a 49       		.uleb128 0x49
+ 1907 005b 13       		.uleb128 0x13
+ 1908 005c 01       		.uleb128 0x1
+ 1909 005d 13       		.uleb128 0x13
+ 1910 005e 00       		.byte	0
+ 1911 005f 00       		.byte	0
+ 1912 0060 09       		.uleb128 0x9
+ 1913 0061 21       		.uleb128 0x21
+ 1914 0062 00       		.byte	0
+ 1915 0063 49       		.uleb128 0x49
+ 1916 0064 13       		.uleb128 0x13
+ 1917 0065 2F       		.uleb128 0x2f
+ 1918 0066 0B       		.uleb128 0xb
+ 1919 0067 00       		.byte	0
+ 1920 0068 00       		.byte	0
+ 1921 0069 0A       		.uleb128 0xa
+ 1922 006a 04       		.uleb128 0x4
+ 1923 006b 01       		.byte	0x1
+ 1924 006c 0B       		.uleb128 0xb
+ 1925 006d 0B       		.uleb128 0xb
+ 1926 006e 3A       		.uleb128 0x3a
+ 1927 006f 0B       		.uleb128 0xb
+ 1928 0070 3B       		.uleb128 0x3b
+ 1929 0071 05       		.uleb128 0x5
+ 1930 0072 01       		.uleb128 0x1
+ 1931 0073 13       		.uleb128 0x13
+ 1932 0074 00       		.byte	0
+ 1933 0075 00       		.byte	0
+ 1934 0076 0B       		.uleb128 0xb
+ 1935 0077 16       		.uleb128 0x16
+ 1936 0078 00       		.byte	0
+ 1937 0079 03       		.uleb128 0x3
+ 1938 007a 0E       		.uleb128 0xe
+ 1939 007b 3A       		.uleb128 0x3a
+ 1940 007c 0B       		.uleb128 0xb
+ 1941 007d 3B       		.uleb128 0x3b
+ 1942 007e 05       		.uleb128 0x5
+ 1943 007f 49       		.uleb128 0x49
+ 1944 0080 13       		.uleb128 0x13
+ 1945 0081 00       		.byte	0
+ 1946 0082 00       		.byte	0
+ 1947 0083 0C       		.uleb128 0xc
+ 1948 0084 13       		.uleb128 0x13
+ 1949 0085 01       		.byte	0x1
+ 1950 0086 0B       		.uleb128 0xb
+ 1951 0087 0B       		.uleb128 0xb
+ 1952 0088 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 40
+
+
+ 1953 0089 0B       		.uleb128 0xb
+ 1954 008a 3B       		.uleb128 0x3b
+ 1955 008b 05       		.uleb128 0x5
+ 1956 008c 01       		.uleb128 0x1
+ 1957 008d 13       		.uleb128 0x13
+ 1958 008e 00       		.byte	0
+ 1959 008f 00       		.byte	0
+ 1960 0090 0D       		.uleb128 0xd
+ 1961 0091 0D       		.uleb128 0xd
+ 1962 0092 00       		.byte	0
+ 1963 0093 03       		.uleb128 0x3
+ 1964 0094 0E       		.uleb128 0xe
+ 1965 0095 3A       		.uleb128 0x3a
+ 1966 0096 0B       		.uleb128 0xb
+ 1967 0097 3B       		.uleb128 0x3b
+ 1968 0098 05       		.uleb128 0x5
+ 1969 0099 49       		.uleb128 0x49
+ 1970 009a 13       		.uleb128 0x13
+ 1971 009b 38       		.uleb128 0x38
+ 1972 009c 0A       		.uleb128 0xa
+ 1973 009d 00       		.byte	0
+ 1974 009e 00       		.byte	0
+ 1975 009f 0E       		.uleb128 0xe
+ 1976 00a0 0D       		.uleb128 0xd
+ 1977 00a1 00       		.byte	0
+ 1978 00a2 03       		.uleb128 0x3
+ 1979 00a3 08       		.uleb128 0x8
+ 1980 00a4 3A       		.uleb128 0x3a
+ 1981 00a5 0B       		.uleb128 0xb
+ 1982 00a6 3B       		.uleb128 0x3b
+ 1983 00a7 05       		.uleb128 0x5
+ 1984 00a8 49       		.uleb128 0x49
+ 1985 00a9 13       		.uleb128 0x13
+ 1986 00aa 38       		.uleb128 0x38
+ 1987 00ab 0A       		.uleb128 0xa
+ 1988 00ac 00       		.byte	0
+ 1989 00ad 00       		.byte	0
+ 1990 00ae 0F       		.uleb128 0xf
+ 1991 00af 04       		.uleb128 0x4
+ 1992 00b0 01       		.byte	0x1
+ 1993 00b1 0B       		.uleb128 0xb
+ 1994 00b2 0B       		.uleb128 0xb
+ 1995 00b3 3A       		.uleb128 0x3a
+ 1996 00b4 0B       		.uleb128 0xb
+ 1997 00b5 3B       		.uleb128 0x3b
+ 1998 00b6 0B       		.uleb128 0xb
+ 1999 00b7 01       		.uleb128 0x1
+ 2000 00b8 13       		.uleb128 0x13
+ 2001 00b9 00       		.byte	0
+ 2002 00ba 00       		.byte	0
+ 2003 00bb 10       		.uleb128 0x10
+ 2004 00bc 13       		.uleb128 0x13
+ 2005 00bd 01       		.byte	0x1
+ 2006 00be 0B       		.uleb128 0xb
+ 2007 00bf 0B       		.uleb128 0xb
+ 2008 00c0 3A       		.uleb128 0x3a
+ 2009 00c1 0B       		.uleb128 0xb
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 41
+
+
+ 2010 00c2 3B       		.uleb128 0x3b
+ 2011 00c3 0B       		.uleb128 0xb
+ 2012 00c4 01       		.uleb128 0x1
+ 2013 00c5 13       		.uleb128 0x13
+ 2014 00c6 00       		.byte	0
+ 2015 00c7 00       		.byte	0
+ 2016 00c8 11       		.uleb128 0x11
+ 2017 00c9 0D       		.uleb128 0xd
+ 2018 00ca 00       		.byte	0
+ 2019 00cb 03       		.uleb128 0x3
+ 2020 00cc 0E       		.uleb128 0xe
+ 2021 00cd 3A       		.uleb128 0x3a
+ 2022 00ce 0B       		.uleb128 0xb
+ 2023 00cf 3B       		.uleb128 0x3b
+ 2024 00d0 0B       		.uleb128 0xb
+ 2025 00d1 49       		.uleb128 0x49
+ 2026 00d2 13       		.uleb128 0x13
+ 2027 00d3 38       		.uleb128 0x38
+ 2028 00d4 0A       		.uleb128 0xa
+ 2029 00d5 00       		.byte	0
+ 2030 00d6 00       		.byte	0
+ 2031 00d7 12       		.uleb128 0x12
+ 2032 00d8 2E       		.uleb128 0x2e
+ 2033 00d9 01       		.byte	0x1
+ 2034 00da 3F       		.uleb128 0x3f
+ 2035 00db 0C       		.uleb128 0xc
+ 2036 00dc 03       		.uleb128 0x3
+ 2037 00dd 0E       		.uleb128 0xe
+ 2038 00de 3A       		.uleb128 0x3a
+ 2039 00df 0B       		.uleb128 0xb
+ 2040 00e0 3B       		.uleb128 0x3b
+ 2041 00e1 0B       		.uleb128 0xb
+ 2042 00e2 27       		.uleb128 0x27
+ 2043 00e3 0C       		.uleb128 0xc
+ 2044 00e4 11       		.uleb128 0x11
+ 2045 00e5 01       		.uleb128 0x1
+ 2046 00e6 12       		.uleb128 0x12
+ 2047 00e7 01       		.uleb128 0x1
+ 2048 00e8 40       		.uleb128 0x40
+ 2049 00e9 06       		.uleb128 0x6
+ 2050 00ea 9742     		.uleb128 0x2117
+ 2051 00ec 0C       		.uleb128 0xc
+ 2052 00ed 01       		.uleb128 0x1
+ 2053 00ee 13       		.uleb128 0x13
+ 2054 00ef 00       		.byte	0
+ 2055 00f0 00       		.byte	0
+ 2056 00f1 13       		.uleb128 0x13
+ 2057 00f2 05       		.uleb128 0x5
+ 2058 00f3 00       		.byte	0
+ 2059 00f4 03       		.uleb128 0x3
+ 2060 00f5 08       		.uleb128 0x8
+ 2061 00f6 3A       		.uleb128 0x3a
+ 2062 00f7 0B       		.uleb128 0xb
+ 2063 00f8 3B       		.uleb128 0x3b
+ 2064 00f9 0B       		.uleb128 0xb
+ 2065 00fa 49       		.uleb128 0x49
+ 2066 00fb 13       		.uleb128 0x13
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 42
+
+
+ 2067 00fc 02       		.uleb128 0x2
+ 2068 00fd 06       		.uleb128 0x6
+ 2069 00fe 00       		.byte	0
+ 2070 00ff 00       		.byte	0
+ 2071 0100 14       		.uleb128 0x14
+ 2072 0101 34       		.uleb128 0x34
+ 2073 0102 00       		.byte	0
+ 2074 0103 03       		.uleb128 0x3
+ 2075 0104 0E       		.uleb128 0xe
+ 2076 0105 3A       		.uleb128 0x3a
+ 2077 0106 0B       		.uleb128 0xb
+ 2078 0107 3B       		.uleb128 0x3b
+ 2079 0108 0B       		.uleb128 0xb
+ 2080 0109 49       		.uleb128 0x49
+ 2081 010a 13       		.uleb128 0x13
+ 2082 010b 02       		.uleb128 0x2
+ 2083 010c 0A       		.uleb128 0xa
+ 2084 010d 00       		.byte	0
+ 2085 010e 00       		.byte	0
+ 2086 010f 15       		.uleb128 0x15
+ 2087 0110 898201   		.uleb128 0x4109
+ 2088 0113 01       		.byte	0x1
+ 2089 0114 11       		.uleb128 0x11
+ 2090 0115 01       		.uleb128 0x1
+ 2091 0116 31       		.uleb128 0x31
+ 2092 0117 13       		.uleb128 0x13
+ 2093 0118 01       		.uleb128 0x1
+ 2094 0119 13       		.uleb128 0x13
+ 2095 011a 00       		.byte	0
+ 2096 011b 00       		.byte	0
+ 2097 011c 16       		.uleb128 0x16
+ 2098 011d 8A8201   		.uleb128 0x410a
+ 2099 0120 00       		.byte	0
+ 2100 0121 02       		.uleb128 0x2
+ 2101 0122 0A       		.uleb128 0xa
+ 2102 0123 9142     		.uleb128 0x2111
+ 2103 0125 0A       		.uleb128 0xa
+ 2104 0126 00       		.byte	0
+ 2105 0127 00       		.byte	0
+ 2106 0128 17       		.uleb128 0x17
+ 2107 0129 898201   		.uleb128 0x4109
+ 2108 012c 01       		.byte	0x1
+ 2109 012d 11       		.uleb128 0x11
+ 2110 012e 01       		.uleb128 0x1
+ 2111 012f 31       		.uleb128 0x31
+ 2112 0130 13       		.uleb128 0x13
+ 2113 0131 00       		.byte	0
+ 2114 0132 00       		.byte	0
+ 2115 0133 18       		.uleb128 0x18
+ 2116 0134 2E       		.uleb128 0x2e
+ 2117 0135 01       		.byte	0x1
+ 2118 0136 3F       		.uleb128 0x3f
+ 2119 0137 0C       		.uleb128 0xc
+ 2120 0138 03       		.uleb128 0x3
+ 2121 0139 0E       		.uleb128 0xe
+ 2122 013a 3A       		.uleb128 0x3a
+ 2123 013b 0B       		.uleb128 0xb
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 43
+
+
+ 2124 013c 3B       		.uleb128 0x3b
+ 2125 013d 0B       		.uleb128 0xb
+ 2126 013e 27       		.uleb128 0x27
+ 2127 013f 0C       		.uleb128 0xc
+ 2128 0140 11       		.uleb128 0x11
+ 2129 0141 01       		.uleb128 0x1
+ 2130 0142 12       		.uleb128 0x12
+ 2131 0143 01       		.uleb128 0x1
+ 2132 0144 40       		.uleb128 0x40
+ 2133 0145 0A       		.uleb128 0xa
+ 2134 0146 9742     		.uleb128 0x2117
+ 2135 0148 0C       		.uleb128 0xc
+ 2136 0149 01       		.uleb128 0x1
+ 2137 014a 13       		.uleb128 0x13
+ 2138 014b 00       		.byte	0
+ 2139 014c 00       		.byte	0
+ 2140 014d 19       		.uleb128 0x19
+ 2141 014e 05       		.uleb128 0x5
+ 2142 014f 00       		.byte	0
+ 2143 0150 03       		.uleb128 0x3
+ 2144 0151 0E       		.uleb128 0xe
+ 2145 0152 3A       		.uleb128 0x3a
+ 2146 0153 0B       		.uleb128 0xb
+ 2147 0154 3B       		.uleb128 0x3b
+ 2148 0155 0B       		.uleb128 0xb
+ 2149 0156 49       		.uleb128 0x49
+ 2150 0157 13       		.uleb128 0x13
+ 2151 0158 02       		.uleb128 0x2
+ 2152 0159 06       		.uleb128 0x6
+ 2153 015a 00       		.byte	0
+ 2154 015b 00       		.byte	0
+ 2155 015c 1A       		.uleb128 0x1a
+ 2156 015d 2E       		.uleb128 0x2e
+ 2157 015e 01       		.byte	0x1
+ 2158 015f 3F       		.uleb128 0x3f
+ 2159 0160 0C       		.uleb128 0xc
+ 2160 0161 03       		.uleb128 0x3
+ 2161 0162 0E       		.uleb128 0xe
+ 2162 0163 3A       		.uleb128 0x3a
+ 2163 0164 0B       		.uleb128 0xb
+ 2164 0165 3B       		.uleb128 0x3b
+ 2165 0166 0B       		.uleb128 0xb
+ 2166 0167 27       		.uleb128 0x27
+ 2167 0168 0C       		.uleb128 0xc
+ 2168 0169 49       		.uleb128 0x49
+ 2169 016a 13       		.uleb128 0x13
+ 2170 016b 11       		.uleb128 0x11
+ 2171 016c 01       		.uleb128 0x1
+ 2172 016d 12       		.uleb128 0x12
+ 2173 016e 01       		.uleb128 0x1
+ 2174 016f 40       		.uleb128 0x40
+ 2175 0170 06       		.uleb128 0x6
+ 2176 0171 9742     		.uleb128 0x2117
+ 2177 0173 0C       		.uleb128 0xc
+ 2178 0174 01       		.uleb128 0x1
+ 2179 0175 13       		.uleb128 0x13
+ 2180 0176 00       		.byte	0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 44
+
+
+ 2181 0177 00       		.byte	0
+ 2182 0178 1B       		.uleb128 0x1b
+ 2183 0179 34       		.uleb128 0x34
+ 2184 017a 00       		.byte	0
+ 2185 017b 03       		.uleb128 0x3
+ 2186 017c 0E       		.uleb128 0xe
+ 2187 017d 3A       		.uleb128 0x3a
+ 2188 017e 0B       		.uleb128 0xb
+ 2189 017f 3B       		.uleb128 0x3b
+ 2190 0180 05       		.uleb128 0x5
+ 2191 0181 49       		.uleb128 0x49
+ 2192 0182 13       		.uleb128 0x13
+ 2193 0183 3F       		.uleb128 0x3f
+ 2194 0184 0C       		.uleb128 0xc
+ 2195 0185 3C       		.uleb128 0x3c
+ 2196 0186 0C       		.uleb128 0xc
+ 2197 0187 00       		.byte	0
+ 2198 0188 00       		.byte	0
+ 2199 0189 1C       		.uleb128 0x1c
+ 2200 018a 0F       		.uleb128 0xf
+ 2201 018b 00       		.byte	0
+ 2202 018c 0B       		.uleb128 0xb
+ 2203 018d 0B       		.uleb128 0xb
+ 2204 018e 49       		.uleb128 0x49
+ 2205 018f 13       		.uleb128 0x13
+ 2206 0190 00       		.byte	0
+ 2207 0191 00       		.byte	0
+ 2208 0192 1D       		.uleb128 0x1d
+ 2209 0193 34       		.uleb128 0x34
+ 2210 0194 00       		.byte	0
+ 2211 0195 03       		.uleb128 0x3
+ 2212 0196 0E       		.uleb128 0xe
+ 2213 0197 3A       		.uleb128 0x3a
+ 2214 0198 0B       		.uleb128 0xb
+ 2215 0199 3B       		.uleb128 0x3b
+ 2216 019a 0B       		.uleb128 0xb
+ 2217 019b 49       		.uleb128 0x49
+ 2218 019c 13       		.uleb128 0x13
+ 2219 019d 3F       		.uleb128 0x3f
+ 2220 019e 0C       		.uleb128 0xc
+ 2221 019f 02       		.uleb128 0x2
+ 2222 01a0 0A       		.uleb128 0xa
+ 2223 01a1 00       		.byte	0
+ 2224 01a2 00       		.byte	0
+ 2225 01a3 1E       		.uleb128 0x1e
+ 2226 01a4 26       		.uleb128 0x26
+ 2227 01a5 00       		.byte	0
+ 2228 01a6 49       		.uleb128 0x49
+ 2229 01a7 13       		.uleb128 0x13
+ 2230 01a8 00       		.byte	0
+ 2231 01a9 00       		.byte	0
+ 2232 01aa 1F       		.uleb128 0x1f
+ 2233 01ab 2E       		.uleb128 0x2e
+ 2234 01ac 01       		.byte	0x1
+ 2235 01ad 3F       		.uleb128 0x3f
+ 2236 01ae 0C       		.uleb128 0xc
+ 2237 01af 03       		.uleb128 0x3
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 45
+
+
+ 2238 01b0 0E       		.uleb128 0xe
+ 2239 01b1 3A       		.uleb128 0x3a
+ 2240 01b2 0B       		.uleb128 0xb
+ 2241 01b3 3B       		.uleb128 0x3b
+ 2242 01b4 05       		.uleb128 0x5
+ 2243 01b5 27       		.uleb128 0x27
+ 2244 01b6 0C       		.uleb128 0xc
+ 2245 01b7 3C       		.uleb128 0x3c
+ 2246 01b8 0C       		.uleb128 0xc
+ 2247 01b9 01       		.uleb128 0x1
+ 2248 01ba 13       		.uleb128 0x13
+ 2249 01bb 00       		.byte	0
+ 2250 01bc 00       		.byte	0
+ 2251 01bd 20       		.uleb128 0x20
+ 2252 01be 05       		.uleb128 0x5
+ 2253 01bf 00       		.byte	0
+ 2254 01c0 49       		.uleb128 0x49
+ 2255 01c1 13       		.uleb128 0x13
+ 2256 01c2 00       		.byte	0
+ 2257 01c3 00       		.byte	0
+ 2258 01c4 21       		.uleb128 0x21
+ 2259 01c5 2E       		.uleb128 0x2e
+ 2260 01c6 01       		.byte	0x1
+ 2261 01c7 3F       		.uleb128 0x3f
+ 2262 01c8 0C       		.uleb128 0xc
+ 2263 01c9 03       		.uleb128 0x3
+ 2264 01ca 0E       		.uleb128 0xe
+ 2265 01cb 3A       		.uleb128 0x3a
+ 2266 01cc 0B       		.uleb128 0xb
+ 2267 01cd 3B       		.uleb128 0x3b
+ 2268 01ce 0B       		.uleb128 0xb
+ 2269 01cf 27       		.uleb128 0x27
+ 2270 01d0 0C       		.uleb128 0xc
+ 2271 01d1 3C       		.uleb128 0x3c
+ 2272 01d2 0C       		.uleb128 0xc
+ 2273 01d3 01       		.uleb128 0x1
+ 2274 01d4 13       		.uleb128 0x13
+ 2275 01d5 00       		.byte	0
+ 2276 01d6 00       		.byte	0
+ 2277 01d7 22       		.uleb128 0x22
+ 2278 01d8 2E       		.uleb128 0x2e
+ 2279 01d9 01       		.byte	0x1
+ 2280 01da 3F       		.uleb128 0x3f
+ 2281 01db 0C       		.uleb128 0xc
+ 2282 01dc 03       		.uleb128 0x3
+ 2283 01dd 0E       		.uleb128 0xe
+ 2284 01de 3A       		.uleb128 0x3a
+ 2285 01df 0B       		.uleb128 0xb
+ 2286 01e0 3B       		.uleb128 0x3b
+ 2287 01e1 05       		.uleb128 0x5
+ 2288 01e2 27       		.uleb128 0x27
+ 2289 01e3 0C       		.uleb128 0xc
+ 2290 01e4 49       		.uleb128 0x49
+ 2291 01e5 13       		.uleb128 0x13
+ 2292 01e6 3C       		.uleb128 0x3c
+ 2293 01e7 0C       		.uleb128 0xc
+ 2294 01e8 00       		.byte	0
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 46
+
+
+ 2295 01e9 00       		.byte	0
+ 2296 01ea 00       		.byte	0
+ 2297              		.section	.debug_loc,"",%progbits
+ 2298              	.Ldebug_loc0:
+ 2299              	.LLST0:
+ 2300 0000 00000000 		.4byte	.LFB110
+ 2301 0004 02000000 		.4byte	.LCFI0
+ 2302 0008 0200     		.2byte	0x2
+ 2303 000a 7D       		.byte	0x7d
+ 2304 000b 00       		.sleb128 0
+ 2305 000c 02000000 		.4byte	.LCFI0
+ 2306 0010 0C000000 		.4byte	.LCFI1
+ 2307 0014 0200     		.2byte	0x2
+ 2308 0016 7D       		.byte	0x7d
+ 2309 0017 08       		.sleb128 8
+ 2310 0018 0C000000 		.4byte	.LCFI1
+ 2311 001c 52000000 		.4byte	.LFE110
+ 2312 0020 0200     		.2byte	0x2
+ 2313 0022 7D       		.byte	0x7d
+ 2314 0023 10       		.sleb128 16
+ 2315 0024 00000000 		.4byte	0
+ 2316 0028 00000000 		.4byte	0
+ 2317              	.LLST1:
+ 2318 002c 00000000 		.4byte	.LVL0
+ 2319 0030 14000000 		.4byte	.LVL1
+ 2320 0034 0100     		.2byte	0x1
+ 2321 0036 50       		.byte	0x50
+ 2322 0037 14000000 		.4byte	.LVL1
+ 2323 003b 52000000 		.4byte	.LFE110
+ 2324 003f 0400     		.2byte	0x4
+ 2325 0041 F3       		.byte	0xf3
+ 2326 0042 01       		.uleb128 0x1
+ 2327 0043 50       		.byte	0x50
+ 2328 0044 9F       		.byte	0x9f
+ 2329 0045 00000000 		.4byte	0
+ 2330 0049 00000000 		.4byte	0
+ 2331              	.LLST2:
+ 2332 004d 00000000 		.4byte	.LVL4
+ 2333 0051 18000000 		.4byte	.LVL5
+ 2334 0055 0100     		.2byte	0x1
+ 2335 0057 50       		.byte	0x50
+ 2336 0058 18000000 		.4byte	.LVL5
+ 2337 005c 1C000000 		.4byte	.LFE111
+ 2338 0060 0400     		.2byte	0x4
+ 2339 0062 F3       		.byte	0xf3
+ 2340 0063 01       		.uleb128 0x1
+ 2341 0064 50       		.byte	0x50
+ 2342 0065 9F       		.byte	0x9f
+ 2343 0066 00000000 		.4byte	0
+ 2344 006a 00000000 		.4byte	0
+ 2345              	.LLST3:
+ 2346 006e 00000000 		.4byte	.LVL6
+ 2347 0072 18000000 		.4byte	.LVL7
+ 2348 0076 0100     		.2byte	0x1
+ 2349 0078 50       		.byte	0x50
+ 2350 0079 18000000 		.4byte	.LVL7
+ 2351 007d 1C000000 		.4byte	.LFE112
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 47
+
+
+ 2352 0081 0400     		.2byte	0x4
+ 2353 0083 F3       		.byte	0xf3
+ 2354 0084 01       		.uleb128 0x1
+ 2355 0085 50       		.byte	0x50
+ 2356 0086 9F       		.byte	0x9f
+ 2357 0087 00000000 		.4byte	0
+ 2358 008b 00000000 		.4byte	0
+ 2359              	.LLST4:
+ 2360 008f 00000000 		.4byte	.LVL8
+ 2361 0093 1A000000 		.4byte	.LVL9
+ 2362 0097 0100     		.2byte	0x1
+ 2363 0099 50       		.byte	0x50
+ 2364 009a 1A000000 		.4byte	.LVL9
+ 2365 009e 20000000 		.4byte	.LFE113
+ 2366 00a2 0400     		.2byte	0x4
+ 2367 00a4 F3       		.byte	0xf3
+ 2368 00a5 01       		.uleb128 0x1
+ 2369 00a6 50       		.byte	0x50
+ 2370 00a7 9F       		.byte	0x9f
+ 2371 00a8 00000000 		.4byte	0
+ 2372 00ac 00000000 		.4byte	0
+ 2373              	.LLST5:
+ 2374 00b0 00000000 		.4byte	.LFB114
+ 2375 00b4 02000000 		.4byte	.LCFI2
+ 2376 00b8 0200     		.2byte	0x2
+ 2377 00ba 7D       		.byte	0x7d
+ 2378 00bb 00       		.sleb128 0
+ 2379 00bc 02000000 		.4byte	.LCFI2
+ 2380 00c0 08000000 		.4byte	.LCFI3
+ 2381 00c4 0200     		.2byte	0x2
+ 2382 00c6 7D       		.byte	0x7d
+ 2383 00c7 10       		.sleb128 16
+ 2384 00c8 08000000 		.4byte	.LCFI3
+ 2385 00cc 7C000000 		.4byte	.LFE114
+ 2386 00d0 0200     		.2byte	0x2
+ 2387 00d2 7D       		.byte	0x7d
+ 2388 00d3 28       		.sleb128 40
+ 2389 00d4 00000000 		.4byte	0
+ 2390 00d8 00000000 		.4byte	0
+ 2391              	.LLST6:
+ 2392 00dc 00000000 		.4byte	.LVL10
+ 2393 00e0 06000000 		.4byte	.LVL11
+ 2394 00e4 0100     		.2byte	0x1
+ 2395 00e6 50       		.byte	0x50
+ 2396 00e7 06000000 		.4byte	.LVL11
+ 2397 00eb 7C000000 		.4byte	.LFE114
+ 2398 00ef 0400     		.2byte	0x4
+ 2399 00f1 F3       		.byte	0xf3
+ 2400 00f2 01       		.uleb128 0x1
+ 2401 00f3 50       		.byte	0x50
+ 2402 00f4 9F       		.byte	0x9f
+ 2403 00f5 00000000 		.4byte	0
+ 2404 00f9 00000000 		.4byte	0
+ 2405              	.LLST7:
+ 2406 00fd 00000000 		.4byte	.LVL10
+ 2407 0101 0C000000 		.4byte	.LVL12
+ 2408 0105 0100     		.2byte	0x1
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 48
+
+
+ 2409 0107 51       		.byte	0x51
+ 2410 0108 0C000000 		.4byte	.LVL12
+ 2411 010c 7C000000 		.4byte	.LFE114
+ 2412 0110 0400     		.2byte	0x4
+ 2413 0112 F3       		.byte	0xf3
+ 2414 0113 01       		.uleb128 0x1
+ 2415 0114 51       		.byte	0x51
+ 2416 0115 9F       		.byte	0x9f
+ 2417 0116 00000000 		.4byte	0
+ 2418 011a 00000000 		.4byte	0
+ 2419              	.LLST8:
+ 2420 011e 00000000 		.4byte	.LFB115
+ 2421 0122 02000000 		.4byte	.LCFI4
+ 2422 0126 0200     		.2byte	0x2
+ 2423 0128 7D       		.byte	0x7d
+ 2424 0129 00       		.sleb128 0
+ 2425 012a 02000000 		.4byte	.LCFI4
+ 2426 012e 16000000 		.4byte	.LFE115
+ 2427 0132 0200     		.2byte	0x2
+ 2428 0134 7D       		.byte	0x7d
+ 2429 0135 08       		.sleb128 8
+ 2430 0136 00000000 		.4byte	0
+ 2431 013a 00000000 		.4byte	0
+ 2432              	.LLST9:
+ 2433 013e 00000000 		.4byte	.LVL19
+ 2434 0142 10000000 		.4byte	.LVL20
+ 2435 0146 0100     		.2byte	0x1
+ 2436 0148 50       		.byte	0x50
+ 2437 0149 10000000 		.4byte	.LVL20
+ 2438 014d 16000000 		.4byte	.LFE115
+ 2439 0151 0400     		.2byte	0x4
+ 2440 0153 F3       		.byte	0xf3
+ 2441 0154 01       		.uleb128 0x1
+ 2442 0155 50       		.byte	0x50
+ 2443 0156 9F       		.byte	0x9f
+ 2444 0157 00000000 		.4byte	0
+ 2445 015b 00000000 		.4byte	0
+ 2446              		.section	.debug_aranges,"",%progbits
+ 2447 0000 44000000 		.4byte	0x44
+ 2448 0004 0200     		.2byte	0x2
+ 2449 0006 00000000 		.4byte	.Ldebug_info0
+ 2450 000a 04       		.byte	0x4
+ 2451 000b 00       		.byte	0
+ 2452 000c 0000     		.2byte	0
+ 2453 000e 0000     		.2byte	0
+ 2454 0010 00000000 		.4byte	.LFB110
+ 2455 0014 52000000 		.4byte	.LFE110-.LFB110
+ 2456 0018 00000000 		.4byte	.LFB111
+ 2457 001c 1C000000 		.4byte	.LFE111-.LFB111
+ 2458 0020 00000000 		.4byte	.LFB112
+ 2459 0024 1C000000 		.4byte	.LFE112-.LFB112
+ 2460 0028 00000000 		.4byte	.LFB113
+ 2461 002c 20000000 		.4byte	.LFE113-.LFB113
+ 2462 0030 00000000 		.4byte	.LFB114
+ 2463 0034 7C000000 		.4byte	.LFE114-.LFB114
+ 2464 0038 00000000 		.4byte	.LFB115
+ 2465 003c 16000000 		.4byte	.LFE115-.LFB115
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 49
+
+
+ 2466 0040 00000000 		.4byte	0
+ 2467 0044 00000000 		.4byte	0
+ 2468              		.section	.debug_ranges,"",%progbits
+ 2469              	.Ldebug_ranges0:
+ 2470 0000 00000000 		.4byte	.LFB110
+ 2471 0004 52000000 		.4byte	.LFE110
+ 2472 0008 00000000 		.4byte	.LFB111
+ 2473 000c 1C000000 		.4byte	.LFE111
+ 2474 0010 00000000 		.4byte	.LFB112
+ 2475 0014 1C000000 		.4byte	.LFE112
+ 2476 0018 00000000 		.4byte	.LFB113
+ 2477 001c 20000000 		.4byte	.LFE113
+ 2478 0020 00000000 		.4byte	.LFB114
+ 2479 0024 7C000000 		.4byte	.LFE114
+ 2480 0028 00000000 		.4byte	.LFB115
+ 2481 002c 16000000 		.4byte	.LFE115
+ 2482 0030 00000000 		.4byte	0
+ 2483 0034 00000000 		.4byte	0
+ 2484              		.section	.debug_line,"",%progbits
+ 2485              	.Ldebug_line0:
+ 2486 0000 F7010000 		.section	.debug_str,"MS",%progbits,1
+ 2486      02005201 
+ 2486      00000201 
+ 2486      FB0E0D00 
+ 2486      01010101 
+ 2487              	.LASF190:
+ 2488 0000 5243435F 		.ascii	"RCC_AHB1PeriphClockCmd\000"
+ 2488      41484231 
+ 2488      50657269 
+ 2488      7068436C 
+ 2488      6F636B43 
+ 2489              	.LASF110:
+ 2490 0017 50555044 		.ascii	"PUPDR\000"
+ 2490      5200
+ 2491              	.LASF184:
+ 2492 001d 42555454 		.ascii	"BUTTON_PIN\000"
+ 2492      4F4E5F50 
+ 2492      494E00
+ 2493              	.LASF153:
+ 2494 0028 4E564943 		.ascii	"NVIC_IRQChannelCmd\000"
+ 2494      5F495251 
+ 2494      4368616E 
+ 2494      6E656C43 
+ 2494      6D6400
+ 2495              	.LASF28:
+ 2496 003b 43414E31 		.ascii	"CAN1_RX0_IRQn\000"
+ 2496      5F525830 
+ 2496      5F495251 
+ 2496      6E00
+ 2497              	.LASF9:
+ 2498 0049 5056445F 		.ascii	"PVD_IRQn\000"
+ 2498      4952516E 
+ 2498      00
+ 2499              	.LASF72:
+ 2500 0052 43414E32 		.ascii	"CAN2_RX0_IRQn\000"
+ 2500      5F525830 
+ 2500      5F495251 
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 50
+
+
+ 2500      6E00
+ 2501              	.LASF29:
+ 2502 0060 43414E31 		.ascii	"CAN1_RX1_IRQn\000"
+ 2502      5F525831 
+ 2502      5F495251 
+ 2502      6E00
+ 2503              	.LASF181:
+ 2504 006e 4750494F 		.ascii	"GPIO_PIN\000"
+ 2504      5F50494E 
+ 2504      00
+ 2505              	.LASF81:
+ 2506 0077 49324333 		.ascii	"I2C3_ER_IRQn\000"
+ 2506      5F45525F 
+ 2506      4952516E 
+ 2506      00
+ 2507              	.LASF125:
+ 2508 0084 45585449 		.ascii	"EXTI_LineCmd\000"
+ 2508      5F4C696E 
+ 2508      65436D64 
+ 2508      00
+ 2509              	.LASF39:
+ 2510 0091 49324331 		.ascii	"I2C1_EV_IRQn\000"
+ 2510      5F45565F 
+ 2510      4952516E 
+ 2510      00
+ 2511              	.LASF132:
+ 2512 009e 4750494F 		.ascii	"GPIO_OType_PP\000"
+ 2512      5F4F5479 
+ 2512      70655F50 
+ 2512      5000
+ 2513              	.LASF108:
+ 2514 00ac 4F545950 		.ascii	"OTYPER\000"
+ 2514      455200
+ 2515              	.LASF76:
+ 2516 00b3 444D4132 		.ascii	"DMA2_Stream5_IRQn\000"
+ 2516      5F537472 
+ 2516      65616D35 
+ 2516      5F495251 
+ 2516      6E00
+ 2517              	.LASF106:
+ 2518 00c5 46756E63 		.ascii	"FunctionalState\000"
+ 2518      74696F6E 
+ 2518      616C5374 
+ 2518      61746500 
+ 2519              	.LASF183:
+ 2520 00d5 42555454 		.ascii	"BUTTON_PORT\000"
+ 2520      4F4E5F50 
+ 2520      4F525400 
+ 2521              	.LASF120:
+ 2522 00e1 45585449 		.ascii	"EXTI_Trigger_Rising_Falling\000"
+ 2522      5F547269 
+ 2522      67676572 
+ 2522      5F526973 
+ 2522      696E675F 
+ 2523              	.LASF160:
+ 2524 00fd 42555454 		.ascii	"BUTTON_USER\000"
+ 2524      4F4E5F55 
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 51
+
+
+ 2524      53455200 
+ 2525              	.LASF104:
+ 2526 0109 44495341 		.ascii	"DISABLE\000"
+ 2526      424C4500 
+ 2527              	.LASF107:
+ 2528 0111 4D4F4445 		.ascii	"MODER\000"
+ 2528      5200
+ 2529              	.LASF101:
+ 2530 0117 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2530      206C6F6E 
+ 2530      6720756E 
+ 2530      7369676E 
+ 2530      65642069 
+ 2531              	.LASF163:
+ 2532 012e 42555454 		.ascii	"BUTTON_MODE_EXTI\000"
+ 2532      4F4E5F4D 
+ 2532      4F44455F 
+ 2532      45585449 
+ 2532      00
+ 2533              	.LASF129:
+ 2534 013f 4750494F 		.ascii	"GPIO_Mode_AF\000"
+ 2534      5F4D6F64 
+ 2534      655F4146 
+ 2534      00
+ 2535              	.LASF49:
+ 2536 014c 5254435F 		.ascii	"RTC_Alarm_IRQn\000"
+ 2536      416C6172 
+ 2536      6D5F4952 
+ 2536      516E00
+ 2537              	.LASF146:
+ 2538 015b 4750494F 		.ascii	"GPIO_Speed\000"
+ 2538      5F537065 
+ 2538      656400
+ 2539              	.LASF42:
+ 2540 0166 49324332 		.ascii	"I2C2_ER_IRQn\000"
+ 2540      5F45525F 
+ 2540      4952516E 
+ 2540      00
+ 2541              	.LASF174:
+ 2542 0173 42757474 		.ascii	"Button\000"
+ 2542      6F6E00
+ 2543              	.LASF130:
+ 2544 017a 4750494F 		.ascii	"GPIO_Mode_AN\000"
+ 2544      5F4D6F64 
+ 2544      655F414E 
+ 2544      00
+ 2545              	.LASF11:
+ 2546 0187 5254435F 		.ascii	"RTC_WKUP_IRQn\000"
+ 2546      574B5550 
+ 2546      5F495251 
+ 2546      6E00
+ 2547              	.LASF8:
+ 2548 0195 57574447 		.ascii	"WWDG_IRQn\000"
+ 2548      5F495251 
+ 2548      6E00
+ 2549              	.LASF57:
+ 2550 019f 5344494F 		.ascii	"SDIO_IRQn\000"
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 52
+
+
+ 2550      5F495251 
+ 2550      6E00
+ 2551              	.LASF134:
+ 2552 01a9 4750494F 		.ascii	"GPIOOType_TypeDef\000"
+ 2552      4F547970 
+ 2552      655F5479 
+ 2552      70654465 
+ 2552      6600
+ 2553              	.LASF136:
+ 2554 01bb 4750494F 		.ascii	"GPIO_Speed_25MHz\000"
+ 2554      5F537065 
+ 2554      65645F32 
+ 2554      354D487A 
+ 2554      00
+ 2555              	.LASF54:
+ 2556 01cc 54494D38 		.ascii	"TIM8_CC_IRQn\000"
+ 2556      5F43435F 
+ 2556      4952516E 
+ 2556      00
+ 2557              	.LASF100:
+ 2558 01d9 6C6F6E67 		.ascii	"long long int\000"
+ 2558      206C6F6E 
+ 2558      6720696E 
+ 2558      7400
+ 2559              	.LASF90:
+ 2560 01e7 7369676E 		.ascii	"signed char\000"
+ 2560      65642063 
+ 2560      68617200 
+ 2561              	.LASF73:
+ 2562 01f3 43414E32 		.ascii	"CAN2_RX1_IRQn\000"
+ 2562      5F525831 
+ 2562      5F495251 
+ 2562      6E00
+ 2563              	.LASF87:
+ 2564 0201 43525950 		.ascii	"CRYP_IRQn\000"
+ 2564      5F495251 
+ 2564      6E00
+ 2565              	.LASF127:
+ 2566 020b 4750494F 		.ascii	"GPIO_Mode_IN\000"
+ 2566      5F4D6F64 
+ 2566      655F494E 
+ 2566      00
+ 2567              	.LASF77:
+ 2568 0218 444D4132 		.ascii	"DMA2_Stream6_IRQn\000"
+ 2568      5F537472 
+ 2568      65616D36 
+ 2568      5F495251 
+ 2568      6E00
+ 2569              	.LASF176:
+ 2570 022a 4750494F 		.ascii	"GPIO_InitStructure\000"
+ 2570      5F496E69 
+ 2570      74537472 
+ 2570      75637475 
+ 2570      726500
+ 2571              	.LASF97:
+ 2572 023d 6C6F6E67 		.ascii	"long int\000"
+ 2572      20696E74 
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 53
+
+
+ 2572      00
+ 2573              	.LASF41:
+ 2574 0246 49324332 		.ascii	"I2C2_EV_IRQn\000"
+ 2574      5F45565F 
+ 2574      4952516E 
+ 2574      00
+ 2575              	.LASF117:
+ 2576 0253 45585449 		.ascii	"EXTIMode_TypeDef\000"
+ 2576      4D6F6465 
+ 2576      5F547970 
+ 2576      65446566 
+ 2576      00
+ 2577              	.LASF24:
+ 2578 0264 444D4131 		.ascii	"DMA1_Stream5_IRQn\000"
+ 2578      5F537472 
+ 2578      65616D35 
+ 2578      5F495251 
+ 2578      6E00
+ 2579              	.LASF31:
+ 2580 0276 45585449 		.ascii	"EXTI9_5_IRQn\000"
+ 2580      395F355F 
+ 2580      4952516E 
+ 2580      00
+ 2581              	.LASF105:
+ 2582 0283 454E4142 		.ascii	"ENABLE\000"
+ 2582      4C4500
+ 2583              	.LASF92:
+ 2584 028a 73686F72 		.ascii	"short int\000"
+ 2584      7420696E 
+ 2584      7400
+ 2585              	.LASF94:
+ 2586 0294 75696E74 		.ascii	"uint16_t\000"
+ 2586      31365F74 
+ 2586      00
+ 2587              	.LASF166:
+ 2588 029d 646F7562 		.ascii	"double\000"
+ 2588      6C6500
+ 2589              	.LASF119:
+ 2590 02a4 45585449 		.ascii	"EXTI_Trigger_Falling\000"
+ 2590      5F547269 
+ 2590      67676572 
+ 2590      5F46616C 
+ 2590      6C696E67 
+ 2591              	.LASF164:
+ 2592 02b9 42757474 		.ascii	"ButtonMode_TypeDef\000"
+ 2592      6F6E4D6F 
+ 2592      64655F54 
+ 2592      79706544 
+ 2592      656600
+ 2593              	.LASF62:
+ 2594 02cc 54494D36 		.ascii	"TIM6_DAC_IRQn\000"
+ 2594      5F444143 
+ 2594      5F495251 
+ 2594      6E00
+ 2595              	.LASF60:
+ 2596 02da 55415254 		.ascii	"UART4_IRQn\000"
+ 2596      345F4952 
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 54
+
+
+ 2596      516E00
+ 2597              	.LASF50:
+ 2598 02e5 4F54475F 		.ascii	"OTG_FS_WKUP_IRQn\000"
+ 2598      46535F57 
+ 2598      4B55505F 
+ 2598      4952516E 
+ 2598      00
+ 2599              	.LASF6:
+ 2600 02f6 50656E64 		.ascii	"PendSV_IRQn\000"
+ 2600      53565F49 
+ 2600      52516E00 
+ 2601              	.LASF52:
+ 2602 0302 54494D38 		.ascii	"TIM8_UP_TIM13_IRQn\000"
+ 2602      5F55505F 
+ 2602      54494D31 
+ 2602      335F4952 
+ 2602      516E00
+ 2603              	.LASF168:
+ 2604 0315 6C6F6E67 		.ascii	"long double\000"
+ 2604      20646F75 
+ 2604      626C6500 
+ 2605              	.LASF196:
+ 2606 0321 4750494F 		.ascii	"GPIO_ReadInputDataBit\000"
+ 2606      5F526561 
+ 2606      64496E70 
+ 2606      75744461 
+ 2606      74614269 
+ 2607              	.LASF2:
+ 2608 0337 42757346 		.ascii	"BusFault_IRQn\000"
+ 2608      61756C74 
+ 2608      5F495251 
+ 2608      6E00
+ 2609              	.LASF78:
+ 2610 0345 444D4132 		.ascii	"DMA2_Stream7_IRQn\000"
+ 2610      5F537472 
+ 2610      65616D37 
+ 2610      5F495251 
+ 2610      6E00
+ 2611              	.LASF139:
+ 2612 0357 4750494F 		.ascii	"GPIOSpeed_TypeDef\000"
+ 2612      53706565 
+ 2612      645F5479 
+ 2612      70654465 
+ 2612      6600
+ 2613              	.LASF173:
+ 2614 0369 53544D5F 		.ascii	"STM_EVAL_PBInit\000"
+ 2614      4556414C 
+ 2614      5F504249 
+ 2614      6E697400 
+ 2615              	.LASF178:
+ 2616 0379 4E564943 		.ascii	"NVIC_InitStructure\000"
+ 2616      5F496E69 
+ 2616      74537472 
+ 2616      75637475 
+ 2616      726500
+ 2617              	.LASF102:
+ 2618 038c 756E7369 		.ascii	"unsigned int\000"
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 55
+
+
+ 2618      676E6564 
+ 2618      20696E74 
+ 2618      00
+ 2619              	.LASF194:
+ 2620 0399 45585449 		.ascii	"EXTI_Init\000"
+ 2620      5F496E69 
+ 2620      7400
+ 2621              	.LASF22:
+ 2622 03a3 444D4131 		.ascii	"DMA1_Stream3_IRQn\000"
+ 2622      5F537472 
+ 2622      65616D33 
+ 2622      5F495251 
+ 2622      6E00
+ 2623              	.LASF25:
+ 2624 03b5 444D4131 		.ascii	"DMA1_Stream6_IRQn\000"
+ 2624      5F537472 
+ 2624      65616D36 
+ 2624      5F495251 
+ 2624      6E00
+ 2625              	.LASF148:
+ 2626 03c7 4750494F 		.ascii	"GPIO_PuPd\000"
+ 2626      5F507550 
+ 2626      6400
+ 2627              	.LASF1:
+ 2628 03d1 4D656D6F 		.ascii	"MemoryManagement_IRQn\000"
+ 2628      72794D61 
+ 2628      6E616765 
+ 2628      6D656E74 
+ 2628      5F495251 
+ 2629              	.LASF80:
+ 2630 03e7 49324333 		.ascii	"I2C3_EV_IRQn\000"
+ 2630      5F45565F 
+ 2630      4952516E 
+ 2630      00
+ 2631              	.LASF99:
+ 2632 03f4 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2632      20756E73 
+ 2632      69676E65 
+ 2632      6420696E 
+ 2632      7400
+ 2633              	.LASF114:
+ 2634 0406 4750494F 		.ascii	"GPIO_TypeDef\000"
+ 2634      5F547970 
+ 2634      65446566 
+ 2634      00
+ 2635              	.LASF113:
+ 2636 0413 4C434B52 		.ascii	"LCKR\000"
+ 2636      00
+ 2637              	.LASF82:
+ 2638 0418 4F54475F 		.ascii	"OTG_HS_EP1_OUT_IRQn\000"
+ 2638      48535F45 
+ 2638      50315F4F 
+ 2638      55545F49 
+ 2638      52516E00 
+ 2639              	.LASF189:
+ 2640 042c 42555454 		.ascii	"BUTTON_IRQn\000"
+ 2640      4F4E5F49 
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 56
+
+
+ 2640      52516E00 
+ 2641              	.LASF193:
+ 2642 0438 53595343 		.ascii	"SYSCFG_EXTILineConfig\000"
+ 2642      46475F45 
+ 2642      5854494C 
+ 2642      696E6543 
+ 2642      6F6E6669 
+ 2643              	.LASF95:
+ 2644 044e 73686F72 		.ascii	"short unsigned int\000"
+ 2644      7420756E 
+ 2644      7369676E 
+ 2644      65642069 
+ 2644      6E7400
+ 2645              	.LASF66:
+ 2646 0461 444D4132 		.ascii	"DMA2_Stream2_IRQn\000"
+ 2646      5F537472 
+ 2646      65616D32 
+ 2646      5F495251 
+ 2646      6E00
+ 2647              	.LASF27:
+ 2648 0473 43414E31 		.ascii	"CAN1_TX_IRQn\000"
+ 2648      5F54585F 
+ 2648      4952516E 
+ 2648      00
+ 2649              	.LASF48:
+ 2650 0480 45585449 		.ascii	"EXTI15_10_IRQn\000"
+ 2650      31355F31 
+ 2650      305F4952 
+ 2650      516E00
+ 2651              	.LASF143:
+ 2652 048f 4750494F 		.ascii	"GPIOPuPd_TypeDef\000"
+ 2652      50755064 
+ 2652      5F547970 
+ 2652      65446566 
+ 2652      00
+ 2653              	.LASF188:
+ 2654 04a0 42555454 		.ascii	"BUTTON_PIN_SOURCE\000"
+ 2654      4F4E5F50 
+ 2654      494E5F53 
+ 2654      4F555243 
+ 2654      4500
+ 2655              	.LASF43:
+ 2656 04b2 53504931 		.ascii	"SPI1_IRQn\000"
+ 2656      5F495251 
+ 2656      6E00
+ 2657              	.LASF20:
+ 2658 04bc 444D4131 		.ascii	"DMA1_Stream1_IRQn\000"
+ 2658      5F537472 
+ 2658      65616D31 
+ 2658      5F495251 
+ 2658      6E00
+ 2659              	.LASF150:
+ 2660 04ce 4E564943 		.ascii	"NVIC_IRQChannel\000"
+ 2660      5F495251 
+ 2660      4368616E 
+ 2660      6E656C00 
+ 2661              	.LASF51:
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 57
+
+
+ 2662 04de 54494D38 		.ascii	"TIM8_BRK_TIM12_IRQn\000"
+ 2662      5F42524B 
+ 2662      5F54494D 
+ 2662      31325F49 
+ 2662      52516E00 
+ 2663              	.LASF151:
+ 2664 04f2 4E564943 		.ascii	"NVIC_IRQChannelPreemptionPriority\000"
+ 2664      5F495251 
+ 2664      4368616E 
+ 2664      6E656C50 
+ 2664      7265656D 
+ 2665              	.LASF7:
+ 2666 0514 53797354 		.ascii	"SysTick_IRQn\000"
+ 2666      69636B5F 
+ 2666      4952516E 
+ 2666      00
+ 2667              	.LASF35:
+ 2668 0521 54494D31 		.ascii	"TIM1_CC_IRQn\000"
+ 2668      5F43435F 
+ 2668      4952516E 
+ 2668      00
+ 2669              	.LASF140:
+ 2670 052e 4750494F 		.ascii	"GPIO_PuPd_NOPULL\000"
+ 2670      5F507550 
+ 2670      645F4E4F 
+ 2670      50554C4C 
+ 2670      00
+ 2671              	.LASF53:
+ 2672 053f 54494D38 		.ascii	"TIM8_TRG_COM_TIM14_IRQn\000"
+ 2672      5F545247 
+ 2672      5F434F4D 
+ 2672      5F54494D 
+ 2672      31345F49 
+ 2673              	.LASF200:
+ 2674 0557 4952516E 		.ascii	"IRQn\000"
+ 2674      00
+ 2675              	.LASF142:
+ 2676 055c 4750494F 		.ascii	"GPIO_PuPd_DOWN\000"
+ 2676      5F507550 
+ 2676      645F444F 
+ 2676      574E00
+ 2677              	.LASF103:
+ 2678 056b 73697A65 		.ascii	"sizetype\000"
+ 2678      74797065 
+ 2678      00
+ 2679              	.LASF147:
+ 2680 0574 4750494F 		.ascii	"GPIO_OType\000"
+ 2680      5F4F5479 
+ 2680      706500
+ 2681              	.LASF69:
+ 2682 057f 4554485F 		.ascii	"ETH_IRQn\000"
+ 2682      4952516E 
+ 2682      00
+ 2683              	.LASF191:
+ 2684 0588 4750494F 		.ascii	"GPIO_Init\000"
+ 2684      5F496E69 
+ 2684      7400
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 58
+
+
+ 2685              	.LASF4:
+ 2686 0592 53564361 		.ascii	"SVCall_IRQn\000"
+ 2686      6C6C5F49 
+ 2686      52516E00 
+ 2687              	.LASF67:
+ 2688 059e 444D4132 		.ascii	"DMA2_Stream3_IRQn\000"
+ 2688      5F537472 
+ 2688      65616D33 
+ 2688      5F495251 
+ 2688      6E00
+ 2689              	.LASF154:
+ 2690 05b0 4E564943 		.ascii	"NVIC_InitTypeDef\000"
+ 2690      5F496E69 
+ 2690      74547970 
+ 2690      65446566 
+ 2690      00
+ 2691              	.LASF23:
+ 2692 05c1 444D4131 		.ascii	"DMA1_Stream4_IRQn\000"
+ 2692      5F537472 
+ 2692      65616D34 
+ 2692      5F495251 
+ 2692      6E00
+ 2693              	.LASF169:
+ 2694 05d3 53544D5F 		.ascii	"STM_EVAL_LEDInit\000"
+ 2694      4556414C 
+ 2694      5F4C4544 
+ 2694      496E6974 
+ 2694      00
+ 2695              	.LASF159:
+ 2696 05e4 4C65645F 		.ascii	"Led_TypeDef\000"
+ 2696      54797065 
+ 2696      44656600 
+ 2697              	.LASF79:
+ 2698 05f0 55534152 		.ascii	"USART6_IRQn\000"
+ 2698      54365F49 
+ 2698      52516E00 
+ 2699              	.LASF122:
+ 2700 05fc 45585449 		.ascii	"EXTI_Line\000"
+ 2700      5F4C696E 
+ 2700      6500
+ 2701              	.LASF58:
+ 2702 0606 54494D35 		.ascii	"TIM5_IRQn\000"
+ 2702      5F495251 
+ 2702      6E00
+ 2703              	.LASF175:
+ 2704 0610 42757474 		.ascii	"Button_Mode\000"
+ 2704      6F6E5F4D 
+ 2704      6F646500 
+ 2705              	.LASF201:
+ 2706 061c 53544D5F 		.ascii	"STM_EVAL_PBGetState\000"
+ 2706      4556414C 
+ 2706      5F504247 
+ 2706      65745374 
+ 2706      61746500 
+ 2707              	.LASF44:
+ 2708 0630 53504932 		.ascii	"SPI2_IRQn\000"
+ 2708      5F495251 
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 59
+
+
+ 2708      6E00
+ 2709              	.LASF21:
+ 2710 063a 444D4131 		.ascii	"DMA1_Stream2_IRQn\000"
+ 2710      5F537472 
+ 2710      65616D32 
+ 2710      5F495251 
+ 2710      6E00
+ 2711              	.LASF71:
+ 2712 064c 43414E32 		.ascii	"CAN2_TX_IRQn\000"
+ 2712      5F54585F 
+ 2712      4952516E 
+ 2712      00
+ 2713              	.LASF149:
+ 2714 0659 4750494F 		.ascii	"GPIO_InitTypeDef\000"
+ 2714      5F496E69 
+ 2714      74547970 
+ 2714      65446566 
+ 2714      00
+ 2715              	.LASF109:
+ 2716 066a 4F535045 		.ascii	"OSPEEDR\000"
+ 2716      45445200 
+ 2717              	.LASF137:
+ 2718 0672 4750494F 		.ascii	"GPIO_Speed_50MHz\000"
+ 2718      5F537065 
+ 2718      65645F35 
+ 2718      304D487A 
+ 2718      00
+ 2719              	.LASF124:
+ 2720 0683 45585449 		.ascii	"EXTI_Trigger\000"
+ 2720      5F547269 
+ 2720      67676572 
+ 2720      00
+ 2721              	.LASF170:
+ 2722 0690 53544D5F 		.ascii	"STM_EVAL_LEDOn\000"
+ 2722      4556414C 
+ 2722      5F4C4544 
+ 2722      4F6E00
+ 2723              	.LASF85:
+ 2724 069f 4F54475F 		.ascii	"OTG_HS_IRQn\000"
+ 2724      48535F49 
+ 2724      52516E00 
+ 2725              	.LASF167:
+ 2726 06ab 666C6F61 		.ascii	"float\000"
+ 2726      7400
+ 2727              	.LASF177:
+ 2728 06b1 45585449 		.ascii	"EXTI_InitStructure\000"
+ 2728      5F496E69 
+ 2728      74537472 
+ 2728      75637475 
+ 2728      726500
+ 2729              	.LASF131:
+ 2730 06c4 4750494F 		.ascii	"GPIOMode_TypeDef\000"
+ 2730      4D6F6465 
+ 2730      5F547970 
+ 2730      65446566 
+ 2730      00
+ 2731              	.LASF123:
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 60
+
+
+ 2732 06d5 45585449 		.ascii	"EXTI_Mode\000"
+ 2732      5F4D6F64 
+ 2732      6500
+ 2733              	.LASF115:
+ 2734 06df 45585449 		.ascii	"EXTI_Mode_Interrupt\000"
+ 2734      5F4D6F64 
+ 2734      655F496E 
+ 2734      74657272 
+ 2734      75707400 
+ 2735              	.LASF45:
+ 2736 06f3 55534152 		.ascii	"USART1_IRQn\000"
+ 2736      54315F49 
+ 2736      52516E00 
+ 2737              	.LASF59:
+ 2738 06ff 53504933 		.ascii	"SPI3_IRQn\000"
+ 2738      5F495251 
+ 2738      6E00
+ 2739              	.LASF68:
+ 2740 0709 444D4132 		.ascii	"DMA2_Stream4_IRQn\000"
+ 2740      5F537472 
+ 2740      65616D34 
+ 2740      5F495251 
+ 2740      6E00
+ 2741              	.LASF56:
+ 2742 071b 46534D43 		.ascii	"FSMC_IRQn\000"
+ 2742      5F495251 
+ 2742      6E00
+ 2743              	.LASF96:
+ 2744 0725 696E7433 		.ascii	"int32_t\000"
+ 2744      325F7400 
+ 2745              	.LASF91:
+ 2746 072d 756E7369 		.ascii	"unsigned char\000"
+ 2746      676E6564 
+ 2746      20636861 
+ 2746      7200
+ 2747              	.LASF32:
+ 2748 073b 54494D31 		.ascii	"TIM1_BRK_TIM9_IRQn\000"
+ 2748      5F42524B 
+ 2748      5F54494D 
+ 2748      395F4952 
+ 2748      516E00
+ 2749              	.LASF179:
+ 2750 074e 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 2750      52784275 
+ 2750      66666572 
+ 2750      00
+ 2751              	.LASF33:
+ 2752 075b 54494D31 		.ascii	"TIM1_UP_TIM10_IRQn\000"
+ 2752      5F55505F 
+ 2752      54494D31 
+ 2752      305F4952 
+ 2752      516E00
+ 2753              	.LASF18:
+ 2754 076e 45585449 		.ascii	"EXTI4_IRQn\000"
+ 2754      345F4952 
+ 2754      516E00
+ 2755              	.LASF88:
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 61
+
+
+ 2756 0779 48415348 		.ascii	"HASH_RNG_IRQn\000"
+ 2756      5F524E47 
+ 2756      5F495251 
+ 2756      6E00
+ 2757              	.LASF135:
+ 2758 0787 4750494F 		.ascii	"GPIO_Speed_2MHz\000"
+ 2758      5F537065 
+ 2758      65645F32 
+ 2758      4D487A00 
+ 2759              	.LASF156:
+ 2760 0797 4C454433 		.ascii	"LED3\000"
+ 2760      00
+ 2761              	.LASF155:
+ 2762 079c 4C454434 		.ascii	"LED4\000"
+ 2762      00
+ 2763              	.LASF61:
+ 2764 07a1 55415254 		.ascii	"UART5_IRQn\000"
+ 2764      355F4952 
+ 2764      516E00
+ 2765              	.LASF34:
+ 2766 07ac 54494D31 		.ascii	"TIM1_TRG_COM_TIM11_IRQn\000"
+ 2766      5F545247 
+ 2766      5F434F4D 
+ 2766      5F54494D 
+ 2766      31315F49 
+ 2767              	.LASF198:
+ 2768 07c4 7372632F 		.ascii	"src/stm32f4_discovery.c\000"
+ 2768      73746D33 
+ 2768      3266345F 
+ 2768      64697363 
+ 2768      6F766572 
+ 2769              	.LASF16:
+ 2770 07dc 45585449 		.ascii	"EXTI2_IRQn\000"
+ 2770      325F4952 
+ 2770      516E00
+ 2771              	.LASF187:
+ 2772 07e7 42555454 		.ascii	"BUTTON_PORT_SOURCE\000"
+ 2772      4F4E5F50 
+ 2772      4F52545F 
+ 2772      534F5552 
+ 2772      434500
+ 2773              	.LASF12:
+ 2774 07fa 464C4153 		.ascii	"FLASH_IRQn\000"
+ 2774      485F4952 
+ 2774      516E00
+ 2775              	.LASF75:
+ 2776 0805 4F54475F 		.ascii	"OTG_FS_IRQn\000"
+ 2776      46535F49 
+ 2776      52516E00 
+ 2777              	.LASF98:
+ 2778 0811 75696E74 		.ascii	"uint32_t\000"
+ 2778      33325F74 
+ 2778      00
+ 2779              	.LASF152:
+ 2780 081a 4E564943 		.ascii	"NVIC_IRQChannelSubPriority\000"
+ 2780      5F495251 
+ 2780      4368616E 
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 62
+
+
+ 2780      6E656C53 
+ 2780      75625072 
+ 2781              	.LASF46:
+ 2782 0835 55534152 		.ascii	"USART2_IRQn\000"
+ 2782      54325F49 
+ 2782      52516E00 
+ 2783              	.LASF3:
+ 2784 0841 55736167 		.ascii	"UsageFault_IRQn\000"
+ 2784      65466175 
+ 2784      6C745F49 
+ 2784      52516E00 
+ 2785              	.LASF55:
+ 2786 0851 444D4131 		.ascii	"DMA1_Stream7_IRQn\000"
+ 2786      5F537472 
+ 2786      65616D37 
+ 2786      5F495251 
+ 2786      6E00
+ 2787              	.LASF38:
+ 2788 0863 54494D34 		.ascii	"TIM4_IRQn\000"
+ 2788      5F495251 
+ 2788      6E00
+ 2789              	.LASF185:
+ 2790 086d 42555454 		.ascii	"BUTTON_CLK\000"
+ 2790      4F4E5F43 
+ 2790      4C4B00
+ 2791              	.LASF128:
+ 2792 0878 4750494F 		.ascii	"GPIO_Mode_OUT\000"
+ 2792      5F4D6F64 
+ 2792      655F4F55 
+ 2792      5400
+ 2793              	.LASF158:
+ 2794 0886 4C454436 		.ascii	"LED6\000"
+ 2794      00
+ 2795              	.LASF165:
+ 2796 088b 63686172 		.ascii	"char\000"
+ 2796      00
+ 2797              	.LASF192:
+ 2798 0890 5243435F 		.ascii	"RCC_APB2PeriphClockCmd\000"
+ 2798      41504232 
+ 2798      50657269 
+ 2798      7068436C 
+ 2798      6F636B43 
+ 2799              	.LASF182:
+ 2800 08a7 4750494F 		.ascii	"GPIO_CLK\000"
+ 2800      5F434C4B 
+ 2800      00
+ 2801              	.LASF63:
+ 2802 08b0 54494D37 		.ascii	"TIM7_IRQn\000"
+ 2802      5F495251 
+ 2802      6E00
+ 2803              	.LASF199:
+ 2804 08ba 433A5C78 		.ascii	"C:\\xav_dev\\eclipse\\ambiantiseur-make\000"
+ 2804      61765F64 
+ 2804      65765C65 
+ 2804      636C6970 
+ 2804      73655C61 
+ 2805              	.LASF83:
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 63
+
+
+ 2806 08df 4F54475F 		.ascii	"OTG_HS_EP1_IN_IRQn\000"
+ 2806      48535F45 
+ 2806      50315F49 
+ 2806      4E5F4952 
+ 2806      516E00
+ 2807              	.LASF0:
+ 2808 08f2 4E6F6E4D 		.ascii	"NonMaskableInt_IRQn\000"
+ 2808      61736B61 
+ 2808      626C6549 
+ 2808      6E745F49 
+ 2808      52516E00 
+ 2809              	.LASF121:
+ 2810 0906 45585449 		.ascii	"EXTITrigger_TypeDef\000"
+ 2810      54726967 
+ 2810      6765725F 
+ 2810      54797065 
+ 2810      44656600 
+ 2811              	.LASF145:
+ 2812 091a 4750494F 		.ascii	"GPIO_Mode\000"
+ 2812      5F4D6F64 
+ 2812      6500
+ 2813              	.LASF126:
+ 2814 0924 45585449 		.ascii	"EXTI_InitTypeDef\000"
+ 2814      5F496E69 
+ 2814      74547970 
+ 2814      65446566 
+ 2814      00
+ 2815              	.LASF118:
+ 2816 0935 45585449 		.ascii	"EXTI_Trigger_Rising\000"
+ 2816      5F547269 
+ 2816      67676572 
+ 2816      5F526973 
+ 2816      696E6700 
+ 2817              	.LASF10:
+ 2818 0949 54414D50 		.ascii	"TAMP_STAMP_IRQn\000"
+ 2818      5F535441 
+ 2818      4D505F49 
+ 2818      52516E00 
+ 2819              	.LASF157:
+ 2820 0959 4C454435 		.ascii	"LED5\000"
+ 2820      00
+ 2821              	.LASF171:
+ 2822 095e 53544D5F 		.ascii	"STM_EVAL_LEDOff\000"
+ 2822      4556414C 
+ 2822      5F4C4544 
+ 2822      4F666600 
+ 2823              	.LASF197:
+ 2824 096e 474E5520 		.ascii	"GNU C 4.7.3 20121207 (release) [ARM/embedded-4_7-br"
+ 2824      4320342E 
+ 2824      372E3320 
+ 2824      32303132 
+ 2824      31323037 
+ 2825 09a1 616E6368 		.ascii	"anch revision 194305]\000"
+ 2825      20726576 
+ 2825      6973696F 
+ 2825      6E203139 
+ 2825      34333035 
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 64
+
+
+ 2826              	.LASF64:
+ 2827 09b7 444D4132 		.ascii	"DMA2_Stream0_IRQn\000"
+ 2827      5F537472 
+ 2827      65616D30 
+ 2827      5F495251 
+ 2827      6E00
+ 2828              	.LASF180:
+ 2829 09c9 4750494F 		.ascii	"GPIO_PORT\000"
+ 2829      5F504F52 
+ 2829      5400
+ 2830              	.LASF47:
+ 2831 09d3 55534152 		.ascii	"USART3_IRQn\000"
+ 2831      54335F49 
+ 2831      52516E00 
+ 2832              	.LASF133:
+ 2833 09df 4750494F 		.ascii	"GPIO_OType_OD\000"
+ 2833      5F4F5479 
+ 2833      70655F4F 
+ 2833      4400
+ 2834              	.LASF36:
+ 2835 09ed 54494D32 		.ascii	"TIM2_IRQn\000"
+ 2835      5F495251 
+ 2835      6E00
+ 2836              	.LASF14:
+ 2837 09f7 45585449 		.ascii	"EXTI0_IRQn\000"
+ 2837      305F4952 
+ 2837      516E00
+ 2838              	.LASF172:
+ 2839 0a02 53544D5F 		.ascii	"STM_EVAL_LEDToggle\000"
+ 2839      4556414C 
+ 2839      5F4C4544 
+ 2839      546F6767 
+ 2839      6C6500
+ 2840              	.LASF111:
+ 2841 0a15 42535252 		.ascii	"BSRRL\000"
+ 2841      4C00
+ 2842              	.LASF162:
+ 2843 0a1b 42555454 		.ascii	"BUTTON_MODE_GPIO\000"
+ 2843      4F4E5F4D 
+ 2843      4F44455F 
+ 2843      4750494F 
+ 2843      00
+ 2844              	.LASF17:
+ 2845 0a2c 45585449 		.ascii	"EXTI3_IRQn\000"
+ 2845      335F4952 
+ 2845      516E00
+ 2846              	.LASF112:
+ 2847 0a37 42535252 		.ascii	"BSRRH\000"
+ 2847      4800
+ 2848              	.LASF93:
+ 2849 0a3d 75696E74 		.ascii	"uint8_t\000"
+ 2849      385F7400 
+ 2850              	.LASF144:
+ 2851 0a45 4750494F 		.ascii	"GPIO_Pin\000"
+ 2851      5F50696E 
+ 2851      00
+ 2852              	.LASF138:
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 65
+
+
+ 2853 0a4e 4750494F 		.ascii	"GPIO_Speed_100MHz\000"
+ 2853      5F537065 
+ 2853      65645F31 
+ 2853      30304D48 
+ 2853      7A00
+ 2854              	.LASF86:
+ 2855 0a60 44434D49 		.ascii	"DCMI_IRQn\000"
+ 2855      5F495251 
+ 2855      6E00
+ 2856              	.LASF70:
+ 2857 0a6a 4554485F 		.ascii	"ETH_WKUP_IRQn\000"
+ 2857      574B5550 
+ 2857      5F495251 
+ 2857      6E00
+ 2858              	.LASF161:
+ 2859 0a78 42757474 		.ascii	"Button_TypeDef\000"
+ 2859      6F6E5F54 
+ 2859      79706544 
+ 2859      656600
+ 2860              	.LASF116:
+ 2861 0a87 45585449 		.ascii	"EXTI_Mode_Event\000"
+ 2861      5F4D6F64 
+ 2861      655F4576 
+ 2861      656E7400 
+ 2862              	.LASF141:
+ 2863 0a97 4750494F 		.ascii	"GPIO_PuPd_UP\000"
+ 2863      5F507550 
+ 2863      645F5550 
+ 2863      00
+ 2864              	.LASF89:
+ 2865 0aa4 4650555F 		.ascii	"FPU_IRQn\000"
+ 2865      4952516E 
+ 2865      00
+ 2866              	.LASF5:
+ 2867 0aad 44656275 		.ascii	"DebugMonitor_IRQn\000"
+ 2867      674D6F6E 
+ 2867      69746F72 
+ 2867      5F495251 
+ 2867      6E00
+ 2868              	.LASF186:
+ 2869 0abf 42555454 		.ascii	"BUTTON_EXTI_LINE\000"
+ 2869      4F4E5F45 
+ 2869      5854495F 
+ 2869      4C494E45 
+ 2869      00
+ 2870              	.LASF40:
+ 2871 0ad0 49324331 		.ascii	"I2C1_ER_IRQn\000"
+ 2871      5F45525F 
+ 2871      4952516E 
+ 2871      00
+ 2872              	.LASF26:
+ 2873 0add 4144435F 		.ascii	"ADC_IRQn\000"
+ 2873      4952516E 
+ 2873      00
+ 2874              	.LASF65:
+ 2875 0ae6 444D4132 		.ascii	"DMA2_Stream1_IRQn\000"
+ 2875      5F537472 
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 66
+
+
+ 2875      65616D31 
+ 2875      5F495251 
+ 2875      6E00
+ 2876              	.LASF195:
+ 2877 0af8 4E564943 		.ascii	"NVIC_Init\000"
+ 2877      5F496E69 
+ 2877      7400
+ 2878              	.LASF30:
+ 2879 0b02 43414E31 		.ascii	"CAN1_SCE_IRQn\000"
+ 2879      5F534345 
+ 2879      5F495251 
+ 2879      6E00
+ 2880              	.LASF74:
+ 2881 0b10 43414E32 		.ascii	"CAN2_SCE_IRQn\000"
+ 2881      5F534345 
+ 2881      5F495251 
+ 2881      6E00
+ 2882              	.LASF13:
+ 2883 0b1e 5243435F 		.ascii	"RCC_IRQn\000"
+ 2883      4952516E 
+ 2883      00
+ 2884              	.LASF84:
+ 2885 0b27 4F54475F 		.ascii	"OTG_HS_WKUP_IRQn\000"
+ 2885      48535F57 
+ 2885      4B55505F 
+ 2885      4952516E 
+ 2885      00
+ 2886              	.LASF37:
+ 2887 0b38 54494D33 		.ascii	"TIM3_IRQn\000"
+ 2887      5F495251 
+ 2887      6E00
+ 2888              	.LASF15:
+ 2889 0b42 45585449 		.ascii	"EXTI1_IRQn\000"
+ 2889      315F4952 
+ 2889      516E00
+ 2890              	.LASF19:
+ 2891 0b4d 444D4131 		.ascii	"DMA1_Stream0_IRQn\000"
+ 2891      5F537472 
+ 2891      65616D30 
+ 2891      5F495251 
+ 2891      6E00
+ 2892              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20121207 (release) [ARM/embedded-4_7-br
+ARM GAS  C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s 			page 67
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f4_discovery.c
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:71     .text.STM_EVAL_LEDInit:00000000 $t
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:76     .text.STM_EVAL_LEDInit:00000000 STM_EVAL_LEDInit
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:403    .rodata.GPIO_CLK:00000000 .LANCHOR0
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:413    .rodata.GPIO_PIN:00000000 .LANCHOR1
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:387    .data.GPIO_PORT:00000000 .LANCHOR2
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:143    .text.STM_EVAL_LEDOn:00000000 $t
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:148    .text.STM_EVAL_LEDOn:00000000 STM_EVAL_LEDOn
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:170    .text.STM_EVAL_LEDOff:00000000 $t
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:175    .text.STM_EVAL_LEDOff:00000000 STM_EVAL_LEDOff
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:197    .text.STM_EVAL_LEDToggle:00000000 $t
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:202    .text.STM_EVAL_LEDToggle:00000000 STM_EVAL_LEDToggle
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:226    .text.STM_EVAL_PBInit:00000000 $t
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:231    .text.STM_EVAL_PBInit:00000000 STM_EVAL_PBInit
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:333    .text.STM_EVAL_PBInit:00000078 $d
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:338    .text.STM_EVAL_PBGetState:00000000 $t
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:343    .text.STM_EVAL_PBGetState:00000000 STM_EVAL_PBGetState
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:435    .data.BUTTON_PORT:00000000 .LANCHOR3
+                            *COM*:00000004 NVIC_InitStructure
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:383    .rodata.BUTTON_IRQn:00000000 BUTTON_IRQn
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:444    .rodata.BUTTON_PIN_SOURCE:00000000 BUTTON_PIN_SOURCE
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:431    .rodata.BUTTON_PORT_SOURCE:00000000 BUTTON_PORT_SOURCE
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:450    .rodata.BUTTON_EXTI_LINE:00000000 BUTTON_EXTI_LINE
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:425    .rodata.BUTTON_CLK:00000000 BUTTON_CLK
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:399    .rodata.BUTTON_PIN:00000000 BUTTON_PIN
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:438    .data.BUTTON_PORT:00000000 BUTTON_PORT
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:406    .rodata.GPIO_CLK:00000000 GPIO_CLK
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:416    .rodata.GPIO_PIN:00000000 GPIO_PIN
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:390    .data.GPIO_PORT:00000000 GPIO_PORT
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:380    .rodata.BUTTON_IRQn:00000000 $d
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:386    .data.GPIO_PORT:00000000 $d
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:396    .rodata.BUTTON_PIN:00000000 $d
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:402    .rodata.GPIO_CLK:00000000 $d
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:412    .rodata.GPIO_PIN:00000000 $d
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:422    .rodata.BUTTON_CLK:00000000 $d
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:428    .rodata.BUTTON_PORT_SOURCE:00000000 $d
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:434    .data.BUTTON_PORT:00000000 $d
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:441    .rodata.BUTTON_PIN_SOURCE:00000000 $d
+C:\Users\CNous\AppData\Local\Temp\ccXtjCpn.s:447    .rodata.BUTTON_EXTI_LINE:00000000 $d
+                     .debug_frame:00000010 $d
+
+UNDEFINED SYMBOLS
+RCC_AHB1PeriphClockCmd
+GPIO_Init
+RCC_APB2PeriphClockCmd
+SYSCFG_EXTILineConfig
+EXTI_Init
+NVIC_Init
+GPIO_ReadInputDataBit
