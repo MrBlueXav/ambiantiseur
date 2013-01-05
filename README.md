@@ -7,6 +7,8 @@ STM32F4 Discovery board open source project.
 
 "Ambiantiseur" ( Ambientizer in english) is a very basic synthesizer 
 which can produce semi-randomly generated musical sequences with a few effects (delay and phaser).
+Demo here : http://www.youtube.com/watch?v=fMWcXrCg1iw
+
 Four potentiometers and one switch allow the user to control the machine.
 The two position switch allow you to modify 2 x 4 = 8 parameters :
 Switch = 0 ->
