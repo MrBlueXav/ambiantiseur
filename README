@@ -35,3 +35,8 @@ Switch and pots are 3V board powered.
 	pot3   : PC2
 	pot4   : PC4
 Three additional pots or switches can be wired on PA2, PA3, PB0. Their values appear in ADC1ConvertedValues[0...7] array.
+
+* Used tools for build (on Windows Vista):
+	- Eclipse juno
+	- Yagarto.de tools for make...
+	- ARM Embedded GNU gcc 4.7 2012q4

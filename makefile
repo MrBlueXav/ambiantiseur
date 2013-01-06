@@ -1,6 +1,9 @@
+##############################################################################################
+#			MAKEFILE for "ambiantiseur" project on STM32F4 Discovery board
 #
+##############################################################################################
 #       !!!! Do NOT edit this makefile with an editor which replace tabs by spaces !!!!    
-#
+#		Don't forget to modify DLIBDIR for your configuration
 ##############################################################################################
 # 
 # On command line:
@@ -21,6 +24,7 @@ CC   = $(TRGT)gcc
 CP   = $(TRGT)objcopy
 AS   = $(TRGT)gcc -x assembler-with-cpp
 BIN  = $(CP) -O ihex 
+SZ   = $(TRGT)size
 
 MCU  = cortex-m4
 
@@ -154,14 +158,18 @@ all: $(OBJS) $(FULL_PRJ).elf $(FULL_PRJ).hex size
 	$(AS) -c $(ASFLAGS) $< -o $@
 
 %elf: $(OBJS)
+	@echo ' '
+	@echo '-----------LINKING-------------- '
 	$(CC) $(OBJS) $(LDFLAGS) $(LIBS) -o $@ 
   
 %hex: %elf
 	$(BIN) $< $@
 
 size : $(FULL_PRJ).elf
+	@echo ' '
+	@echo '-------------------------------- '
 	@echo 'Invoking: ARM Windows GNU Print Size'
-	arm-none-eabi-size  --format=berkeley -t $(FULL_PRJ).elf
+	$(SZ)  --format=berkeley -t $(FULL_PRJ).elf
 	@echo 'Finished building: $@'
 	@echo ' '
 
