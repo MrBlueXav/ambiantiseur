@@ -1,5 +1,5 @@
 ##############################################################################################
-#			MAKEFILE for "ambiantiseur" project on STM32F4 Discovery board
+#			MAKEFILE for "   " project on STM32F4 Discovery board
 #
 ##############################################################################################
 #       !!!! Do NOT edit this makefile with an editor which replace tabs by spaces !!!!    
@@ -14,46 +14,15 @@
 #
 # To rebuild project do "make clean" and "make all".
 #
-
-##############################################################################################
-# Start of default section
-#
-
-TRGT = arm-none-eabi-
-CC   = $(TRGT)gcc
-CP   = $(TRGT)objcopy
-AS   = $(TRGT)gcc -x assembler-with-cpp
-BIN  = $(CP) -O ihex 
-SZ   = $(TRGT)size
-
-MCU  = cortex-m4
-
-# List all default C defines here, like -D_DEBUG=1
-DDEFS = -D__arm__ -D__ASSEMBLY__ -DUSE_STDPERIPH_DRIVER -DSTM32F4XX -DHSE_VALUE=8000000 -D__FPU_PRESENT=1  -DSTM32F407VG
-
-# List all default ASM defines here, like -D_DEBUG=1
-DADEFS = -D__arm__ -D__ASSEMBLY__ -DUSE_STDPERIPH_DRIVER -DSTM32F4XX -DHSE_VALUE=8000000 -D__FPU_PRESENT=1  -DSTM32F407VG
-
-# List all default directories to look for include files here
-DINCDIR = 
-
-# List the default directory to look for the libraries here
-DLIBDIR = C:\GNUToolsARMEmbedded\4.7-2012q4\arm-none-eabi\lib\armv7e-m\fpu
-
-# List all default libraries here
-DLIBS = -lgcc -lc -lm
-
-#
-# End of default section
-##############################################################################################
-
 ##############################################################################################
 # Start of user section
 #
 
-# 
-# Define project name and Ram/Flash mode here
+####################################### 
+# Define project name 
 PROJECT        = ambiantiseur
+#######################################
+
 HEAP_SIZE      = 8192
 STACK_SIZE     = 2048
 
@@ -61,13 +30,8 @@ STACK_SIZE     = 2048
 # Define linker script file here
 #
 LDSCRIPT = ./prj/link.ld
-FULL_PRJ = $(PROJECT)_flash
+FULL_PRJ = $(PROJECT)
 
-
-#
-# Define FPU settings here
-#
-FPU = -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__FPU_USED=1
 
 # List all user C define here, like -D_DEBUG=1
 UDEFS = 
@@ -121,6 +85,44 @@ OPT = -O2
 #
 # End of user defines
 ##############################################################################################
+
+##############################################################################################
+# Start of default section
+#
+
+TRGT = arm-none-eabi-
+CC   = $(TRGT)gcc -std=gnu99
+CP   = $(TRGT)objcopy
+AS   = $(TRGT)gcc -x assembler-with-cpp
+BIN  = $(CP) -O ihex 
+SZ   = $(TRGT)size
+
+MCU  = cortex-m4
+
+#
+# Define FPU settings here
+#
+FPU = -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__FPU_USED=1
+
+# List all default C defines here, like -D_DEBUG=1
+DDEFS = -D__arm__ -D__ASSEMBLY__ -DUSE_STDPERIPH_DRIVER -DSTM32F4XX -DHSE_VALUE=8000000 -D__FPU_PRESENT=1  -DSTM32F407VG
+
+# List all default ASM defines here, like -D_DEBUG=1
+DADEFS = -D__arm__ -D__ASSEMBLY__ -DUSE_STDPERIPH_DRIVER -DSTM32F4XX -DHSE_VALUE=8000000 -D__FPU_PRESENT=1  -DSTM32F407VG
+
+# List all default directories to look for include files here
+DINCDIR = 
+
+# List the default directory to look for the libraries here
+DLIBDIR = C:\GNUToolsARMEmbedded\4.7-2012q4\arm-none-eabi\lib\armv7e-m\fpu
+
+# List all default libraries here
+DLIBS = -lgcc -lc -lm
+
+#
+# End of default section
+##############################################################################################
+
 
 
 INCDIR  = $(patsubst %,-I%,$(DINCDIR) $(UINCDIR))

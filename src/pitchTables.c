@@ -25,7 +25,7 @@
 
 
 
-#include "main.h"
+#include "pitchTables.h"
 
 //This array contains the note frequencies corresponding to MIDI note values.
 

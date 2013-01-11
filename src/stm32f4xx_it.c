@@ -22,44 +22,11 @@
  */
 
 /* Includes ------------------------------------------------------------------*/
-#include "main.h"
-#include "phaser2.h"
+
+#include "stm32f4xx_it.h"
 
 /* ---------------------------------------------------------------------------*/
 
-extern float 			f1 ;
-extern uint16_t 		ADC1ConvertedValues[8] ;
-//extern __IO uint32_t 	TimingDelay ;
-extern float         	fdb;
-extern float           *readpos; // output pointer of delay line
-extern float           *writepos; // input pointer of delay line
-extern float           delayline[DELAYLINE_LEN + 10];
-extern uint16_t			delay1;
-
-//extern const uint16_t 	MIDINOTES_FREQ_LUT[128];
-extern const uint16_t 	scale1[39];
-extern const uint16_t 	scale2[47];
-extern const uint16_t 	scale3[18];
-extern const uint16_t 	scale4[12];
-extern const uint16_t 	scale5[42];
-extern const uint16_t 	scale6[42];
-extern const uint16_t 	scale7[11];
-extern const uint16_t 	scale8[12];
-
-extern uint8_t			envTrigger, envAmp;
-extern float			envTime;
-
-/*  Extern Sequencer variables  */
-extern const uint8_t 	seq1[64][16];
-extern uint32_t 		seqIndex;
-extern uint32_t			seq1Number;
-
-extern uint8_t			potSet;
-extern uint8_t			accroche1, accroche2, accroche3, accroche4;
-extern uint16_t			param1, param2, param3, param4;
-extern uint16_t			param1b, param2b, param3b, param4b;
-
-extern uint16_t 		reloadValue;
 
 
 /******************************************************************************/
@@ -154,6 +121,67 @@ void PendSV_Handler(void)
 {
 }
 
+//===============================================================================================
+static void update_tempo(void)
+{
+	/* update tempo */
+	param1 = ADC1ConvertedValues[4];
+	reloadValue = (uint16_t)(MAX_ARR - (float_t)(param1) * (MAX_ARR - MIN_ARR)/ ADCMAX) ; //
+	TIM_SetAutoreload(TIM6, reloadValue);
+}
+
+static void update_scale(void)
+{
+	param2 = ADC1ConvertedValues[5];
+}
+
+static void update_delaytime(void)
+{
+	/* update delay time */
+	uint32_t	shift;
+	float_t 	*pos;
+
+	param3 = ADC1ConvertedValues[6];
+	if (fabsf(param3 - old_param3) > DELTA) old_param3 = param3; // ultra basic noise blocker
+	shift = MIN_DELAY + (uint32_t)(old_param3 * (DELAYLINE_LEN - MIN_DELAY) / ADCMAX); //
+	pos = writepos - shift;
+	if (pos >= delayline)
+		readpos = pos;
+	else
+		readpos = pos + DELAYLINE_LEN - 1;
+}
+
+static void update_delayfeedback(void)
+{
+	/* update feedback delay */
+	param4 = ADC1ConvertedValues[7];
+	fdb = (float_t)(param4 / ADCMAX); //
+}
+
+static void update_envelope(void)
+{
+	param1b = ADC1ConvertedValues[4];
+	envTime = (float_t)(param1b / ADCMAX);
+}
+
+static void update_phaserRate(void)
+{
+	param2b = ADC1ConvertedValues[5];
+	PhaserRate(8 * param2b/ADCMAX);
+}
+
+static void update_phaserFdb(void)
+{
+	param3b = ADC1ConvertedValues[6];
+	PhaserFeedback(param3b/ADCMAX);
+}
+
+static void update_volume(void)
+{
+	param4b = ADC1ConvertedValues[7];
+	EVAL_AUDIO_VolumeCtl((uint8_t)(MAXVOL * param4b / ADCMAX));
+}
+//=============================================================================================
 /**
  * @brief  This function handles SysTick Handler.
  * Every DELAY_1 ticks this function reads the panel potentiometers and switches
@@ -163,10 +191,9 @@ void PendSV_Handler(void)
  */
 void SysTick_Handler(void)
 {
-	uint32_t	shift;
+
 	uint16_t 	switchVal;
 	uint8_t		val;
-	float 		*pos;
 
 	delay1--;
 
@@ -184,10 +211,10 @@ void SysTick_Handler(void)
 		{
 			pass = 0.0f;
 		}
-		*/
+		 */
 
 		switchVal = ADC1ConvertedValues[0]; // read switch 1
-		if (switchVal < 31 ) val = 0; else val = 1;
+		if (switchVal < ADCMAX / 2 ) val = 0; else val = 1;
 		if (val != potSet)
 		{
 			accroche1 = OFF; STM_EVAL_LEDOff(LED5);
@@ -200,112 +227,145 @@ void SysTick_Handler(void)
 		if (potSet == 0) // first functions for pots
 		{
 			/*-------------------------------------------------------*/
-			if (fabsf(ADC1ConvertedValues[4] - param1) <= DELTA)
+			if (accroche1 == ON)
 			{
-				accroche1 = ON;
 				STM_EVAL_LEDOn(LED5);
+				//param1 = ADC1ConvertedValues[4];
+				update_tempo();
 			}
 			else
 			{
-				if (accroche1 == ON) param1 = ADC1ConvertedValues[4];
+				if (fabsf(ADC1ConvertedValues[4] - param1) <= DELTA)
+				{
+					accroche1 = ON;
+					STM_EVAL_LEDOn(LED5);
+					//param1 = ADC1ConvertedValues[4];
+					update_tempo();
+				}
 			}
 			/*-------------------------------------------------------*/
-			if (fabsf(ADC1ConvertedValues[5] - param2) <= DELTA)
+			if (accroche2 == ON)
 			{
-				accroche2 = ON;
 				STM_EVAL_LEDOn(LED4);
+				//param2 = ADC1ConvertedValues[5];
+				update_scale();
 			}
 			else
 			{
-				if (accroche2 == ON) param2 = ADC1ConvertedValues[5];
+				if (fabsf(ADC1ConvertedValues[5] - param2) <= DELTA)
+				{
+					accroche2 = ON;
+					STM_EVAL_LEDOn(LED4);
+					//param2 = ADC1ConvertedValues[5];
+					update_scale();
+				}
 			}
 			/*-------------------------------------------------------*/
-			if (fabsf(ADC1ConvertedValues[6] - param3) <= DELTA)
+			if (accroche3 == ON)
 			{
-				accroche3 = ON;
 				STM_EVAL_LEDOn(LED3);
+				//param3 = ADC1ConvertedValues[6];
+				update_delaytime();
 			}
 			else
 			{
-				if (accroche3 == ON) param3 = ADC1ConvertedValues[6];
+				if (fabsf(ADC1ConvertedValues[6] - param3) <= DELTA)
+				{
+					accroche3 = ON;
+					STM_EVAL_LEDOn(LED3);
+					//param3 = ADC1ConvertedValues[6];
+					update_delaytime();
+				}
 			}
 			/*-------------------------------------------------------*/
-			if (fabsf(ADC1ConvertedValues[7] - param4) <= DELTA)
+			if (accroche4 == ON)
 			{
-				accroche4 = ON;
 				STM_EVAL_LEDOn(LED6);
+				//param4 = ADC1ConvertedValues[7];
+				update_delayfeedback();
 			}
 			else
 			{
-				if (accroche4 == ON) param4 = ADC1ConvertedValues[7];
+				if (fabsf(ADC1ConvertedValues[7] - param4) <= DELTA)
+				{
+					accroche4 = ON;
+					STM_EVAL_LEDOn(LED6);
+					//param4 = ADC1ConvertedValues[7];
+					update_delayfeedback();
+				}
 			}
-			/*-------------------------------------------------------*/
-
-			/* update tempo */
-			reloadValue = (uint16_t)(MAX_ARR - (float)(param1) * (MAX_ARR - MIN_ARR)/ ADCMAX) ; //
-			TIM_SetAutoreload(TIM6, reloadValue);
-
-			/* update delay time */
-			shift = MIN_DELAY + (uint32_t)(param3 * 23500.f / ADCMAX); //
-			pos = writepos - shift;
-			if (pos >= delayline)
-				readpos = pos;
-			else
-				readpos = pos + DELAYLINE_LEN - 1;
-
-			/* update feedback delay */
-			fdb = (float)(param4 / ADCMAX); //
-
-
 		}
 		else // second functions for pots
 		{
 			/*-------------------------------------------------------*/
-			if (fabsf(ADC1ConvertedValues[4] - param1b) <= DELTA)
+			if (accroche1 == ON)
 			{
-				accroche1 = ON;
 				STM_EVAL_LEDOn(LED5);
+				//param1b = ADC1ConvertedValues[4];
+				update_envelope();
 			}
 			else
 			{
-				if (accroche1 == ON) param1b = ADC1ConvertedValues[4];
+				if (fabsf(ADC1ConvertedValues[4] - param1b) <= DELTA)
+				{
+					accroche1 = ON;
+					STM_EVAL_LEDOn(LED5);
+					//param1b = ADC1ConvertedValues[4];
+					update_envelope();
+				}
 			}
 			/*-------------------------------------------------------*/
-			if (fabsf(ADC1ConvertedValues[5] - param2b) <= DELTA)
+			if (accroche2 == ON)
 			{
-				accroche2 = ON;
 				STM_EVAL_LEDOn(LED4);
+				//param2b = ADC1ConvertedValues[5];
+				update_phaserRate();
 			}
 			else
 			{
-				if (accroche2 == ON) param2b = ADC1ConvertedValues[5];
+				if (fabsf(ADC1ConvertedValues[5] - param2b) <= DELTA)
+				{
+					accroche2 = ON;
+					STM_EVAL_LEDOn(LED4);
+					//param2 = ADC1ConvertedValues[5];
+					update_phaserRate();
+				}
 			}
 			/*-------------------------------------------------------*/
-			if (fabsf(ADC1ConvertedValues[6] - param3b) <= DELTA)
+			if (accroche3 == ON)
 			{
-				accroche3 = ON;
 				STM_EVAL_LEDOn(LED3);
+				//param3b = ADC1ConvertedValues[6];
+				update_phaserFdb();
 			}
 			else
 			{
-				if (accroche3 == ON) param3b = ADC1ConvertedValues[6];
+				if (fabsf(ADC1ConvertedValues[6] - param3b) <= DELTA)
+				{
+					accroche3 = ON;
+					STM_EVAL_LEDOn(LED3);
+					//param3b = ADC1ConvertedValues[6];
+					update_phaserFdb();
+				}
 			}
 			/*-------------------------------------------------------*/
-			if (fabsf(ADC1ConvertedValues[7] - param4b) <= DELTA)
+			if (accroche4 == ON)
 			{
-				accroche4 = ON;
 				STM_EVAL_LEDOn(LED6);
+				//param4b = ADC1ConvertedValues[7];
+				update_volume();
 			}
 			else
 			{
-				if (accroche4 == ON) param4b = ADC1ConvertedValues[7];
+				if (fabsf(ADC1ConvertedValues[7] - param4b) <= DELTA)
+				{
+					accroche4 = ON;
+					STM_EVAL_LEDOn(LED6);
+					//param4b = ADC1ConvertedValues[7];
+					update_volume();
+				}
 			}
-			/*-------------------------------------------------------*/
 
-			envTime = (float)(param1b / ADCMAX);
-			PhaserRate(10 * param2b/ADCMAX);
-			PhaserFeedback(param3b/ADCMAX);
-			EVAL_AUDIO_VolumeCtl((uint8_t)(MAXVOL * param4b / ADCMAX));
 		}
 	}
 }
@@ -343,22 +403,22 @@ void TIM6_DAC_IRQHandler(void)
 			/*if (ADC1ConvertedValues[3] >= 50) // if automatic generation selected...
 			{*/
 
-			if 	(knobValue < 5)
-				f1 = (float)(scale7[(uint16_t)(randomNum() * 10.f)]);
-			else if (knobValue < 10)
-				f1 = (float)(scale8[(uint16_t)(randomNum() * 11.f)]);
-			else if (knobValue < 15)
-				f1 = (float)(scale4[(uint16_t)(randomNum() * 11.f)]);
-			else if (knobValue < 20)
-				f1 = (float)(scale3[(uint16_t)(randomNum() * 17.f)]);
-			else if (knobValue < 30)
-				f1 = (float)(scale1[(uint16_t)(randomNum() * 38.f)]);
-			else if (knobValue < 40)
-				f1 = (float)(scale5[(uint16_t)(randomNum() * 41.f)]);
-			else if (knobValue < 50)
-				f1 = (float)(scale6[(uint16_t)(randomNum() * 41.f)]);
+			if 	(knobValue < LIM1)
+				f1 = (float_t)(scale7[(uint16_t)(randomNum() * 10)]);
+			else if (knobValue < LIM2)
+				f1 = (float_t)(scale8[(uint16_t)(randomNum() * 11)]);
+			else if (knobValue < LIM3)
+				f1 = (float_t)(scale4[(uint16_t)(randomNum() * 11)]);
+			else if (knobValue < LIM4)
+				f1 = (float_t)(scale3[(uint16_t)(randomNum() * 17)]);
+			else if (knobValue < LIM5)
+				f1 = (float_t)(scale1[(uint16_t)(randomNum() * 38)]);
+			else if (knobValue < LIM6)
+				f1 = (float_t)(scale5[(uint16_t)(randomNum() * 41)]);
+			else if (knobValue < LIM7)
+				f1 = (float_t)(scale6[(uint16_t)(randomNum() * 41)]);
 			else
-				f1 = (float)(scale2[(uint16_t)(randomNum() * 46.f)]);
+				f1 = (float_t)(scale2[(uint16_t)(randomNum() * 46)]);
 			/*}
 			else	// manual note generation
 				f1 = (float) (MIDINOTES_FREQ_LUT[knobValue + 45]);*/

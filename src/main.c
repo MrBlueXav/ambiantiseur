@@ -3,7 +3,7 @@
  * @file     main.c
  * @author  Xavier Halgand
  * @version
- * @date    december 2012
+ * @date    january 2013
  * @brief
  *
  STM32F4 Discovery board open source project.
@@ -60,40 +60,20 @@ Three additional pots or switches can be wired on PA2, PA3, PB0. Their values ap
 /*----------------------------- Includes --------------------------------------*/
 
 #include "main.h"
-#include "minblep_tables.h"
-#include "synth.h"
-#include "phaser2.h"
 
-/*******************************************************************************/
+/******************************************************************************/
 /* ADC CDR register base address */
 #define ADC1_DR_ADDRESS               ((uint32_t)0x4001204C)
 
-
-/*------------------------------------------------------------------------------*/
-
-extern void sawtooth_active (void);
-extern void sawtooth_runproc (uint16_t offset, unsigned long len);
-
-
-/* -------------Global variables ---------------------------------------------*/
+/* ===============  Global variables =========================================*/
 
 uint16_t        audiobuff[BUFF_LEN];  // The circular audio buffer
-float           sampleT;
-
-/* Delay effect variables  */
-float           delayline[DELAYLINE_LEN + 2 ];
-float           delayVol = DELAY_VOLUME;
-float           *readpos; // output pointer of delay line
-float           *writepos; // input pointer of delay line
-float			coeff_a1 = 0.6f; // coeff for the one pole low-pass filter in the feedback loop
-// coeff_a1 is between 0 and 1, 0 : no filtering, 1 : heavy filtering
-float			old_dy; //previous delayed sample
-float           fdb = FEEDB;
+float_t           sampleT;
 
 /* Envelope variables  */
 uint8_t			envTrigger, envAmp;
-float			envPhase;
-float			envTime = ENV_TIME;
+float_t			envPhase;
+float_t			envTime = ENV_TIME;
 
 /*  Sequencer variables  */
 uint32_t 		seqIndex;
@@ -105,34 +85,38 @@ uint16_t 					PrescalerValue = 349;  /* 21000000 / 60000  - 1  */
 uint16_t 					reloadValue = 60000;
 
 /*   Oscillator variables  */
-float    pass = 0.8f;
-float    phase2 = 0.0f , phase2Step;
-float   f1 = FREQ1 , f2 = FREQ2 , freq;
-float   _p, _w, _z;
-float   _f [FILLEN + STEP_DD_PULSE_LENGTH];
+float_t    pass = 0.8f;
+float_t    phase2, phase2Step;
+float_t   f1 = FREQ1 , f2 = FREQ2 , freq;
+float_t   _p, _w, _z;
+float_t   _f [FILLEN + STEP_DD_PULSE_LENGTH];
 int     _j, _init;
-
-uint16_t		delay1 = DELAY_1;
 
 /* panel (switch and pots) variables */
 uint16_t 		ADC1ConvertedValues[8] ;
 uint16_t		param1=PARAMDEF, param2=PARAMDEF, param3=PARAMDEF, param4=PARAMDEF;
+uint16_t		old_param3=PARAMDEF;
 uint16_t		param1b=PARAMDEF, param2b=PARAMDEF, param3b=PARAMDEF, param4b=PARAMDEF;
 uint8_t			potSet;
-uint8_t			accroche1 = 0, accroche2 = 0, accroche3 = 0, accroche4 = 0;
+uint8_t			accroche1, accroche2, accroche3, accroche4;
+uint16_t		delay1 = DELAY_1;
 
-RCC_ClocksTypeDef   RCC_Clocks;
-GPIO_InitTypeDef    GPIO_InitStructure;
 
-__IO uint32_t 		TimingDelay = 50;
+/* Delay effect variables  */
+float_t           delayline[DELAYLINE_LEN + 2 ];
+float_t           *readpos; // output pointer of delay line
+float_t           *writepos; // input pointer of delay line
+float_t			coeff_a1 = 0.6f; // coeff for the one pole low-pass filter in the feedback loop
+// coeff_a1 is between 0 and 1, 0 : no filtering, 1 : heavy filtering
+float_t			old_dy; //previous delayed sample
+float_t           fdb = FEEDB;
+
+
 
 /* ----- function prototypes -----------------------------------------------*/
 
-//float sawtooth(float phi);
-//void UpdateOsc(void);
-void ADC1_start(void);
-void Delay(__IO uint32_t nTime);
-void TIM6_Config_and_start(void);
+static void ADC1_start(void);
+static void TIM6_Config_and_start(void);
 
 /*=============================== MAIN ======================================
 ==============================================================================*/
@@ -153,7 +137,7 @@ int main(void)
 	/* Initialize User Button */
 	STM_EVAL_PBInit(BUTTON_USER, BUTTON_MODE_GPIO);
 
-	/* Initialise the onboard random number generator ! */
+	/* Initialise the on-chip random number generator ! */
 	RCC_AHB2PeriphClockCmd(RCC_AHB2Periph_RNG, ENABLE);
 	RNG_Cmd(ENABLE);
 
@@ -162,7 +146,7 @@ int main(void)
 
 	ADC1_start();
 
-	if (ADC1ConvertedValues[0] < 31 ) potSet = 0; else potSet = 1;
+	if (ADC1ConvertedValues[0] < (ADCMAX / 2) ) potSet = 0; else potSet = 1;
 
 	TIM6_Config_and_start();
 
@@ -176,7 +160,7 @@ int main(void)
 	readpos = delayline;
 	writepos = delayline + DELAY;
 
-	sawtooth_active();
+	Synth_Init();
 
 	PhaserInit();
 
@@ -193,30 +177,6 @@ int main(void)
 /*============================== End of main ===================================
 ==============================================================================*/
 
-/**
- * @brief  Inserts a delay time.
- * @param  nTime: specifies the delay time length.
- * @retval None
- */
-void Delay(__IO uint32_t nTime)
-{
-	TimingDelay = nTime;
-	while(TimingDelay != 0);
-}
-//---------------------------------------------------------------------------
-/**
- * @brief  Decrements the TimingDelay variable.
- * @param  None
- * @retval None
- */
-void TimingDelay_Decrement(void)
-{
-	if (TimingDelay != 0x00)
-	{
-		TimingDelay--;
-	}
-}
-//---------------------------------------------------------------------------
 
 /**
  * @brief  Basic management of the timeout situation.
@@ -243,12 +203,10 @@ void EVAL_AUDIO_HalfTransfer_CallBack(uint32_t pBuffer, uint32_t Size)
   the buffer while the DMA is transferring from the first half ... */
 
 	//STM_EVAL_LEDToggle(LED6);
-	sawtooth_runproc(0, BUFF_LEN_DIV4);
+	make_sound(0, BUFF_LEN_DIV4);
 	//STM_EVAL_LEDToggle(LED6);
 
 }
-
-
 //---------------------------------------------------------------------------
 /**
  * @brief  Manages the DMA Complete Transfer complete interrupt.
@@ -259,7 +217,7 @@ void EVAL_AUDIO_TransferComplete_CallBack(uint32_t pBuffer, uint32_t Size)
 {
 
 	//STM_EVAL_LEDToggle(LED6);
-	sawtooth_runproc(BUFF_LEN_DIV2, BUFF_LEN_DIV4);
+	make_sound(BUFF_LEN_DIV2, BUFF_LEN_DIV4);
 	//STM_EVAL_LEDToggle(LED6);
 }
 
@@ -280,12 +238,12 @@ uint16_t EVAL_AUDIO_GetSampleCallBack(void)
 /**************
  * returns a random float between 0 and 1
  *****************/
-float randomNum(void)
+float_t randomNum(void)
 {
-	float random = 1.0f;
+	float_t random = 1.0f;
 	if (RNG_GetFlagStatus(RNG_FLAG_DRDY) == SET)
 	{
-		random = (float)(RNG_GetRandomNumber()/4294967294.0f);
+		random = (float_t)(RNG_GetRandomNumber()/4294967294.0f);
 	}
 	return random;
 }
@@ -359,7 +317,7 @@ void ADC1_start(void)
 	ADC_CommonInit(&ADC_CommonInitStructure);
 
 	/* ADC1 Init ****************************************************************/
-	ADC_InitStructure.ADC_Resolution = ADC_Resolution_6b;
+	ADC_InitStructure.ADC_Resolution = ADC_Resolution_10b;
 	ADC_InitStructure.ADC_ScanConvMode = ENABLE;
 	ADC_InitStructure.ADC_ContinuousConvMode = ENABLE;
 	ADC_InitStructure.ADC_ExternalTrigConvEdge = ADC_ExternalTrigConvEdge_None;

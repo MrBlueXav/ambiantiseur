@@ -27,10 +27,18 @@
 #ifndef __PHASER2_H__
 #define __PHASER2_H__
 
-extern void PhaserInit(void);
-extern float PhaserProcess(float xin);
-extern void PhaserRate(float rate);
-extern void PhaserFeedback(float fdb);
+#include "main.h"
+
+/*This defines the phaser stages
+that is the number of allpass filters
+*/
+#define PH_STAGES 6
+
+/* Exported functions ------------------------------------------------------- */
+void PhaserInit(void);
+float PhaserProcess(float xin);
+void PhaserRate(float rate);
+void PhaserFeedback(float fdb);
 
 
 

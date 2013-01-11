@@ -1,9 +1,9 @@
 /**
   ******************************************************************************
-  * @file    Audio_playback_and_record/inc/stm32f40x_it.h 
-  * @author  MCD Application Team
-  * @version V1.0.0
-  * @date    28-October-2011
+  * @file    stm32f4xx_it.h
+  * @author
+  * @version
+  * @date
   * @brief   This file contains the headers of the interrupt handlers.
   ******************************************************************************
   * @attention
@@ -29,6 +29,10 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx.h"
+#include "main.h"
+#include "phaser2.h"
+#include "sequences.h"
+#include "pitchTables.h"
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
@@ -45,10 +49,10 @@ void DebugMon_Handler(void);
 void PendSV_Handler(void);
 void SysTick_Handler(void);
 void EXTI0_IRQHandler(void);
-void EXTI1_IRQHandler(void);
-void RTC_Alarm_IRQHandler(void);
-void TIM2_IRQHandler(void);
-extern void USB_OTG_BSP_TimerIRQ(void);
+//void EXTI1_IRQHandler(void);
+//void RTC_Alarm_IRQHandler(void);
+//void TIM2_IRQHandler(void);
+//extern void USB_OTG_BSP_TimerIRQ(void);
 
 #ifdef __cplusplus
 }

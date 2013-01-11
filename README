@@ -13,7 +13,7 @@ The two position switch allow you to modify 2 x 4 = 8 parameters :
 Switch = 0 ->
 	pot1 : tempo
 	pot2 : notes scales
-	pot3 : delay time
+	pot3 : delay time (0.6 s max)
 	pot4 : delay feedback
 Switch = 1 ->
 	pot1 : note duration (decay time)
@@ -40,3 +40,6 @@ Three additional pots or switches can be wired on PA2, PA3, PB0. Their values ap
 	- Eclipse juno
 	- Yagarto.de tools for make...
 	- ARM Embedded GNU gcc 4.7 2012q4
+	
+* Has been also built under Linux...
+

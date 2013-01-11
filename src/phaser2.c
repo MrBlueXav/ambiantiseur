@@ -24,13 +24,10 @@
  */
 
 
-#include "main.h"
+
 #include "phaser2.h"
 
-/*This defines the phaser stages
-that is the number of allpass filters
-*/
-#define PH_STAGES 6
+
 
 static float old[PH_STAGES];
 static float f_min, f_max;
@@ -67,7 +64,8 @@ void PhaserFeedback(float fdb)
 {
 	_fb = fdb;
 }
-float allpass(float yin, int ind)
+
+static float allpass(float yin, int ind)
 {
         float yout;
 

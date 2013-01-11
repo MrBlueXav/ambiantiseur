@@ -21,6 +21,9 @@
 #ifndef _MINBLEP_TABLES_H
 #define _MINBLEP_TABLES_H
 
+#include <math.h>
+
+
 /* minBLEP constants */
 /* minBLEP table oversampling factor (must be a power of two): */
 #define MINBLEP_PHASES          64
@@ -35,10 +38,10 @@
 /* delay between start of DD pulse and the discontinuity, in samples: */
 #define DD_SAMPLE_DELAY          4
 
-typedef struct { float value, delta; } float_value_delta;
+typedef struct { float_t value, delta; } float_value_delta;
 
 /* in minblep_tables.c: */
 extern const float_value_delta step_dd_table[];
-extern const float             slope_dd_table[];
+//extern const float             slope_dd_table[];
 
 #endif /* _MINBLEP_TABLES_H */

@@ -27,35 +27,12 @@
  */
 
 
-#include <stdio.h>
-#include <string.h>
-#include <math.h>
-#include "main.h"
-#include "minblep_tables.h"
+
 #include "synth.h"
-#include "phaser2.h"
 
-//---------------------------------------------------------------------------
-
-extern float   		 _p, _w, _z;
-extern float  	     _f [FILLEN + STEP_DD_PULSE_LENGTH];
-extern int    		 _j, _init;
-extern float 		 f1, f2, pass;
-extern float         phase2, phase2Step;
-extern uint16_t   	 audiobuff[BUFF_LEN];
-extern float 	     delayline[DELAYLINE_LEN + 10];
-extern float         *readpos;
-extern float         *writepos;
-extern float		coeff_a1, old_dy;
-extern float         fdb, sampleT, envTime;
-extern float		envPhase;
-extern uint8_t		envTrigger, envAmp;
-//extern uint16_t		ADC1ConvertedValues[8] ;
-//---------------------------------------------------------------------------
 
 //-------------------------Decay Envelope-------------------------------------
-float
-nextSawEnv(uint8_t *trigger, uint8_t amp, float *t, float envTime)
+static float_t nextSawEnv(uint8_t *trigger, uint8_t amp, float *t, float envTime)
 {
 	float val;
 
@@ -83,15 +60,14 @@ nextSawEnv(uint8_t *trigger, uint8_t amp, float *t, float envTime)
 
 //-------------------------this is magic...---------------------------------------
 
-void
-place_step_dd(float *buffer, int index, float phase, float w, float scale)
+static void  place_step_dd(float_t *buffer, int index, float_t phase, float_t w, float_t scale)
 {
-	float r;
+	float_t r;
 	int i;
 
 	r = MINBLEP_PHASES * phase / w;
 	i = lrintf(r - 0.5f);
-	r -= (float)i;
+	r -= (float_t)i;
 	i &= MINBLEP_PHASE_MASK;  /* extreme modulation can cause i to be out-of-range */
 	/* this would be better than the above, but more expensive:
 	 *  while (i < 0) {
@@ -109,21 +85,21 @@ place_step_dd(float *buffer, int index, float phase, float w, float scale)
 //--------------------------Prepare the oscillator----------------------------------------
 
 void
-sawtooth_active (void)
+Synth_Init (void)
 {
 	_init = 1;
 	_z = 0.0f;
 	_j = 0;
-	memset (_f, 0, (FILLEN + STEP_DD_PULSE_LENGTH) * sizeof (float));
+	memset (_f, 0, (FILLEN + STEP_DD_PULSE_LENGTH) * sizeof (float_t));
 }
 
 //---------------------------Compute the samples---------------------------------
 void
-sawtooth_runproc (uint16_t offset, uint16_t len)
+make_sound (uint16_t offset, uint16_t len)
 {
 	uint16_t	j, n;
 	uint16_t	*outp;
-	float  		a, p, t, w, dw, z, ze, y, dy, freq;
+	float_t  		a, p, t, w, dw, z, ze, y, dy, freq;
 	uint16_t	value;
 
 	outp    = audiobuff + offset;
@@ -158,7 +134,7 @@ sawtooth_runproc (uint16_t offset, uint16_t len)
 		phase2 += phase2Step;
 		phase2 = (phase2 > _2PI) ? phase2 - _2PI : phase2;
 		   /* modulate freq by a sine   */
-		freq = f1 * (1 + 0.01f * sinf(phase2));
+		freq = f1 * (1 + VIB_AMP * sinf(phase2));
 
 		len -= n;
 
@@ -216,8 +192,8 @@ sawtooth_runproc (uint16_t offset, uint16_t len)
 			if (++j == FILLEN)
 			{
 				j = 0;
-				memcpy (_f, _f + FILLEN, STEP_DD_PULSE_LENGTH * sizeof (float));
-				memset (_f + STEP_DD_PULSE_LENGTH, 0,  FILLEN * sizeof (float));
+				memcpy (_f, _f + FILLEN, STEP_DD_PULSE_LENGTH * sizeof (float_t));
+				memset (_f + STEP_DD_PULSE_LENGTH, 0,  FILLEN * sizeof (float_t));
 			}
 		}
 	}

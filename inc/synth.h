@@ -26,9 +26,19 @@
 #ifndef _SYNTH_H
 #define _SYNTH_H
 
-#include "minblep_tables.h"
 
-#define FILLEN 256
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include "main.h"
+#include "minblep_tables.h"
+#include "phaser2.h"
+
+
+
+/* Exported functions ------------------------------------------------------- */
+void Synth_Init (void);
+void make_sound (uint16_t offset, uint16_t len);
 
 
 #endif /* _BLEPVCO_H */
