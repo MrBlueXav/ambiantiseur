@@ -94,7 +94,7 @@ extern float_t    phase2, phase2Step;
 extern float_t   f1, f2, freq;
 extern float_t   _p, _w, _z;
 extern float_t   _f [];
-extern int     _j, _init;
+extern int    	 _j, _init;
 
 /* panel (switch and pots) variables */
 extern uint16_t		ADC1ConvertedValues[] ;
@@ -106,14 +106,14 @@ extern uint8_t		accroche1, accroche2, accroche3, accroche4;
 extern uint16_t		delay1;
 
 /* Delay effect variables  */
-extern float_t           delayline[];
-extern float_t           delayVol;
-extern float_t           *readpos; // output pointer of delay line
-extern float_t           *writepos; // input pointer of delay line
-extern float_t			coeff_a1; // coeff for the one pole low-pass filter in the feedback loop
-// coeff_a1 is between 0 and 1, 0 : no filtering, 1 : heavy filtering
-extern float_t			old_dy; //previous delayed sample
-extern float_t           fdb;
+extern float_t		delayline[];
+extern float_t      delayVol;
+extern float_t      *readpos; 	// output pointer of delay line
+extern float_t      *writepos; 	// input pointer of delay line
+extern float_t		coeff_a1; 	// coeff for the one pole low-pass filter in the feedback loop
+									// coeff_a1 is between 0 and 1, 0 : no filtering, 1 : heavy filtering
+extern float_t		old_dy; 	//previous delayed sample
+extern float_t      fdb;
 
 
 /* Exported functions ------------------------------------------------------- */
