@@ -1,7 +1,7 @@
 /**
  ******************************************************************************
  * @file     main.c
- * @author  Xavier Halgand
+ * @author  Xavier Halgand (& many other people...)
  * @version
  * @date    january 2013
  * @brief
@@ -38,7 +38,7 @@ Switch and pots are 3V board powered.
 	pot2   : PC1
 	pot3   : PC2
 	pot4   : PC4
-Three additional pots or switches can be wired on PA2, PA3, PB0. Their values appear in ADC1ConvertedValues[0...7] array.
+Three additional pots or switches can be wired on PA2, PA3, PB0. Their values appear in ADC1ConvertedValues[1..2..3] array.
 
  ******************************************************************************
  * This program is free software; you can redistribute it and/or

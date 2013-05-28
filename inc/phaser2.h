@@ -1,7 +1,7 @@
 /**
  ******************************************************************************
  * @file     phaser2.h
- * @author  Xavier Halgand
+ * @author  Xavier Halgand, thanks to Ross Bencina and music-dsp.org guys !
  * @version
  * @date    december 2012
  * @brief
